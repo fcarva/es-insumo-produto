@@ -1,65 +1,82 @@
 # Plano — do working paper ao artigo completo
 
 **Disciplina:** Análise de Insumo-Produto · Prof. Dr. Celso Bissoli Sessa · PPGEco/UFES · 2026/1
+**Pesquisa (2ª frente):** discussões com o Prof. Renato.
 **Artigo:** *O Espírito Santo como economia-plataforma* (base empírica real + camada inter-regional)
-**Marco imediato:** apresentação **sex 19/06/2026**. **Artigo final:** prazo a confirmar.
+**Marcos:** apresentação **sex 19/06/2026** · **artigo final até 18/07/2026** (fim do semestre UFES).
 
-> Detalhes de dados, estado da arte e limites estão em [`MAPA_DE_PESQUISA.md`](MAPA_DE_PESQUISA.md).
-> Este documento é o **roteiro de execução** até o artigo completo, com fase de **auditoria**.
+> Dados, estado da arte e limites em [`MAPA_DE_PESQUISA.md`](MAPA_DE_PESQUISA.md).
+> Aqui está o **roteiro de execução** até o artigo completo, com a fase de **auditoria**.
 
 ---
 
-## 0. Tese (uma frase)
-O ES é uma **economia-plataforma**: gera encadeamento produtivo que **escoa para o núcleo
-SP/RJ** (52,5% do spillover) com **feedback ≈ 0** — leitura insumo-produto da sub-cobertura
-de capital de um cluster de estados dinâmicos (ex-núcleo) do qual o ES faz parte.
+## 0. Tese e mecanismo (uma frase + porquê)
+O ES é uma **economia-plataforma**: gera encadeamento que **escoa para o núcleo SP/RJ**
+(52,5% do spillover) com **feedback ≈ 0**. **Mecanismo:** o ES é um *hub de passagem*
+exportador de intermediários pesados (minério, siderurgia, celulose); o choque vaza
+rápido para insumos avançados e bens de consumo de SP/MG, mas as rodadas seguintes de
+consumo do Sudeste **não recorrem de volta** às commodities brutas capixabas — daí a
+assimetria. (Usar isto na **Discussão**.)
 
 ## 1. Estado atual (✓ validado e versionado)
 - Base bi-regional ES×RB reproduz o artigo do **dado real** (vazamento 24,9%; emprego exato).
-- Interestadual 27-UF: **destino do spillover** (Sudeste ex-ES = 65%) e abertura ES = 8º/27.
+- Interestadual 27-UF: **destino do spillover** (Sudeste ex-ES = 65%); abertura ES = 8º/27.
 - Cluster de estados dinâmicos (leitura Apex): ES→núcleo 52,5%, feedback≈0; figura pronta.
 - Scripts `01–05`, tabelas e 2 figuras em `pesquisa/`.
 
-## 2. Fase A — completar a análise
-- [ ] **A1. Fixar a convenção de spillover/feedback** do artigo original (reconciliar
-      60,6 / 22,4 / 199) e travar a definição usada (Miller-Blair) em texto + código.
-- [ ] **A2. CGV / *upstreamness*** (WIOD 2014; 2000×2014): posição da pauta do ES via Brasil;
-      fecha o arco **cluster → núcleo → mundo**.
+## 2. Fase A — completar a análise  *(meta: até 27/06)*
+- [ ] **A1. Fixar a convenção de spillover/feedback** (reconciliar 60,6 / 22,4 / 0,199) e
+      travar a definição Miller-Blair em texto + código.
+- [ ] **A2. CGV / *upstreamness*** (Antràs-Chor) no WIOD 2014: **validar do dado real** a
+      *upstreamness* do ES (alvo do paper-semente: **3,19** vs **1,97** Brasil; mineração no
+      **percentil ~98** global) e encaixar a *smile curve* (`figuras/cgv_smile_curve.png`:
+      ES preso no fundo do "U"). Cuidado com a **concordância setorial** 26-BR → 56-WIOD.
 - [ ] **A3. Tabela setorial completa** do cluster (perfil do ES vs os 7 pares).
 - [ ] **A4. (opcional) Intra-ES** (microrregiões 2015): a plataforma se replica dentro do ES?
 - [ ] **A5. Figuras finais** padronizadas (paleta, fontes) para paper e slides.
 
-## 3. Fase B — auditoria (antes de fechar)
-- [ ] **B1. Contábil/numérica:** oferta=demanda, x=Z1+y, ΣA<1, B≥0, multiplicadores≥1,
-      reprodutibilidade (todos os scripts rodam do zero e batem com as tabelas).
-- [ ] **B2. Metodológica:** conferir derivações (Isard/Leontief, spillover/feedback
-      Miller-Blair cap.3, RH, *upstreamness* Antràs-Chor) contra a literatura fornecida
-      (Haddad 2017; Guilhoto et al. 2019; Miller & Blair 2009).
-- [ ] **B3. Limites explicitados:** fluxos interestaduais **estimados** (IIOAS, não observados);
-      anos distintos (2008/2014/2015); ES não é país no WIOD; agregação 26 setores.
+## 3. Fase B — auditoria  *(meta: 28/06–08/07)*
+- [ ] **B1. Contábil/numérica + reprodutibilidade:** oferta=demanda, x=Z1+y, ΣA<1, B≥0,
+      multiplicadores≥1; ambiente `.venv` + `requirements.txt` travado; `src/io_core.py`
+      encapsula a rotina matricial; `make paper` automatiza o LaTeX → **anula questionamento
+      de "manipulação em planilha"**. Todos os scripts rodam do zero e batem com as tabelas.
+- [ ] **B2. Metodológica (notação = padrão do *referee*):** garantir que o `.tex` use a
+      **notação idêntica a Miller & Blair** no particionamento da matriz $A$ e da inversa de
+      Leontief $L$ nas submatrizes $LL, LM, ML, MM$; ancorar em Haddad e Guilhoto (Brasil) e
+      Miller & Blair (Isard). Conferir *upstreamness* (Antràs-Chor) e RH.
+- [ ] **B3. Limites (seção que desarma o *referee* — ser frontal):**
+  - **Gap temporal / quebra estrutural:** MIP base é **2008**; o ES sofreu choques desde
+    então — o mais drástico, o **rompimento da barragem de Fundão (2015)**, que paralisou a
+    Samarco e alterou o peso da extração/pelotização no estado.
+  - **Aproximação WIOD:** o ES **não tem assento próprio** no WIOD 2014; assumir tecnologia
+    nacional ou aplicar *shift-share* da pauta capixaba sobre a matriz BR introduz **viés**
+    (a intensidade primária da exportação do ES não reflete a média nacional). Declarar.
+  - **Defesa pela inércia estrutural:** justificar 2008 (MIP) + 2014 (WIOD) juntos — as
+    relações de encadeamento físico de cadeias de base mudam **lentamente**, então a
+    *fotografia estrutural* caracteriza o modelo capixaba ainda que os nominais defasem.
 - [ ] **B4. Revisão de código:** `/code-review` nos scripts de `pesquisa/`.
-- [ ] **B5. Revisão por pares (checklist de *referee*):** pergunta clara, identificação,
-      robustez, contribuição vs literatura, honestidade dos limites.
+- [ ] **B5. Checklist de *referee*:** pergunta clara, identificação, robustez, contribuição
+      vs literatura, honestidade dos limites.
 
-## 4. Fase C — redação e montagem do paper
-- [ ] **C1. Reescrever `paper/es_insumo_produto.tex`** com a base real e a camada inter-regional:
-      título/abstract atualizados; seções **Introdução · Dados · Método · Resultados**
-      (vazamento → spillover/feedback → destino interestadual → cluster → CGV) **· Discussão**
-      (tese-plataforma + leitura de capital) **· Limites · Agenda · Conclusão**.
-- [ ] **C2. Tabelas** geradas a partir dos CSVs de `outputs/` (substituir placeholders).
-- [ ] **C3. Bibliografia** reconciliada (incluir as fontes novas + Brazil Journal/NeoFeed).
+## 4. Fase C — redação e montagem  *(meta: 28/06–08/07, em paralelo à B)*
+- [ ] **C1. Reescrever `paper/es_insumo_produto.tex`**: título/abstract atualizados; seções
+      **Introdução · Dados · Método · Resultados** (vazamento → spillover/feedback → destino
+      interestadual → cluster → CGV) **· Discussão** (tese-plataforma + mecanismo + leitura
+      de capital) **· Limites (B3) · Agenda · Conclusão**.
+- [ ] **C2. Tabelas** a partir dos CSVs de `outputs/` (substituir placeholders).
+- [ ] **C3. Bibliografia** reconciliada (+ fontes novas; Brazil Journal/NeoFeed para o cluster).
 - [ ] **C4. Compilar PDF** (`make paper`) e **release** `v1.0-disciplina` (tag + PDF).
 
-## 5. Marcos
-| Quando | Entrega |
+## 5. Cronograma (deadline 18/07)
+| Data | Entrega |
 |---|---|
-| **sex 19/06** | Apresentação: base + interestadual + cluster + 2 figuras (✓ material pronto) |
-| +1 semana | Fase A completa (CGV + tabela do cluster) |
-| +2 semanas | Fase B (auditoria) + Fase C (draft completo do `.tex`) |
-| prazo final | PDF + release citável |
+| **sex 19/06** | Apresentação: base + interestadual + cluster + 2 figuras (✓ pronto) |
+| **até 27/06** | Fase A (CGV/upstreamness validado + tabela do cluster) |
+| **28/06–08/07** | Fase B (auditoria) + Fase C (draft completo do `.tex`) |
+| **09–15/07** | Revisão final de conteúdo + PDF |
+| **16–18/07** | Buffer + entrega + release citável |
 
 ## 6. Decisões abertas (suas)
-- **Prazo do artigo final** da disciplina (define o cronograma acima).
 - **Nome do cluster** (hoje "cluster de estados dinâmicos / ex-núcleo SP/RJ").
 - **Convenção exata** de spillover/feedback do artigo original (para A1).
 - Escopo: incluir **intra-ES (A4)** e a comparação **2000×2014** de CGV, ou enxugar?
@@ -67,4 +84,4 @@ de capital de um cluster de estados dinâmicos (ex-núcleo) do qual o ES faz par
 ## 7. Divisão de trabalho
 - **Eu:** análise, código, figuras, tabelas, draft do `.tex`, checklists de auditoria.
 - **Você:** decisões editoriais (título, nome do cluster, escopo), convenção do spillover
-  original, prazo, e a revisão final de conteúdo.
+  original, e a revisão final de conteúdo (+ alinhamento com Celso e Renato).
