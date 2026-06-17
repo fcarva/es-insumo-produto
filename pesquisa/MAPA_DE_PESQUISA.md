@@ -37,6 +37,22 @@ Tabela setorial completa: `outputs/es_setores_resultados.csv`.
 **Pendência:** fixar a convenção exata de injeção/decomposição do spillover/feedback
 do artigo original (a assimetria qualitativa se mantém em qualquer convenção).
 
+## B2. Resultados interestaduais (✓ feito — `02_interestadual.py`)
+
+Da matriz **27-UF**, e **consistente com a bi-regional** (mesma injeção f^ES=R$51,5 bi
+e spillover=R$18,1 bi — a bi-regional é a colapsada ES-vs-resto da interestadual):
+
+- **Para onde vaza o ES:** SP **37,8%**, RJ **14,7%**, MG **12,9%** → **Sudeste (ex-ES)
+  absorve 65,4%** do spillover; Sul 14,8%, Nordeste 11,3%, C-Oeste 4,8%, Norte 3,7%.
+  O ES retém+feedback **77,9%** da produção que sua demanda final puxa.
+- **Abertura comparada:** ES é **8º/27** em vazamento (22,8%); mais abertos são estados
+  de fronteira agro/mineral (MT 27,4%, AM 27,3%); menos aberto **SP (14,2%)**.
+- **Leitura:** a tese-plataforma não é só *magnitude* de vazamento, e sim a
+  **concentração do destino** (vizinhos ricos do Sudeste) + **feedback ≈ 0**.
+
+Figura para slides: `outputs/es_spillover_destino.png`.
+Tabelas: `outputs/es_spillover_destino.csv`, `outputs/estados_abertura.csv`.
+
 ## C. Estado da arte (literatura disponível, por eixo)
 
 - **Método inter-regional brasileiro (IIOAS):** Haddad et al. (2017, ES); "Matriz
@@ -77,8 +93,10 @@ do artigo original (a assimetria qualitativa se mantém em qualquer convenção)
 
 ## F. Próximos passos (até sexta)
 
-- [ ] (2) Parser da interestadual 27-UF + decomposição do spillover do ES por destino.
-- [ ] (3) Painel ES vs estados (ranking de abertura/vazamento).
-- [ ] (4) *Upstreamness* da pauta do ES (WIOD 2014).
-- [ ] Figuras prontas para slides (mapa/destino do vazamento; ES vs estados).
+- [x] (2) Parser da interestadual 27-UF + decomposição do spillover do ES por destino.
+- [x] (3) Painel ES vs estados (ranking de abertura/vazamento).
+- [x] Figura destino do spillover (estados + macrorregião).
+- [ ] (4) *Upstreamness* da pauta do ES (WIOD 2014; 2000 vs 2014).
+- [ ] (5) Intra-ES (microrregiões 2015): a plataforma se replica dentro do ES?
+- [ ] Fixar a convenção de spillover/feedback do artigo original (60,6/22,4/199).
 - [ ] Esclarecer referência a **"panteras/Apex"** (qual agregação regional?).
