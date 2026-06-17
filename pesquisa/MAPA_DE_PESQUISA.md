@@ -53,21 +53,22 @@ e spillover=R$18,1 bi — a bi-regional é a colapsada ES-vs-resto da interestad
 Figura para slides: `outputs/es_spillover_destino.png`.
 Tabelas: `outputs/es_spillover_destino.csv`, `outputs/estados_abertura.csv`.
 
-## B3. As "onças brasileiras" (Apex Partners) — ponte com a tese de capital (✓ — `04_oncas.py`)
+## B3. O cluster de estados dinâmicos (ex-núcleo) e a leitura da Apex (✓ — `04_cluster.py`)
 
-A **Apex Partners** (gestora; ≠ Apex-Brasil/agência) chama de "onças" 8 estados que
-crescem acima da média mas são sub-cobertos pela Faria Lima: **SC, PR, ES, MG, RS,
-GO, MT, MS** (excluem SP/RJ — o núcleo). O **ES é uma onça**. No interestadual 2008:
+A **Apex Partners** (gestora; ≠ Apex-Brasil/agência) identifica 8 estados que crescem
+acima da média mas são sub-cobertos pelo mercado de capitais: **SC, PR, ES, MG, RS, GO,
+MT, MS** (excluem SP/RJ — o núcleo). Aqui esse conjunto é um **cluster de comparação**
+(sem rótulo de marketing; o foco do artigo segue no **ES**). No interestadual 2008:
 
-- Onças = **33,9% do PIB** (2008) — coerente com a Apex (34% em 2002 → 39% em 2023);
-  núcleo SP+RJ = 43,3%.
-- **Destino do spillover do ES:** núcleo SP+RJ **52,5%** · outras 7 onças 31,5% · resto 16%.
-  Com **feedback ≈ 0**: o encadeamento do ES escoa para o núcleo (Faria Lima) e o valor
-  não volta — **contraparte insumo-produto exata da tese da Apex**.
-- Onças são sistematicamente **mais abertas** que o núcleo (SP é o 27º/menos aberto);
-  o bloco onças **retém 84,8%** do próprio encadeamento.
-- Figura: `outputs/es_oncas.png`; tabelas: `outputs/oncas.csv`, `outputs/oncas_resumo.csv`.
-- Fontes: Brazil Journal e NeoFeed (jun/2026). **Ressalva:** "onças" é agrupamento de
+- Cluster = **33,9% do PIB** (2008) — coerente com a leitura da Apex (34% em 2002 → 39%
+  em 2023); núcleo SP+RJ = 43,3%.
+- **Destino do spillover do ES:** núcleo SP+RJ **52,5%** · resto do cluster 31,5% · resto
+  do país 16%. Com **feedback ≈ 0**: o encadeamento do ES escoa para o núcleo e o valor
+  não volta — **contraparte insumo-produto da tese de sub-cobertura de capital**.
+- O cluster é sistematicamente **mais aberto** que o núcleo (SP é o 27º/menos aberto) e
+  **retém 84,8%** do próprio encadeamento.
+- Figura: `outputs/es_cluster.png`; tabelas: `outputs/cluster.csv`, `outputs/cluster_resumo.csv`.
+- Fontes: Brazil Journal e NeoFeed (jun/2026). **Ressalva:** o cluster é um agrupamento de
   mercado (definir explicitamente); não é regionalização oficial.
 
 ## C. Estado da arte (literatura disponível, por eixo)
@@ -113,7 +114,7 @@ GO, MT, MS** (excluem SP/RJ — o núcleo). O **ES é uma onça**. No interestad
 - [x] (2) Parser da interestadual 27-UF + decomposição do spillover do ES por destino.
 - [x] (3) Painel ES vs estados (ranking de abertura/vazamento).
 - [x] Figura destino do spillover (estados + macrorregião).
-- [x] **Onças brasileiras** (Apex): ES escoa 52,5% ao núcleo SP+RJ, feedback≈0 + figura.
+- [x] **Cluster de estados dinâmicos** (leitura Apex): ES escoa 52,5% ao núcleo SP+RJ, feedback≈0 + figura.
 - [ ] (4) *Upstreamness* da pauta do ES (WIOD 2014; 2000 vs 2014).
 - [ ] (5) Intra-ES (microrregiões 2015): a plataforma se replica dentro do ES?
 - [ ] Fixar a convenção de spillover/feedback do artigo original (60,6/22,4/199).
