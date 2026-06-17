@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Se você usar este trabalho, por favor cite como abaixo."
+title: "O Espírito Santo como economia-plataforma: encadeamentos, vazamento de multiplicadores e os efeitos spillover/feedback na cadeia regional de valor (MIP inter-regional ES x Brasil, 2008)"
+authors:
+  - family-names: Carvalho
+    given-names: Felipe
+    affiliation: "PPGEco/UFES"
+year: 2026
+url: "https://github.com/fcarva/es-insumo-produto"
+keywords:
+  - insumo-produto
+  - modelos inter-regionais
+  - vazamento de multiplicador
+  - spillover e feedback
+  - economia-plataforma
+  - Espírito Santo

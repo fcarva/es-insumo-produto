@@ -1,0 +1,325 @@
+% =====================================================================
+%  es-insumo-produto — artigo (esqueleto reaproveitado)
+%  Felipe Carvalho (fcarva.eth) — PPGEco/UFES
+%  Análise de Insumo-Produto — Prof. Dr. Celso Bissoli Sessa — 2026/1
+%
+%  SEMENTE: este .tex foi reaproveitado do artigo "economia-plataforma"
+%  como ponto de partida do repositório es-insumo-produto. Ajuste título,
+%  texto e números para o conteúdo próprio deste trabalho; a figura do
+%  heatmap da matriz B segue como TODO. Mantidos como base reutilizável:
+%  resumo, método (Isard/Leontief), tabelas-modelo e bibliografia.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Na sua máquina, reative: \usepackage[brazilian]{babel}
+\renewcommand{\abstractname}{Resumo}
+\renewcommand{\refname}{Referências}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[round,authoryear]{natbib}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=2.5cm}
+\definecolor{boxbg}{RGB}{238,243,247}\colorlet{shadecolor}{boxbg}
+
+\title{\textbf{O Espírito Santo como economia-plataforma}\\[2pt]
+\large Encadeamentos, vazamento de multiplicadores e os efeitos
+\emph{spillover}/\emph{feedback} na cadeia regional de valor
+(MIP inter-regional ES\,$\times$\,Brasil, 2008)}
+\author{Felipe Carvalho\\
+\small PPGEco --- UFES \quad$\cdot$\quad Análise de Insumo-Produto --- Prof. Dr. Celso Bissoli Sessa
+\quad$\cdot$\quad \texttt{fcarva.eth}}
+\date{maio de 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent
+Este artigo caracteriza a economia do Espírito Santo como uma
+\emph{economia-plataforma} --- pequena, hiperaberta e estruturada em torno de
+setores cuja demanda final se realiza fora do estado --- a partir de uma
+matriz insumo-produto inter-regional ES\,$\times$\,restante do Brasil para
+2008 (26 setores por região). Aplicando o modelo de Isard, decompõe-se o
+multiplicador de produção de cada setor capixaba em parcela \emph{retida} no
+estado e parcela \emph{vazada} para o restante do Brasil, e isola-se a
+assimetria entre o efeito \emph{spillover} (a produção que a demanda
+capixaba puxa para fora) e o efeito \emph{feedback} (o que retorna). O
+resultado central é uma assimetria extrema: uma injeção na demanda final do
+ES (R\$\,60,6 bi) transborda R\$\,22,4 bi de produção para o restante do
+Brasil, mas o \emph{feedback} de volta ao estado é de apenas R\$\,199 mi
+(0,26\%). Em média, 24,9\% do multiplicador de produção capixaba vaza para
+fora do estado --- número que corrobora, em safra e agregação distintas, os
+27,4\% estimados por \citet{haddad2017iioas} para o ES em 2011. A leitura
+oferece o substrato estrutural para teses de desenvolvimento de mercado de
+capitais regional: o mapa de vazamento é, simultaneamente, um mapa de
+fragilidade e de oportunidade de adensamento de cadeia.
+
+\vspace{0.6em}
+\noindent\textbf{Palavras-chave:} insumo-produto; modelos inter-regionais;
+vazamento de multiplicador; economia-plataforma; Espírito Santo.
+
+\noindent\textbf{Códigos JEL:} R15; D57; C67.
+\end{abstract}
+
+% =====================================================================
+\section*{Sumário executivo}
+\addcontentsline{toc}{section}{Sumário executivo}
+\begin{shaded}
+\noindent\textbf{Tese.} O Espírito Santo não deve ser lido como uma economia
+estadual ``em miniatura'' do Brasil, e sim como uma \textbf{plataforma
+exportadora}. Seus setores de maior peso --- minério de ferro e
+pelotização, petróleo e gás, celulose, rochas ornamentais e café conilon ---
+têm a demanda final \textit{fora} do estado. A consequência estrutural é que
+uma fração elevada do multiplicador capixaba não é retida internamente:
+ela \textit{vaza} para o restante do Brasil e para o exterior.
+
+\vspace{0.5em}
+\noindent\textbf{Por que isso importa para quem aloca capital.} A leitura
+inter-regional permite separar, setor a setor:
+\begin{itemize}\setlength\itemsep{1pt}
+  \item \textbf{Onde o ES retém valor} (alto multiplicador intra-estadual)
+        \textit{versus} onde ele apenas \textbf{exporta encadeamento}
+        (alto vazamento);
+  \item \textbf{A qual ciclo cada setor está exposto} --- demanda interna
+        brasileira \textit{versus} ciclo global de \textit{commodities};
+  \item \textbf{Onde um choque setorial se propaga} e onde ele se dissipa
+        para fora da fronteira estadual.
+\end{itemize}
+\end{shaded}
+
+% =====================================================================
+\section{Introdução}
+\label{sec:intro}
+Em 2008 o Espírito Santo respondia por cerca de 2\% do produto nacional, mas
+sua estrutura produtiva é atípica: pequena, hiperaberta e concentrada em
+setores cuja demanda final se realiza fora do estado. Este artigo testa a
+hipótese de que o ES funciona como uma \emph{economia-plataforma} e responde
+a duas perguntas: (i) para onde vai o multiplicador capixaba --- quanto fica
+e quanto vaza --- e (ii) o que o destino desse multiplicador revela sobre o
+estágio de desenvolvimento da economia estadual em cadeias de valor.
+
+% =====================================================================
+\section{Dados}
+\label{sec:dados}
+A espinha empírica é uma matriz insumo-produto \textbf{inter-regional
+ES\,$\times$\,restante do Brasil para 2008}, com 26 setores por região (52 ao
+todo), em R\$ milhões correntes, contábil e balanceada, acompanhada de um
+vetor de pessoal ocupado por setor. A construção segue a tradição brasileira
+de regionalização da matriz nacional \citep{guilhoto2005estimacao} e de
+estimação de fluxos inter-regionais pelo método IIOAS
+\citep{haddad2017iioas}. A posição em cadeias globais de valor é avaliada com
+a \emph{World Input-Output Database} (WIOD) de 2014 --- 43 países e 56
+setores \citep{timmer2015wiod} --- via índices de \emph{upstreamness}
+\citep{antras2012measuring}.
+
+% =====================================================================
+\section{Método}
+\label{sec:metodo}
+Sejam $L$ (ES) e $M$ (restante do Brasil) as duas regiões. A matriz de
+coeficientes técnicos é particionada em blocos intra e inter-regionais:
+\begin{equation}
+A=\begin{bmatrix} A^{LL} & A^{LM}\\ A^{ML} & A^{MM}\end{bmatrix},
+\qquad
+\begin{bmatrix} x^{L}\\ x^{M}\end{bmatrix}
+=(I-A)^{-1}\begin{bmatrix} y^{L}\\ y^{M}\end{bmatrix}=B\,y,
+\label{eq:isard}
+\end{equation}
+com $A=Z\hat{x}^{-1}$ e $B=(I-A)^{-1}$. Resolvendo para a região $L$
+obtém-se a forma reduzida com o termo de \emph{feedback} explícito:
+\begin{equation}
+(I-A^{LL})\,x^{L}
+-\underbrace{A^{LM}(I-A^{MM})^{-1}A^{ML}\,x^{L}}_{\text{feedback}}
+=y^{L}.
+\label{eq:feedback}
+\end{equation}
+
+\paragraph{Decomposição do multiplicador de produção.}
+$O_j=\sum_i b_{ij}$ separa-se em parcela retida e vazada,
+$O^{L}_j=\sum_{i\in L} b_{ij}$ e $O^{M}_j=\sum_{i\in M} b_{ij}$, com
+vazamento relativo $O^{M}_j/O_j$.
+
+\paragraph{Multiplicador de emprego.}
+$E_j=\sum_i w_i\,b_{ij}$, com coeficiente de trabalho
+$w_j=\text{ocupações}_j/x_j$.
+
+\paragraph{Ligações de Rasmussen-Hirschman.}
+Para trás: média de coluna de $B$; para frente: média de linha; ambas
+normalizadas pela média geral.
+
+\paragraph{Experimento \emph{spillover}/\emph{feedback}.}
+Injeta-se o vetor de demanda final própria do ES, $y^{L}$, com $y^{M}=0$,
+mede-se a produção puxada em $M$ (\emph{spillover}) e o retorno a $L$
+(\emph{feedback}) via Eq.~\eqref{eq:feedback}.
+
+% =====================================================================
+\section{Resultados}
+\label{sec:resultados}
+
+\paragraph{Assimetria \emph{spillover}/\emph{feedback} (resultado central).}
+Uma injeção de R\$\,60,6 bi na demanda final do ES transborda R\$\,22,4 bi de
+produção para o restante do Brasil, mas o \emph{feedback} de volta é de apenas
+R\$\,199 mi --- 0,26\% (Figura~\ref{fig:flow}). A interdependência é
+praticamente unilateral.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.82\linewidth]{../figuras/spillover_feedback.png}
+\caption{Assimetria \emph{spillover}/\emph{feedback}: o ES puxa o país; o país
+quase não o puxa de volta.}
+\label{fig:flow}
+\end{figure}
+
+\paragraph{Vazamento do multiplicador de produção.}
+Em média, 24,9\% do multiplicador de produção capixaba vaza para fora do
+estado --- convergente com os 27,4\% de \citet{haddad2017iioas}. A dispersão
+setorial é grande (Tabela~\ref{tab:vaz}): serviços imobiliários quase não
+vazam (5,3\%), enquanto alimentos vazam 37,4\%.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lr}
+\toprule
+Setor & Vazamento do multiplicador (\%)\\
+\midrule
+Serviços imobiliários (mais retido) & 5,3\\
+Média ES & 24,9\\
+Alimentos (maior vazamento) & 37,4\\
+\bottomrule
+\end{tabular}
+\caption{Vazamento relativo do multiplicador de produção, casos extremos e
+média. \emph{(Preencher distribuição completa a partir do CSV de outputs.)}}
+\label{tab:vaz}
+\end{table}
+
+\paragraph{Vazamento de emprego.}
+Nos setores pesados, metade ou mais do emprego puxado pela demanda capixaba
+realiza-se no restante do Brasil (Tabela~\ref{tab:emp}).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lr}
+\toprule
+Setor & Vazamento de emprego (\%)\\
+\midrule
+Refino de petróleo & 61,6\\
+Alimentos & 56,5\\
+Madeira e papel & 50,3\\
+Metalurgia & 49,3\\
+\bottomrule
+\end{tabular}
+\caption{Vazamento do multiplicador de emprego nos setores pesados.}
+\label{tab:emp}
+\end{table}
+
+\paragraph{Posição em cadeias globais de valor.}
+A pauta exportadora capixaba tem \emph{upstreamness} ponderada de 3,19 contra
+média de 1,97 do Brasil, com a mineração no percentil 98 global
+(Figura~\ref{fig:smile}). O ES supre insumos primários e intermediários; a
+captura de valor a jusante ocorre em outras regiões e países.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.82\linewidth]{../figuras/cgv_smile_curve.png}
+\caption{Curva do sorriso: o ES posiciona-se a montante da cadeia de valor.}
+\label{fig:smile}
+\end{figure}
+
+% TODO: reinserir a Figura do heatmap da matriz B (não disponível nesta
+% reconstrução) a partir da versão final de 29/05.
+
+% =====================================================================
+\section{Síntese}
+\label{sec:sintese}
+O mapa do vazamento é, ao mesmo tempo, um mapa de \emph{fragilidade} ---
+setores que apenas transitam pelo estado (mineração, refino) --- e de
+\emph{oportunidade} --- setores que retêm multiplicador e adensam cadeia
+(alimentos, serviços). A análise insumo-produto operacionaliza a noção de
+``vocação local'', distinguindo quantitativamente os setores que aprofundam a
+cadeia regional dos que apenas a atravessam.
+
+% =====================================================================
+\section{Limitações e agenda inter-regional}
+\label{sec:agenda}
+Ficam registradas como extensões naturais:
+\begin{enumerate}\setlength\itemsep{1pt}
+\item \textbf{Rastreamento do destino do vazamento} --- quais setores e
+  regiões de $M$ absorvem o encadeamento que escapa de $L$;
+\item \textbf{Integração a uma matriz mundial (MRIO, e.g.\ Eora)} para
+  rastrear o destino \textit{internacional} do valor e do emprego embutidos
+  nas exportações capixabas, fechando o circuito plataforma\,$\to$\,mundo;
+\item \textbf{Decomposição estrutural (SDA)} entre dois pontos no tempo,
+  isolando mudança tecnológica, mix produtivo e demanda final na evolução do
+  perfil de vazamento;
+\item \textbf{Atualização dos fluxos inter-regionais} por método
+  gravitacional para safras mais recentes que 2008.
+\end{enumerate}
+
+% =====================================================================
+\begin{thebibliography}{99}
+
+\bibitem[Antràs et al.(2012)]{antras2012measuring}
+Antràs, P., Chor, D., Fally, T., \& Hillberry, R. (2012). Measuring the
+upstreamness of production and trade flows. \textit{American Economic
+Review}, 102(3), 412--416.
+
+\bibitem[Carvalho \& Perobelli(2009)]{carvalho2009interregional}
+Carvalho, T. S., \& Perobelli, F. S. (2009). Avaliação da intensidade de
+emissões de CO$_2$ setoriais e na estrutura de exportações: um modelo
+inter-regional de insumo-produto São Paulo/restante do Brasil.
+\textit{Economia Aplicada}, 13(1), 1--20.
+
+\bibitem[Carvalho(2025)]{carvalho2025preco}
+Carvalho, F. (2025). \textit{O Preço do Saber: Inteligência Artificial como
+Choque de Codificabilidade nas Matrizes Insumo-Produto do Brasil e do
+Espírito Santo}. Working paper, PPGEco/UFES.
+
+\bibitem[Carvalho(2026)]{carvalho2026pegada}
+Carvalho, F. (2026). \textit{Pegada de Acidentes de Trabalho: uma análise de
+insumo-produto para o Espírito Santo}. Working paper, PPGEco/UFES.
+
+\bibitem[Dietzenbacher \& Lahr(2013)]{dietzenbacher2013extractions}
+Dietzenbacher, E., \& Lahr, M. L. (2013). Expanding extractions.
+\textit{Economic Systems Research}, 25(3), 341--360.
+
+\bibitem[Guilhoto \& Sesso Filho(2005)]{guilhoto2005estimacao}
+Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
+insumo-produto a partir de dados preliminares das contas nacionais.
+\textit{Economia Aplicada}, 9(2), 277--299.
+
+\bibitem[Haddad et al.(2017)]{haddad2017iioas}
+Haddad, E. A., Gonçalves Jr., C. A., \& Nascimento, T. O. (2017).
+Matriz inter-regional de insumo-produto para o Espírito Santo: método IIOAS.
+\textit{Working paper}.
+
+\bibitem[IBGE(2018)]{ibge2018tru}
+IBGE (2018). \textit{Sistema de Contas Nacionais --- Tabelas de Recursos e
+Usos: Espírito Santo 2015}. Rio de Janeiro: Instituto Brasileiro de
+Geografia e Estatística.
+
+\bibitem[Isard(1951)]{isard1951}
+Isard, W. (1951). Interregional and regional input-output analysis: a model
+of a space-economy. \textit{The Review of Economics and Statistics}, 33(4),
+318--328.
+
+\bibitem[Miller \& Blair(2009)]{millerblair2009}
+Miller, R. E., \& Blair, P. D. (2009). \textit{Input-Output Analysis:
+Foundations and Extensions}. 2nd ed. Cambridge University Press.
+
+\bibitem[Rasmussen(1956)]{rasmussen1956}
+Rasmussen, P. N. (1956). \textit{Studies in Inter-Sectoral Relations}.
+Amsterdam: North-Holland.
+
+\bibitem[Timmer et al.(2015)]{timmer2015wiod}
+Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J.
+(2015). An illustrated user guide to the World Input-Output Database.
+\textit{Review of International Economics}, 23(3), 575--605.
+
+\end{thebibliography}
+
+\end{document}

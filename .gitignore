@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# dados pesados / não versionados
+dados/*.csv
+dados/*.xlsx
+dados/*.xls
+!dados/README.md
+
+# SO
+.DS_Store
