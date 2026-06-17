@@ -30,10 +30,10 @@ assimetria. (Usar isto na **Discussão**.)
 ## 2. Fase A — completar a análise  *(meta: até 27/06)*
 - [x] **A1. Convenção fixada (Miller-Blair V3):** inj 51,5 · spillover 18,2 · feedback 0,164 bi
       (0,32%). Os 60,6/22,4/0,199 não reproduzem; adotados números reprodutíveis (`06_reconciliacao.py`).
-- [ ] **A2. CGV / *upstreamness*** (Antràs-Chor) no WIOD 2014: **validar do dado real** a
-      *upstreamness* do ES (alvo do paper-semente: **3,19** vs **1,97** Brasil; mineração no
-      **percentil ~98** global) e encaixar a *smile curve* (`figuras/cgv_smile_curve.png`:
-      ES preso no fundo do "U"). Cuidado com a **concordância setorial** 26-BR → 56-WIOD.
+- [x] **A2. CGV / *upstreamness*** (Antràs-Chor, WIOD 2014) — **validado do dado real**:
+      pauta do ES **3,12** (paper 3,19) · Brasil **1,91** (paper 1,97) · Mundo 2,31; mineração
+      no **percentil 97,7** (paper ~98). Concordância 26→56 documentada (viés WIOD → B3).
+      Scripts `07/08/09`; figura `outputs/es_upstreamness.png`.
 - [ ] **A3. Tabela setorial completa** do cluster (perfil do ES vs os 7 pares).
 - [x] ~~**A4. Intra-ES** (microrregiões 2015)~~ → **agenda futura** (fora do escopo; diluiria a narrativa interestadual).
 - [ ] **A5. Figuras finais** padronizadas (paleta, fontes) para paper e slides.

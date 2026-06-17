@@ -119,7 +119,8 @@ MT, MS** (excluem SP/RJ — o núcleo). Aqui esse conjunto é um **cluster de co
 - [x] (3) Painel ES vs estados (ranking de abertura/vazamento).
 - [x] Figura destino do spillover (estados + macrorregião).
 - [x] **Cluster de estados dinâmicos** (leitura Apex): ES escoa 52,5% ao núcleo SP+RJ, feedback≈0 + figura.
-- [ ] (4) *Upstreamness* da pauta do ES — **só WIOD 2014** (recomputar do dado real).
+- [x] (4) *Upstreamness* validada (WIOD 2014): pauta ES **3,12** (paper 3,19), Brasil 1,91,
+      mineração p97,7. Scripts `07/08/09`, figura `outputs/es_upstreamness.png`.
 - [ ] Fixar a convenção de spillover/feedback do artigo original (60,6/22,4/199) — `06_reconciliacao.py`.
 - [x] ~~(5) Intra-ES~~ e ~~2000×2014~~ → **agenda futura** (escopo congelado: MIP 2008 + WIOD 2014).
 - [x] ~~"panteras/Apex"~~ → resolvido: cluster de estados dinâmicos (leitura Apex Partners).
