@@ -34,8 +34,12 @@ VBP × soma de linha = 0,00%):
 | Spillover / feedback (Miller-Blair limpa) | inj. 51,5 bi · spill. 18,2 bi · feedback **164 mi** | 60,6 / 22,4 / 199 (convenção a fixar) |
 
 Tabela setorial completa: `outputs/es_setores_resultados.csv`.
-**Pendência:** fixar a convenção exata de injeção/decomposição do spillover/feedback
-do artigo original (a assimetria qualitativa se mantém em qualquer convenção).
+**Pendência → achado de auditoria (`06_reconciliacao.py`):** os números publicados
+(60,6 / 22,4 / 0,199) **não reproduzem** nesta matriz sob nenhuma convenção-padrão
+(modelo aberto). **Porém a tese é robusta:** `feedback/injeção` fica em **0,15%–0,32%**
+em todas as 4 variantes testadas. Recomendação: adotar a **Miller-Blair limpa (V3)** como
+números publicáveis e reprodutíveis (inj 51,5 bi · spillover 18,2 bi · feedback 164 mi =
+0,32%), ou confirmar o método do artigo original. A assimetria qualitativa não muda.
 
 ## B2. Resultados interestaduais (✓ feito — `02_interestadual.py`)
 
@@ -115,7 +119,7 @@ MT, MS** (excluem SP/RJ — o núcleo). Aqui esse conjunto é um **cluster de co
 - [x] (3) Painel ES vs estados (ranking de abertura/vazamento).
 - [x] Figura destino do spillover (estados + macrorregião).
 - [x] **Cluster de estados dinâmicos** (leitura Apex): ES escoa 52,5% ao núcleo SP+RJ, feedback≈0 + figura.
-- [ ] (4) *Upstreamness* da pauta do ES (WIOD 2014; 2000 vs 2014).
-- [ ] (5) Intra-ES (microrregiões 2015): a plataforma se replica dentro do ES?
-- [ ] Fixar a convenção de spillover/feedback do artigo original (60,6/22,4/199).
-- [ ] Esclarecer referência a **"panteras/Apex"** (qual agregação regional?).
+- [ ] (4) *Upstreamness* da pauta do ES — **só WIOD 2014** (recomputar do dado real).
+- [ ] Fixar a convenção de spillover/feedback do artigo original (60,6/22,4/199) — `06_reconciliacao.py`.
+- [x] ~~(5) Intra-ES~~ e ~~2000×2014~~ → **agenda futura** (escopo congelado: MIP 2008 + WIOD 2014).
+- [x] ~~"panteras/Apex"~~ → resolvido: cluster de estados dinâmicos (leitura Apex Partners).

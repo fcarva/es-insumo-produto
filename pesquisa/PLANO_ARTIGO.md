@@ -4,6 +4,9 @@
 **Pesquisa (2ª frente):** discussões com o Prof. Renato.
 **Artigo:** *O Espírito Santo como economia-plataforma* (base empírica real + camada inter-regional)
 **Marcos:** apresentação **sex 19/06/2026** · **artigo final até 18/07/2026** (fim do semestre UFES).
+**Escopo CONGELADO:** fotografia transversal **MIP 2008 + WIOD 2014**. Intra-ES (microrregiões)
+e série **2000×2014** → **agenda futura** (cada uma é trabalho à parte: harmonização ISIC,
+deflação a preços constantes, quebras estruturais; e diluiriam a narrativa interestadual).
 
 > Dados, estado da arte e limites em [`MAPA_DE_PESQUISA.md`](MAPA_DE_PESQUISA.md).
 > Aqui está o **roteiro de execução** até o artigo completo, com a fase de **auditoria**.
@@ -32,7 +35,7 @@ assimetria. (Usar isto na **Discussão**.)
       **percentil ~98** global) e encaixar a *smile curve* (`figuras/cgv_smile_curve.png`:
       ES preso no fundo do "U"). Cuidado com a **concordância setorial** 26-BR → 56-WIOD.
 - [ ] **A3. Tabela setorial completa** do cluster (perfil do ES vs os 7 pares).
-- [ ] **A4. (opcional) Intra-ES** (microrregiões 2015): a plataforma se replica dentro do ES?
+- [x] ~~**A4. Intra-ES** (microrregiões 2015)~~ → **agenda futura** (fora do escopo; diluiria a narrativa interestadual).
 - [ ] **A5. Figuras finais** padronizadas (paleta, fontes) para paper e slides.
 
 ## 3. Fase B — auditoria  *(meta: 28/06–08/07)*
@@ -78,8 +81,9 @@ assimetria. (Usar isto na **Discussão**.)
 
 ## 6. Decisões abertas (suas)
 - **Nome do cluster** (hoje "cluster de estados dinâmicos / ex-núcleo SP/RJ").
-- **Convenção exata** de spillover/feedback do artigo original (para A1).
-- Escopo: incluir **intra-ES (A4)** e a comparação **2000×2014** de CGV, ou enxugar?
+- **Convenção exata** de spillover/feedback do artigo original (para A1) — se você souber a
+  definição usada, trava na hora; senão eu reconcilio por varredura (ver `06_reconciliacao.py`).
+- ~~Escopo~~ → **decidido: enxugar** (MIP 2008 + WIOD 2014; resto na agenda futura).
 
 ## 7. Divisão de trabalho
 - **Eu:** análise, código, figuras, tabelas, draft do `.tex`, checklists de auditoria.
