@@ -129,13 +129,12 @@ alvo = {6:"Refino (art.61,6%)", 3:"Alimentos (art.56,5%)",
 for idx, lab in alvo.items():
     print(f"    {names[idx][:38]:38s} {emp_leak_ES[idx]:6.1%}   [{lab}]")
 print("-"*70)
-print("[4] SPILLOVER / FEEDBACK (Miller-Blair)")
-print(f"    Demanda final total do ES (todas origens): R$ {br(yL_total)} mi")
-print(f"      - por produtos do ES (injecao f^L)     : R$ {br(inj)} mi   (artigo: 60.600)")
-print(f"      - por produtos do RB (compra final)    : R$ {br(fL_RB.sum())} mi")
-print(f"    Spillover (prod. induzida no RB)         : R$ {br(spillover)} mi   (artigo: 22.400)")
-print(f"    Feedback (volta ao ES)                   : R$ {br(feedback)} mi   (artigo: 199)")
-print(f"    feedback/injecao={feedback/inj:.3%} (artigo: 0,26%)   spillover/injecao={spillover/inj:.1%}")
+print("[4] SPILLOVER / FEEDBACK (Miller-Blair — CONVENCAO ADOTADA p/ o paper, V3)")
+print(f"    Injecao f^ES (dem. final do ES por produtos do ES): R$ {br(inj)} mi")
+print(f"    Spillover (producao induzida no RB)              : R$ {br(spillover)} mi")
+print(f"    Feedback (volta ao ES)                           : R$ {br(feedback)} mi")
+print(f"    feedback/injecao = {feedback/inj:.2%}   (tese: feedback ~ 0)   spillover/injecao = {spillover/inj:.1%}")
+print(f"    [memo] demanda final total do ES (todas origens) : R$ {br(yL_total)} mi")
 print("="*70)
 
 # ----------------------------------------------------------------------------- #

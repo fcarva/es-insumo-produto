@@ -37,9 +37,9 @@ Tabela setorial completa: `outputs/es_setores_resultados.csv`.
 **Pendência → achado de auditoria (`06_reconciliacao.py`):** os números publicados
 (60,6 / 22,4 / 0,199) **não reproduzem** nesta matriz sob nenhuma convenção-padrão
 (modelo aberto). **Porém a tese é robusta:** `feedback/injeção` fica em **0,15%–0,32%**
-em todas as 4 variantes testadas. Recomendação: adotar a **Miller-Blair limpa (V3)** como
-números publicáveis e reprodutíveis (inj 51,5 bi · spillover 18,2 bi · feedback 164 mi =
-0,32%), ou confirmar o método do artigo original. A assimetria qualitativa não muda.
+em todas as 4 variantes testadas. **DECIDIDO:** adotada a **Miller-Blair limpa (V3)** como
+números do paper — inj **51,5 bi** · spillover **18,2 bi** · feedback **164 mi (0,32%)**;
+reprodutível em `01_es_br_base.py`. A assimetria qualitativa não muda.
 
 ## B2. Resultados interestaduais (✓ feito — `02_interestadual.py`)
 

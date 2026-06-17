@@ -28,8 +28,8 @@ assimetria. (Usar isto na **Discussão**.)
 - Scripts `01–05`, tabelas e 2 figuras em `pesquisa/`.
 
 ## 2. Fase A — completar a análise  *(meta: até 27/06)*
-- [ ] **A1. Fixar a convenção de spillover/feedback** (reconciliar 60,6 / 22,4 / 0,199) e
-      travar a definição Miller-Blair em texto + código.
+- [x] **A1. Convenção fixada (Miller-Blair V3):** inj 51,5 · spillover 18,2 · feedback 0,164 bi
+      (0,32%). Os 60,6/22,4/0,199 não reproduzem; adotados números reprodutíveis (`06_reconciliacao.py`).
 - [ ] **A2. CGV / *upstreamness*** (Antràs-Chor) no WIOD 2014: **validar do dado real** a
       *upstreamness* do ES (alvo do paper-semente: **3,19** vs **1,97** Brasil; mineração no
       **percentil ~98** global) e encaixar a *smile curve* (`figuras/cgv_smile_curve.png`:
