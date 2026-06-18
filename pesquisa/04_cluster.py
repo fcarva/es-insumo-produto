@@ -34,7 +34,8 @@ FD = to(df.iloc[4:706, 706:868].values)
 N = 702
 def rseg(g):  return slice(26*g, 26*g+26)
 def fdseg(g): return slice(6*g, 6*g+6)
-xs = np.where(x==0,1.0,x); A = Z/xs[None,:]; B = np.linalg.inv(np.eye(N)-A)
+xs = np.where(x<=0,1.0,x); A = Z/xs[None,:]; B = np.linalg.inv(np.eye(N)-A)
+assert A.sum(0).max() < 1, "coeficiente tecnico >= 1 (matriz desbalanceada?)"
 def by_region(v): return np.array([v[rseg(g)].sum() for g in range(27)])
 
 def spill_groups(region_list):
@@ -100,7 +101,8 @@ with open(os.path.join(OUT,"cluster_resumo.csv"),"w",newline="",encoding="utf-8"
     for k,v in [("es_spill_cluster",es_cluster/tot_spES*100),("es_spill_nucleo",es_nucleo/tot_spES*100),
                 ("es_spill_resto",es_resto/tot_spES*100),("bloco_dentro",dentro/prodB.sum()*100),
                 ("bloco_nucleo",nucleoB/prodB.sum()*100),("bloco_resto",restoB/prodB.sum()*100),
-                ("pib_share_cluster_2008",share_cluster*100),("pib_share_nucleo_2008",share_nucleo*100)]:
+                ("pib_share_cluster_2008",share_cluster*100),("pib_share_nucleo_2008",share_nucleo*100),
+                ("es_spill_total_mi",tot_spES),("es_retido_mi",prodES[ES])]:
         w.writerow([k, f"{v:.1f}"])
 with open(os.path.join(OUT,"cluster.csv"),"w",newline="",encoding="utf-8") as f:
     w=csv.writer(f); w.writerow(["estado","cluster","pib_share_2008_%","vazamento_%","rank_abertura","es_spillover_%"])

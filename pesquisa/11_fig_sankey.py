@@ -14,7 +14,7 @@ import estilo as st; st.apply()
 OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
 res = {r["metrica"]: float(r["valor_pct"]) for r in
        csv.DictReader(open(os.path.join(OUT, "cluster_resumo.csv"), encoding="utf-8"))}
-SPILL, RETIDO = 18123.0, 63727.0     # R$ mi (computados em 04_cluster.py)
+SPILL, RETIDO = res["es_spill_total_mi"], res["es_retido_mi"]   # R$ mi, lidos do CSV
 nuc = SPILL*res["es_spill_nucleo"]/100
 clu = SPILL*res["es_spill_cluster"]/100
 rst = SPILL*res["es_spill_resto"]/100
@@ -49,7 +49,7 @@ for (name, v, c, cp), (sa, sb), (ta, tb) in zip(items, src, tgt):
             va="center", fontsize=9, color=st.INK)
 # nó fonte
 ax.add_patch(patches.Rectangle((x0a, 0), x0b-x0a, T, color=st.INK_SOFT))
-ax.text(x0a-0.01, T/2, "Produção puxada\npela demanda\nfinal do ES\n(R$ 81,9 bi)",
+ax.text(x0a-0.01, T/2, f"Produção puxada\npela demanda\nfinal do ES\n(R$ {T/1000:.1f} bi)".replace(".", ","),
         va="center", ha="right", fontsize=9.5, color=st.INK, fontweight="bold")
 
 # feedback ~ 0

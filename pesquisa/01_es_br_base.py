@@ -78,9 +78,12 @@ emp_leak_ES = emp_leak[L]
 # 3) Ligacoes de Rasmussen-Hirschman (no sistema completo 52x52)
 # ----------------------------------------------------------------------------- #
 nfull = 52
-Bbar = B.mean()
-bl = B.sum(axis=0) / nfull / Bbar            # para tras (backward)
-fl = B.sum(axis=1) / nfull / Bbar            # para frente (forward)
+# Rasmussen-Hirschman: para tras pela inversa de Leontief (demanda); para frente
+# pela inversa de Ghosh (oferta), com Ahat = xhat^-1 Z (normalizada por linha).
+Ahat = Z / xs[:, None]
+Gh = np.linalg.inv(np.eye(nfull) - Ahat)
+bl = B.sum(axis=0) / nfull / B.mean()        # para tras (backward, Leontief)
+fl = Gh.sum(axis=1) / nfull / Gh.mean()      # para frente (forward, Ghosh)
 
 # ----------------------------------------------------------------------------- #
 # 4) Spillover / feedback de Miller-Blair (demanda final do ES por produtos ES)
@@ -91,7 +94,6 @@ I_LL = np.eye(n); I_MM = np.eye(n)
 inv_MM = np.linalg.inv(I_MM - A_MM)
 
 fL    = FD[L, 0:6].sum(axis=1)              # demanda final do ES por produtos do ES
-fL_RB = FD[M, 0:6].sum(axis=1)             # demanda final do ES por produtos do RB
 yL_total = FD[:, 0:6].sum()                 # demanda final total do ES (todas origens)
 
 inv_LL   = np.linalg.inv(I_LL - A_LL)                              # economia ES fechada
