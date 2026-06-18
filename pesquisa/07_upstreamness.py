@@ -35,6 +35,12 @@ Xs = np.where(X <= 0, 1.0, X)
 G = Z / Xs[:, None]                              # G_ij = Z_ij / X_i
 U = np.linalg.solve(np.eye(N) - G, np.ones(N))   # upstreamness
 
+# checagem de identidade contabil (Antras-Chor pressupoe X_i = sum_j Z_ij + F_i)
+F_impl = X - Z.sum(axis=1)
+neg = int((F_impl < -1e-6 * np.maximum(X, 1.0)).sum())
+print(f"[check WIOD] U finito={np.isfinite(U).all()}  U>=1={bool((U >= 1-1e-6).all())}  "
+      f"demanda final implicita < 0 em {neg}/{N} setores")
+
 # Brasil = bloco idx 4
 BRA = slice(4*56, 5*56)
 U_bra = U[BRA]; X_bra = X[BRA]
@@ -67,3 +73,10 @@ with open(os.path.join(OUT, "brasil_upstreamness.csv"), "w", newline="", encodin
         wr.writerow([k+1, nome.get(k, ""), f"{U_bra[k]:.4f}", f"{X_bra[k]:.0f}",
                      f"{(U < U[gi]).mean()*100:.1f}"])
 print("salvo: brasil_upstreamness.csv")
+
+with open(os.path.join(OUT, "upstream_resumo.csv"), "w", newline="", encoding="utf-8") as fh:
+    wr = csv.writer(fh); wr.writerow(["metrica", "valor"])
+    wr.writerow(["brasil_upstreamness", f"{avg_bra_out:.4f}"])
+    wr.writerow(["mundo_upstreamness", f"{avg_world_out:.4f}"])
+    wr.writerow(["mineracao_percentil", f"{pct_mining:.1f}"])
+print("salvo: upstream_resumo.csv")

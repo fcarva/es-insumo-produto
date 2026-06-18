@@ -33,10 +33,11 @@ confirmada correta e bate com os alvos. Corrigido:
 - **de-hardcode** do Sankey (lê `es_spill_total_mi`/`es_retido_mi` do CSV; rótulo derivado);
 - guarda `x<=0` + `assert` $\Sigma A<1$ no cluster; remoção de variável morta.
 
-*Notado (baixa severidade, não corrige o número):* reservas de demanda final implícita no WIOD
-podem afetar percentis setoriais individuais (não a média/Brasil 1,91 nem a mineração p97,7);
-constantes Brasil/Mundo ainda fixas em `09`; concordância usa setor único por classe (já
-caveatado em §6). Itens de endurecimento opcional, sem efeito sobre os resultados publicados.
+*Endurecimento aplicado:* de-hardcode de Brasil/Mundo na Fig. 4 (lê `upstream_resumo.csv`);
+checagem de identidade contábil do WIOD — **49/2464 setores (2%)** têm demanda final implícita
+< 0 (estoques/discrepância), mas $U$ permanece finito e $\ge 1$ e a média do Brasil (1,91) e a
+mineração (p97,7) não são afetadas. A concordância de setor único segue caveatada em §6 — sem
+efeito sobre os resultados publicados.
 
 ## B5 — Checklist de *referee*
 | Critério | Avaliação |
