@@ -23,6 +23,20 @@ GRAY,   GRAY_P   = "#B7B5AC", "#D6D4CA"   # resto
 C_ES, C_NUCLEO, C_CLUSTER, C_RESTO = RED, BLUE, GREEN, GRAY
 C_ES_P, C_NUCLEO_P, C_CLUSTER_P, C_RESTO_P = RED_P, BLUE_P, GREEN_P, GRAY_P
 
+# paleta SUAVE (padrão editorial Nexo): nó / fluxo / texto, por papel
+NODE = {"ES": "#D7A99D", "NUC": "#8AAAC8", "CLU": "#A9B873", "RES": "#C7C5B8"}
+FLOW = {"ES": "#ECD2CB", "NUC": "#CFDCEA", "CLU": "#DEE3C7", "RES": "#E6E4DB"}
+TXT  = {"ES": "#9E4A3C", "NUC": "#3F6B97", "CLU": "#5E6B2E", "RES": "#8A887C"}
+
+
+def nexo(fig, title, dek="", source="", x=0.045):
+    """Título + dek (subtítulo) à esquerda e nota de fonte ao rodapé (estilo Nexo)."""
+    fig.text(x, 0.965, title, fontsize=15.5, fontweight="bold", color=INK, ha="left", va="top")
+    if dek:
+        fig.text(x, 0.912, dek, fontsize=9.8, color=INK_SOFT, ha="left", va="top")
+    if source:
+        fig.text(x, 0.022, source, fontsize=7.8, color=INK_SOFT, ha="left", va="bottom")
+
 
 def apply():
     plt.rcParams.update({
