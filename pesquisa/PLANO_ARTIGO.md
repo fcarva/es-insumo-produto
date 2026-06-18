@@ -34,14 +34,16 @@ assimetria. (Usar isto na **Discussão**.)
       pauta do ES **3,12** (paper 3,19) · Brasil **1,91** (paper 1,97) · Mundo 2,31; mineração
       no **percentil 97,7** (paper ~98). Concordância 26→56 documentada (viés WIOD → B3).
       Scripts `07/08/09`; figura `outputs/es_upstreamness.png`.
-- [ ] **A3. Tabela setorial completa** do cluster (perfil do ES vs os 7 pares).
+- [x] **A3. Tabela setorial do cluster** (`10_cluster_setorial.py`, `outputs/cluster_setorial.csv`):
+      ES é o 2º mais "commodity" (base 36,4%, só MT acima) e único c/ RJ cujo setor dominante é Mineração.
 - [x] ~~**A4. Intra-ES** (microrregiões 2015)~~ → **agenda futura**. *Viabilidade auditada:*
       10 microrregiões × 35 setores, Z 350×350 + output OK; **o padrão-plataforma se confirma**
       (R1/metrópole retém — vazamento 8,4%, ~70% da produção do ES — vs periferia até 31%).
       **Para virar resultado publicável precisa:** (i) corrigir balanço (1 coluna com ΣA=1,07>1);
       (ii) chave R1–R10 (nomes) e S1–S35; (iii) aceitar limites: 2015≠2008, 35≠26 setores,
       **sem vetor de emprego** (só remunerações), fluxos sub-estaduais (IIOAS) ainda mais sintéticos.
-- [ ] **A5. Figuras finais** padronizadas (paleta, fontes) para paper e slides.
+- [x] **A5. Figuras padronizadas** — tema **Flexoki/Kepano** (papel quente, pastéis, minimalista)
+      em `estilo.py`; 3 figuras re-renderizadas + **Sankey** do encadeamento (`11_fig_sankey.py`).
 
 ## 3. Fase B — auditoria  *(meta: 28/06–08/07)*
 - [ ] **B1. Contábil/numérica + reprodutibilidade:** oferta=demanda, x=Z1+y, ΣA<1, B≥0,

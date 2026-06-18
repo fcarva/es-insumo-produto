@@ -1,0 +1,11 @@
+estado,grupo,pib_share_%,vazamento_%,mult_medio,base_commodity_%,setor_dominante
+ES,cluster,2.15,22.84,1.7613,36.42,Mineração
+MG,cluster,9.51,20.95,1.8455,29.62,Metalurgia
+SC,cluster,4.15,22.48,1.8049,21.69,Alimentos
+PR,cluster,5.99,22.28,1.8974,27.97,Alimentos
+RS,cluster,6.68,21.79,1.9345,24.63,Alimentos
+GO,cluster,2.55,25.10,1.8909,32.84,Alimentos
+MT,cluster,1.83,27.44,2.0124,43.36,Agricultura
+MS,cluster,1.08,25.74,1.7766,30.06,Alimentos
+SP,nucleo,32.04,14.20,1.8363,17.95,Serv. privados
+RJ,nucleo,11.25,15.57,1.7095,27.38,Mineração
