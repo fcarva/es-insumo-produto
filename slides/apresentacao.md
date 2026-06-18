@@ -82,7 +82,7 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 
 /* SLIDE DE FIGURA: imagem domina, texto mínimo */
 .reveal section.fig h2{ border-bottom:none; margin-bottom:.12em; font-size:1.0em; }
-.reveal section.fig img{ max-height:76vh; border:none; }
+.reveal section.fig img{ max-height:72vh; border:none; display:block; margin:.25em auto; }
 .reveal section.fig blockquote{ font-size:.78em; margin-top:.25em; }
 
 /* DUAS COLUNAS (figura + texto lado a lado) */
@@ -96,6 +96,8 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal .xs table{ font-size:.5em; width:100%; }
 .reveal .xs table td, .reveal .xs table th{ padding:.16em .5em; }
 .reveal .xs .footnote{ font-size:.8em; }
+.reveal .xs table td:nth-child(5), .reveal .xs table th:nth-child(5){
+  border-top:none; border-bottom:none; background:transparent !important; width:.7em; }
 
 /* utilidades */
 .reveal .stat{ font-weight:800; font-size:1.4em; line-height:1.05; }
@@ -155,18 +157,8 @@ Economia **aberta**: elevado coeficiente de comércio interestadual — boa part
 
 Setores de maior peso, com **demanda final fora do estado**:
 
-<div class="cols"><div class="ctxt">
-
-- Mineração
-- Metalurgia
-- Celulose e papel
-
-</div><div class="ctxt">
-
-- Refino de petróleo
-- Transporte e porto
-
-</div></div>
+- Mineração · Metalurgia · Celulose e papel
+- Refino de petróleo · Transporte e complexo portuário
 
 Note:
 O ponto não é o tamanho (2% do PIB), e sim a estrutura: pauta concentrada em setores de passagem (minério, metalurgia, celulose/papel, refino, complexo logístico-portuário). Pequeno + hiperaberto + concentrado em setores cuja demanda final está fora → tese plataforma.
@@ -246,7 +238,7 @@ O multiplicador de produção é a soma de coluna da inversa; a decomposição r
 
 <!-- .slide: class="fig" -->
 
-## Resultado 1 — a demanda do ES põe o país em movimento, mas o país não a puxa de volta
+## Resultado 1 — o ES move o país, que não o move de volta
 
 ![Sankey — destino do spillover do ES](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_sankey.png)
 
@@ -261,10 +253,10 @@ O número que prende a plateia. A demanda final do ES (R$51,5 bi) põe em movime
 
 | Fluxo | Magnitude |
 |---|---|
-| **Injeção** (demanda final do ES) | R\$ 51,5 bi |
-| põe em movimento | R\$ 81,8 bi de produção |
-| → ***Spillover*** — produção puxada no restante do Brasil | **R\$ 18,2 bi** |
-| ← ***Feedback*** — o que retorna ao ES | **R\$ 164 mi · <span class="es">0,32%</span>** |
+| **Injeção** — demanda final do ES por produtos do ES | R\$ 51,5 bi |
+| Produção total posta em movimento | R\$ 81,8 bi |
+| → ***Spillover*** — produção no restante do Brasil | **R\$ 18,2 bi** |
+| ← ***Feedback*** — retorno ao ES | **R\$ 164 mi · <span class="es">0,32%</span>** |
 
 > **O estado puxa o país; o país quase não o puxa de volta.** Do total posto em movimento, **78% fica no ES**.
 
@@ -307,7 +299,7 @@ Ponte com um debate de mercado contemporâneo (Apex Partners): um cluster de est
 
 | Estado | PIB % | Vazam. % | Base/*commodity* % | Setor dominante |
 |---|--:|--:|--:|---|
-| <span class="es">**ES**</span> | 2,2 | 22,8 | **36,4** | Mineração |
+| <span class="es">ES</span> | 2,2 | 22,8 | **36,4** | Mineração |
 | MG | 9,5 | 20,9 | 29,6 | Metalurgia |
 | SC | 4,1 | 22,5 | 21,7 | Alimentos |
 | PR | 6,0 | 22,3 | 28,0 | Alimentos |
@@ -340,7 +332,7 @@ Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ reté
 | Saúde | 1,54 | 19,1 | 14,9 | | Transporte/armaz. | 1,77 | 30,3 | 23,1 |
 | Eletricidade/gás/água | 1,83 | 21,0 | 28,4 | | Indústrias diversas | 1,84 | 30,5 | 16,3 |
 | Agricultura/silvic. | 1,45 | 21,6 | 9,9 | | Min. não-metálicos | 1,90 | 30,7 | 28,2 |
-| Mineração | 1,64 | 22,7 | **42,4** | | Alojamento/alim. | 1,76 | 31,9 | 22,2 |
+| Mineração | 1,64 | 22,7 | 42,4 | | Alojamento/alim. | 1,76 | 31,9 | 22,2 |
 | Máquinas/equip. | 2,00 | 24,9 | 26,5 | | Madeira/papel | 1,96 | 35,8 | **50,3** |
 | Construção | 1,70 | 25,5 | 16,1 | | Borracha/plástico | 2,05 | 36,8 | 32,9 |
 | Mat. de transporte | 2,10 | 26,1 | 29,7 | | **Alimentos** | 2,31 | **37,4** | **56,5** |
