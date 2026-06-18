@@ -45,7 +45,7 @@ assimetria. (Usar isto na **Discussão**.)
 - [x] **A5. Figuras padronizadas** — tema **Flexoki/Kepano** (papel quente, pastéis, minimalista)
       em `estilo.py`; 3 figuras re-renderizadas + **Sankey** do encadeamento (`11_fig_sankey.py`).
 
-## 3. Fase B — auditoria  *(meta: 28/06–08/07)*
+## 3. Fase B — auditoria  *(✓ CONCLUÍDA — ver [`AUDITORIA.md`](AUDITORIA.md); `/code-review` aplicado)*
 - [ ] **B1. Contábil/numérica + reprodutibilidade:** oferta=demanda, x=Z1+y, ΣA<1, B≥0,
       multiplicadores≥1; ambiente `.venv` + `requirements.txt` travado; `src/io_core.py`
       encapsula a rotina matricial; `make paper` automatiza o LaTeX → **anula questionamento
