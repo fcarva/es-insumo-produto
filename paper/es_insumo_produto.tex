@@ -157,43 +157,25 @@ Tabela~\ref{tab:cluster} e na Figura~\ref{fig:cluster}, em que a ponderação
 garante comparabilidade entre estados de tamanhos distintos. As duas medidas
 descrevem o mesmo fenômeno sob agregações diferentes.} --- número convergente,
 em safra e agregação distintas, com os 27,4\% estimados por
-\citet{haddad2017iioas}. A dispersão setorial é grande
-(Tabela~\ref{tab:vaz}): serviços imobiliários quase não vazam (5,3\%),
+\citet{haddad2017iioas}. A distribuição setorial completa está na
+Tabela~\ref{tab:setores}: serviços imobiliários quase não vazam (5,3\%),
 enquanto alimentos vazam 37,4\%. No emprego, nos setores pesados metade ou
-mais do trabalho puxado pela demanda capixaba realiza-se fora do ES
-(Tabela~\ref{tab:emp}).
+mais do trabalho puxado pela demanda capixaba realiza-se fora do ES --- refino
+61,6\%, alimentos 56,5\%, madeira/papel 50,3\% e metalurgia 49,3\%.
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{lr}
-\toprule
-Setor & Vazamento do multiplicador (\%)\\
-\midrule
-Serviços imobiliários (mais retido) & 5,3\\
-\textbf{Média ES} & \textbf{24,9}\\
-Alimentos (maior vazamento) & 37,4\\
-\bottomrule
-\end{tabular}
-\caption{Vazamento relativo do multiplicador de produção: casos extremos e
-média (fonte: \texttt{outputs/es\_setores\_resultados.csv}).}
-\label{tab:vaz}
+\begin{table}[htbp]
+\centering\small
+\input{tab_setores.tex}
+\caption{Multiplicador de produção ($O_j$), vazamentos de produção e de emprego e
+ligações de Rasmussen-Hirschman dos 26 setores do ES, ordenados pelo vazamento do
+multiplicador de produção. Vazamento médio: simples 24,9\% (comparável a
+\citealp{haddad2017iioas}); ponderado pela produção 22,9\% (bi-regional; 22,8\% na
+matriz interestadual, Tabela~\ref{tab:cluster}). Fonte: \texttt{12\_tab\_setores.py}
+sobre \texttt{outputs/es\_setores\_resultados.csv}.}
+\label{tab:setores}
 \end{table}
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{lr}
-\toprule
-Setor & Vazamento de emprego (\%)\\
-\midrule
-Refino de petróleo & 61,6\\
-Alimentos & 56,5\\
-Madeira e papel & 50,3\\
-Metalurgia & 49,3\\
-\bottomrule
-\end{tabular}
-\caption{Vazamento do multiplicador de emprego nos setores pesados.}
-\label{tab:emp}
-\end{table}
+% (vazamento de emprego incorporado à Tabela~\ref{tab:setores})
 
 \subsection{A assimetria \emph{spillover}/\emph{feedback}}
 Uma injeção de R\$\,51,5 bilhões na demanda final do ES (por produtos do ES)
