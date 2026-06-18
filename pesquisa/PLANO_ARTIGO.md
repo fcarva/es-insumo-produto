@@ -68,7 +68,7 @@ assimetria. (Usar isto na **Discussão**.)
 - [ ] **B5. Checklist de *referee*:** pergunta clara, identificação, robustez, contribuição
       vs literatura, honestidade dos limites.
 
-## 4. Fase C — redação e montagem  *(meta: 28/06–08/07, em paralelo à B)*
+## 4. Fase C — redação e montagem  *(✓ CONCLUÍDA — `paper/es_insumo_produto.tex` compila em PDF de 6 págs, 4 figuras, 3 tabelas, notação Miller & Blair, limites B3)*
 - [ ] **C1. Reescrever `paper/es_insumo_produto.tex`**: título/abstract atualizados; seções
       **Introdução · Dados · Método · Resultados** (vazamento → spillover/feedback → destino
       interestadual → cluster → CGV) **· Discussão** (tese-plataforma + mecanismo + leitura
