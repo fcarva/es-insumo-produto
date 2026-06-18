@@ -50,3 +50,10 @@ caveatado em §6). Itens de endurecimento opcional, sem efeito sobre os resultad
 | Risco residual | os 60,6/22,4/0,199 do paper-semente não reproduzem → adotada convenção Miller-Blair (V3), reprodutível |
 
 **Veredito:** metodologicamente defensável e reprodutível; pronto para a entrega da disciplina.
+
+## B6 — Auditoria de conteúdo (revisão cruzada do manuscrito)
+Cruzamento independente de números, fórmulas e literatura confirmou: destino 65,4% (SP+RJ+MG),
+split do cluster fechando 100%, Sankey (R\$ 18,1 ≈ 18,2 bi) e *upstreamness* 3,12; e o
+equacionamento (Isard/Miller-Blair, \emph{feedback}, Antràs-Chor). **Único ajuste:** conciliar
+**24,9%** (média simples entre setores, §4.1, comparável a Haddad) com **22,8%** (média
+ponderada pela produção, Tab.~3/Fig.~3) — resolvido por nota de rodapé na §4.1.
