@@ -64,11 +64,28 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 }
 .reveal blockquote p{ margin:.12em 0; }
 
-.reveal table{ font-size:.8em; margin:.4em 0; border-collapse:collapse; }
-.reveal table th{ background:var(--b100); color:var(--ink); font-weight:700;
-                  border-bottom:2px solid var(--ink); }
-.reveal table td, .reveal table th{ padding:.3em .8em; border:1px solid var(--b150); }
-.reveal table tbody tr:nth-child(even) td{ background:var(--b50); }
+/* TABELAS — padrão Nexo/Flexoki: réguas horizontais, sem grade, números tabulares */
+.reveal table{ font-size:.8em; margin:.5em 0; border-collapse:collapse;
+               font-variant-numeric:tabular-nums; }
+.reveal table th{ background:transparent; color:var(--b600); font-weight:600;
+                  text-transform:uppercase; letter-spacing:.03em; font-size:.74em;
+                  border:none; border-bottom:1.5px solid var(--ink);
+                  padding:.4em .7em; vertical-align:bottom; }
+.reveal table td{ border:none; border-bottom:1px solid var(--b150); padding:.3em .7em; }
+.reveal table tbody tr:last-child td{ border-bottom:1.5px solid var(--ink); }
+.reveal th.n, .reveal td.n{ text-align:right; }                 /* coluna numérica */
+
+/* linhas de destaque/realce */
+.reveal tr.es-row td{ background:#F0E7DF; }                       /* ES em foco */
+.reveal tr.nuc-row td{ background:#ECF1F6; color:var(--b600); }   /* núcleo SP/RJ, recuado */
+.reveal tr.sum-row td{ background:var(--b50); font-weight:700; color:var(--ink);
+                       border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); }
+
+/* Resultado 3 — cluster por dentro */
+.reveal .t3{ width:100%; }
+.reveal .t3 td, .reveal .t3 th{ text-align:right; }
+.reveal .t3 td:first-child, .reveal .t3 th:first-child,
+.reveal .t3 td:last-child, .reveal .t3 th:last-child{ text-align:left; }
 
 .reveal mjx-container{ font-size:.95em !important; color:var(--ink); }
 .reveal mjx-container[display="true"]{ margin:.4em 0; }
@@ -92,12 +109,18 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal .cols img{ max-height:66vh; }
 
 /* TABELA DENSA (distribuição completa dos 26 setores) */
-.reveal section.xs h2{ margin-bottom:.25em; }
-.reveal .xs table{ font-size:.5em; width:100%; }
-.reveal .xs table td, .reveal .xs table th{ padding:.16em .5em; }
-.reveal .xs .footnote{ font-size:.8em; }
-.reveal .xs table td:nth-child(5), .reveal .xs table th:nth-child(5){
-  border-top:none; border-bottom:none; background:transparent !important; width:.7em; }
+.reveal section.xs h2{ margin-bottom:.18em; }
+.reveal .xs table{ font-size:.46em; width:100%; line-height:1.18; }
+.reveal .xs table th{ font-size:.82em; padding:.3em .45em; }
+.reveal .xs table td{ padding:.14em .45em; }
+.reveal .xs table tbody tr:nth-child(even) td{ background:var(--b50); }  /* zebra suave */
+.reveal .xs table td:not(:first-child), .reveal .xs table th:not(:first-child){ text-align:right; }
+/* separadores de grupo (Ligações | Emprego | Peso), sutis */
+.reveal .xs table td:nth-child(6), .reveal .xs table th:nth-child(6),
+.reveal .xs table td:nth-child(8), .reveal .xs table th:nth-child(8),
+.reveal .xs table td:nth-child(10), .reveal .xs table th:nth-child(10){
+  border-left:1px solid var(--b200); }
+.reveal .xs .footnote{ font-size:.85em; }
 
 /* utilidades */
 .reveal .stat{ font-weight:800; font-size:1.4em; line-height:1.05; }
@@ -297,20 +320,27 @@ Ponte com um debate de mercado contemporâneo (Apex Partners): um cluster de est
 
 8 estados de crescimento acima da média, **sub-cobertos pelo mercado de capitais** (leitura da Apex Partners) — excluem o núcleo SP/RJ · **33,9% do PIB**.
 
-| Estado | PIB % | Vazam. % | Base/*commodity* % | Setor dominante |
-|---|--:|--:|--:|---|
-| <span class="es">ES</span> | 2,2 | 22,8 | **36,4** | Mineração |
-| MG | 9,5 | 20,9 | 29,6 | Metalurgia |
-| SC | 4,1 | 22,5 | 21,7 | Alimentos |
-| PR | 6,0 | 22,3 | 28,0 | Alimentos |
-| RS | 6,7 | 21,8 | 24,6 | Alimentos |
-| GO | 2,6 | 25,1 | 32,8 | Alimentos |
-| MT | 1,8 | 27,4 | 43,4 | Agricultura |
-| MS | 1,1 | 25,7 | 30,1 | Alimentos |
-| SP *(núcleo)* | 32,0 | **14,2** | 18,0 | Serviços |
-| RJ *(núcleo)* | 11,2 | 15,6 | 27,4 | Mineração |
+<table class="t3">
+<thead>
+<tr><th>Estado</th><th>PIB %</th><th>Vaz. %</th><th>Mult. méd.</th><th>Base/<em>comm.</em> %</th><th>Setor dominante</th></tr>
+</thead>
+<tbody>
+<tr class="es-row"><td><span class="es">ES</span></td><td>2,2</td><td>22,8</td><td>1,76</td><td><strong>36,4</strong></td><td>Mineração</td></tr>
+<tr><td>MG</td><td>9,5</td><td>20,9</td><td>1,85</td><td>29,6</td><td>Metalurgia</td></tr>
+<tr><td>SC</td><td>4,1</td><td>22,5</td><td>1,80</td><td>21,7</td><td>Alimentos</td></tr>
+<tr><td>PR</td><td>6,0</td><td>22,3</td><td>1,90</td><td>28,0</td><td>Alimentos</td></tr>
+<tr><td>RS</td><td>6,7</td><td>21,8</td><td>1,93</td><td>24,6</td><td>Alimentos</td></tr>
+<tr><td>GO</td><td>2,6</td><td>25,1</td><td>1,89</td><td>32,8</td><td>Alimentos</td></tr>
+<tr><td>MT</td><td>1,8</td><td>27,4</td><td>2,01</td><td>43,4</td><td>Agricultura</td></tr>
+<tr><td>MS</td><td>1,1</td><td>25,7</td><td>1,78</td><td>30,1</td><td>Alimentos</td></tr>
+<tr class="sum-row"><td>Cluster (8 UF)</td><td>33,9</td><td>23,6</td><td>1,87</td><td>30,8</td><td>—</td></tr>
+<tr class="nuc-row"><td>SP</td><td>32,0</td><td><strong>14,2</strong></td><td>1,84</td><td>18,0</td><td>Serv. privados</td></tr>
+<tr class="nuc-row"><td>RJ</td><td>11,2</td><td>15,6</td><td>1,71</td><td>27,4</td><td>Mineração</td></tr>
+<tr class="sum-row"><td>Núcleo SP/RJ</td><td>43,3</td><td>14,9</td><td>1,77</td><td>22,7</td><td>—</td></tr>
+</tbody>
+</table>
 
-<span class="footnote">O ES é o 2º mais intensivo em setores de base (só MT acima) e — com o RJ — o único cujo setor dominante é Mineração. O núcleo SP/RJ é o menos aberto do país.</span>
+<span class="footnote">Mult. méd. = multiplicador de produção médio do estado. O ES é o 2º mais intensivo em setores de base (só MT acima) e — com o RJ — o único cujo setor dominante é Mineração; o núcleo SP/RJ é o menos aberto do país. Linhas-resumo: PIB = soma; demais colunas = média simples.</span>
 
 Note:
 Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ retém (SP é o menos aberto do país, 14,2%). Isso reforça o caráter-plataforma do ES mesmo entre seus pares dinâmicos.
@@ -321,23 +351,41 @@ Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ reté
 
 ## Resultado 4 — vazamento do multiplicador: distribuição completa
 
-| Setor | $O_j$ | Vaz. prod. % | Vaz. empr. % | | Setor | $O_j$ | Vaz. prod. % | Vaz. empr. % |
-|---|--:|--:|--:|---|---|--:|--:|--:|
-| Imobiliário/aluguel | 1,15 | 5,3 | 12,3 | | Refino/coque | 2,11 | 27,8 | **61,6** |
-| Educação | 1,31 | 11,6 | 7,1 | | Têxtil/vestuário | 1,87 | 28,1 | 17,8 |
-| Financeiro/seguros | 1,47 | 12,8 | 20,6 | | Metalurgia | 1,96 | 29,3 | **49,3** |
-| Adm. pública | 1,43 | 15,0 | 16,0 | | Químicos/farma | 2,10 | 29,4 | 41,2 |
-| Comércio | 1,42 | 16,0 | 7,6 | | Mat. elétrico/eletrôn. | 1,99 | 29,8 | 34,2 |
-| Serviços privados | 1,50 | 17,9 | 8,4 | | Pecuária e pesca | 1,64 | 30,2 | 19,4 |
-| Saúde | 1,54 | 19,1 | 14,9 | | Transporte/armaz. | 1,77 | 30,3 | 23,1 |
-| Eletricidade/gás/água | 1,83 | 21,0 | 28,4 | | Indústrias diversas | 1,84 | 30,5 | 16,3 |
-| Agricultura/silvic. | 1,45 | 21,6 | 9,9 | | Min. não-metálicos | 1,90 | 30,7 | 28,2 |
-| Mineração | 1,64 | 22,7 | 42,4 | | Alojamento/alim. | 1,76 | 31,9 | 22,2 |
-| Máquinas/equip. | 2,00 | 24,9 | 26,5 | | Madeira/papel | 1,96 | 35,8 | **50,3** |
-| Construção | 1,70 | 25,5 | 16,1 | | Borracha/plástico | 2,05 | 36,8 | 32,9 |
-| Mat. de transporte | 2,10 | 26,1 | 29,7 | | **Alimentos** | 2,31 | **37,4** | **56,5** |
+<table>
+<thead>
+<tr><th>Setor</th><th class="n" style="text-transform:none">O<sub>j</sub></th><th class="n">Retido</th><th class="n">Vazado</th><th class="n">Vaz. %</th><th class="n">L.trás</th><th class="n">L.fr</th><th class="n">M.empr</th><th class="n">Empr. %</th><th class="n">VBP</th></tr>
+</thead>
+<tbody>
+<tr><td>Imobiliário/aluguel</td><td>1,15</td><td>1,09</td><td>0,06</td><td>5,3</td><td>0,64</td><td>0,65</td><td>6,3</td><td>12,3</td><td>3,5</td></tr>
+<tr><td>Educação</td><td>1,31</td><td>1,16</td><td>0,15</td><td>11,6</td><td>0,73</td><td>0,57</td><td>33,6</td><td>7,1</td><td>3,4</td></tr>
+<tr><td>Financeiro/seguros</td><td>1,47</td><td>1,28</td><td>0,19</td><td>12,8</td><td>0,82</td><td>1,21</td><td>12,7</td><td>20,6</td><td>3,0</td></tr>
+<tr><td>Adm. pública</td><td>1,43</td><td>1,21</td><td>0,21</td><td>15,0</td><td>0,80</td><td>0,60</td><td>19,5</td><td>16,0</td><td>6,4</td></tr>
+<tr><td>Comércio</td><td>1,42</td><td>1,19</td><td>0,23</td><td>16,0</td><td>0,79</td><td>0,91</td><td>36,9</td><td>7,6</td><td>10,5</td></tr>
+<tr><td>Serviços privados</td><td>1,50</td><td>1,23</td><td>0,27</td><td>17,9</td><td>0,84</td><td>1,18</td><td>49,2</td><td>8,4</td><td>8,2</td></tr>
+<tr><td>Saúde</td><td>1,54</td><td>1,24</td><td>0,29</td><td>19,1</td><td>0,86</td><td>0,57</td><td>28,7</td><td>14,9</td><td>3,3</td></tr>
+<tr><td>Eletricidade/gás/água</td><td>1,83</td><td>1,45</td><td>0,39</td><td>21,0</td><td>1,02</td><td>1,32</td><td>11,6</td><td>28,4</td><td>2,1</td></tr>
+<tr><td>Agricultura/silvic.</td><td>1,45</td><td>1,14</td><td>0,31</td><td>21,6</td><td>0,81</td><td>0,93</td><td>46,7</td><td>9,9</td><td>3,9</td></tr>
+<tr><td>Mineração</td><td>1,64</td><td>1,26</td><td>0,37</td><td>22,7</td><td>0,91</td><td>1,23</td><td>10,1</td><td>42,4</td><td>16,7</td></tr>
+<tr><td>Máquinas/equip.</td><td>2,00</td><td>1,50</td><td>0,50</td><td>24,9</td><td>1,12</td><td>0,93</td><td>17,2</td><td>26,5</td><td>0,8</td></tr>
+<tr><td>Construção</td><td>1,70</td><td>1,26</td><td>0,43</td><td>25,5</td><td>0,95</td><td>0,69</td><td>30,1</td><td>16,1</td><td>6,9</td></tr>
+<tr><td>Mat. de transporte</td><td>2,10</td><td>1,55</td><td>0,55</td><td>26,1</td><td>1,17</td><td>1,11</td><td>16,0</td><td>29,7</td><td>0,2</td></tr>
+<tr><td>Refino/coque</td><td>2,11</td><td>1,53</td><td>0,59</td><td>27,8</td><td>1,18</td><td>1,17</td><td>21,7</td><td><strong>61,6</strong></td><td>0,5</td></tr>
+<tr><td>Têxtil/vestuário</td><td>1,87</td><td>1,35</td><td>0,53</td><td>28,1</td><td>1,04</td><td>0,82</td><td>67,9</td><td>17,8</td><td>0,8</td></tr>
+<tr><td>Metalurgia</td><td>1,96</td><td>1,39</td><td>0,57</td><td>29,3</td><td>1,09</td><td>1,30</td><td>11,3</td><td><strong>49,3</strong></td><td>10,7</td></tr>
+<tr><td>Químicos/farma</td><td>2,10</td><td>1,48</td><td>0,62</td><td>29,4</td><td>1,17</td><td>1,71</td><td>13,3</td><td>41,2</td><td>1,1</td></tr>
+<tr><td>Mat. elétrico/eletrôn.</td><td>1,99</td><td>1,40</td><td>0,59</td><td>29,8</td><td>1,11</td><td>1,12</td><td>15,5</td><td>34,2</td><td>0,6</td></tr>
+<tr><td>Pecuária e pesca</td><td>1,64</td><td>1,14</td><td>0,49</td><td>30,2</td><td>0,91</td><td>1,08</td><td>57,0</td><td>19,4</td><td>1,5</td></tr>
+<tr><td>Transporte/armaz.</td><td>1,77</td><td>1,24</td><td>0,54</td><td>30,3</td><td>0,99</td><td>1,22</td><td>22,4</td><td>23,1</td><td>8,6</td></tr>
+<tr><td>Indústrias diversas</td><td>1,84</td><td>1,28</td><td>0,56</td><td>30,5</td><td>1,02</td><td>0,74</td><td>40,3</td><td>16,3</td><td>0,6</td></tr>
+<tr><td>Min. não-metálicos</td><td>1,90</td><td>1,32</td><td>0,58</td><td>30,7</td><td>1,06</td><td>1,09</td><td>23,1</td><td>28,2</td><td>2,7</td></tr>
+<tr><td>Alojamento/alim.</td><td>1,76</td><td>1,20</td><td>0,56</td><td>31,9</td><td>0,98</td><td>0,75</td><td>50,2</td><td>22,2</td><td>2,1</td></tr>
+<tr><td>Madeira/papel</td><td>1,96</td><td>1,26</td><td>0,70</td><td>35,8</td><td>1,09</td><td>0,84</td><td>21,9</td><td><strong>50,3</strong></td><td>2,8</td></tr>
+<tr><td>Borracha/plástico</td><td>2,05</td><td>1,30</td><td>0,75</td><td>36,8</td><td>1,14</td><td>1,26</td><td>19,9</td><td>32,9</td><td>0,3</td></tr>
+<tr><td><strong>Alimentos</strong></td><td>2,31</td><td>1,45</td><td>0,86</td><td><strong>37,4</strong></td><td>1,29</td><td>0,78</td><td>42,5</td><td><strong>56,5</strong></td><td>3,5</td></tr>
+</tbody>
+</table>
 
-<span class="footnote">Ordenado pelo vazamento de produção · Média ES: **24,9%** (simples) / **22,8%** (ponderada pela produção). $O_j$ = multiplicador de produção. Setores locais/de serviço retêm; setores de transformação vazam.</span>
+<span class="footnote">Ordenado pelo vazamento de produção. O<sub>j</sub> = multiplicador de produção (Retido + Vazado = O<sub>j</sub>). L.trás / L.fr = ligações de Rasmussen para trás / frente (>1 = acima da média). M.empr = empregos por R\$ milhão de demanda final. VBP em R\$ bilhões. Média de vazamento ES: **24,9%** (simples) / **22,8%** (ponderada pela produção). Setores locais/de serviço retêm; setores de transformação vazam.</span>
 
 Note:
 Distribuição completa dos 26 setores, ordenada pelo vazamento de produção. Imobiliário quase não vaza (5,3%, local); alimentos vaza muito (37,4%). No emprego, os setores pesados (refino 61,6, alimentos 56,5, madeira 50,3, metalurgia 49,3) lideram. Médias: 24,9% simples / 22,8% ponderada.
