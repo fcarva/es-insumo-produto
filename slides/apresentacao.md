@@ -104,9 +104,12 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal section.center ul, .reveal section.center ol{ display:inline-block; text-align:left; }
 .reveal section.center h2, .reveal section.center h3{ border-bottom:none; }
 
-/* SLIDE DE FIGURA: imagem domina, texto mínimo */
+/* SLIDE DE FIGURA: imagem domina, texto mínimo.
+   max-height em px (coord. do slide), não vh — vh é relativo à janela e
+   estoura em tela cheia (1080p: 72vh ≈ 778px > 720). */
 .reveal section.fig h2{ border-bottom:none; margin-bottom:.12em; font-size:1.0em; }
-.reveal section.fig img{ max-height:72vh; border:none; display:block; margin:.25em auto; }
+.reveal section.fig img{ max-height:550px; border:none; display:block; margin:.25em auto; }
+.reveal section.fig1 img{ max-height:628px; }   /* R1 não tem legenda separada: ocupa mais */
 .reveal section.fig blockquote{ font-size:.78em; margin-top:.25em; }
 
 /* DUAS COLUNAS (figura + texto lado a lado) */
@@ -117,20 +120,20 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 
 /* TABELA DENSA (distribuição completa dos 26 setores) */
 .reveal section.xs h2{ margin-bottom:.18em; }
-.reveal .xs table{ font-size:.46em; width:100%; line-height:1.18; table-layout:fixed; }
-.reveal .xs table th{ font-size:.82em; padding:.3em .45em; }
-.reveal .xs table td{ padding:.14em .45em; }
-/* larguras determinísticas: Setor largo, 9 colunas numéricas iguais */
-.reveal .xs table td:first-child, .reveal .xs table th:first-child{ width:22%; }
-.reveal .xs table td:not(:first-child), .reveal .xs table th:not(:first-child){ white-space:nowrap; }
-.reveal .xs table tbody tr:nth-child(even) td{ background:var(--b50); }  /* zebra suave */
-.reveal .xs table td:not(:first-child), .reveal .xs table th:not(:first-child){ text-align:right; }
-/* separadores de grupo (Ligações | Emprego | Peso), sutis */
-.reveal .xs table td:nth-child(6), .reveal .xs table th:nth-child(6),
-.reveal .xs table td:nth-child(8), .reveal .xs table th:nth-child(8),
-.reveal .xs table td:nth-child(10), .reveal .xs table th:nth-child(10){
-  border-left:1px solid var(--b200); }
 .reveal .xs .footnote{ font-size:.5em; line-height:1.3; }
+/* Estilo no próprio <table class="t4"> — robusto: independe da classe .xs do
+   slide (que vem de comentário e pode não pegar em todo renderizador). */
+.reveal .t4{ width:100%; font-size:.46em; line-height:1.18; table-layout:fixed; }
+.reveal .t4 th{ font-size:.82em; padding:.3em .45em; }
+.reveal .t4 td{ padding:.14em .45em; }
+.reveal .t4 td:first-child, .reveal .t4 th:first-child{ width:22%; }   /* Setor largo */
+.reveal .t4 td:not(:first-child), .reveal .t4 th:not(:first-child){ text-align:right; white-space:nowrap; }
+.reveal .t4 tbody tr:nth-child(even) td{ background:var(--b50); }      /* zebra suave */
+/* separadores de grupo (Ligações | Emprego | Peso), sutis */
+.reveal .t4 td:nth-child(6), .reveal .t4 th:nth-child(6),
+.reveal .t4 td:nth-child(8), .reveal .t4 th:nth-child(8),
+.reveal .t4 td:nth-child(10), .reveal .t4 th:nth-child(10){
+  border-left:1px solid var(--b200); }
 
 /* utilidades */
 .reveal .stat{ font-weight:800; font-size:1.4em; line-height:1.05; }
@@ -270,7 +273,7 @@ O multiplicador de produção é a soma de coluna da inversa; a decomposição r
 
 ---
 
-<!-- .slide: class="fig" -->
+<!-- .slide: class="fig fig1" -->
 
 ## Resultado 1 — o ES move o país, que não o move de volta
 
@@ -364,7 +367,7 @@ Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ reté
 
 ## Resultado 4 — vazamento do multiplicador: distribuição completa
 
-<table>
+<table class="t4">
 <thead>
 <tr><th>Setor</th><th class="n" style="text-transform:none">O<sub>j</sub></th><th class="n">Retido</th><th class="n">Vazado</th><th class="n">Vaz. %</th><th class="n">L.trás</th><th class="n">L.fr</th><th class="n">M.empr</th><th class="n">Empr. %</th><th class="n">VBP</th></tr>
 </thead>
