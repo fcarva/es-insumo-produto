@@ -6,8 +6,9 @@ Os arquivos de dados não são versionados (ver `.gitignore`). Coloque aqui:
   26 setores por região (52 ao todo), R$ milhões correntes, contábil e balanceada,
   com vetor de pessoal ocupado por setor.
 - `wiod_2014/` — World Input-Output Database 2014 (43 países, 56 setores) para a camada de CGV.
-- `outputs/` — resultados gerados por `src/io_core.py` (multiplicadores, decomposição retido/vazado,
-  spillover/feedback, ligações de Rasmussen-Hirschman, upstreamness).
+- `outputs/` — resultados gerados pelo pipeline `pesquisa/01–13` (multiplicadores, decomposição
+  retido/vazado, spillover/feedback, ligações de Rasmussen-Hirschman, upstreamness). O módulo
+  `src/io_core.py` reúne as mesmas funções-núcleo (Isard/Miller-Blair) usadas por esse pipeline.
 
 ## Fontes
 - Regionalização da matriz nacional: Guilhoto & Sesso Filho (2005).

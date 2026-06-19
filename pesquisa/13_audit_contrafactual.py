@@ -5,6 +5,15 @@
 Usa a mesma convenção validada em 01_es_br_base.py / 06_reconciliacao.py:
 injeção = demanda final do ES por produtos do ES (fL), spillover = produção
 induzida no RB e feedback = retorno ao ES.
+
+Base na literatura (os vereditos do RESUMO são CONDICIONAIS aos números computados):
+  - Inversa particionada / decomposição spillover-feedback: Isard (1951);
+    Miller & Blair (2009, cap. 3).
+  - Pequenez empírica dos efeitos de feedback inter-regional: Miller (1966,
+    Papers Reg. Sci. Assoc. 17:105-125); Miller & Blair (2009).
+  - Análise de impacto demanda-driven (cenários 1-3): Miller & Blair (2009, cap. 6).
+  - Magnitude de referência (parcela inter-regional do multiplicador, ES = 27,4%):
+    Haddad et al. (2017, Tab. 2).
 """
 import os
 import sys
@@ -133,14 +142,56 @@ print(f"  ES→RB feedback ratio: {100*feedback_base/inj_base:.3f}%")
 print(f"  RB→ES feedback ratio: {100*feedback_RB_ES/fM.sum():.2f}%")
 
 print("\n" + "=" * 80)
-print("RESUMO DA AUDITORIA")
+print("RESUMO DA AUDITORIA  (vereditos CONDICIONAIS aos números acima)")
 print("=" * 80)
-print("""
-✓ Cenário 1: diversificação desloca composição, mas não destrói a assimetria.
-✓ Cenário 2: choque Fundão derruba base e evidencia dependência do minério.
-✓ Cenário 3: adensamento downstream eleva feedback, logo há margem de integração.
-✓ Cenário 4: RB exibe feedback muito maior do que ES, confirmando a assimetria.
-""")
+
+
+def verdict(cond, ok, no):
+    print(("[OK] " if cond else "[X]  ") + (ok if cond else no))
+
+
+# "Assimetria praticamente unilateral" = feedback < 1% da injeção. O limiar reflete a
+# regularidade empírica de feedbacks inter-regionais pequenos (Miller, 1966; Miller &
+# Blair, 2009). Cenários de demanda: análise demanda-driven (Miller & Blair, 2009, cap. 6).
+ASSIM = 0.01
+
+c1 = (feedback_s1 / inj_s1) < ASSIM
+verdict(
+    c1,
+    f"C1 diversificação: composição muda, assimetria preservada "
+    f"(feedback/inj {100*feedback_s1/inj_s1:.2f}% < {100*ASSIM:.0f}%). [Miller-Blair 2009, cap.6]",
+    f"C1: assimetria NAO preservada (feedback/inj {100*feedback_s1/inj_s1:.2f}%).",
+)
+
+d_inj = (inj_base - inj_s2) / inj_base
+d_spl = (spill_base.sum() - spill_s2.sum()) / spill_base.sum()
+c2 = (d_inj > 0.10) and (d_spl > 0.10)
+verdict(
+    c2,
+    f"C2 Fundão: choque derruba a base (injeção -{100*d_inj:.1f}%, spillover -{100*d_spl:.1f}%); "
+    f"dependência do minério evidente. [impacto demanda-driven, Miller-Blair 2009, cap.6]",
+    f"C2: queda < 10% (injeção -{100*d_inj:.1f}%, spillover -{100*d_spl:.1f}%) — base pouco sensível.",
+)
+
+dfb = (feedback_s3 - feedback_base) / feedback_base
+c3 = feedback_s3 > feedback_base
+verdict(
+    c3,
+    f"C3 adensamento: feedback sobe (+{100*dfb:.1f}%, R$ {feedback_base:.0f}->{feedback_s3:.0f} mi) "
+    f"— há margem de integração, embora o efeito de NÍVEL seja pequeno.",
+    f"C3: feedback nao sobe ({100*dfb:+.1f}%) — sem ganho de integração detectável.",
+)
+
+r_es = feedback_base / inj_base
+r_rb = feedback_RB_ES / fM.sum()
+c4 = r_rb > r_es
+verdict(
+    c4,
+    f"C4 assimetria: feedback do RB ({100*r_rb:.2f}%) e {r_rb/r_es:.1f}x o do ES ({100*r_es:.2f}%), "
+    f"embora ambos < 1% (feedbacks inter-regionais tipicamente pequenos — Miller 1966; "
+    f"decomposição na linha de Haddad et al. 2017, Tab. 2).",
+    f"C4: razão do RB ({100*r_rb:.2f}%) nao excede a do ES ({100*r_es:.2f}%).",
+)
 
 summary = pd.DataFrame({
     "Cenário": ["Baseline", "Diversificação", "Fundão", "Adensamento", "Assimetria RB→ES"],

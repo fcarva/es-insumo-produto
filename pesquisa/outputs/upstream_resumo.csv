@@ -1,4 +1,9 @@
 metrica,valor
 brasil_upstreamness,1.9135
 mundo_upstreamness,2.3066
-mineracao_percentil,97.7
+mineracao_U,3.8223
+mineracao_rank_global,33
+mineracao_n_validos,2279
+setores_excluidos,185
+mineracao_percentil_bruto,97.7
+mineracao_percentil,98.6

@@ -55,7 +55,7 @@ concentrado --- o \textbf{Sudeste (excluído o ES) absorve 65\%} do
 \emph{spillover}, e o núcleo São Paulo--Rio de Janeiro, 52,5\%. Uma camada de
 cadeias globais de valor (WIOD 2014) situa a pauta exportadora capixaba com
 \emph{upstreamness} de \textbf{3,12} (contra 1,91 do Brasil), com a mineração
-no percentil 98 global. O mapa do vazamento é, simultaneamente, um mapa de
+no percentil 99 global. O mapa do vazamento é, simultaneamente, um mapa de
 fragilidade estrutural e de oportunidade de adensamento de cadeia.
 
 \vspace{0.6em}
@@ -105,7 +105,7 @@ setores por região, R\$ milhões correntes, contábil e balanceada, acompanhada
 do vetor de pessoal ocupado; (b) a matriz \textbf{interestadual} das 27 UFs
 (26 setores por UF) para 2008, que permite a decomposição do destino do
 vazamento; e (c) a \emph{World Input-Output Database} (WIOD) de 2014 --- 44
-regiões e 56 setores --- para a camada de cadeias globais de valor. A
+regiões e 56 setores --- para a camada de cadeias globais de valor \citep{timmer2015wiod}. A
 construção das matrizes regionais segue a tradição brasileira de
 regionalização da matriz nacional \citep{guilhoto2005estimacao} e de estimação
 de fluxos inter-regionais pelo método IIOAS \citep{haddad2017iioas}.
@@ -154,7 +154,8 @@ $x^{M}$ é desagregado por unidade da federação.
 \paragraph{\emph{Upstreamness}.}
 A posição em cadeias de valor usa o índice de \citet{antras2012measuring},
 $U=(I-G)^{-1}\mathbf{1}$, com $G_{ij}=z_{ij}/x_i$; a \emph{upstreamness} da
-pauta do ES pondera a $U$ setorial do Brasil (WIOD 2014) pela composição das
+pauta do ES pondera a $U$ setorial do Brasil (WIOD 2014, \citealp{timmer2015wiod})
+pela composição das
 exportações capixabas.
 
 % =====================================================================
@@ -272,7 +273,9 @@ resto) e abertura comparada dos estados do cluster e do núcleo.}
 \subsection{Posição em cadeias globais de valor}
 A pauta exportadora capixaba tem \emph{upstreamness} ponderada de
 \textbf{3,12}, contra 1,91 do Brasil e 2,31 da média mundial, com a mineração
-no percentil 98 global (Figura~\ref{fig:upstream}). O ES supre insumos
+entre as mais a montante do mundo ($U=3,82$; 33\textordfeminine{} de 2.279
+posições válidas do WIOD, percentil 99 após o tratamento de qualidade do
+§\ref{sec:limites}; Figura~\ref{fig:upstream}). O ES supre insumos
 primários e intermediários (mineração, metalurgia e celulose somam 71\% das
 exportações); a captura de valor a jusante ocorre em outras regiões e países.
 
@@ -321,7 +324,16 @@ fluxos inter-regionais e interestaduais são \emph{estimados} pelo método IIOAS
 hipóteses do modelo gravitacional. \textbf{(iii) Aproximação WIOD:} como o ES
 não tem assento próprio no WIOD, a \emph{upstreamness} é inferida via a
 tecnologia do Brasil ponderada pela pauta capixaba, o que introduz viés, pois a
-intensidade primária da exportação do ES não reflete a média nacional. A
+intensidade primária da exportação do ES não reflete a média nacional. Ademais,
+a demanda final implícita na WIOD inclui variação de estoques e discrepância
+estatística \citep{oecd2019tiva}, gerando valores negativos em 49 dos 2.464
+setores e uma cauda não-econômica no índice de Antràs-Chor; como entradas
+negativas devem ser reconciliadas e não interpretadas como fluxo econômico
+\citep{tukker2013global}, excluem-se esses setores e a cauda implausível,
+reportando o nível de \emph{upstreamness} e o \emph{ranking} setorial --- na
+linha de \citet{araujojunior2018cgv} --- em vez do percentil sobre a
+distribuição bruta; as médias ponderadas (Brasil 1,91; mundo 2,31) são robustas
+a esse tratamento. A
 defesa do uso conjunto de 2008 (MIP) e 2014 (WIOD) apoia-se na \emph{inércia
 estrutural}: as relações de encadeamento físico de cadeias de base mudam
 lentamente, tornando a fotografia estrutural válida para caracterizar o modelo
@@ -361,15 +373,20 @@ Antràs, P., Chor, D., Fally, T., \& Hillberry, R. (2012). Measuring the
 upstreamness of production and trade flows. \textit{American Economic
 Review}, 102(3), 412--416.
 
+\bibitem[Araújo Júnior(2018)]{araujojunior2018cgv}
+Araújo Júnior, I. F. de (2018). \textit{Três ensaios sobre a análise das cadeias
+globais de valor}. Tese de Doutorado, Universidade Federal de Juiz de Fora.
+
 \bibitem[Guilhoto \& Sesso Filho(2005)]{guilhoto2005estimacao}
 Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
 insumo-produto a partir de dados preliminares das contas nacionais.
 \textit{Economia Aplicada}, 9(2), 277--299.
 
 \bibitem[Haddad et al.(2017)]{haddad2017iioas}
-Haddad, E. A., Gonçalves Jr., C. A., \& Nascimento, T. O. (2017).
-Matriz inter-regional de insumo-produto para o Espírito Santo: método IIOAS.
-\textit{Working paper}.
+Haddad, E. A., Gonçalves Júnior, C. A., \& Nascimento, T. O. (2017).
+Matriz interestadual de insumo-produto para o Brasil: uma aplicação do método
+IIOAS. \textit{Revista Brasileira de Estudos Regionais e Urbanos}, 11(4),
+424--446.
 
 \bibitem[Isard(1951)]{isard1951}
 Isard, W. (1951). Interregional and regional input-output analysis: a model
@@ -380,10 +397,19 @@ of a space-economy. \textit{The Review of Economics and Statistics}, 33(4),
 Miller, R. E., \& Blair, P. D. (2009). \textit{Input-Output Analysis:
 Foundations and Extensions}. 2nd ed. Cambridge University Press.
 
+\bibitem[OECD(2019)]{oecd2019tiva}
+OECD (2019). \textit{Guide to OECD's Trade in Value Added (TiVA) Indicators,
+2018 edition}. OECD Publishing, Paris.
+
 \bibitem[Timmer et al.(2015)]{timmer2015wiod}
 Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J.
 (2015). An illustrated user guide to the World Input-Output Database.
 \textit{Review of International Economics}, 23(3), 575--605.
+
+\bibitem[Tukker \& Dietzenbacher(2013)]{tukker2013global}
+Tukker, A., \& Dietzenbacher, E. (2013). Global multiregional input-output
+frameworks: an introduction and outlook. \textit{Economic Systems Research},
+25(1), 1--19.
 
 \end{thebibliography}
 

@@ -9,9 +9,12 @@ Criterio (leitura da Apex Partners, Brazil Journal/NeoFeed jun-2026): cresciment
 acima da media, contas organizadas, economia real sub-coberta pelo mercado de
 capitais. Aqui o cluster e um GRUPO DE COMPARACAO; o foco do artigo segue no ES.
 """
-import os, csv
+import os, csv, sys
 import numpy as np
 import pandas as pd
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # console Windows (cp1252) nao encoda alguns caracteres nos prints; forca UTF-8
 
 P   = r"C:/Users/DELL/Downloads/Material IO/MIP-26x26-BR-2008.xlsx"
 OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
