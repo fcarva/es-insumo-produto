@@ -82,10 +82,17 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
                        border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); }
 
 /* Resultado 3 — cluster por dentro */
-.reveal .t3{ width:100%; }
+.reveal .t3{ width:100%; font-size:.7em; }
+.reveal .t3 th, .reveal .t3 td{ padding:.2em .65em; line-height:1.25; }
 .reveal .t3 td, .reveal .t3 th{ text-align:right; }
 .reveal .t3 td:first-child, .reveal .t3 th:first-child,
 .reveal .t3 td:last-child, .reveal .t3 th:last-child{ text-align:left; }
+
+/* slides de tabela: espaçamento vertical compacto */
+.reveal section.tight h2{ margin-bottom:.2em; }
+.reveal section.tight p{ margin:.3em 0; line-height:1.3; }
+.reveal section.tight .t3{ margin:.3em 0; }
+.reveal section.xs p{ margin:.25em 0; }
 
 .reveal mjx-container{ font-size:.95em !important; color:var(--ink); }
 .reveal mjx-container[display="true"]{ margin:.4em 0; }
@@ -120,7 +127,7 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal .xs table td:nth-child(8), .reveal .xs table th:nth-child(8),
 .reveal .xs table td:nth-child(10), .reveal .xs table th:nth-child(10){
   border-left:1px solid var(--b200); }
-.reveal .xs .footnote{ font-size:.85em; }
+.reveal .xs .footnote{ font-size:.5em; line-height:1.3; }
 
 /* utilidades */
 .reveal .stat{ font-weight:800; font-size:1.4em; line-height:1.05; }
@@ -129,7 +136,8 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal .clu{ color:var(--clu); font-weight:700; }
 .reveal .hl td{ background:#F0E7DF !important; font-weight:700; }
 
-.reveal .footnote{ color:var(--b600); font-size:.6em; font-weight:500; }
+.reveal .footnote{ color:var(--b600); font-size:.6em; font-weight:500;
+                    display:block; line-height:1.25; margin-top:.25em; }
 .reveal .slide-number{ color:var(--b500); background:transparent; }
 </style>
 
@@ -316,9 +324,11 @@ Ponte com um debate de mercado contemporâneo (Apex Partners): um cluster de est
 
 ---
 
+<!-- .slide: class="tight" -->
+
 ## Resultado 3 — o cluster por dentro
 
-8 estados de crescimento acima da média, **sub-cobertos pelo mercado de capitais** (leitura da Apex Partners) — excluem o núcleo SP/RJ · **33,9% do PIB**.
+8 estados de crescimento acima da média, **sub-cobertos pelo mercado de capitais** (leitura Apex Partners), que excluem o núcleo SP/RJ.
 
 <table class="t3">
 <thead>
@@ -340,7 +350,7 @@ Ponte com um debate de mercado contemporâneo (Apex Partners): um cluster de est
 </tbody>
 </table>
 
-<span class="footnote">Mult. méd. = multiplicador de produção médio do estado. O ES é o 2º mais intensivo em setores de base (só MT acima) e — com o RJ — o único cujo setor dominante é Mineração; o núcleo SP/RJ é o menos aberto do país. Linhas-resumo: PIB = soma; demais colunas = média simples.</span>
+<span class="footnote">Mult. méd. = multiplicador de produção médio. O ES é o 2º mais intensivo em base (só MT acima) e, com o RJ, o único cujo setor dominante é Mineração. Resumo: PIB = soma; demais = média simples.</span>
 
 Note:
 Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ retém (SP é o menos aberto do país, 14,2%). Isso reforça o caráter-plataforma do ES mesmo entre seus pares dinâmicos.
@@ -385,7 +395,7 @@ Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ reté
 </tbody>
 </table>
 
-<span class="footnote">Ordenado pelo vazamento de produção. O<sub>j</sub> = multiplicador de produção (Retido + Vazado = O<sub>j</sub>). L.trás / L.fr = ligações de Rasmussen para trás / frente (>1 = acima da média). M.empr = empregos por R\$ milhão de demanda final. VBP em R\$ bilhões. Média de vazamento ES: **24,9%** (simples) / **22,8%** (ponderada pela produção). Setores locais/de serviço retêm; setores de transformação vazam.</span>
+<span class="footnote">O<sub>j</sub> = multiplicador de produção (Retido + Vazado = O<sub>j</sub>). L.trás / L.fr = ligações de Rasmussen para trás / frente (>1 = acima da média). M.empr = empregos por R\$ mi. VBP em R\$ bi. Ordenado por vazamento de produção; média ES **24,9%** (simples) / **22,8%** (ponderada).</span>
 
 Note:
 Distribuição completa dos 26 setores, ordenada pelo vazamento de produção. Imobiliário quase não vaza (5,3%, local); alimentos vaza muito (37,4%). No emprego, os setores pesados (refino 61,6, alimentos 56,5, madeira 50,3, metalurgia 49,3) lideram. Médias: 24,9% simples / 22,8% ponderada.
