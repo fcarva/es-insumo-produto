@@ -110,6 +110,18 @@ construção das matrizes regionais segue a tradição brasileira de
 regionalização da matriz nacional \citep{guilhoto2005estimacao} e de estimação
 de fluxos inter-regionais pelo método IIOAS \citep{haddad2017iioas}.
 
+O IIOAS é um método \emph{não-censitário} de regionalização \citep{round1983nonsurvey}:
+na ausência de fluxos de comércio inter-regionais observados, combina os coeficientes
+da matriz nacional --- sob a hipótese de tecnologia e preferências comuns, na tradição
+de Chenery-Moses --- a um modelo gravitacional de comércio calibrado por tempos de
+viagem entre as UFs. É uma entre várias famílias não-censitárias: os quocientes
+locacionais e suas variantes \citep[FLQ/AFLQ;][]{flegg2016evaluating}; o método CHARM,
+que corrige o \emph{cross-hauling} ignorado pelos quocientes \citep{tobben2015charm}; e
+as abordagens gravitacionais, que tendem a reproduzir melhor os fluxos observados que os
+quocientes \citep{riddington2006comparison}. A opção pelo IIOAS é deliberada --- é o
+método com que a matriz interestadual de \citet{haddad2017iioas} foi construída ---,
+garantindo consistência com o substrato empírico aqui mobilizado.
+
 % =====================================================================
 \section{Método}
 \label{sec:metodo}
@@ -298,7 +310,14 @@ Guilhoto e Sesso Filho mostram como regionalizar a economia brasileira; Isard
 e Miller-Blair fornecem o aparato para separar o retorno interno do efeito
 externo; e Antràs-Chor situam a pauta na cadeia global. O passo adicional
 deste trabalho é juntar essas quatro peças em uma mesma narrativa: a abertura
-do ES não é apenas alta, ela é espacialmente concentrada e com baixo retorno.
+do ES não é apenas alta, ela é espacialmente concentrada e com baixo retorno. O padrão é coerente com a
+evidência inter-regional brasileira: a matriz Rio Grande do Sul--Restante do Brasil de
+\citet{porsse2008matriz} já documentara transbordamentos do estado para o restante do
+país mais intensos que o retorno, com vazamento menor nos setores agroindustriais e
+maior nos ramos metal-mecânicos, e a matriz Minas Gerais--Resto do Brasil de
+\citet{domingues2002matriz} apontara assimetria análoga. A contribuição capixaba é
+levar esse achado do par bi-regional ao recorte \emph{interestadual}, identificando
+\emph{para onde} escoa o encadeamento.
 
 O mecanismo por trás da assimetria é direto. O ES é um \emph{hub} de passagem
 de intermediários pesados; o choque de demanda vaza rapidamente para a
@@ -348,7 +367,8 @@ padrão-plataforma se replica --- a Região Metropolitana retém o multiplicador
 e a periferia exporta encadeamento; (ii) a leitura longitudinal em cadeias
 globais de valor (2000\,$\times$\,2014), exigindo harmonização de classificação
 industrial e deflação a preços constantes; e (iii) a integração a uma matriz
-mundial (MRIO) para rastrear o destino internacional do valor e do emprego
+mundial (MRIO) --- por exemplo a base ICIO/TiVA da OCDE \citep{guilhoto2019exploring} ---
+para rastrear o destino internacional do valor e do emprego
 embutidos nas exportações capixabas.
 
 % =====================================================================
@@ -377,6 +397,22 @@ Review}, 102(3), 412--416.
 Araújo Júnior, I. F. de (2018). \textit{Três ensaios sobre a análise das cadeias
 globais de valor}. Tese de Doutorado, Universidade Federal de Juiz de Fora.
 
+\bibitem[Domingues \& Haddad(2002)]{domingues2002matriz}
+Domingues, E. P., \& Haddad, E. A. (2002). Matriz inter-regional de insumo-produto
+Minas Gerais/Resto do Brasil: estimação e extensão para exportações. In
+\textit{Anais do X Seminário sobre a Economia Mineira}. Diamantina, MG.
+
+\bibitem[Flegg et al.(2016)]{flegg2016evaluating}
+Flegg, A. T., Mastronardi, L. J., \& Romero, C. A. (2016). Evaluating the FLQ and AFLQ
+formulae for estimating regional input coefficients: empirical evidence for the
+province of Córdoba, Argentina. \textit{Economic Systems Research}, 28(1), 21--37.
+
+\bibitem[Guilhoto et al.(2019)]{guilhoto2019exploring}
+Guilhoto, J. J. M., Hewings, G. J. D., Johnstone, N., Webb, C., \& Yamano, N. (2019).
+\textit{Exploring changes in world production and trade: insights from the 2018 update
+of OECD's ICIO/TiVA database}. OECD Science, Technology and Industry Working Papers,
+2019/04. Paris: OECD Publishing.
+
 \bibitem[Guilhoto \& Sesso Filho(2005)]{guilhoto2005estimacao}
 Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
 insumo-produto a partir de dados preliminares das contas nacionais.
@@ -401,10 +437,28 @@ Foundations and Extensions}. 2nd ed. Cambridge University Press.
 OECD (2019). \textit{Guide to OECD's Trade in Value Added (TiVA) Indicators,
 2018 edition}. OECD Publishing, Paris.
 
+\bibitem[Porsse et al.(2008)]{porsse2008matriz}
+Porsse, A. A., Peixoto, F. C., \& Palermo, P. U. (2008). \textit{Matriz de
+insumo-produto inter-regional Rio Grande do Sul--Restante do Brasil 2003: metodologia
+e resultados}. Textos para Discussão FEE, n. 38. Porto Alegre: FEE.
+
+\bibitem[Riddington et al.(2006)]{riddington2006comparison}
+Riddington, G., Gibson, H., \& Anderson, J. (2006). Comparison of gravity model,
+survey and location quotient-based local area tables and multipliers.
+\textit{Regional Studies}, 40(9), 1069--1081.
+
+\bibitem[Round(1983)]{round1983nonsurvey}
+Round, J. I. (1983). Nonsurvey techniques: a critical review of the theory and the
+evidence. \textit{International Regional Science Review}, 8(3), 189--212.
+
 \bibitem[Timmer et al.(2015)]{timmer2015wiod}
 Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J.
 (2015). An illustrated user guide to the World Input-Output Database.
 \textit{Review of International Economics}, 23(3), 575--605.
+
+\bibitem[Többen \& Kronenberg(2015)]{tobben2015charm}
+Többen, J., \& Kronenberg, T. (2015). Construction of multi-regional input-output
+tables using the CHARM method. \textit{Economic Systems Research}, 27(4), 487--507.
 
 \bibitem[Tukker \& Dietzenbacher(2013)]{tukker2013global}
 Tukker, A., \& Dietzenbacher, E. (2013). Global multiregional input-output
