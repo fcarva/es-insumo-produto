@@ -117,9 +117,12 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 
 /* TABELA DENSA (distribuição completa dos 26 setores) */
 .reveal section.xs h2{ margin-bottom:.18em; }
-.reveal .xs table{ font-size:.46em; width:100%; line-height:1.18; }
+.reveal .xs table{ font-size:.46em; width:100%; line-height:1.18; table-layout:fixed; }
 .reveal .xs table th{ font-size:.82em; padding:.3em .45em; }
 .reveal .xs table td{ padding:.14em .45em; }
+/* larguras determinísticas: Setor largo, 9 colunas numéricas iguais */
+.reveal .xs table td:first-child, .reveal .xs table th:first-child{ width:22%; }
+.reveal .xs table td:not(:first-child), .reveal .xs table th:not(:first-child){ white-space:nowrap; }
 .reveal .xs table tbody tr:nth-child(even) td{ background:var(--b50); }  /* zebra suave */
 .reveal .xs table td:not(:first-child), .reveal .xs table th:not(:first-child){ text-align:right; }
 /* separadores de grupo (Ligações | Emprego | Peso), sutis */
