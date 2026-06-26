@@ -63,10 +63,19 @@ para a demanda final doméstica.
 (ES vendendo para uso intermediário no resto do Brasil) tem correlação **0,97** com a
 "Exportação Regional" observada na planilha do ES (que mistura uso intermediário e demanda
 final de RB — por isso não é esperado bater exatamente, só ser consistente). Vazamento médio
-do multiplicador de produção (colunas ES, ponderado pela produção): **12,8%** — não comparável
-diretamente aos 24,9% do corte 2008 (classificação mais fina, ano diferente, e fluxo
-bilateral estimado por CILQ em vez de observado por survey); ver `pesquisa/PLANO_ATUALIZACAO.md`
-para a discussão de limites.
+do multiplicador de produção (colunas ES, **ponderado pela produção**): **12,8%** — não
+comparável diretamente ao 2008 (classificação mais fina, ano diferente, e fluxo bilateral
+estimado por CILQ em vez de observado por survey); ver `pesquisa/PLANO_ATUALIZACAO.md` para a
+discussão de limites.
+
+> **Correção (auditoria "hard mode", jun/2026):** o comparador 2008 correto para os 12,8%
+> ponderados de 2015 é o **22,9% ponderado** (mesmo método de agregação, modelo bi-regional;
+> `paper/tab_setores.tex`, linha "Média (ponderada)"), **não** os 24,9% — que são a **média
+> simples** entre os 26 setores de 2008, usada no artigo para comparar com Haddad et al. (2017)
+> (ver nota de rodapé em `paper/es_insumo_produto.tex:165-171`). Comparar 12,8% (ponderado) com
+> 24,9% (simples) mistura duas estatísticas diferentes. Sob o comparador correto, o gap é menor
+> (22,9% → 12,8%) que o originalmente reportado (24,9% → 12,8%) — mas ainda grande, e na mesma
+> direção do viés do CILQ discutido abaixo.
 
 **Viés conhecido do CILQ puro (auditoria de método, jun/2026):** o CILQ usado aqui (sem a
 correção FLQ de Flegg, Webber & Elliott, 1995; Flegg & Webber, 1997, 2000) tende a
@@ -74,9 +83,9 @@ correção FLQ de Flegg, Webber & Elliott, 1995; Flegg & Webber, 1997, 2000) ten
 região-alvo em relação à região de referência**, porque a fórmula cancela algebricamente o
 termo de tamanho relativo. O ES é ~2% do PIB brasileiro frente ao resto do Brasil; logo os
 12,8% acima são plausivelmente um **limite inferior**, não uma estimativa neutra, do
-vazamento real de 2015. A diferença para os 24,9% de 2008 é portanto, em parte, artefato
-de método (CILQ vs. survey), não só de classificação setorial ou ano — ver `pesquisa/
-PLANO_ATUALIZACAO.md` §4 para o registro formal da limitação.
+vazamento real de 2015. A diferença para os 22,9% ponderados de 2008 é portanto, em parte,
+artefato de método (CILQ vs. survey), não só de classificação setorial ou ano — ver
+`pesquisa/PLANO_ATUALIZACAO.md` §4 para o registro formal da limitação.
 
 ## Fontes
 - Regionalização da matriz nacional: Guilhoto & Sesso Filho (2005).

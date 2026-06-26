@@ -110,10 +110,18 @@ Generalizações necessárias:
    relativo da região e por isso **sobrestima autossuficiência** (subestima vazamento) tanto
    mais quanto menor a região-alvo frente à de referência — caso do ES (~2% do PIB do
    Brasil). Os 12,8% de vazamento médio 2015 são um limite inferior plausível, não uma
-   estimativa neutra; parte do gap frente aos 24,9% de 2008 (survey) é artefato de método,
-   não só de classificação setorial/ano. Não corrigido nesta rodada (decisão: documentar o
-   viés em vez de recalcular com FLQ agora); reabrir se/quando o SDA (S5) exigir uma
-   estimativa de vazamento 2015 mais defensável.
+   estimativa neutra; parte do gap frente ao comparador correto de 2008 (22,9% ponderado —
+   ver item 7 abaixo) é artefato de método, não só de classificação setorial/ano. Não
+   corrigido nesta rodada (decisão: documentar o viés em vez de recalcular com FLQ agora);
+   reabrir se/quando o SDA (S5) exigir uma estimativa de vazamento 2015 mais defensável.
+7. **Erro de agregação corrigido (auditoria "hard mode", jun/2026)** — o texto anterior deste
+   plano e de `dados/README.md` comparava os 12,8% **ponderados** de 2015 com os 24,9% de
+   2008, que são a **média simples** entre os 26 setores (usada no artigo para comparar com
+   Haddad et al. 2017 — ver `paper/es_insumo_produto.tex:165-171`), não a ponderada. O
+   comparador correto, mesma agregação e mesmo modelo bi-regional, é **22,9%**
+   (`paper/tab_setores.tex`, linha "Média (ponderada)"). Corrigido em ambos os documentos;
+   o gap remanescente (22,9% → 12,8%) é menor que o originalmente reportado, mas a direção e
+   a conclusão (vazamento provavelmente caiu, com viés de subestimação do CILQ) não mudam.
 
 ## 5. Sequenciamento (de baixo risco/custo → alto)
 
@@ -130,8 +138,9 @@ Generalizações necessárias:
 intermediário "doméstico", os blocos cruzados `Z_LM`/`Z_ML` foram estimados por **CILQ**
 (Guilhoto & Sesso Filho, 2005) em vez de observados — ver nota metodológica em
 `dados/README.md`. Vazamento médio 2015 (12,8%, ponderado) **não é diretamente comparável**
-aos 24,9% de 2008 (classificação mais fina + fluxo bilateral estimado vs. survey); a
-comparação válida exige a concordância setorial unificada (S2) antes de entrar no SDA (S5).
+aos 22,9% ponderados de 2008 (comparador correto, mesma agregação — ver §4 item 7;
+classificação mais fina + fluxo bilateral estimado vs. survey); a comparação válida exige a
+concordância setorial unificada (S2) antes de entrar no SDA (S5).
 **Caminho crítico agora = S2** (concordância + deflação). S3/IIOAS-2019 fica em espera — vira
 S3' se a matriz numérica aparecer depois, e nesse caso estende o painel para 3 pontos
 (2008·2015·2019) em vez de só 2.
