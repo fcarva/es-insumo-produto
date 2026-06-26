@@ -9,9 +9,12 @@ Layout: Z linhas/cols (excel) 5-706 (702=27x26); demanda final cols 707-868
 (27 reg x 6 cat); VALOR DA PRODUCAO = linha 730; Pessoal Ocupado = linha 731.
 Ordem das regioes (linhas e colunas), ES = indice 20:
 """
-import os, csv
+import os, csv, sys
 import numpy as np
 import pandas as pd
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # console Windows (cp1252) nao encoda Sigma/setas nos prints; forca UTF-8
 
 P   = r"C:/Users/DELL/Downloads/Material IO/MIP-26x26-BR-2008.xlsx"
 OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"

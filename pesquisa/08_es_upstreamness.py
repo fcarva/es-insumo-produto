@@ -8,9 +8,12 @@ LIMITE (B3): o ES nao tem assento no WIOD. Aproximamos via tecnologia do Brasil 
 peso da pauta do ES. A concordancia 26 setores (BR-IO) -> 56 (WIOD) e aproximada
 (setor primario representativo por setor); declarar no paper.
 """
-import os, csv
+import os, csv, sys
 import numpy as np
 import openpyxl
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # console Windows (cp1252) nao encoda alguns caracteres nos prints; forca UTF-8
 
 OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
 MIP = r"C:/Users/DELL/Downloads/Material IO/Matrizes/MIP-ES-BR (2008).xlsx"
@@ -43,7 +46,7 @@ es_up = float((share * u_set).sum())
 print("="*62)
 print("UPSTREAMNESS DA PAUTA EXPORTADORA DO ES (via WIOD 2014 / Brasil)")
 print("="*62)
-print(f"  ES (ponderado pela pauta de exportacao): {es_up:.2f}   (alvo paper: 3,19)")
+print(f"  ES (ponderado pela pauta de exportacao): {es_up:.2f}   (paper: 3,12)")
 print(f"  Brasil (media ponderada producao)      : 1,91")
 print(f"  Mundo                                  : 2,31")
 print("-"*62)

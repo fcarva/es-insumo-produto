@@ -25,6 +25,8 @@ dados/*.xls
 # SO
 .DS_Store
 
-# Claude Code skills (ferramenta local, não conteúdo do projeto)
+# skills locais trazidas para o projeto (72 coleções de terceiros, ~68MB)
+# usáveis localmente em .claude/skills/, fora do git para manter o repo leve.
+# Procedência em .claude/skills/README.md. Reversível: remover esta linha p/ versionar.
 .claude/skills/
 skills-lock.json

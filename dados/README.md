@@ -14,8 +14,9 @@ Os arquivos de dados não são versionados (ver `.gitignore`). Coloque aqui:
   da outra região (SLQ), exportação internacional, injeção `y` para o experimento
   spillover/feedback, e a checagem de auditoria (ver nota abaixo).
 - `wiod_2014/` — World Input-Output Database 2014 (43 países, 56 setores) para a camada de CGV.
-- `outputs/` — resultados gerados por `src/io_core.py` (multiplicadores, decomposição retido/vazado,
-  spillover/feedback, ligações de Rasmussen-Hirschman, upstreamness).
+- `outputs/` — resultados gerados pelo pipeline `pesquisa/01–13` (multiplicadores, decomposição
+  retido/vazado, spillover/feedback, ligações de Rasmussen-Hirschman, upstreamness). O módulo
+  `src/io_core.py` reúne as mesmas funções-núcleo (Isard/Miller-Blair) usadas por esse pipeline.
 
 ## Camada de atualização (pivô 2008→2015, ver `pesquisa/PLANO_ATUALIZACAO.md`)
 

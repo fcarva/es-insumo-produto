@@ -12,9 +12,12 @@ Layout confirmado:
   colunas 64-69 = demanda final RB (idem)
   linha 80 = VBP (producao total) ; linha 81 = Fator Trabalho (Ocupacoes)
 """
-import os, csv
+import os, csv, sys
 import numpy as np
 import openpyxl
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # console Windows (cp1252) nao encoda alguns caracteres nos prints; forca UTF-8
 
 DATA = r"C:/Users/DELL/Downloads/Material IO/Matrizes/MIP-ES-BR (2008).xlsx"
 OUT  = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"

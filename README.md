@@ -2,7 +2,7 @@
 
 **Encadeamentos, vazamento de multiplicadores e os efeitos *spillover*/*feedback* na cadeia regional de valor — MIP inter-regional ES × Brasil, 2008.**
 
-Felipe Carvalho (`fcarva.eth`) · PPGEco/UFES
+Felipe Carvalho· PPGEco/UFES
 Análise de Insumo-Produto · Prof. Dr. Celso Bissoli Sessa · 2026/1
 JEL: R15 · D57 · C67
 

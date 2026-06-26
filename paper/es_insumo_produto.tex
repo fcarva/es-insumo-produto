@@ -41,7 +41,8 @@ Este artigo propõe a leitura da economia do Espírito Santo (ES) como uma
 \emph{economia-plataforma}: pequena, hiperaberta e estruturada em torno de
 setores cuja demanda final se realiza fora do estado. A partir de uma matriz
 insumo-produto inter-regional ES\,$\times$\,restante do Brasil para 2008
-(26 setores por região) e de uma matriz interestadual das 27 unidades da
+(26 setores por região; safra anterior ao rompimento de Fundão em 2015) e de
+uma matriz interestadual das 27 unidades da
 federação, aplica-se o modelo de Isard para (i) decompor o multiplicador de
 produção de cada setor capixaba em parcela \emph{retida} e parcela
 \emph{vazada}; (ii) isolar a assimetria entre o efeito \emph{spillover} e o
@@ -55,7 +56,7 @@ concentrado --- o \textbf{Sudeste (excluído o ES) absorve 65\%} do
 \emph{spillover}, e o núcleo São Paulo--Rio de Janeiro, 52,5\%. Uma camada de
 cadeias globais de valor (WIOD 2014) situa a pauta exportadora capixaba com
 \emph{upstreamness} de \textbf{3,12} (contra 1,91 do Brasil), com a mineração
-no percentil 98 global. O mapa do vazamento é, simultaneamente, um mapa de
+no percentil 99 global. O mapa do vazamento é, simultaneamente, um mapa de
 fragilidade estrutural e de oportunidade de adensamento de cadeia.
 
 \vspace{0.6em}
@@ -80,7 +81,9 @@ onde} vaza; e (iii) o que o destino desse multiplicador revela sobre a
 posição do estado nas cadeias de valor. A contribuição é levar a leitura do
 vazamento da dimensão bi-regional (ES \emph{versus} resto do Brasil) à
 dimensão \emph{interestadual}, identificando os estados que absorvem o
-encadeamento que escapa do ES.
+encadeamento que escapa do ES. A fotografia estrutural é de 2008, anterior ao
+rompimento de Fundão (2015), o que circunscreve seu alcance temporal
+(§\ref{sec:limites}).
 
 Essa agenda conversa diretamente com três tradições. A literatura brasileira
 de insumo-produto regional, exemplificada por \citealt{guilhoto2005estimacao}
@@ -105,10 +108,22 @@ setores por região, R\$ milhões correntes, contábil e balanceada, acompanhada
 do vetor de pessoal ocupado; (b) a matriz \textbf{interestadual} das 27 UFs
 (26 setores por UF) para 2008, que permite a decomposição do destino do
 vazamento; e (c) a \emph{World Input-Output Database} (WIOD) de 2014 --- 44
-regiões e 56 setores --- para a camada de cadeias globais de valor. A
+regiões e 56 setores --- para a camada de cadeias globais de valor \citep{timmer2015wiod}. A
 construção das matrizes regionais segue a tradição brasileira de
 regionalização da matriz nacional \citep{guilhoto2005estimacao} e de estimação
 de fluxos inter-regionais pelo método IIOAS \citep{haddad2017iioas}.
+
+O IIOAS é um método \emph{não-censitário} de regionalização \citep{round1983nonsurvey}:
+na ausência de fluxos de comércio inter-regionais observados, combina os coeficientes
+da matriz nacional --- sob a hipótese de tecnologia e preferências comuns, na tradição
+de Chenery-Moses --- a um modelo gravitacional de comércio calibrado por tempos de
+viagem entre as UFs. É uma entre várias famílias não-censitárias: os quocientes
+locacionais e suas variantes \citep[FLQ/AFLQ;][]{flegg2016evaluating}; o método CHARM,
+que corrige o \emph{cross-hauling} ignorado pelos quocientes \citep{tobben2015charm}; e
+as abordagens gravitacionais, que tendem a reproduzir melhor os fluxos observados que os
+quocientes \citep{riddington2006comparison}. A opção pelo IIOAS é deliberada --- é o
+método com que a matriz interestadual de \citet{haddad2017iioas} foi construída ---,
+garantindo consistência com o substrato empírico aqui mobilizado.
 
 % =====================================================================
 \section{Método}
@@ -154,7 +169,8 @@ $x^{M}$ é desagregado por unidade da federação.
 \paragraph{\emph{Upstreamness}.}
 A posição em cadeias de valor usa o índice de \citet{antras2012measuring},
 $U=(I-G)^{-1}\mathbf{1}$, com $G_{ij}=z_{ij}/x_i$; a \emph{upstreamness} da
-pauta do ES pondera a $U$ setorial do Brasil (WIOD 2014) pela composição das
+pauta do ES pondera a $U$ setorial do Brasil (WIOD 2014, \citealp{timmer2015wiod})
+pela composição das
 exportações capixabas.
 
 % =====================================================================
@@ -235,7 +251,22 @@ agro-minerais e o segundo mais intensivo em setores de base (36,4\% da
 produção; Tabela~\ref{tab:cluster}); 52,5\% de seu \emph{spillover} vai ao
 núcleo SP+RJ contra 31,5\% aos demais pares (Figura~\ref{fig:cluster}). A
 leitura insumo-produto é a contraparte estrutural da tese de sub-cobertura de
-capital: o elo produtivo flui ao centro, o capital não retorna.
+capital: o elo produtivo flui ao centro, o capital não retorna. Embora a
+delimitação do grupo seja externa (crescimento acima da média e sub-cobertura de
+capital), o cluster tem assinatura estrutural replicável no próprio dado: seis dos
+oito estados situam-se acima da mediana nacional tanto em abertura (21,8\%) quanto em
+base/\emph{commodity} (21,0\%) --- e todos os oito acima da mediana de base ---,
+enquanto o núcleo SP/RJ situa-se abaixo; o agrupamento não é, pois, arbitrário do
+ponto de vista da estrutura produtiva, ainda que não derive de regionalização oficial.
+O desenho
+\emph{commodity}-exportador desse cluster já fora documentado em estudos
+inter-regionais de pares: em Mato Grosso --- o estado de maior vazamento da
+Tabela~\ref{tab:cluster} ---, a soja, setor exportador dominante, gera, para cada
+R\$ 1 milhão de demanda final, apenas 8 empregos diretos, ante 31 indiretos e 72 com
+o efeito induzido, e seus setores-chave (por ligações de Rasmussen-Hirschman e por
+ligação pura) são quase todos primário-exportadores \citep{figueiredo2004agriculture}.
+É o mesmo padrão de baixa retenção direta e alta propagação que o ES exibe pelo lado
+do minério.
 
 \begin{table}[ht]
 \centering
@@ -272,9 +303,17 @@ resto) e abertura comparada dos estados do cluster e do núcleo.}
 \subsection{Posição em cadeias globais de valor}
 A pauta exportadora capixaba tem \emph{upstreamness} ponderada de
 \textbf{3,12}, contra 1,91 do Brasil e 2,31 da média mundial, com a mineração
-no percentil 98 global (Figura~\ref{fig:upstream}). O ES supre insumos
+entre as mais a montante do mundo ($U=3,82$; 33\textordfeminine{} de 2.279
+posições válidas do WIOD, percentil 99 após o tratamento de qualidade do
+§\ref{sec:limites}; Figura~\ref{fig:upstream}). O ES supre insumos
 primários e intermediários (mineração, metalurgia e celulose somam 71\% das
 exportações); a captura de valor a jusante ocorre em outras regiões e países.
+Esse posicionamento a montante tem contraparte na evidência nacional: ao decompor o
+agronegócio gaúcho em elos \emph{a montante}, produção rural e \emph{a jusante},
+\citet{peixoto2013metodologia} estimam que apenas 0,4\% do valor adicionado do
+agronegócio do restante do Brasil decorre de elos inter-regionais com o Rio Grande do
+Sul, ante 7,9\% do valor gaúcho que decorre de elos com o restante do país --- a mesma
+assimetria de captura a jusante que o ES revela na escala interestadual.
 
 \begin{figure}[ht]
 \centering
@@ -295,7 +334,26 @@ Guilhoto e Sesso Filho mostram como regionalizar a economia brasileira; Isard
 e Miller-Blair fornecem o aparato para separar o retorno interno do efeito
 externo; e Antràs-Chor situam a pauta na cadeia global. O passo adicional
 deste trabalho é juntar essas quatro peças em uma mesma narrativa: a abertura
-do ES não é apenas alta, ela é espacialmente concentrada e com baixo retorno.
+do ES não é apenas alta, ela é espacialmente concentrada e com baixo retorno. O padrão é coerente com a
+evidência inter-regional brasileira: a matriz Rio Grande do Sul--Restante do Brasil de
+\citet{porsse2008matriz} já documentara transbordamentos do estado para o restante do
+país mais intensos que o retorno, com vazamento menor nos setores agroindustriais e
+maior nos ramos metal-mecânicos, e a matriz Minas Gerais--Resto do Brasil de
+\citet{domingues2002matriz} apontara assimetria análoga. A contribuição capixaba é
+levar esse achado do par bi-regional ao recorte \emph{interestadual}, identificando
+\emph{para onde} escoa o encadeamento.
+
+Convém separar o que é específico do ES do que é genérico a economias pequenas e
+abertas. A pequenez do \emph{feedback} é, em parte, uma regularidade do método --- os
+efeitos de retorno inter-regional tendem a ser pequenos para regiões pequenas e abertas
+\citep{miller1966} ---, e a Tabela~2 de \citet{haddad2017iioas} mostra vários estados
+com parcela inter-regional do multiplicador total na faixa do ES (MT 28,5\%, MS 29,7\%,
+AM 25,2\%; ES 27,4\% --- métrica de Haddad, distinta do vazamento ponderado da
+Tabela~\ref{tab:cluster}). O que o dado capixaba acrescenta não é, pois, a \emph{existência}
+de vazamento --- esperada pelo porte ---, mas dois fatos que essa mecânica não prediz: a
+\emph{concentração do destino} no Sudeste e no núcleo SP/RJ (65,4\% e 52,5\%) e a
+\emph{posição a montante} da pauta específica. É na geografia do transbordamento e na
+posição em cadeia, não na assimetria \emph{per se}, que reside a contribuição própria.
 
 O mecanismo por trás da assimetria é direto. O ES é um \emph{hub} de passagem
 de intermediários pesados; o choque de demanda vaza rapidamente para a
@@ -318,10 +376,24 @@ drástico o rompimento da barragem de Fundão (2015), que paralisou a Samarco e
 alterou o peso da extração e da pelotização. \textbf{(ii) Fluxos estimados:} os
 fluxos inter-regionais e interestaduais são \emph{estimados} pelo método IIOAS
 (não observados), de modo que os resultados de destino do vazamento carregam as
-hipóteses do modelo gravitacional. \textbf{(iii) Aproximação WIOD:} como o ES
+hipóteses do modelo gravitacional. As participações de destino e o vazamento são, assim,
+condicionais à calibração do IIOAS: métodos não-censitários divergem na reconstrução dos
+fluxos origem-destino \citep{riddington2006comparison} e os coeficientes regionais são
+sensíveis ao parâmetro de ajuste \citep{flegg2016evaluating}, de modo que os percentuais
+devem ser lidos como ordens de grandeza --- ainda que a assimetria qualitativa do
+\emph{feedback} se mostre invariante à convenção adotada (0,15--0,32\%). \textbf{(iii) Aproximação WIOD:} como o ES
 não tem assento próprio no WIOD, a \emph{upstreamness} é inferida via a
 tecnologia do Brasil ponderada pela pauta capixaba, o que introduz viés, pois a
-intensidade primária da exportação do ES não reflete a média nacional. A
+intensidade primária da exportação do ES não reflete a média nacional. Ademais,
+a demanda final implícita na WIOD inclui variação de estoques e discrepância
+estatística \citep{oecd2019tiva}, gerando valores negativos em 49 dos 2.464
+setores e uma cauda não-econômica no índice de Antràs-Chor; como entradas
+negativas devem ser reconciliadas e não interpretadas como fluxo econômico
+\citep{tukker2013global}, excluem-se esses setores e a cauda implausível,
+reportando o nível de \emph{upstreamness} e o \emph{ranking} setorial --- na
+linha de \citet{araujojunior2018cgv} --- em vez do percentil sobre a
+distribuição bruta; as médias ponderadas (Brasil 1,91; mundo 2,31) são robustas
+a esse tratamento. A
 defesa do uso conjunto de 2008 (MIP) e 2014 (WIOD) apoia-se na \emph{inércia
 estrutural}: as relações de encadeamento físico de cadeias de base mudam
 lentamente, tornando a fotografia estrutural válida para caracterizar o modelo
@@ -336,8 +408,19 @@ padrão-plataforma se replica --- a Região Metropolitana retém o multiplicador
 e a periferia exporta encadeamento; (ii) a leitura longitudinal em cadeias
 globais de valor (2000\,$\times$\,2014), exigindo harmonização de classificação
 industrial e deflação a preços constantes; e (iii) a integração a uma matriz
-mundial (MRIO) para rastrear o destino internacional do valor e do emprego
-embutidos nas exportações capixabas.
+mundial (MRIO) --- por exemplo a base ICIO/TiVA da OCDE \citep{guilhoto2019exploring} ---
+para rastrear o destino internacional do valor e do emprego
+embutidos nas exportações capixabas; e (iv) a \textbf{dimensão ambiental} da
+plataforma --- como a pauta do ES se concentra em mineração, metalurgia e celulose,
+setores que a literatura inter-regional aponta entre os de maior carbono incorporado
+por unidade de demanda final (a siderurgia, p.\,ex., gera cerca de 22 mil toneladas de
+CO$_2$ por R\$ 1 bilhão de demanda final, e a metalurgia básica destina cerca de 80\%
+de suas emissões adicionais ao consumo intermediário de outros setores;
+\citealp{carvalho2009avaliacao}) ---, o estado tende a exportar, junto com o valor,
+\emph{carbono incorporado}, replicando na escala estadual o padrão pelo qual economias
+em desenvolvimento são exportadoras líquidas de emissões embutidas no comércio
+\citep{yamano2020co2}; estimar esse carbono-plataforma com a mesma matriz é a extensão
+mais imediata.
 
 % =====================================================================
 \section{Conclusão}
@@ -361,30 +444,103 @@ Antràs, P., Chor, D., Fally, T., \& Hillberry, R. (2012). Measuring the
 upstreamness of production and trade flows. \textit{American Economic
 Review}, 102(3), 412--416.
 
+\bibitem[Araújo Júnior(2018)]{araujojunior2018cgv}
+Araújo Júnior, I. F. de (2018). \textit{Três ensaios sobre a análise das cadeias
+globais de valor}. Tese de Doutorado, Universidade Federal de Juiz de Fora.
+
+\bibitem[Carvalho \& Perobelli(2009)]{carvalho2009avaliacao}
+Carvalho, T. S., \& Perobelli, F. S. (2009). Avaliação da intensidade de emissões de
+CO$_2$ setoriais e na estrutura de exportações: um modelo inter-regional de
+insumo-produto São Paulo/restante do Brasil. \textit{Economia Aplicada}, 13(1), 99--124.
+
+\bibitem[Domingues \& Haddad(2002)]{domingues2002matriz}
+Domingues, E. P., \& Haddad, E. A. (2002). Matriz inter-regional de insumo-produto
+Minas Gerais/Resto do Brasil: estimação e extensão para exportações. In
+\textit{Anais do X Seminário sobre a Economia Mineira}. Diamantina, MG.
+
+\bibitem[Figueiredo et al.(2004)]{figueiredo2004agriculture}
+Figueiredo, M. G., Barros, A. L. M. de, \& Guilhoto, J. J. M. (2004). \textit{Agriculture
+and productive structure of the state of Mato Grosso, Brazil: an input-output approach}.
+Input-Output and General Equilibrium Conference, Bruxelas.
+
+\bibitem[Flegg et al.(2016)]{flegg2016evaluating}
+Flegg, A. T., Mastronardi, L. J., \& Romero, C. A. (2016). Evaluating the FLQ and AFLQ
+formulae for estimating regional input coefficients: empirical evidence for the
+province of Córdoba, Argentina. \textit{Economic Systems Research}, 28(1), 21--37.
+
+\bibitem[Guilhoto et al.(2019)]{guilhoto2019exploring}
+Guilhoto, J. J. M., Hewings, G. J. D., Johnstone, N., Webb, C., \& Yamano, N. (2019).
+\textit{Exploring changes in world production and trade: insights from the 2018 update
+of OECD's ICIO/TiVA database}. OECD Science, Technology and Industry Working Papers,
+2019/04. Paris: OECD Publishing.
+
 \bibitem[Guilhoto \& Sesso Filho(2005)]{guilhoto2005estimacao}
 Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
 insumo-produto a partir de dados preliminares das contas nacionais.
 \textit{Economia Aplicada}, 9(2), 277--299.
 
 \bibitem[Haddad et al.(2017)]{haddad2017iioas}
-Haddad, E. A., Gonçalves Jr., C. A., \& Nascimento, T. O. (2017).
-Matriz interestadual de insumo-produto para o Brasil: uma aplicação do método IIOAS.
-\textit{Revista Brasileira de Estudos Regionais e Urbanos}, 11(4), 424--446.
+Haddad, E. A., Gonçalves Júnior, C. A., \& Nascimento, T. O. (2017).
+Matriz interestadual de insumo-produto para o Brasil: uma aplicação do método
+IIOAS. \textit{Revista Brasileira de Estudos Regionais e Urbanos}, 11(4),
+424--446.
 
 \bibitem[Isard(1951)]{isard1951}
 Isard, W. (1951). Interregional and regional input-output analysis: a model
 of a space-economy. \textit{The Review of Economics and Statistics}, 33(4),
 318--328.
 
+\bibitem[Miller(1966)]{miller1966}
+Miller, R. E. (1966). Interregional feedback effects in input-output models: some
+preliminary results. \textit{Papers of the Regional Science Association}, 17, 105--125.
+
 \bibitem[Miller \& Blair(2009)]{millerblair2009}
 Miller, R. E., \& Blair, P. D. (2009). \textit{Input-Output Analysis:
 Foundations and Extensions}. 2nd ed. Cambridge University Press.
+
+\bibitem[OECD(2019)]{oecd2019tiva}
+OECD (2019). \textit{Guide to OECD's Trade in Value Added (TiVA) Indicators,
+2018 edition}. OECD Publishing, Paris.
+
+\bibitem[Peixoto et al.(2013)]{peixoto2013metodologia}
+Peixoto, F. C., Fochezatto, A., \& Porsse, A. A. (2013). Metodologia de análise
+inter-regional do agronegócio: aplicação ao caso do Rio Grande do Sul-restante do
+Brasil. \textit{Ensaios FEE}, 34(2), 585--618.
+
+\bibitem[Porsse et al.(2008)]{porsse2008matriz}
+Porsse, A. A., Peixoto, F. C., \& Palermo, P. U. (2008). \textit{Matriz de
+insumo-produto inter-regional Rio Grande do Sul--Restante do Brasil 2003: metodologia
+e resultados}. Textos para Discussão FEE, n. 38. Porto Alegre: FEE.
+
+\bibitem[Riddington et al.(2006)]{riddington2006comparison}
+Riddington, G., Gibson, H., \& Anderson, J. (2006). Comparison of gravity model,
+survey and location quotient-based local area tables and multipliers.
+\textit{Regional Studies}, 40(9), 1069--1081.
+
+\bibitem[Round(1983)]{round1983nonsurvey}
+Round, J. I. (1983). Nonsurvey techniques: a critical review of the theory and the
+evidence. \textit{International Regional Science Review}, 8(3), 189--212.
 
 \bibitem[Timmer et al.(2015)]{timmer2015wiod}
 Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J.
 (2015). An illustrated user guide to the World Input-Output Database: the
 case of global automotive production. \textit{Review of International
 Economics}, 23(3), 575--605.
+
+\bibitem[Többen \& Kronenberg(2015)]{tobben2015charm}
+Többen, J., \& Kronenberg, T. (2015). Construction of multi-regional input-output
+tables using the CHARM method. \textit{Economic Systems Research}, 27(4), 487--507.
+
+\bibitem[Tukker \& Dietzenbacher(2013)]{tukker2013global}
+Tukker, A., \& Dietzenbacher, E. (2013). Global multiregional input-output
+frameworks: an introduction and outlook. \textit{Economic Systems Research},
+25(1), 1--19.
+
+\bibitem[Yamano \& Guilhoto(2020)]{yamano2020co2}
+Yamano, N., \& Guilhoto, J. J. M. (2020). \textit{CO$_2$ emissions embodied in
+international trade and domestic final demand: methodology and results using the OECD
+inter-country input-output database}. OECD Science, Technology and Industry Working
+Papers, n. 2020/11. Paris: OECD Publishing.
 
 \end{thebibliography}
 

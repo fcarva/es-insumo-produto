@@ -5,9 +5,12 @@ a partir da matriz interestadual 2008. Posiciona o ES entre os estados dinamicos
 Indicadores: PIB share, abertura (vazamento), multiplicador medio de producao,
 setor dominante e participacao de setores de base/commodity (perfil-plataforma).
 """
-import os, csv
+import os, csv, sys
 import numpy as np
 import pandas as pd
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # console Windows (cp1252) nao encoda alguns caracteres nos prints; forca UTF-8
 
 P   = r"C:/Users/DELL/Downloads/Material IO/MIP-26x26-BR-2008.xlsx"
 OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
