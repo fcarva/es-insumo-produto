@@ -24,3 +24,7 @@ dados/*.xls
 
 # SO
 .DS_Store
+
+# Claude Code skills (ferramenta local, não conteúdo do projeto)
+.claude/skills/
+skills-lock.json
