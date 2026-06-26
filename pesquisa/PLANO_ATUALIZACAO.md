@@ -32,7 +32,7 @@ demanda final** (mudança de `y`), separando inércia estrutural de choque conju
 |---|---|---|---|
 | MIP **nacional** | base 2010 (MIP 2015) | **2019, nível 68** (planilha CECEG/Celso, recebida jun/2026; "Atualizado em" 2025-05-01) | só a versão "Brasil" está computada na planilha; "Espírito Santo" existe como seletor mas não foi gerado nela |
 | **Interestadual** (IIOAS) | 2008 (Haddad et al. 2017) | **bloqueado** — artigo-metodologia 2019 (Haddad, Araújo, Rocha & Vale, *RBERU*; 128 produtos, 68 set., 27 UF, ES=R18) em mãos, mas **sem a matriz numérica**; equipe confirmou que só há dados até 2015 | citar como referência metodológica/Discussão; reabrir se a base de dados aparecer |
-| **MIP-ES própria** | — | **2015, nível 35** (planilha CECEG/Celso `ESPIRITO_SANTO_2015.xlsm`, recebida jun/2026) | é TRU **de uma região só** (ES): oferta, "Importação Regional" agregada, margens, impostos — **sem fluxo bilateral ES↔resto do Brasil** explícito; não substitui a inter-regional sozinha |
+| **MIP-ES própria** | — | **2015, nível 35** (planilha CECEG/Celso `ESPIRITO_SANTO_2015.xlsm`, recebida jun/2026) | é TRU **de uma região só** (ES): oferta, "Importação Regional" agregada, margens, impostos — **sem fluxo bilateral ES↔resto do Brasil** explícito; **resolvido via S4b**: bilateral estimado por CILQ (Guilhoto & Sesso Filho), não observado — ver `dados/README.md` |
 | **Mundo** (CGV) | WIOD 2014 | **OECD ICIO/TiVA 2022** (ed. 2025) | ES não é país → inferência via Brasil |
 
 > **Implicação honesta (revisada jun/2026):** dado o que está de fato disponível, o painel
@@ -76,15 +76,17 @@ ponto mais datado do artigo e abre a dinâmica **2008(/2000) → 2022** na curva
 
 ## 3. O que muda no código (`src/io_core.py` e `pesquisa/`)
 
-Hoje `io_core.py` é um esqueleto de **um** vintage (L=ES, M=resto BR; parser ainda TODO).
 Generalizações necessárias:
 
-- [ ] **Parametrizar por vintage/ano** (loader recebe ano + layout; hoje hard-coded 52×52).
-- [ ] **Camada de concordância** (aplica de–para setorial antes de montar `Z`, `x`, `ocup`).
+- [x] **Parser/loader genérico** (`io_core.carrega_mip()` + `main()` rodam sobre qualquer
+  `dados/mip_es_br_*.csv` independente de n; testado 52×52 (2008, implícito) e 70×70 (2015)).
+- [x] **Bi-regional 2015 por CILQ** (`pesquisa/14_regionaliza_2015.py` → `dados/mip_es_br_2015.csv`).
+- [ ] **Camada de concordância unificada 26/35/68** (hoje só 68→35 existe; falta amarrar com os
+  26 setores do corte 2008 para o SDA comparar os dois vintages na mesma malha).
 - [ ] **Deflação** (módulo que aplica deflatores setoriais a preços de ano-base comum).
 - [ ] **`ras()` / `gras()`** (atualização biproporcional; testes de convergência).
 - [ ] **`sda()`** (decomposição aditiva tecnológico vs. demanda final).
-- [ ] Re-rodar `01–05` para cada vintage; novo script `14_sda.py`; `15_painel.py` (séries).
+- [ ] Re-rodar `01–05` para o vintage 2015; novo script `15_sda.py`; `16_painel.py` (séries).
 - [ ] `07–09` sobre ICIO 2022.
 
 ## 4. Limites (seção que desarma o referee — frontal)
@@ -111,12 +113,18 @@ Generalizações necessárias:
 | **S2** | Concordância setorial + deflação versionadas | deflatores IBGE | médio | aberto |
 | **S3** | ~~Vintage interestadual 2019 rodado em `01–05`~~ | matriz numérica IIOAS 2019 (NEREUS) | médio | **bloqueado** — só o artigo-metodologia (Haddad et al.) chegou, sem os dados; equipe confirma que só há dados até 2015 |
 | **S4** | Matriz CECEG/Celso integrada | **arquivo do Celso** | — | ✅ **recebido** (jun/2026): `MIPBR_2019_Nível_68.xlsm` (nacional 2019/68 set.) + `ESPIRITO_SANTO_2015.xlsm` (ES própria, 2015/35 set., região única). Falta o nacional 2015 (`Matriz_de_Insumo_Produto_2015_Nivel_67.xls`, já citado em `dados/README.md`) para fechar o resíduo resto-do-Brasil 2015 |
-| **S4b** *(novo)* | Bi-regional ES×RB **2015** por resíduo (nacional 2015 − ES 2015) | upload do nacional 2015 | médio | a fazer — substitui S3 como âncora do painel |
+| **S4b** *(novo)* | Bi-regional ES×RB **2015** por resíduo + regionalização CILQ | upload do nacional 2015 | médio | ✅ **concluído** (jun/2026) — `dados/mip_es_br_2015.csv` (`pesquisa/14_regionaliza_2015.py`); auditoria ok (ver `dados/README.md`) |
 | **S5** | SDA 2008 vs. 2015 + painel + figuras | S2, S4b | alto | aberto |
 
-**Caminho crítico revisado = S4b** (falta só o nacional 2015 para fechar o resíduo). S3/IIOAS-2019
-fica em espera — vira S3' se a matriz numérica aparecer depois, e nesse caso estende o painel
-para 3 pontos (2008·2015·2019) em vez de só 2.
+**S4b concluído.** Como o resíduo nacional−ES não separa origem intra/extra-região do consumo
+intermediário "doméstico", os blocos cruzados `Z_LM`/`Z_ML` foram estimados por **CILQ**
+(Guilhoto & Sesso Filho, 2005) em vez de observados — ver nota metodológica em
+`dados/README.md`. Vazamento médio 2015 (12,8%, ponderado) **não é diretamente comparável**
+aos 24,9% de 2008 (classificação mais fina + fluxo bilateral estimado vs. survey); a
+comparação válida exige a concordância setorial unificada (S2) antes de entrar no SDA (S5).
+**Caminho crítico agora = S2** (concordância + deflação). S3/IIOAS-2019 fica em espera — vira
+S3' se a matriz numérica aparecer depois, e nesse caso estende o painel para 3 pontos
+(2008·2015·2019) em vez de só 2.
 
 ## 6. Gancho de política de dados (para a Discussão)
 
