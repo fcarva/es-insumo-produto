@@ -82,3 +82,10 @@ todos os domínios testados, incluindo Wikipedia — política de proxy, não fa
 **UNVERIFIABLE_ACCESS** (não confundir com erro confirmado) — recomenda-se que quem tiver acesso
 direto ao PDF (NEREUS TD 02/2017) confirme manualmente o número antes da próxima rodada de
 auditoria "hard mode".
+
+*Corroboração parcial (direção, não magnitude):* o abstract do artigo — recuperado por WebSearch —
+afirma que **Amazonas, Espírito Santo e Mato Grosso** são os estados cuja produção local é **mais
+influenciada pela demanda final de outros estados e do exterior** (e que SP/RJ são os mais
+autossuficientes). Isso é qualitativamente consistente com o vazamento alto do ES no nosso paper e
+torna os 27,4% plausíveis em direção; a magnitude exata, porém, segue não confirmada (está nas
+tabelas internas do PDF, fora do alcance de WebSearch).
