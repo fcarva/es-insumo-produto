@@ -134,23 +134,45 @@ def rasmussen_hirschman(B: np.ndarray, G: np.ndarray) -> pd.DataFrame:
     return pd.DataFrame({"backward": backward, "forward": forward})
 
 
-# --------------------------------------------------------------------------- #
+def carrega_mip(path: str):
+    """Le um CSV no layout dados/mip_es_br_*.csv: coluna 'setor' (codigo+sufixo _L/_M)
+    como indice, colunas de mesmo nome formando a matriz Z empilhada quadrada,
+    mais colunas auxiliares 'x' e 'ocup'. Dimensao e generica (qualquer n por regiao)."""
+    df = pd.read_csv(path, index_col=0)
+    codigos = df.index.tolist()
+    Z = df[codigos].to_numpy(float)
+    x = df["x"].to_numpy(float)
+    ocup = df["ocup"].to_numpy(float)
+    mask_L = np.array([str(c).endswith("_L") for c in codigos])
+    return codigos, Z, x, ocup, mask_L
+
+
 def main():
     ap = argparse.ArgumentParser(description="Pipeline inter-regional ES x Brasil (Isard).")
     ap.add_argument("--mip", required=True, help="CSV da MIP inter-regional (ver dados/README.md)")
     args = ap.parse_args()
 
     print(f"[io_core] carregando {args.mip} ...")
-    print("NOTA: este módulo é a biblioteca de funções; o loader canônico (com o layout")
-    print("real do .xlsx MIP-ES-BR) está em pesquisa/01_es_br_base.py. Esboço de uso:")
-    # df = pd.read_csv(args.mip, index_col=0)
-    # Z = df.iloc[:52, :52].to_numpy(float)
-    # x = df["x"].to_numpy(float); ocup = df["ocup"].to_numpy(float)
-    # mask_L = np.array([c.endswith("_L") for c in df.index[:52]])
-    # A = coef_tecnicos(Z, x); B = leontief_inversa(A); G = ghosh_inversa(Z, x)
-    # print(multiplicadores_producao(B, mask_L).describe())
-    # print(rasmussen_hirschman(B, G).describe())
-    # print(spillover_feedback(A, mask_L, y_L=<demanda final do ES por produtos do ES>))
+    codigos, Z, x, ocup, mask_L = carrega_mip(args.mip)
+    print(f"[io_core] {len(codigos)} setores ({mask_L.sum()} ES / {(~mask_L).sum()} resto do Brasil)")
+
+    A = coef_tecnicos(Z, x)
+    B = leontief_inversa(A)
+    G = ghosh_inversa(Z, x)
+    print(f"[io_core] soma de A por coluna: min={A.sum(0).min():.3f} max={A.sum(0).max():.3f} (deve ser <1)")
+    print(f"[io_core] B>=0? {bool((B >= -1e-9).all())}")
+
+    print("\n[multiplicadores de producao — retido (ES) vs vazado (resto do Brasil)]")
+    mp = multiplicadores_producao(B, mask_L)
+    print(mp[mask_L].describe())
+
+    print("\n[multiplicadores de emprego — vazamento]")
+    me = multiplicadores_emprego(B, ocup, x, mask_L)
+    print(me[mask_L].describe())
+
+    print("\n[ligacoes de Rasmussen-Hirschman — para frente pela inversa de Ghosh]")
+    rh = rasmussen_hirschman(B, G)
+    print(rh[mask_L].describe())
 
 
 if __name__ == "__main__":

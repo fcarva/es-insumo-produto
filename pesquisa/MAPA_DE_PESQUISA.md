@@ -12,7 +12,7 @@ Apresentação: **sexta, 19/06/2026**.
 |---|---|---|---|---|---|
 | `Matrizes/MIP-ES-BR (2008).xlsx` | MIP **bi-regional** ES × Restante do Brasil, balanceada, com demanda final desagregada **e emprego** | 26 set. × 2 reg. | 2008 | R$ mi | **base do artigo** (validada) |
 | `MIP-26x26-BR-2008.xlsx` | MIP **interestadual** (27 UFs) — "27R Matriz de Uso" | 27 UF × 26 set. (702) | 2008 | R$ mi | **rastrear destino do vazamento**; ES vs estados |
-| `Microrregiões do ES (2015).xlsx` | Sistema inter-regional das **microrregiões de planejamento do ES** | ~12 reg. × 35 set. | 2015 | R$ mi | padrão-plataforma **dentro** do ES |
+| `Microrregiões do ES (2015).xlsx` | Sistema inter-regional das **microrregiões de planejamento do ES** | ~12 reg. × 35 set. | 2015 | R$ mi | padrão-plataforma **dentro** do ES; **proveniência provável: IJSN/TD60 → Ribeiro et al. (2024)**, ver C2 |
 | `Matrizes/MIP-Mundo (2014).xlsx` | WIOD 2014 (ISIC rev4) | 43 países × 56 set. | 2014 | US$ mi | CGV / *upstreamness* |
 | `Matrizes/MIP-Mundo (2000).xlsx` | MIP mundial (ISIC rev3) | 26 reg. × 23 set. | 2000 | US$ mi | CGV — comparação temporal |
 | `Método IIOAS.xlsx` | Exemplo didático do método (regionalização) | 5 reg. × 3 set. | — | — | documentar **limites** |
@@ -85,6 +85,47 @@ MT, MS** (excluem SP/RJ — o núcleo). Aqui esse conjunto é um **cluster de co
   → *upstreamness*/TiVA, posição em CGV.
 - **Aplicações regionais/setoriais e extensões:** CO₂ (SP/BR), lácteo (MG),
   agricultura/ferrovia (MT). → modelos de impacto, pegada, SDA.
+
+## C2. Mapeamento — NEREUS vs. linha "matriz própria do ES" (IJSN/Sessa)
+
+Pesquisa de literatura (jun/2026) para localizar uma eventual "matriz 2021" do ES
+e mapear quem produz/usa MIP estadual capixaba fora da NEREUS.
+
+- **NEREUS (USP/Guilhoto):** não tem matriz dedicada ao ES — atua só no **nacional**
+  (séries 1995–2018) e no **interestadual/IIOAS** (27 UFs; vintages 2008/2011/2019),
+  onde o ES entra como uma UF entre outras. Sem vintage 2021.
+- **Quem de fato construiu a MIP própria do ES foi o IJSN** (Instituto Jones dos
+  Santos Neves, vinculado à SEP/ES), **não a NEREUS**:
+  - **TD 54** — metodologia de construção da MIP/Matriz de Contabilidade Social do ES.
+  - **TD 60** — *Tabela de Recursos e Usos e Matriz de Insumo-Produto do Espírito
+    Santo*, **ano-base 2015**, 35 atividades / 81 produtos. Lançada 10/06/2020
+    ("1ª matriz econômica própria do ES"); arquivo **revisado em 31/03/2023**
+    (mesma base 2015 — não é uma matriz nova).
+  - **Regionalização em 10 microrregiões:** Ribeiro, Santos, Cerqueira, Sousa Filho,
+    Tresinari & Rocha (2024), *"Dinâmica e Estrutura Produtiva do Espírito Santo:
+    uma análise através da regionalização da Matriz de Insumo-Produto para o estado
+    em 2015"*, RBERU v.18 n.4 — **provável origem direta** de
+    `Microrregiões do ES (2015).xlsx` (mesmo ano-base, mesma unidade de
+    regionalização); **conferir contra este paper para validar a matriz que já temos.**
+- **Linha de aplicação — Celso Bissoli Sessa (UFES):** usa a MIP do IJSN (TD60,
+  2015) como motor de multiplicadores para choques de demanda, sempre a partir dos
+  **cadernos "Investimentos Anunciados e Concluídos"** do IJSN (séries 2011-2016,
+  2021-2026, 2022-2027, 2023-2028…):
+  - *"Economia do Insumo-Produto: ... investimentos anunciados para o ES entre
+    2011-2016"*, Revista Economia Ensaios (UFU).
+  - *"Implantação da companhia siderúrgica UBU: avaliação de impacto a partir da
+    matriz insumo-produto do ES"*, Economia e Desenvolvimento (UFSM).
+  - *"Impactos econômicos e potencial de crescimento a partir dos investimentos
+    anunciados para o ES (2022-2027)"*, Revista de Economia do Centro-Oeste (UFG):
+    GDP +15,11% (R$18,2 bi), +586,7 mil empregos projetados.
+  - Heldo Siqueira Silva (2025), *"Análise dos incentivos fiscais no Espírito
+    Santo: uma abordagem de insumo-produto"*, Economia e Sociedade (SciELO/Unicamp).
+- **Sobre a "matriz 2021":** **não existe matriz de insumo-produto do ES com
+  ano-base 2021.** O "2021" que aparece nos títulos/cadernos do IJSN é a **janela do
+  caderno de investimentos anunciados** (insumo de demanda final), não o ano-base
+  da matriz — o motor de multiplicadores por trás de todos esses estudos continua
+  sendo a **MIP do ES 2015 (IJSN TD60)**. Provável fonte de confusão a esclarecer
+  se houver referência concreta a uma matriz 2021.
 
 ## D. Cardápio de análises factíveis (priorizado)
 

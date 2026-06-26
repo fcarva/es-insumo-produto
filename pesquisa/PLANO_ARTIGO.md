@@ -8,6 +8,12 @@
 e série **2000×2014** → **agenda futura** (cada uma é trabalho à parte: harmonização ISIC,
 deflação a preços constantes, quebras estruturais; e diluiriam a narrativa interestadual).
 
+> **⚠ Atualização (jun/2026):** decisão de **pivotar** para estudo de atualização
+> (painel 2008 → vintage mais recente em 2026, com SDA e camada-mundo em OECD ICIO 2022).
+> O "escopo congelado" acima vale para a **versão-disciplina**; o desenho do pivô está em
+> [`PLANO_ATUALIZACAO.md`](PLANO_ATUALIZACAO.md). Possível desfecho: S1+S3 (refresh mundo +
+> interestadual 2019) na entrega de 18/07; SDA completo na versão estendida.
+
 > Dados, estado da arte e limites em [`MAPA_DE_PESQUISA.md`](MAPA_DE_PESQUISA.md).
 > Aqui está o **roteiro de execução** até o artigo completo, com a fase de **auditoria**.
 
