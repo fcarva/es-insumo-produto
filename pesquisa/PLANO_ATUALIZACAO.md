@@ -28,15 +28,18 @@ demanda final** (mudança de `y`), separando inércia estrutural de choque conju
 
 ## 1. Camadas de dado e seus vintages (cada uma anda em calendário próprio)
 
-| Camada | "2008" (base atual) | Vintage mais recente em 2026 | Fonte / ressalva |
+| Camada | "2008" (base atual) | Vintage mais recente **com dados em mão** | Fonte / ressalva |
 |---|---|---|---|
-| MIP **nacional** | base 2010 (MIP 2015) | **base 2021** (rebase IBGE, em divulgação) | IBGE SCN — mudança de ano-base 2010→2021; TRU detalhada suspensa na transição |
-| **Interestadual** (IIOAS) | 2008 (Haddad et al. 2017) | **2019** (RBERU 2025; 68 set., 27 UF) | fluxos estimados (gravidade+RAS), não observados |
-| **MIP-ES própria** | — | **2015** (IJSN TD60) ou **atualização CECEG/Celso** | confirmar com Celso se é sobre base-2021 |
+| MIP **nacional** | base 2010 (MIP 2015) | **2019, nível 68** (planilha CECEG/Celso, recebida jun/2026; "Atualizado em" 2025-05-01) | só a versão "Brasil" está computada na planilha; "Espírito Santo" existe como seletor mas não foi gerado nela |
+| **Interestadual** (IIOAS) | 2008 (Haddad et al. 2017) | **bloqueado** — artigo-metodologia 2019 (Haddad, Araújo, Rocha & Vale, *RBERU*; 128 produtos, 68 set., 27 UF, ES=R18) em mãos, mas **sem a matriz numérica**; equipe confirmou que só há dados até 2015 | citar como referência metodológica/Discussão; reabrir se a base de dados aparecer |
+| **MIP-ES própria** | — | **2015, nível 35** (planilha CECEG/Celso `ESPIRITO_SANTO_2015.xlsm`, recebida jun/2026) | é TRU **de uma região só** (ES): oferta, "Importação Regional" agregada, margens, impostos — **sem fluxo bilateral ES↔resto do Brasil** explícito; não substitui a inter-regional sozinha |
 | **Mundo** (CGV) | WIOD 2014 | **OECD ICIO/TiVA 2022** (ed. 2025) | ES não é país → inferência via Brasil |
 
-> **Implicação honesta:** não existe "matriz 2026". "Atual em 2026" = **vintage mais
-> recente de cada camada**, com anos distintos. Toda comparação carrega essa ressalva.
+> **Implicação honesta (revisada jun/2026):** dado o que está de fato disponível, o painel
+> realista não é 2008→2019 — é **2008 → 2015** (o ano em que existe MIP-ES própria). A IIOAS
+> 2019 fica como **referência metodológica** (mesma linhagem IIOAS da base 2008) e candidata a
+> reabrir o painel para 2019 **se/quando** a matriz numérica completa for obtida; não é tratada
+> como camada ativa enquanto só houver o artigo.
 
 ## 2. Método (4 blocos, em ordem de dependência)
 
@@ -102,15 +105,18 @@ Generalizações necessárias:
 
 ## 5. Sequenciamento (de baixo risco/custo → alto)
 
-| Sprint | Entrega | Depende de | Risco |
-|---|---|---|---|
-| **S1** | *Upstreamness* em ICIO 2022 (refresh da camada-mundo) | baixar ICIO ed. 2025 | baixo |
-| **S2** | Concordância setorial + deflação versionadas | deflatores IBGE | médio |
-| **S3** | Vintage interestadual 2019 rodado em `01–05` | matriz IIOAS 2019 (NEREUS) | médio |
-| **S4** | Matriz CECEG/Celso integrada (ES base-2021?) | **arquivo do Celso** | **bloqueante** |
-| **S5** | SDA 2008 vs. 2021/2022 + painel + figuras | S2–S4 | alto |
+| Sprint | Entrega | Depende de | Risco | Status (jun/2026) |
+|---|---|---|---|---|
+| **S1** | *Upstreamness* em ICIO 2022 (refresh da camada-mundo) | baixar ICIO ed. 2025 | baixo | aberto |
+| **S2** | Concordância setorial + deflação versionadas | deflatores IBGE | médio | aberto |
+| **S3** | ~~Vintage interestadual 2019 rodado em `01–05`~~ | matriz numérica IIOAS 2019 (NEREUS) | médio | **bloqueado** — só o artigo-metodologia (Haddad et al.) chegou, sem os dados; equipe confirma que só há dados até 2015 |
+| **S4** | Matriz CECEG/Celso integrada | **arquivo do Celso** | — | ✅ **recebido** (jun/2026): `MIPBR_2019_Nível_68.xlsm` (nacional 2019/68 set.) + `ESPIRITO_SANTO_2015.xlsm` (ES própria, 2015/35 set., região única). Falta o nacional 2015 (`Matriz_de_Insumo_Produto_2015_Nivel_67.xls`, já citado em `dados/README.md`) para fechar o resíduo resto-do-Brasil 2015 |
+| **S4b** *(novo)* | Bi-regional ES×RB **2015** por resíduo (nacional 2015 − ES 2015) | upload do nacional 2015 | médio | a fazer — substitui S3 como âncora do painel |
+| **S5** | SDA 2008 vs. 2015 + painel + figuras | S2, S4b | alto | aberto |
 
-**Caminho crítico = S4 (matriz do Celso).** Enquanto não chega, S1–S3 avançam sozinhos.
+**Caminho crítico revisado = S4b** (falta só o nacional 2015 para fechar o resíduo). S3/IIOAS-2019
+fica em espera — vira S3' se a matriz numérica aparecer depois, e nesse caso estende o painel
+para 3 pontos (2008·2015·2019) em vez de só 2.
 
 ## 6. Gancho de política de dados (para a Discussão)
 
