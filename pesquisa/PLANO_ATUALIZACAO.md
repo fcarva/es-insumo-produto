@@ -104,6 +104,16 @@ Generalizações necessárias:
    frete/alfândega — ver discussão de política de dados, §6.)
 5. **ES não é país no ICIO** — posição em CGV inferida via Brasil + peso da pauta; viés de
    intensidade primária a declarar.
+6. **CILQ puro subestima vazamento para região pequena (auditoria jun/2026)** — o bloco
+   bilateral 2015 (S4b) usa CILQ sem a correção FLQ (Flegg, Webber & Elliott, 1995; Flegg &
+   Webber, 1997, 2000), que existe justamente porque CILQ cancela o termo de tamanho
+   relativo da região e por isso **sobrestima autossuficiência** (subestima vazamento) tanto
+   mais quanto menor a região-alvo frente à de referência — caso do ES (~2% do PIB do
+   Brasil). Os 12,8% de vazamento médio 2015 são um limite inferior plausível, não uma
+   estimativa neutra; parte do gap frente aos 24,9% de 2008 (survey) é artefato de método,
+   não só de classificação setorial/ano. Não corrigido nesta rodada (decisão: documentar o
+   viés em vez de recalcular com FLQ agora); reabrir se/quando o SDA (S5) exigir uma
+   estimativa de vazamento 2015 mais defensável.
 
 ## 5. Sequenciamento (de baixo risco/custo → alto)
 
@@ -141,6 +151,8 @@ empírico ao debate de política — e ao próprio CECEG, que faz MIP **e** EGC.
 - **Isard / SDA / RAS:** Miller & Blair (2009), *Input-Output Analysis*, 2ª ed., Cambridge.
 - **GRAS:** Junius & Oosterhaven (2003), *Economic Systems Research*.
 - **Regionalização BR:** Guilhoto & Sesso Filho (2005), *Economia Aplicada*.
+- **CILQ/FLQ:** Flegg, Webber & Elliott (1995); Flegg & Webber (1997, 2000) — correção de
+  viés de tamanho regional, ver §4.6.
 - **IIOAS:** Haddad, Gonçalves Jr. & Nascimento (2017), RBERU / TD Nereus 02/2017; atualização **2019** (RBERU, 2025).
 - **Upstreamness:** Antràs, Chor, Fally & Hillberry (2012), *AER* 102(3); Antràs & Chor (2018), NBER WP 24185.
 - **Mundo/CGV:** OECD ICIO & TiVA, edição 2025 (1995–2022).

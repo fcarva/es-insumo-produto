@@ -68,8 +68,20 @@ diretamente aos 24,9% do corte 2008 (classificação mais fina, ano diferente, e
 bilateral estimado por CILQ em vez de observado por survey); ver `pesquisa/PLANO_ATUALIZACAO.md`
 para a discussão de limites.
 
+**Viés conhecido do CILQ puro (auditoria de método, jun/2026):** o CILQ usado aqui (sem a
+correção FLQ de Flegg, Webber & Elliott, 1995; Flegg & Webber, 1997, 2000) tende a
+**sobrestimar a autossuficiência regional — logo subestimar o vazamento — quanto menor a
+região-alvo em relação à região de referência**, porque a fórmula cancela algebricamente o
+termo de tamanho relativo. O ES é ~2% do PIB brasileiro frente ao resto do Brasil; logo os
+12,8% acima são plausivelmente um **limite inferior**, não uma estimativa neutra, do
+vazamento real de 2015. A diferença para os 24,9% de 2008 é portanto, em parte, artefato
+de método (CILQ vs. survey), não só de classificação setorial ou ano — ver `pesquisa/
+PLANO_ATUALIZACAO.md` §4 para o registro formal da limitação.
+
 ## Fontes
 - Regionalização da matriz nacional: Guilhoto & Sesso Filho (2005).
+- CILQ/FLQ (origem e correção de viés para regiões pequenas): Flegg, Webber & Elliott (1995);
+  Flegg & Webber (1997, 2000).
 - Estimação de fluxos inter-regionais (IIOAS): Haddad et al. (2017).
 - WIOD: Timmer et al.
 
