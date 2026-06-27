@@ -119,6 +119,20 @@ tradição brasileira de regionalização não-censitária da matriz nacional
 (26/35/68 setores) e o caráter \emph{estimado} dos fluxos inter-regionais são
 discutidos em \S\ref{sec:limites}.
 
+Duas fronteiras ficam deliberadamente fora do escopo empírico central. A primeira é a
+\textbf{atualização da matriz interestadual brasileira}, já documentada por
+\citet{haddad2025matriz} (27 UFs, 68 setores, ano-base 2019, com contas-satélite de emprego,
+CO$_2$, energia e água), mas sem reestimação dos indicadores deste artigo; ela é tratada como
+referência metodológica, agenda de extensão e checagem contextual pontual. Na Tabela~2 daquela
+matriz, o ES combina \emph{déficit} no comércio inter-regional (exportações de R\$\,72,7 bi e
+importações de R\$\,88,4 bi) com \emph{superávit} no comércio internacional (R\$\,29,8 bi contra
+R\$\,20,8 bi) --- padrão compatível com a leitura de economia aberta/plataforma, mas medido em
+outra safra e outra agregação. A segunda é a regionalização da matriz por quocientes locacionais
+corrigidos ou por ajuste biproporcional: métodos como FLQ/AFLQ \citep{flegg1995lq,flegg2000flq}
+e GRAS \citep{junius2003gras} são centrais para painéis multi-safra --- sobretudo com matrizes de
+entradas negativas ou regiões pequenas ---, mas aqui entram apenas como critério de leitura dos
+limites; os resultados reportados são os que se rastreiam diretamente às três matrizes disponíveis.
+
 % =====================================================================
 \section{Método}
 \label{sec:metodo}
@@ -248,6 +262,36 @@ intensidade de base e na pobreza de emprego dos líderes. Fonte:
 \label{tab:bench}
 \end{table}
 
+A composição reforça o ponto (Tabela~\ref{tab:cluster}): entre os oito estados de crescimento
+dinâmico --- sub-cobertos pelo mercado de capitais, excluído o núcleo SP/RJ ---, o ES é o mais
+intensivo em mineração e o segundo em setores de base, com o menor multiplicador relativo de
+emprego. É a composição, não a decomposição, que o singulariza.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{lrrrl}
+\toprule
+Estado & PIB (\%) & Vazamento (\%) & Base/\emph{commodity} (\%) & Setor dominante\\
+\midrule
+\textbf{ES} & 2,2 & 22,8 & \textbf{36,4} & Mineração\\
+MG & 9,5 & 20,9 & 29,6 & Metalurgia\\
+SC & 4,1 & 22,5 & 21,7 & Alimentos\\
+PR & 6,0 & 22,3 & 28,0 & Alimentos\\
+RS & 6,7 & 21,8 & 24,6 & Alimentos\\
+GO & 2,6 & 25,1 & 32,8 & Alimentos\\
+MT & 1,8 & 27,4 & 43,4 & Agricultura\\
+MS & 1,1 & 25,7 & 30,1 & Alimentos\\
+\midrule
+SP \emph{(núcleo)} & 32,0 & 14,2 & 18,0 & Serviços\\
+RJ \emph{(núcleo)} & 11,2 & 15,6 & 27,4 & Mineração\\
+\bottomrule
+\end{tabular}
+\caption{O ES e os estados de crescimento dinâmico \emph{versus} o núcleo SP/RJ. O ES é o
+2\textordmasculine\ mais intensivo em setores de base do país e um dos dois (com o RJ) cujo setor
+dominante é a Mineração. Fonte: \texttt{outputs/cluster\_setorial.csv}.}
+\label{tab:cluster}
+\end{table}
+
 % =====================================================================
 \section{O panorama temporal (2010--2021)}
 \label{sec:panorama}
@@ -347,10 +391,12 @@ porte da unidade nas duas escalas: $R^2=0{,}59$ entre as 27 UFs e $R^2=0{,}91$ e
 microrregiões (Figura~\ref{fig:fractal2}). A Região Metropolitana retém o multiplicador
 (vazamento de 8,4\%, 62\% da produção estadual), enquanto a periferia primário-exportadora vaza
 encadeamento \emph{para a metrópole} (até 76\% de seu \emph{spillover}). O par retém-no-núcleo /
-vaza-da-periferia configura, pois, uma relação \emph{núcleo-periferia aninhada}
-\citep{friedmann1966}: a periferia está para o ES como o ES está para o
-Sudeste --- a mesma assinatura de \emph{enclave} que a concentração territorial já indicava
-(\S\ref{sec:territorio}), agora pelo lado do fluxo. A pequenez do \emph{feedback} é, em parte,
+vaza-da-periferia configura, pois, uma relação \emph{centro-periferia} que se reproduz em
+\emph{escalas aninhadas}: a tradição regional brasileira lê o ES como periferia do núcleo
+industrial paulista \citep{cano1985}, e aqui o mesmo padrão reaparece \emph{dentro} do estado ---
+a periferia está para o ES como o ES está para o Sudeste; a leitura por escalas encaixadas de
+núcleos e periferias remonta a \citet{friedmann1966}. É a mesma assinatura de \emph{enclave} que
+a concentração territorial já indicava (\S\ref{sec:territorio}), agora pelo lado do fluxo. A pequenez do \emph{feedback} é, em parte,
 regularidade de porte \citep{miller1966}; o que é próprio do ES, como mostra o benchmark, é a
 \emph{intensidade} com que a exibe.
 
@@ -361,6 +407,25 @@ regularidade de porte \citep{miller1966}; o que é próprio do ES, como mostra o
 duas escalas --- 27 UFs no Brasil ($R^2=0{,}59$) e 10 microrregiões no ES ($R^2=0{,}91$). A
 mesma mecânica de posição-e-porte opera em ambas. Fonte: \texttt{14\_*} e \texttt{15\_*}.}
 \label{fig:fractal2}
+\end{figure}
+
+\paragraph{Posição em cadeias de valor.} A abertura tem uma contraparte na cadeia: o ES vaza
+encadeamento porque está \emph{a montante}. Medida a \emph{upstreamness} de Antràs-Chor
+\citep{antras2012measuring} sobre a base internacional do WIOD \citep{timmer2015wiod}, a pauta
+exportadora capixaba tem posição ponderada de \textbf{3,12}, contra 1,91 do Brasil e 2,31 da
+média mundial, com a mineração entre as atividades mais a montante do mundo
+($U=3{,}82$; 33\textordmasculine\ de 2.279 setores válidos, percentil~98; Figura~\ref{fig:upstream}).
+O estado supre insumos primários e intermediários cuja captura de valor a jusante se realiza em
+outras regiões e países --- a leitura por \emph{ranking}, e não por nível bruto, segue
+\citet{araujojunior2018cgv}. É a tradução, na escala da cadeia global, do mesmo diagnóstico:
+uma economia de base, fornecedora a montante.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.86\linewidth]{es_upstreamness.png}
+\caption{\emph{Upstreamness} (Antràs-Chor) da pauta exportadora do ES, WIOD 2014: o estado
+posiciona-se a montante da cadeia de valor (pauta 3,12; Brasil 1,91; mundo 2,31).}
+\label{fig:upstream}
 \end{figure}
 
 % =====================================================================
@@ -428,7 +493,11 @@ método IIOAS, e o sistema microrregional apresenta um setor com coeficientes
 desbalanceados (informação), além de não trazer vetor de emprego (apenas remunerações).
 \textbf{(iv)} As ligações puras, por ponderarem pelo tamanho, favorecem setores
 grandes; por isso são reportadas em conjunto com os índices de Rasmussen-Hirschman,
-neutros ao porte.
+neutros ao porte. \textbf{(v)} A leitura de ``economia-plataforma'' é uma interpretação
+estrutural derivada dos multiplicadores, do \emph{spillover}/\emph{feedback} e do benchmark de
+porte; não deve ser lida como tipologia causal universal. A auditoria desta versão separou os
+\emph{claims} diretamente derivados das matrizes, os \emph{proxies} nacionais e as implicações de
+política, mantendo estas últimas como inferências condicionais.
 
 % =====================================================================
 \section{Conclusão}
@@ -445,6 +514,18 @@ diversificação, adensamento de cadeia e captura de valor na economia capixaba.
 % =====================================================================
 \begin{thebibliography}{99}
 
+\bibitem[Antràs et al.(2012)]{antras2012measuring}
+Antràs, P., Chor, D., Fally, T., \& Hillberry, R. (2012). Measuring the upstreamness of
+production and trade flows. \textit{American Economic Review}, 102(3), 412--416.
+
+\bibitem[Araújo Júnior(2018)]{araujojunior2018cgv}
+Araújo Júnior, I. F. de (2018). \textit{Três ensaios sobre a análise das cadeias globais de
+valor}. Tese de Doutorado, Universidade Federal de Juiz de Fora.
+
+\bibitem[Cano(1985)]{cano1985}
+Cano, W. (1985). \textit{Desequilíbrios regionais e concentração industrial no Brasil:
+1930--1970}. São Paulo: Global Editora.
+
 \bibitem[Corden \& Neary(1982)]{cordenneary1982}
 Corden, W. M., \& Neary, J. P. (1982). Booming sector and de-industrialisation in a small
 open economy. \textit{The Economic Journal}, 92(368), 825--848.
@@ -453,6 +534,14 @@ open economy. \textit{The Economic Journal}, 92(368), 825--848.
 Figueiredo, M. G., Barros, A. L. M. de, \& Guilhoto, J. J. M. (2004). \textit{Agriculture
 and productive structure of the state of Mato Grosso, Brazil: an input-output approach}.
 Input-Output and General Equilibrium Conference, Bruxelas.
+
+\bibitem[Flegg et al.(1995)]{flegg1995lq}
+Flegg, A. T., Webber, C. D., \& Elliott, M. V. (1995). On the appropriate use of location
+quotients in generating regional input-output tables. \textit{Regional Studies}, 29(6), 547--561.
+
+\bibitem[Flegg \& Webber(2000)]{flegg2000flq}
+Flegg, A. T., \& Webber, C. D. (2000). Regional size, regional specialization and the FLQ
+formula. \textit{Regional Studies}, 34(6), 563--569.
 
 \bibitem[Friedmann(1966)]{friedmann1966}
 Friedmann, J. (1966). \textit{Regional Development Policy: A Case Study of Venezuela}.
@@ -468,6 +557,11 @@ Haddad, E. A., Gonçalves Júnior, C. A., \& Nascimento, T. O. (2017).
 Matriz interestadual de insumo-produto para o Brasil: uma aplicação do método
 IIOAS. \textit{Revista Brasileira de Estudos Regionais e Urbanos}, 11(4), 424--446.
 
+\bibitem[Haddad et al.(2025)]{haddad2025matriz}
+Haddad, E. A., Araújo, I. F. de, Rocha, A., \& Vale, V. de A. (2025). Matriz interestadual de
+insumo-produto para o Brasil, 2019. \textit{Revista Brasileira de Estudos Regionais e Urbanos},
+19(4), 607--638.
+
 \bibitem[Hirschman(1958)]{hirschman1958}
 Hirschman, A. O. (1958). \textit{The Strategy of Economic Development}. New Haven:
 Yale University Press.
@@ -475,6 +569,10 @@ Yale University Press.
 \bibitem[Isard(1951)]{isard1951}
 Isard, W. (1951). Interregional and regional input-output analysis: a model of a
 space-economy. \textit{The Review of Economics and Statistics}, 33(4), 318--328.
+
+\bibitem[Junius \& Oosterhaven(2003)]{junius2003gras}
+Junius, T., \& Oosterhaven, J. (2003). The solution of updating or regionalizing a matrix with
+both positive and negative entries. \textit{Economic Systems Research}, 15(1), 87--96.
 
 \bibitem[Miller(1966)]{miller1966}
 Miller, R. E. (1966). Interregional feedback effects in input-output models: some
@@ -520,6 +618,11 @@ evidence. \textit{International Regional Science Review}, 8(3), 189--212.
 Sessa, C. B., Morandi, A. M., Lino, L. de S., Trindade, L. Z., \& Caliman, O. (2017).
 Implantação da Companhia Siderúrgica de Ubu: avaliação de impacto a partir da matriz
 insumo-produto do Espírito Santo. \textit{Economia e Desenvolvimento}, 28(2).
+
+\bibitem[Timmer et al.(2015)]{timmer2015wiod}
+Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J. (2015). An illustrated
+user guide to the World Input-Output Database. \textit{Review of International Economics}, 23(3),
+575--605.
 
 \end{thebibliography}
 

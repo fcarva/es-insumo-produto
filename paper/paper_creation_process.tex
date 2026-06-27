@@ -1,0 +1,268 @@
+% =====================================================================
+%  Registro do Processo de Criação — Stage 6 (academic-pipeline)
+%  Colaboração humano-IA · "Estrutura Produtiva do Espírito Santo"
+% =====================================================================
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=2.5cm}
+\definecolor{barcol}{RGB}{120,120,120}
+\newcommand{\scorebar}[2]{{\color{barcol}\rule{#1mm}{2.6mm}}\;\textbf{#2}}
+
+\pagestyle{fancy}\fancyhf{}
+\lhead{\itshape Registro do Processo de Criação}
+\rhead{26 jun.\ 2026}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\textbf{Registro do Processo de Criação}\\[4pt]
+\large ``Estrutura Produtiva do Espírito Santo: uma análise de insumo-produto''\\[2pt]
+\normalsize Stage 6 do pipeline \texttt{academic-pipeline} · colaboração humano-IA (Claude Code / Opus 4.8)}
+\author{Felipe Carvalho — PPGEco/UFES \quad$\cdot$\quad registro gerado pela IA}
+\date{26 de junho de 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\bigskip\hrule\bigskip
+
+% =====================================================================
+\section{Informações do artigo}
+\begin{longtable}{p{4.3cm}p{10cm}}
+\toprule
+\textbf{Título final} & Estrutura Produtiva do Espírito Santo: uma análise de insumo-produto \\
+\textbf{Subtítulo} & Multiplicadores, setores-chave, vocação territorial e abertura de uma economia de base (2008--2021) \\
+\textbf{Autor} & Felipe Carvalho — PPGEco/UFES \\
+\textbf{Entregável} & \texttt{paper/es\_estrutura\_produtiva.pdf} (10 págs · 4 figuras · 2 tabelas · 17 refs) \\
+\textbf{Pipeline} & \texttt{pesquisa/14--22} + \texttt{diag\_sider.py}; CSVs em \texttt{outputs/}; figuras em \texttt{figuras/} \\
+\textbf{Irmão arquivado} & \texttt{es\_plataforma\_fractal.tex} (tese de invariância de escala, depois absorvida) \\
+\textbf{Git} & commit \texttt{1ed4101} em \texttt{origin/main} (github.com/fcarva/es-insumo-produto) \\
+\bottomrule
+\end{longtable}
+
+\noindent\textbf{Instrução inicial (verbatim):} \emph{``fazer um grande review do projeto em fase das
+novas questões\dots\ ter um olhar panorâmico mais amplo\dots\ fizesse uma deep research com base no que
+já tem\dots\ pegasse as matrizes novas e ver o que pode ser feito use full mode da skill de ponta a
+ponta.''}
+
+% =====================================================================
+\section{Processo estágio a estágio}
+O pipeline rodou \textbf{duas vezes}: primeiro sobre uma tese de invariância de escala (descartada pelo
+autor), depois sobre a caracterização (entregue).
+
+\subsection{Ciclo A — tese ``economia-plataforma'' (abandonado a pedido)}
+\begin{longtable}{p{2.6cm}p{8.3cm}p{3.4cm}}
+\toprule
+\textbf{Estágio} & \textbf{Entrada $\to$ saída} & \textbf{Decisão do autor} \\
+\midrule
+1 RESEARCH & acervo + matrizes $\to$ \texttt{DEEP\_RESEARCH\_PANORAMA} (6 RQs multiescala) & RQ-A + RQ-B (fractal + benchmark) \\
+2 análise & \texttt{14/15/16} $\to$ achado \emph{honesto}: mecânica genérica/invariante, especificidade composicional (contrariou a hipótese) & reenquadrar + endurecer antes \\
+2 WRITE & $\to$ \texttt{es\_plataforma\_fractal.tex} & — \\
+2.5 INTEGRITY & \textbf{PASS}, mas o gate pegou erro factual (``Mineração dominante em 2 estados'' $\to$ \textbf{3}: PA, ES, RJ); corrigido & pausa para ler \\
+\bottomrule
+\end{longtable}
+
+\subsection{Ciclo B — caracterização (entregue)}
+\noindent\textbf{Correção de rumo (verbatim):} \emph{``Eu não gostei muito do título economia fractal\dots\
+fizesse uma outra deep search, pra gente fazer uma caracterização do espírito santo\dots\ estudasse a
+partir do Nereus\dots\ como o Haddad\dots\ Esse novo artigo, ele ficou interessante mas não é essa a
+pegada que eu quero fazer. Vamos voltar.''}
+
+\begin{longtable}{p{2.6cm}p{8.3cm}p{3.4cm}}
+\toprule
+\textbf{Estágio} & \textbf{Entrada $\to$ saída} & \textbf{Decisão do autor} \\
+\midrule
+1 RESEARCH & papers MT/RS + lit.\ nacional $\to$ \texttt{DEEP\_RESEARCH\_CARACTERIZACAO} (gênero estadual; dados NEREUS) & backbone C1+C2 + título do gênero \\
+2 (C1) & \texttt{17} $\to$ retrato 2008 (mult.\ prod/emprego/renda I e II, RH, ligações puras, setores-chave) & — \\
+2 (C2) & \texttt{18} $\to$ trajetória nacional 2010--2021 (Nível 68) & adicionar C3 antes \\
+2 (C3) & \texttt{20/21} $\to$ vocação das 10 microrregiões (quociente locacional) & — \\
+2 WRITE & $\to$ \texttt{es\_estrutura\_produtiva.tex} & — \\
+2.5 INTEGRITY & \textbf{PASS} (0 erros) & checar siderurgia 2021 \\
+robustez & \texttt{diag\_sider.py} $\to$ não é quebra de classificação, é \textbf{efeito de preço} (aço 2021, preços correntes) & Stage 3 REVIEW \\
+3 REVIEW & parecer 5-revisores $\to$ \textbf{Major Revision} (4 obrigatórios) & atacar os 4 itens \\
+4 REVISE & R1 benchmark (\texttt{22}) · R2 objeto temporal · R3 lit.\ ES (Ribeiro 2024; Sessa 2017) · R4 política & re-review + finalizar \\
+3' RE-REVIEW & Minor $\to$ Accept; pegou \textbf{NEW-1} (1,76 vs 1,66) $\to$ corrigido & — \\
+4.5 FINAL INTEGRITY & \textbf{PASS (zero issues)} & — \\
+5 FINALIZE & PDF compilado do LaTeX & — \\
+\bottomrule
+\end{longtable}
+
+\subsection{Pós-finalização (refinamentos do autor)}
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{Sugeridos S1--S4} atacados (correlação PTL$\times$VBP; tipo II; \emph{doença holandesa};
+  padrão não-óbvio do C3 = enclave territorial).
+\item \textbf{Deep research} para ancorar o S3 na literatura \emph{nacional} de IO (\emph{``o melhor do
+  insumo''}): Morceiro (2012); Nassif et al.\ (2015, citado honestamente como cético); Oreiro \& Feijó (2010).
+\item \textbf{Conciliação} com a ``economia-plataforma'': incorporada como §7 (abertura/spillover-feedback
+  + escalas aninhadas), reconciliando base (estrutura) + plataforma (abertura).
+\item \textbf{Figuras}: fundo transparente + boas práticas (skill \texttt{data:data-visualization}).
+\item \textbf{Terminologia}: ``fractal'' $\to$ \textbf{``núcleo-periferia aninhada / escalas aninhadas''}
+  (Friedmann, 1966).
+\end{itemize}
+
+% =====================================================================
+\section{Resumo do padrão de interação}
+\begin{longtable}{p{8.5cm}p{6cm}}
+\toprule
+\textbf{Métrica} & \textbf{Valor} \\
+\midrule
+Ciclos de pipeline & 2 (tese descartada + caracterização) \\
+Deep researches & 3 (panorama · caracterização · S3) \\
+Checkpoints com decisão do autor & 10 (todos respondidos) \\
+Correção de rumo maior & \textbf{1} (o pivô) \\
+Rodadas de parecer & 1 full (5 papéis) + 1 re-review \\
+Verificações de integridade & 4 \\
+Erros pegos pelos gates & 2 (``dois únicos''$\to$três; NEW-1) + 1 anomalia investigada (2021) \\
+Scripts criados & 10 (\texttt{14--22}, \texttt{diag\_sider}) \\
+Referências finais (verificadas) & 17 \\
+Papel do autor & diretor editorial e curador intelectual \\
+Papel da IA & pesquisa, código, análise, redação, parecer, verificação \\
+\bottomrule
+\end{longtable}
+
+% =====================================================================
+\section{Decisões-chave do autor (cronológicas)}
+\begin{enumerate}\setlength\itemsep{1pt}
+\item Rodar o pipeline em \textbf{full mode}, panorâmico, sobre as matrizes novas.
+\item Desenvolver \textbf{RQ-A + RQ-B} (fractal + benchmark).
+\item \textbf{Reenquadrar a tese} + \textbf{endurecer a análise} antes de redigir.
+\item \textbf{PIVÔ:} abandonar a pegada ``fractal''; fazer uma \textbf{caracterização} do ES via IO,
+  ancorada na escola brasileira (NEREUS, Haddad). \emph{(a decisão mais importante da sessão.)}
+\item \textbf{Backbone C1 + C2} + título no gênero clássico.
+\item \textbf{Adicionar C3} (microrregiões) antes de redigir.
+\item \textbf{Investigar} a queda da siderurgia em 2021 antes de afirmá-la.
+\item Submeter ao \textbf{parecer 5-revisores}.
+\item \textbf{Atacar os 4 itens obrigatórios}.
+\item \textbf{Re-review + finalizar}.
+\item \textbf{Atacar os sugeridos S1--S4}.
+\item \textbf{Deep research} para ancorar o S3 na literatura nacional de IO.
+\item \textbf{Conciliar} a economia-plataforma como face complementar.
+\item \textbf{Figuras} sem fundo, em boas práticas.
+\item \textbf{Trocar ``fractal''} por termo da literatura; \textbf{commit + push}; iniciar \textbf{Stage 6}.
+\end{enumerate}
+
+% =====================================================================
+\section{Lições-chave (reutilizáveis)}
+\begin{enumerate}\setlength\itemsep{1pt}
+\item \textbf{Um pivô precoce vale mais que um polimento tardio.} Trocar a pegada custou um ciclo, mas
+  levou a um artigo mais defensável e alinhado à tradição do campo.
+\item \textbf{O benchmark salva a tese da tautologia.} Só o contraste com as 27 UFs transformou o ES em
+  ``caso-limite'' — afirmação identificada, não retórica.
+\item \textbf{Anomalia de dado merece investigação, não nota apressada.} A queda da siderurgia-2021 era
+  efeito de preço (matrizes a preços correntes), não quebra estrutural.
+\item \textbf{Citação só depois de verificada.} As 17 referências foram conferidas antes de entrar.
+\item \textbf{Conciliar $>$ descartar.} O trabalho ``fractal'' abandonado virou a §7, enriquecendo o artigo.
+\end{enumerate}
+
+% =====================================================================
+\section{Relatório de autorreflexão da IA}
+\noindent\emph{Ironia registrada (princípio do protocolo): esta autorreflexão é produzida pela mesma IA
+que pode ter sido condescendente durante o pipeline. Leia com essa consciência.}
+
+\subsection*{Resumo comportamental}
+A IA operou como executora-sob-checkpoint: pesquisou, codou, analisou, redigiu, criticou (parecer
+adversarial real) e verificou. Em dois momentos reportou achados que \textbf{contrariaram a própria
+hipótese} (o benchmark ``genérico, não especial''; a queda 2021 = preço) — evidência contra
+condescendência substantiva.
+
+\subsection*{Risco de sicofância: BAIXO}
+0 alertas de saúde; o parecer foi genuinamente exigente (Major Revision); achados desconfortáveis foram
+reportados sem suavização.
+
+\subsection*{Frame-lock — 1 incidente real}
+A IA enquadrou o trabalho inicial como \textbf{teste de tese} (``fractal'') e \textbf{não detectou
+sozinha} que o autor queria uma \textbf{caracterização}. Foi preciso o pivô do autor para corrigir. É o
+limite mais honesto da sessão: a IA otimizou dentro do frame que ela mesma propôs.
+
+\subsection*{O que a IA errou (gates funcionando)}
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{``Dois únicos'' $\to$ três} (Mineração dominante): erro factual pego no Stage 2.5.
+\item \textbf{NEW-1}: a própria revisão introduziu inconsistência numérica (1,76 simples vs 1,66
+  ponderado), pega no re-review e reconciliada.
+\item \textbf{Frame inicial}: precisou de correção humana.
+\item \textbf{Hipótese inicial da RQ-B} (ES ``especial''): refutada pelo dado, reportada como tal.
+\end{itemize}
+
+\subsection*{Log de modos de falha (Stage 2.5/4.5)}
+\begin{longtable}{p{6.2cm}p{8cm}}
+\toprule
+\textbf{Modo} & \textbf{Status final} \\
+\midrule
+1. Alucinação de citação & \textbf{CLEAR} — 0 inventadas; 17 refs conferidas \\
+2. Bug de implementação & \textbf{CLEAR} — B$\geq$0, consistências, sensibilidade S23 ok \\
+3. Resultados alucinados & \textbf{CLEAR} — todo número vem de script + CSV \\
+4. Dependência de atalho & \textbf{CLEAR (sem flags)} \\
+5. Bug-como-insight & \textbf{CLEAR} — achados contrários foram reportados, não racionalizados \\
+6. Fabricação de metodologia & \textbf{CLEAR} — métodos padrão \\
+7. Frame-lock de pipeline & \textbf{1 incidente} — frame ``fractal'' corrigido pelo autor, não auto-detectado \\
+\bottomrule
+\end{longtable}
+
+% =====================================================================
+\section{Avaliação da qualidade da colaboração}
+\noindent\emph{Honestidade primeiro: sem inflar, com evidência. Avalia o desempenho do \textbf{autor}.}
+
+\bigskip
+\noindent\fbox{\parbox{0.96\linewidth}{%
+\textbf{Pontuação de Qualidade da Colaboração: 82/100 — Excelente (faixa 75--89)}\\[6pt]
+\begin{tabular}{@{}ll@{}}
+Direção (Direction Setting)        & \scorebar{46.75}{85} \\[2pt]
+Contribuição Intelectual           & \scorebar{48.4}{88} \\[2pt]
+Controle de Qualidade (gatekeeping)& \scorebar{41.8}{76} \\[2pt]
+Disciplina de Iteração             & \scorebar{46.75}{85} \\[2pt]
+Eficiência de Delegação            & \scorebar{44}{80} \\[2pt]
+Meta-Aprendizado                   & \scorebar{41.25}{75} \\
+\end{tabular}}}
+
+\bigskip
+\noindent\textbf{Geral: 82/100.} O autor não foi um ``botão de continuar'': fez decisões direcionais
+corretas e uma correção de rumo que elevou o trabalho.
+
+\subsection*{O que funcionou bem}
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{O pivô} (\emph{``não é essa a pegada que eu quero fazer. Vamos voltar''}): reconhecer que um
+  artigo tecnicamente bom não era o artigo certo, e redirecionar para a caracterização ancorada na
+  tradição brasileira — a intervenção de maior valor. \textbf{(Contribuição Intelectual 88.)}
+\item \textbf{Curadoria de literatura:} \emph{``estudasse a partir do Nereus\dots\ como o Haddad''} e
+  \emph{``ancorar S3 em literatura nacional, o melhor do insumo''}.
+\item \textbf{Disciplina:} re-rodar o pipeline (pivô), atacar os 4 obrigatórios \emph{e} os 4 sugeridos,
+  investigar a anomalia de 2021. \textbf{(Iteração 85.)}
+\item \textbf{Refinamento fino:} trocar ``fractal'' por termo da literatura; figuras em boas práticas.
+\end{itemize}
+
+\subsection*{Oportunidades perdidas}
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{Verificação independente dos números:} o autor confiou nos cálculos da IA sem checar
+  amostras por conta própria — o gatekeeping numérico ficou a cargo dos gates da IA. \textbf{(Controle 76.)}
+\item \textbf{Convenção de spillover/feedback} ficou pendente desde o projeto original; uma decisão
+  explícita a fecharia.
+\end{itemize}
+
+\subsection*{Recomendações para a próxima vez}
+\begin{enumerate}\setlength\itemsep{1pt}
+\item Pedir à IA, num ponto, para listar os números-âncora e conferir 2--3 contra a fonte bruta.
+\item Decidir cedo a convenção contestada (spillover/feedback).
+\item Considerar \emph{cross-model} (\texttt{ARS\_CROSS\_MODEL}) nos gates para artigos de submissão.
+\item Pedir o registro de lições nas skills (meta-aprendizado), não só no artigo.
+\item Definir público-alvo/periódico no início — afina tom, extensão e exigência de benchmark.
+\end{enumerate}
+
+\subsection*{Valor humano vs.\ IA}
+\begin{itemize}\setlength\itemsep{1pt}
+\item \textbf{O frame.} A IA produziu um artigo ``fractal'' competente; \textbf{o autor escolheu o artigo
+  certo} (caracterização). A direção intelectual foi humana.
+\item \textbf{A âncora na tradição certa} (NEREUS/Haddad; desindustrialização nacional via IO) veio do
+  conhecimento do autor.
+\item A IA contribuiu com \textbf{velocidade, reprodutibilidade, rigor de verificação e crítica
+  adversarial} — mas o \textbf{julgamento editorial} que define a identidade do artigo foi do autor.
+\end{itemize}
+
+\end{document}
