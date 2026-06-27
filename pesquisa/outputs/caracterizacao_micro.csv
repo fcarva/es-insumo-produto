@@ -1,0 +1,11 @@
+regiao,nome,share_ES_%,setor_dominante,dom_share_%,especializacao_LQ
+R1,Metropolitana,62.3,Extr. petróleo e gás,15.1,Metalurgia:LQ1.56 | Prof./cient./técn.:LQ1.21 | Extr. petróleo e gás:LQ1.19
+R7,Rio Doce,10.6,Celulose e papel,18.9,Celulose e papel:LQ8.19 | Automóveis/caminhões:LQ7.15 | Prod. de metal/máq.:LQ3.47
+R5,Central Sul,6.2,Minerais não-metálicos,23.5,Minerais não-metálicos:LQ7.69 | Extr. carvão/não-met.:LQ3.69 | Alimentos e bebidas:LQ1.81
+R9,Nordeste,4.9,Extr. petróleo e gás,33.4,Agricultura:LQ3.97 | Extr. petróleo e gás:LQ2.63 | Pecuária:LQ2.06
+R8,Centro-Oeste,4.4,Comércio,13.4,Têxtil/vestuário:LQ9.64 | Extr. carvão/não-met.:LQ3.54 | Agricultura:LQ3.01
+R4,Litoral Sul,4.1,Extr. minério de ferro,39.2,Extr. minério de ferro:LQ9.53 | Florestal/pesca:LQ8.19 | Eletricidade e gás:LQ1.94
+R10,Noroeste,2.1,Comércio,13.0,Extr. carvão/não-met.:LQ17.66 | Pecuária:LQ5.76 | Minerais não-metálicos:LQ3.80
+R6,Caparaó,1.9,Comércio,14.3,Agricultura:LQ5.61 | Eletricidade e gás:LQ3.44 | Pecuária:LQ3.42
+R3,Sudoeste Serrana,1.9,Comércio,12.2,Agricultura:LQ5.85 | Pecuária:LQ5.31 | Alimentos e bebidas:LQ2.12
+R2,Central Serrana,1.5,Pecuária,23.8,Pecuária:LQ21.91 | Agricultura:LQ6.66 | Madeira e móveis:LQ2.80

@@ -29,3 +29,5 @@ dados/*.xls
 # usáveis localmente em .claude/skills/, fora do git para manter o repo leve.
 # Procedência em .claude/skills/README.md. Reversível: remover esta linha p/ versionar.
 .claude/skills/
+.agents/
+.claude/settings.local.json

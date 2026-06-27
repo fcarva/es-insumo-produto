@@ -1,0 +1,11 @@
+regiao,nome,share_prod_pct,vazamento,feedback_razao,HHI_destino,pct_para_metropole,is_metropole
+R1,Metropolitana,62.28,0.0842,0.01864,0.1757,,1
+R2,Central Serrana,1.54,0.1703,0.00204,0.4876,68.3,0
+R3,Sudoeste Serrana,1.85,0.1825,0.00199,0.5884,75.9,0
+R4,Litoral Sul,4.11,0.3109,0.00567,0.3341,44.5,0
+R5,Central Sul,6.25,0.1881,0.00648,0.3526,55.4,0
+R6,Caparaó,1.93,0.1127,0.00196,0.3287,50.2,0
+R7,Rio Doce,10.63,0.2433,0.00870,0.5853,75.7,0
+R8,Centro-Oeste,4.42,0.1346,0.00253,0.3892,59.1,0
+R9,Nordeste,4.85,0.1416,0.00254,0.3214,49.5,0
+R10,Noroeste,2.14,0.1199,0.00229,0.2892,43.6,0

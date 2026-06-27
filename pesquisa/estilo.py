@@ -6,10 +6,11 @@ minimalista). Importado pelos scripts de figura. Cores de Steph Ango (Flexoki).
 import matplotlib.pyplot as plt
 
 # tons base
-PAPER    = "#FFFCF0"   # papel quente
+PAPER    = "#FFFCF0"   # (legado) papel quente — não mais usado como fundo
+WHITE    = "#FFFFFF"   # base neutra p/ colormaps (célula sem dado = branco)
 INK      = "#100F0F"
 INK_SOFT = "#575653"
-GRID     = "#E6E4D9"
+GRID     = "#E7E7E7"   # grid neutro e leve (boas práticas: reduzir chart junk)
 
 # acentos (saturado / pastel)
 RED,    RED_P    = "#AF3029", "#E3A99F"   # ES (protagonista)
@@ -40,11 +41,14 @@ def nexo(fig, title, dek="", source="", x=0.045):
 
 def apply():
     plt.rcParams.update({
-        "figure.facecolor": PAPER, "axes.facecolor": PAPER, "savefig.facecolor": PAPER,
+        # fundo TRANSPARENTE (sem cor): a figura mescla com a página do documento
+        "figure.facecolor": "none", "axes.facecolor": "none",
+        "savefig.facecolor": "none", "savefig.edgecolor": "none", "savefig.transparent": True,
         "axes.edgecolor": INK_SOFT, "axes.labelcolor": INK, "text.color": INK,
         "xtick.color": INK_SOFT, "ytick.color": INK_SOFT,
         "axes.spines.top": False, "axes.spines.right": False,
-        "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.8, "axes.axisbelow": True,
+        # grid leve só no eixo y (reduz chart junk); fica atrás dos dados
+        "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.7, "axes.axisbelow": True,
         "font.family": "DejaVu Sans", "font.size": 10,
         "axes.titlesize": 13, "axes.titleweight": "bold", "figure.dpi": 150,
     })

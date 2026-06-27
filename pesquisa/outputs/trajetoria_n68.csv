@@ -1,0 +1,61 @@
+setor,ano,mult_producao,ligacao_tras
+Petróleo/gás,2010,1.6800,0.8290
+Petróleo/gás,2011,1.5543,0.7702
+Petróleo/gás,2012,1.4816,0.7282
+Petróleo/gás,2013,1.4982,0.7345
+Petróleo/gás,2014,1.5545,0.7637
+Petróleo/gás,2015,1.7866,0.8740
+Petróleo/gás,2016,2.1673,1.0551
+Petróleo/gás,2017,2.0324,0.9797
+Petróleo/gás,2018,1.7885,0.8632
+Petróleo/gás,2019,1.7882,0.8622
+Petróleo/gás,2020,1.9097,0.9264
+Petróleo/gás,2021,1.6174,0.8036
+Minério de ferro,2010,1.6209,0.7998
+Minério de ferro,2011,1.5773,0.7816
+Minério de ferro,2012,1.5395,0.7567
+Minério de ferro,2013,1.5449,0.7573
+Minério de ferro,2014,1.6497,0.8104
+Minério de ferro,2015,1.9259,0.9421
+Minério de ferro,2016,1.9406,0.9447
+Minério de ferro,2017,1.8501,0.8918
+Minério de ferro,2018,1.9019,0.9179
+Minério de ferro,2019,1.9157,0.9237
+Minério de ferro,2020,1.7644,0.8559
+Minério de ferro,2021,1.6513,0.8205
+Refino,2010,2.3562,1.1627
+Refino,2011,2.4923,1.2350
+Refino,2012,2.5526,1.2546
+Refino,2013,2.5275,1.2390
+Refino,2014,2.5390,1.2473
+Refino,2015,2.4333,1.1904
+Refino,2016,2.3476,1.1429
+Refino,2017,2.3049,1.1110
+Refino,2018,2.3969,1.1568
+Refino,2019,2.3719,1.1436
+Refino,2020,2.4093,1.1688
+Refino,2021,2.3183,1.1518
+Metalurgia/sider.,2010,2.6566,1.3109
+Metalurgia/sider.,2011,2.5158,1.2466
+Metalurgia/sider.,2012,2.4823,1.2201
+Metalurgia/sider.,2013,2.5527,1.2514
+Metalurgia/sider.,2014,2.4702,1.2135
+Metalurgia/sider.,2015,2.6813,1.3117
+Metalurgia/sider.,2016,2.8343,1.3798
+Metalurgia/sider.,2017,2.7800,1.3400
+Metalurgia/sider.,2018,2.6447,1.2764
+Metalurgia/sider.,2019,2.7564,1.3291
+Metalurgia/sider.,2020,2.7919,1.3544
+Metalurgia/sider.,2021,2.1583,1.0724
+Celulose/papel,2010,2.8518,1.4073
+Celulose/papel,2011,2.8034,1.3892
+Celulose/papel,2012,2.9245,1.4374
+Celulose/papel,2013,2.9174,1.4302
+Celulose/papel,2014,2.9011,1.4252
+Celulose/papel,2015,2.8638,1.4010
+Celulose/papel,2016,2.8810,1.4026
+Celulose/papel,2017,2.9345,1.4145
+Celulose/papel,2018,2.9356,1.4168
+Celulose/papel,2019,2.9828,1.4382
+Celulose/papel,2020,3.0494,1.4793
+Celulose/papel,2021,3.0302,1.5056
