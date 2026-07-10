@@ -1,76 +1,85 @@
-# O Espírito Santo como economia-plataforma
+# Estrutura Produtiva do Espírito Santo: uma análise de insumo-produto
 
-**Encadeamentos, vazamento de multiplicadores e os efeitos *spillover*/*feedback* na cadeia regional de valor — MIP inter-regional ES × Brasil, 2008.**
+**Multiplicadores, setores-chave, demanda, vocação territorial e a face plataforma de uma
+economia de base (2008–2021).**
 
-Felipe Carvalho· PPGEco/UFES
+Felipe Carvalho · PPGEco/UFES
 Análise de Insumo-Produto · Prof. Dr. Celso Bissoli Sessa · 2026/1
 JEL: R15 · D57 · C67
 
 ---
 
-## Resumo
+## O artigo
 
-Este artigo caracteriza a economia do Espírito Santo como uma **economia-plataforma** — pequena, hiperaberta e estruturada em torno de setores cuja demanda final se realiza fora do estado. A partir de uma matriz insumo-produto inter-regional ES × restante do Brasil para 2008 (26 setores por região), aplica-se o modelo de Isard para decompor o multiplicador de produção de cada setor capixaba em parcela **retida** no estado e parcela **vazada** para o restante do Brasil, e para isolar a assimetria entre o efeito **spillover** (a produção que a demanda capixaba puxa para fora) e o efeito **feedback** (o que retorna). A leitura é complementada por uma camada de cadeias globais de valor (WIOD 2014) via índices de *upstreamness* (Antràs-Chor).
+`paper/es_estrutura_produtiva.tex` caracteriza a economia capixaba pela ótica insumo-produto,
+na tradição brasileira de análise de economias estaduais ("Estrutura Produtiva de [Estado]"),
+com ancoragem na teoria clássica do desenvolvimento regional (base de exportação — North/Tiebout;
+polos de crescimento — Perroux) e apêndices metodológicos completos (Isard/Miyazawa, ligações
+puras GHS, modelo nulo de porte, extração hipotética).
 
-## Achados centrais
+### As quatro frentes empíricas
 
-| Resultado | Valor |
-|---|---|
-| Injeção na demanda final do ES → **spillover** no restante do Brasil | R$ 60,6 bi → **R$ 22,4 bi** |
-| **Feedback** de volta ao ES | **R$ 199 mi (0,26%)** |
-| Vazamento médio do multiplicador de produção | **24,9%** (vs. 27,4% — Haddad et al., 2017) |
-| Vazamento de emprego (setores pesados) | Refino 61,6% · Alimentos 56,5% · Madeira/papel 50,3% · Metalurgia 49,3% |
-| *Upstreamness* da pauta capixaba | **3,19** (vs. média Brasil 1,97); mineração no percentil 98 global |
-
-A interpretação: o mapa do vazamento é, ao mesmo tempo, um mapa de **fragilidade** estrutural e de **oportunidade** de adensamento de cadeia.
+| Frente | Matriz | Achados-âncora |
+|---|---|---|
+| **Retrato estrutural (2008)** | MIP inter-regional ES × restante do Brasil, 26 setores, com emprego | mult. produção 1,76 (tipo I) / 2,45 (tipo II); emprego concentrado nos trabalho-intensivos; extração-enclave vs transformação-chave; ligações puras: mineração 4,4, metalurgia 3,4; benchmark 27 UFs: ES 2º em base (36,4%), "genérico em tipo, extremo em grau" |
+| **Quem puxa (2008)** | idem | demanda externa ao estado induz **61,7% da produção mas só 47,5% do emprego** |
+| **Panorama temporal (2010–2021)** | série nacional de 68 setores (NEREUS) | celulose adensa (1,41→1,51); siderurgia recua em 2021 por efeito de preço; extração permanece enclave |
+| **Vocação territorial (2015)** | sistema inter-regional das 10 microrregiões (35 setores) | mosaico de vocações (LQ); metrópole retém 90,9% do multiplicador vs 66,2% no Litoral Sul; extração hipotética da metrópole: −13% na periferia |
+| **+ Abertura/plataforma** | ES×RB + interestadual 27 UFs + WIOD 2014 | vazamento 24,9%; spillover ao núcleo SP/RJ 52,5% com feedback 0,32%; modelo nulo: ES não é outlier em mecânica (z-scores +0,45/−0,05/+0,03); upstreamness da pauta 3,12 |
 
 ## Estrutura do repositório
 
 ```
 es-insumo-produto/
 ├── paper/
-│   └── es_insumo_produto.tex    # artigo em LaTeX (ver nota abaixo)
-├── figuras/
-│   ├── spillover_feedback.png   # diagrama de fluxo (assimetria spillover/feedback)
-│   └── cgv_smile_curve.png      # curva do sorriso (posição em CGV)
-├── src/
-│   └── io_core.py               # implementação de referência (Isard, decomposição, RH)
-├── dados/
-│   └── README.md                # onde colocar a MIP inter-regional e os outputs
-├── requirements.txt
-├── CITATION.cff
-├── Makefile
-├── GIT.md
-├── LICENSE
-└── .gitignore
+│   ├── es_estrutura_produtiva.tex   # ARTIGO PRINCIPAL (v3, com apêndices A/B)
+│   ├── es_insumo_produto.tex        # v1 arquivada (economia-plataforma)
+│   ├── es_plataforma_fractal.tex    # v2 arquivada (invariância de escala)
+│   └── paper_creation_process.tex   # registro do processo (Stage 6)
+├── pesquisa/
+│   ├── 01–25_*.py                   # pipeline reprodutível (scripts numerados)
+│   ├── outputs/                     # CSVs e figuras gerados (versionados)
+│   ├── SINTESE_CONSOLIDADA.md       # ÍNDICE-MESTRE do projeto (o que existe, o que falta)
+│   └── *.md                         # deep researches, resultados, auditorias, pareceres
+├── figuras/                         # figuras finais do artigo
+├── src/io_core.py                   # funções-núcleo (Isard/Miller-Blair, RH/Ghosh)
+└── dados/                           # dados de terceiros NÃO versionados (ver dados/README.md)
 ```
+
+> **Navegação:** comece por [`pesquisa/SINTESE_CONSOLIDADA.md`](pesquisa/SINTESE_CONSOLIDADA.md)
+> — inventário completo do projeto, comparação entre as versões do artigo e plano de melhoria.
 
 ## Reprodução
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-# coloque a matriz inter-regional em dados/ (ver dados/README.md), depois:
-python src/io_core.py --mip dados/mip_es_br_2008.csv
+# coloque as matrizes em dados/ (ver dados/README.md), depois rode os scripts de pesquisa/:
+python pesquisa/17_caracterizacao_es_2008.py   # retrato 2008
+python pesquisa/18_trajetoria_n68.py           # panorama 2010–2021
+python pesquisa/20_caracterizacao_micro.py     # microrregiões 2015
+python pesquisa/22_benchmark_caracterizacao.py # benchmark 27 UFs
 # compilar o artigo:
 make paper
 ```
 
+Todos os números de manchete foram regenerados do zero a partir das planilhas originais e
+auditados (`pesquisa/AUDITORIA_HARD.md`); os CSVs de `pesquisa/outputs/` são versionados como
+artefato reprodutível, já que os dados brutos de terceiros não podem ser redistribuídos.
+
 ## Dados
 
-A espinha empírica é a **matriz insumo-produto inter-regional ES × restante do Brasil (2008)**, 26 setores por região (52 ao todo), R$ milhões correntes. A camada de CGV usa **WIOD 2014** (43 países, 56 setores). Os arquivos de dados **não** são versionados aqui — ver `dados/README.md` para os nomes esperados e as fontes.
+(a) MIP inter-regional **ES × restante do Brasil (2008)**, 26 setores por região, com vetores de
+emprego e remunerações; (b) MIP **interestadual 27 UFs (2008)**; (c) sistema inter-regional das
+**10 microrregiões de planejamento do ES (2015)**, 35 setores; (d) série nacional **Nível 68
+(2010–2021)** do NEREUS/USP; (e) **WIOD 2014** para a camada de cadeias globais de valor.
+Regionalização pelo método IIOAS (Haddad et al., 2017). Ver `dados/README.md`.
 
 ## Como citar
 
 ```
-Carvalho, F. (2026). O Espírito Santo como economia-plataforma:
-encadeamentos, vazamento de multiplicadores e os efeitos spillover/feedback
-na cadeia regional de valor (MIP inter-regional ES × Brasil, 2008).
-Working paper, PPGEco/UFES.
+Carvalho, F. (2026). Estrutura Produtiva do Espírito Santo: uma análise de
+insumo-produto. Working paper, PPGEco/UFES.
 ```
 
 Ver também `CITATION.cff`.
-
----
-
-> **Nota.** Este repositório (`es-insumo-produto`) foi **inicializado a partir do esqueleto de [`es-economia-plataforma`](https://github.com/fcarva/es-economia-plataforma)** como ponto de partida: o pipeline de referência (`src/io_core.py`), a estrutura de pastas e o artigo-semente em `paper/` vêm de lá. **Ajuste o título, o texto e os números** para o conteúdo próprio deste trabalho e **adicione os dados** em `dados/` (ver `dados/README.md`). O `paper/es_insumo_produto.tex` ainda traz, como base, o texto do artigo *economia-plataforma* (resumo, método e bibliografia reaproveitáveis); a figura do *heatmap* da matriz B segue marcada como TODO.

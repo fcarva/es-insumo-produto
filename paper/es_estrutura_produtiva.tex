@@ -91,6 +91,10 @@ A escola brasileira de insumo-produto consolidou um formato para \emph{caracteri
 uma economia estadual: a partir de uma matriz inter-regional (estado \emph{versus}
 restante do país), computam-se multiplicadores, ligações intersetoriais e
 setores-chave, identificando o perfil de especialização e os centros de dinamismo.
+O gênero operacionaliza, em linguagem de matriz, as duas lentes fundadoras da teoria do
+desenvolvimento regional: a \emph{base de exportação} --- o crescimento regional comandado
+pela demanda externa \citep{north1955,tiebout1956} --- e os \emph{polos de crescimento} ---
+indústrias motrizes que irradiam encadeamentos sobre a estrutura ao redor \citep{perroux1955}.
 Esse formato foi aplicado a diversos estados --- Mato Grosso
 \citep{figueiredo2004agriculture}, Rio Grande do Sul \citep{porsse2008matriz},
 entre outros. Para o Espírito Santo, há contribuições \emph{pontuais}:
@@ -145,7 +149,10 @@ limites; os resultados reportados são os que se rastreiam diretamente às três
 \label{sec:metodo}
 O sistema parte da identidade de Leontief $x=(I-A)^{-1}y=By$, com $A=Z\hat{x}^{-1}$.
 Sobre $B$ (e, pelo lado da oferta, sobre a inversa de Ghosh $G$) computa-se a bateria
-de indicadores que caracteriza uma economia regional \citep{millerblair2009}.
+de indicadores que caracteriza uma economia regional \citep{millerblair2009}. Os parágrafos
+seguintes resumem cada instrumento; as derivações completas, equação a equação, estão no
+Apêndice~\ref{ap:metodologia}, e os testes de robustez e o tratamento de dados, no
+Apêndice~\ref{ap:robustez}.
 
 \paragraph{Multiplicadores.}
 O multiplicador de produção do setor $j$ é $O_j=\sum_i b_{ij}$. Os de emprego e renda
@@ -173,8 +180,8 @@ integração da economia.
 
 \paragraph{Ligações puras.}
 Como a normalização de Rasmussen-Hirschman é neutra ao tamanho do setor, computam-se
-também as \emph{ligações puras} (Guilhoto-Sonis-Hewings; \citealp{millerblair2009}),
-que ponderam o encadeamento pela produção do setor. Particionando a economia em
+também as \emph{ligações puras} \citep{guilhoto2005linkages,millerblair2009}, herdeiras do
+método de extração de \citet{cella1984}, que ponderam o encadeamento pela produção do setor. Particionando a economia em
 $\{j\}$ e o resto $\{r\}$, a ligação pura para trás é
 $\mathrm{PBL}_j=\Delta^{r}A^{rj}\Delta^{j}y_j$ e a ligação pura para frente,
 $\mathrm{PFL}_j=\Delta^{j}A^{jr}\Delta^{r}y_r$, com $\Delta^{r}=(I-A^{rr})^{-1}$ e
@@ -194,7 +201,14 @@ por seus próprios produtos, a produção induzida em $M$,
 $x^{M}=(I-A^{MM})^{-1}A^{ML}x^{L}$, é o \emph{spillover}; o retorno a $L$ pelo termo de
 \emph{feedback} da inversa particionada $(I-A^{LL}-A^{LM}(I-A^{MM})^{-1}A^{ML})^{-1}$ é o
 \emph{feedback}. A razão \emph{feedback}/injeção, computada em cada escala (UFs e
-microrregiões), mede a reciprocidade do encadeamento.
+microrregiões), mede a reciprocidade do encadeamento; a decomposição multiplicativa de
+\citet{miyazawa1966} separa, no mesmo particionamento, multiplicadores internos e externos
+(Apêndice~\ref{ap:miyazawa}). Dois instrumentos complementares separam o que é regularidade
+de porte do que é estrutura: um \emph{modelo nulo}, que regride cada métrica de abertura no
+logaritmo do porte da unidade e lê o resíduo padronizado (escore-$z$;
+Apêndice~\ref{ap:nulo}), e a \emph{extração hipotética} \citep{dietzenbacher1993}, que
+remove uma unidade do sistema e mede a produção que deixaria de existir sem ela
+(Apêndice~\ref{ap:hem}).
 
 % =====================================================================
 \section{O retrato estrutural (2008)}
@@ -226,7 +240,10 @@ dos componentes reproduz exatamente a produção total (checagem em
 dependem em 90\% ou mais da demanda doméstica. A economia de base é, portanto, uma
 economia \emph{puxada de fora}: o motor da produção está no resto do país e no exterior,
 mas o emprego que esse motor gera fica, em boa parte, aquém do seu peso --- é o mercado
-interno que emprega.
+interno que emprega. É a fotografia insumo-produto da \emph{base de exportação} de
+\citet{north1955} --- a demanda externa comanda o crescimento da produção ---, com a
+ressalva de \citet{tiebout1956} reaparecendo pelo lado do emprego: são as atividades
+\emph{residentes}, voltadas ao mercado interno, que carregam a ocupação.
 
 \begin{table}[ht]
 \centering\small
@@ -266,7 +283,9 @@ com o valor bruto da produção (Pearson 0,96): é, sobretudo, uma medida de \em
 Seu acréscimo sobre o VBP cru está na \emph{reordenação pela conexão} --- promove acima do
 que o porte diria setores bem articulados mas não os maiores (madeira/papel, cimento,
 eletricidade) ---, e por isso é reportada ao lado de Rasmussen-Hirschman, neutra ao porte.}
-O grau de integração (coeficiente de variação das
+São polos na acepção de \citet{perroux1955}: unidades motrizes de grande porte cujo
+dinamismo se transmite à economia adjacente pelos encadeamentos --- exatamente o que a
+medida de ligações puras quantifica. O grau de integração (coeficiente de variação das
 ligações) é moderado: 0,16 para trás, 0,28 para frente.
 
 \begin{figure}[ht]
@@ -320,7 +339,10 @@ intensidade de base e na pobreza de emprego dos líderes. Fonte:
 A composição reforça o ponto (Tabela~\ref{tab:cluster}): entre os oito estados de crescimento
 dinâmico --- sub-cobertos pelo mercado de capitais, excluído o núcleo SP/RJ ---, o ES é o mais
 intensivo em mineração e o segundo em setores de base, com o menor multiplicador relativo de
-emprego. É a composição, não a decomposição, que o singulariza.
+emprego. É a composição, não a decomposição, que o singulariza. O paralelo mais próximo é
+Minas Gerais, economia mineral vizinha cuja matriz bi-regional \citep{domingues2002matriz}
+inaugurou esse desenho para os estados brasileiros e já documentava transbordamentos
+intensos, e pouco recíprocos, ao restante do país.
 
 \begin{table}[ht]
 \centering\small
@@ -342,8 +364,9 @@ RJ \emph{(núcleo)} & 11,2 & 15,6 & 27,4 & Mineração\\
 \bottomrule
 \end{tabular}
 \caption{O ES e os estados de crescimento dinâmico \emph{versus} o núcleo SP/RJ. O ES é o
-2\textordmasculine\ mais intensivo em setores de base do país e um dos dois (com o RJ) cujo setor
-dominante é a Mineração. Fonte: \texttt{outputs/cluster\_setorial.csv}.}
+2\textordmasculine\ mais intensivo em setores de base do país e, com o Pará e o Rio de Janeiro,
+um dos três do país cujo setor dominante é a Mineração. Fonte:
+\texttt{outputs/cluster\_setorial.csv}.}
 \label{tab:cluster}
 \end{table}
 
@@ -416,7 +439,10 @@ ponderada pelo porte setorial, o multiplicador vai de 1,42 (Caparaó) a 1,76 (Li
 inflado pela pelotização), mas a parcela dele que se realiza \emph{dentro} da própria
 microrregião varia de \textbf{90,9\%} na Metropolitana a \textbf{66,2\%} no Litoral Sul
 extrativo --- a periferia compra seus insumos na metrópole, não em si mesma. É a mesma
-assinatura de enclave, agora na dimensão territorial do fluxo.
+assinatura de enclave, agora na dimensão territorial do fluxo. A \emph{extração hipotética}
+\citep{dietzenbacher1993} fecha o desenho: removida a Metropolitana do sistema, a produção
+das demais microrregiões cairia \textbf{13,0\%} --- a periferia capixaba depende do núcleo
+capixaba como o estado, visto de fora, depende do Sudeste (\S\ref{sec:plataforma}).
 
 \begin{table}[ht]
 \centering\small
@@ -520,9 +546,20 @@ vaza-da-periferia configura, pois, uma relação \emph{centro-periferia} que se 
 industrial paulista \citep{cano1985}, e aqui o mesmo padrão reaparece \emph{dentro} do estado ---
 a periferia está para o ES como o ES está para o Sudeste; a leitura por escalas encaixadas de
 núcleos e periferias remonta a \citet{friedmann1966}. É a mesma assinatura de \emph{enclave} que
-a concentração territorial já indicava (\S\ref{sec:territorio}), agora pelo lado do fluxo. A pequenez do \emph{feedback} é, em parte,
-regularidade de porte \citep{miller1966}; o que é próprio do ES, como mostra o benchmark, é a
-\emph{intensidade} com que a exibe.
+a concentração territorial já indicava (\S\ref{sec:territorio}), agora pelo lado do fluxo.
+A pequenez do \emph{feedback} é, em boa medida, regularidade de porte \citep{miller1966} ---
+e o modelo nulo (Apêndice~\ref{ap:nulo}) a quantifica: regredidas as três métricas de
+abertura no logaritmo do porte das 27 UFs, o ES não é \emph{outlier} em nenhuma
+(escores-$z$ de $+0{,}45$ no vazamento, $-0{,}05$ na razão de \emph{feedback} e $+0{,}03$
+na concentração de destino; Tabela~\ref{tab:zscores}), e seu \emph{feedback} observado
+(0,32\%) fica até \emph{abaixo} do previsto para o seu porte (0,45\%). O retorno é, antes,
+privilégio de núcleo: a razão de \emph{feedback} média de SP+RJ (1,97\%) é quatro vezes a
+dos oito estados de crescimento dinâmico (0,49\%). Nem a concentração do destino singulariza
+o ES --- Minas Gerais (60,0\%) e Rio Grande do Sul (55,2\%) escoam ao núcleo parcela
+\emph{maior} que a capixaba (52,5\%; 14\textordmasculine\ entre as 27 UFs no HHI de
+destino). O que é próprio do ES, como mostra o benchmark composicional
+(Tabela~\ref{tab:bench}), não é a mecânica do vazamento, mas a \emph{composição de base}
+que essa mecânica genérica transporta.
 
 \begin{figure}[ht]
 \centering
@@ -541,7 +578,8 @@ média mundial, com a mineração entre as atividades mais a montante do mundo
 ($U=3{,}82$; 33\textordmasculine\ de 2.279 setores válidos, percentil~98; Figura~\ref{fig:upstream}).
 O estado supre insumos primários e intermediários cuja captura de valor a jusante se realiza em
 outras regiões e países --- a leitura por \emph{ranking}, e não por nível bruto, segue
-\citet{araujojunior2018cgv}. É a tradução, na escala da cadeia global, do mesmo diagnóstico:
+\citet{araujojunior2018cgv}, com o tratamento da base detalhado no
+Apêndice~\ref{ap:wiod}. É a tradução, na escala da cadeia global, do mesmo diagnóstico:
 uma economia de base, fornecedora a montante.
 
 \begin{figure}[ht]
@@ -580,6 +618,9 @@ descolamento: a demanda externa puxa 61,7\% da produção, mas 47,5\% do emprego
 a base gera \emph{vaza} para o núcleo SP--RJ com retorno quase nulo --- a captura de valor não
 é só um problema de \emph{composição} setorial, mas também de \emph{posição} na hierarquia
 regional, e essa lógica repete-se, em escala aninhada, da periferia capixaba para a Grande Vitória.
+Base exportadora que comanda a produção \citep{north1955}, polos motrizes que concentram o
+encadeamento \citep{perroux1955} e hierarquia centro-periferia que captura o valor
+\citep{cano1985,friedmann1966} são, aqui, três descrições do mesmo dado.
 A dualidade entre extração-enclave e
 transformação-chave, visível no retrato de 2008 e persistente na série 2010--2021,
 sugere que o adensamento de cadeia tem mais a ganhar na transformação (siderurgia,
@@ -623,7 +664,8 @@ anuais em setores sensíveis a preço --- como o recuo da siderurgia em 2021, no
 do aço --- devem ser lidas como efeito nominal/relativo, não necessariamente estrutural.
 \textbf{(iii)} Os fluxos inter-regionais e sub-estaduais são \emph{estimados} pelo
 método IIOAS, e o sistema microrregional apresenta um setor com coeficientes
-desbalanceados (informação), além de não trazer vetor de emprego (apenas remunerações).
+desbalanceados (informação; sensibilidade no Apêndice~\ref{ap:s23}), além de não trazer
+vetor de emprego (apenas remunerações).
 \textbf{(iv)} As ligações puras, por ponderarem pelo tamanho, favorecem setores
 grandes; por isso são reportadas em conjunto com os índices de Rasmussen-Hirschman,
 neutros ao porte. \textbf{(v)} A leitura de ``economia-plataforma'' é uma interpretação
@@ -646,6 +688,223 @@ de sistemático e reprodutível, oferece o substrato quantitativo para o debate 
 diversificação, adensamento de cadeia e captura de valor na economia capixaba.
 
 % =====================================================================
+\appendix
+\section{Formulário metodológico}
+\label{ap:metodologia}
+Este apêndice reúne, equação a equação, o ferramental cujos resultados o corpo do texto
+reporta. A notação segue \citet{millerblair2009}; todos os instrumentos estão implementados
+nas rotinas reprodutíveis de \texttt{pesquisa/}.
+
+\subsection{Sistema de Leontief e multiplicadores}
+\label{ap:leontief}
+Com $Z$ a matriz de fluxos intermediários e $x$ o vetor de produção, os coeficientes técnicos
+são $A=Z\hat{x}^{-1}$ e o sistema de quantidades é
+\begin{equation}
+x=(I-A)^{-1}y \equiv By,
+\label{eq:leontief}
+\end{equation}
+com $y$ a demanda final. O multiplicador de produção do setor $j$ é $O_j=\sum_i b_{ij}$; os de
+emprego e renda são $E_j=\sum_i w_i\,b_{ij}$ e $R_j=\sum_i v_i\,b_{ij}$, com coeficientes
+diretos $w_i=\mathrm{ocup}_i/x_i$ e $v_i=\mathrm{rem}_i/x_i$. No fechamento de \emph{tipo II},
+o consumo das famílias capixabas e a renda das remunerações dos setores do ES entram como
+linha e coluna adicionais de $A$; num sistema bi-regional, esse fechamento fornece um
+\emph{limite inferior} do efeito induzido local, pois parte do consumo das famílias se
+realiza em produtos do restante do Brasil e não retorna como demanda ao ES.
+
+\subsection{Partição inter-regional de Isard}
+\label{ap:isard}
+Sejam $L$ a região-foco e $M$ o resto do sistema. A matriz de coeficientes e a inversa de
+Leontief particionam-se em blocos intra e inter-regionais \citep{isard1951,millerblair2009}:
+\begin{equation}
+A=\begin{bmatrix} A^{LL} & A^{LM}\\ A^{ML} & A^{MM}\end{bmatrix},
+\qquad
+\begin{bmatrix} x^{L}\\ x^{M}\end{bmatrix}
+=\begin{bmatrix} B^{LL} & B^{LM}\\ B^{ML} & B^{MM}\end{bmatrix}
+\begin{bmatrix} y^{L}\\ y^{M}\end{bmatrix}.
+\label{eq:isard}
+\end{equation}
+Resolvendo para $L$ obtém-se a forma reduzida com o termo de \emph{feedback} explícito:
+\begin{equation}
+x^{L}
+=\underbrace{(I-A^{LL})^{-1}y^{L}}_{\text{intra}}
+\;+\;\underbrace{\big[(I-A^{LL}-A^{LM}(I-A^{MM})^{-1}A^{ML})^{-1}-(I-A^{LL})^{-1}\big]y^{L}}_{\text{feedback}}.
+\label{eq:feedback}
+\end{equation}
+O \emph{vazamento} do multiplicador da coluna $j$ é $O^{M}_j/O_j$, com
+$O^{M}_j=\sum_{i\in M}b_{ij}$; o \emph{spillover} de uma injeção $y^{L}$ é
+$x^{M}=(I-A^{MM})^{-1}A^{ML}x^{L}$; a razão de \emph{feedback} é o segundo termo
+de~\eqref{eq:feedback} normalizado pela injeção.
+
+\subsection{Decomposição multiplicativa de Miyazawa}
+\label{ap:miyazawa}
+\citet{miyazawa1966} decompõe a inversa particionada em multiplicadores \emph{internos},
+$\Delta_L=(I-A^{LL})^{-1}$ e $\Delta_M=(I-A^{MM})^{-1}$, e \emph{externos},
+\begin{equation}
+\Delta_{LL}=(I-\Delta_L A^{LM}\Delta_M A^{ML})^{-1},
+\qquad
+\Delta_{MM}=(I-\Delta_M A^{ML}\Delta_L A^{LM})^{-1},
+\label{eq:miyazawa_ext}
+\end{equation}
+que capturam o encadeamento que sai da região, circula na outra e retorna. Vale a
+identidade em blocos
+\begin{equation}
+\begin{bmatrix} x^{L}\\ x^{M}\end{bmatrix}
+=\begin{bmatrix} \Delta_{LL} & 0\\ 0 & \Delta_{MM}\end{bmatrix}
+\begin{bmatrix} \Delta_{L} & 0\\ 0 & \Delta_{M}\end{bmatrix}
+\begin{bmatrix} I & A^{LM}\Delta_{M}\\ A^{ML}\Delta_{L} & I\end{bmatrix}
+\begin{bmatrix} y^{L}\\ y^{M}\end{bmatrix},
+\label{eq:miyazawa}
+\end{equation}
+donde $B^{LL}=\Delta_{LL}\Delta_L$: o bloco intra-regional da inversa global é o
+multiplicador interno \emph{amplificado} pelo externo, e o termo de \emph{feedback}
+de~\eqref{eq:feedback} é $(\Delta_{LL}-I)\Delta_L\,y^{L}$.
+
+\subsection{Ligações de Rasmussen--Hirschman e grau de integração}
+\label{ap:rh}
+O índice de ligação para trás do setor $j$ é
+$U_j=(B_{\cdot j}/n)\big/(\sum_{ij}b_{ij}/n^2)$, com $B_{\cdot j}=\sum_i b_{ij}$
+\citep{rasmussen1956,hirschman1958}. A ligação para frente usa, pelo lado da oferta, a
+inversa de Ghosh $G=(I-F)^{-1}$, com $F=\hat{x}^{-1}Z$:
+$U_i=(G_{i\cdot}/n)\big/(\sum_{ij}g_{ij}/n^2)$, com $G_{i\cdot}=\sum_j g_{ij}$.
+\emph{Setores-chave} têm ambos os índices acima da unidade; o coeficiente de variação dos
+índices mede o grau de integração da economia.
+
+\subsection{Ligações puras (GHS)}
+\label{ap:puras}
+Na linhagem do método de extração de \citet{cella1984}, as ligações puras
+\citep{guilhoto2005linkages} particionam $A$ entre o setor $j$ e o resto $r$,
+\begin{equation}
+A=\begin{bmatrix} a_{jj} & A_{jr}\\ A_{rj} & A_{rr}\end{bmatrix},
+\qquad \Delta_j=(1-a_{jj})^{-1},\quad \Delta_r=(I-A_{rr})^{-1},
+\label{eq:ghs_part}
+\end{equation}
+e medem, em valores correntes,
+\begin{equation}
+\mathrm{PBL}_j=\Delta_r A_{rj}\,\Delta_j\,y_j,
+\qquad
+\mathrm{PFL}_j=\Delta_j A_{jr}\,\Delta_r\,y_r,
+\qquad
+\mathrm{PTL}_j=\mathrm{PBL}_j+\mathrm{PFL}_j,
+\label{eq:ghs}
+\end{equation}
+respectivamente o impacto puro da demanda do setor $j$ sobre o resto da economia
+(expurgadas as compras internas do próprio setor) e o impacto puro da produção do resto da
+economia sobre o setor $j$. No texto, $\mathrm{PBL}/\mathrm{PFL}/\mathrm{PTL}$ são
+reportadas padronizadas pela média dos 26 setores do ES.
+
+\subsection{Decomposição pela demanda final}
+\label{ap:fd}
+Sendo~\eqref{eq:leontief} linear em $y$, para a partição $y=\sum_k y^{(k)}$ em componentes
+(exportações internacionais, demanda final do restante do Brasil, consumo das famílias,
+governo/ISFLSF, formação bruta de capital, variação de estoques) vale
+\begin{equation}
+x=\sum_k x^{(k)},\qquad x^{(k)}=B\,y^{(k)},\qquad e^{(k)}=\hat{w}\,x^{(k)},
+\label{eq:fd}
+\end{equation}
+com $e^{(k)}$ o emprego atribuível ao componente $k$. A aditividade é exata --- a soma dos
+componentes reproduz produção e emprego totais (Tabela~\ref{tab:decomp}).
+
+\subsection{Quociente locacional e concentração}
+\label{ap:lq}
+A especialização do território $g$ no setor $s$ é
+$\mathrm{LQ}_{gs}=(x_{gs}/\sum_s x_{gs})\big/(\sum_g x_{gs}/\sum_{gs}x_{gs})$. A
+concentração da composição setorial de um território é o índice de Herfindahl--Hirschman
+$\mathrm{HHI}_g=\sum_s s_{gs}^2$, com $s_{gs}$ a participação do setor $s$ no VBP de $g$;
+o mesmo índice, aplicado às parcelas de destino do \emph{spillover}, mede a concentração
+geográfica do vazamento.
+
+\subsection{Modelo nulo de porte}
+\label{ap:nulo}
+Para separar o que é regularidade de tamanho do que é estrutura, cada métrica de abertura
+$m_r$ (vazamento, razão de \emph{feedback}, HHI de destino) é regredida no logaritmo do
+porte da unidade $r$:
+\begin{equation}
+m_r=\alpha+\beta\ln(x_r)+\varepsilon_r,
+\label{eq:nulo}
+\end{equation}
+em que $x_r$ é a produção total da unidade. O $R^2$ mede quanto o porte explica; o resíduo
+padronizado (escore-$z$) $z_r=\hat{\varepsilon}_r/\hat{\sigma}_\varepsilon$ mede o quanto a
+unidade-foco excede o previsto pelo porte --- a candidata a especificidade. Os resultados
+para o ES estão no Apêndice~\ref{ap:zscores}.
+
+\subsection{Extração hipotética}
+\label{ap:hem}
+Para medir a dependência sistêmica em relação a uma unidade $g$ (setor ou território),
+zeram-se os blocos de linha e de coluna de $g$ em $A$ (e sua demanda final), obtendo
+$\bar{A}$ e $\bar{y}$, e recomputa-se $\bar{x}=(I-\bar{A})^{-1}\bar{y}$
+\citep{dietzenbacher1993,millerblair2009}. A perda relativa
+$\sum_{i\notin g}(x_i-\bar{x}_i)\big/\sum_{i\notin g}x_i$ mede a produção do resto do
+sistema que deixaria de existir sem $g$ --- aplicada no texto à extração da Região
+Metropolitana do sistema microrregional (\S\ref{sec:territorio}).
+
+% =====================================================================
+\section{Robustez e tratamento de dados}
+\label{ap:robustez}
+
+\subsection{Tratamento da base WIOD (2014)}
+\label{ap:wiod}
+A demanda final implícita da WIOD incorpora variação de estoques e discrepância
+estatística, o que produz \textbf{49} dos 2.464 pares país-setor com demanda final
+implícita $\le 0$ e uma cauda de \emph{upstreamness} sem sentido econômico ($U>10$). Como
+entradas negativas de bases MRIO devem ser reconciliadas, e não interpretadas como fluxo
+econômico, excluem-se os setores degenerados e a cauda implausível --- \textbf{185} pares
+removidos, \textbf{2.279} válidos --- e a posição setorial é reportada por \emph{nível e
+ranking} (mineração $U=3{,}82$; 33\textordmasculine\ de 2.279), não pelo percentil da
+distribuição bruta. As médias ponderadas (pauta ES 3,12; Brasil 1,91; mundo 2,31) são
+insensíveis a esse tratamento.
+
+\subsection{Sensibilidade ao setor desbalanceado do sistema microrregional (S23)}
+\label{ap:s23}
+No sistema inter-regional das dez microrregiões (2015), o setor S23 (informação) apresenta
+soma de coeficientes de coluna igual a 1,07 em todas as regiões --- herança da
+regionalização ---, o que degenera seu multiplicador simples, embora a inversa de Leontief
+permaneça não-negativa e finita. Excluindo S23 e recomputando o sistema, o vazamento da
+Metropolitana passa de 8,4\% para 7,9\% e o $R^2$ do modelo nulo intra-estadual permanece
+em 0,91: nenhum resultado territorial reportado é dirigido por esse setor.
+
+\subsection{Conciliação das médias de vazamento}
+\label{ap:medias}
+Três números descrevem o mesmo fenômeno sob agregações distintas: \textbf{24,9\%} é a média
+\emph{simples} do vazamento entre os 26 setores (bi-regional, comparável à média setorial
+da literatura); \textbf{22,9\%} (bi-regional) e \textbf{22,8\%} (interestadual) são as
+médias \emph{ponderadas pela produção}; e \textbf{27,4\%} é a parcela inter-regional do
+multiplicador total do ES na matriz de \citet{haddad2017iioas}, medida em outra safra
+(2011) e outra agregação (68 setores).
+
+\subsection{Convenção de \emph{spillover}/\emph{feedback}}
+\label{ap:convencao}
+Os números do texto seguem a convenção da inversa particionada
+(eq.~\ref{eq:feedback}): injeção de R\$\,51,5 bi, \emph{spillover} de R\$\,18,2 bi e
+\emph{feedback} de R\$\,164 milhões (0,32\%). Em quatro convenções alternativas testadas, a
+razão de \emph{feedback} varia apenas entre \textbf{0,15\% e 0,32\%}: a assimetria
+qualitativa --- retorno próximo de zero --- é invariante à convenção.
+
+\subsection{Escores-$z$ do modelo nulo (27 UFs, 2008)}
+\label{ap:zscores}
+A Tabela~\ref{tab:zscores} consolida o modelo nulo da eq.~\eqref{eq:nulo} para o ES. Em
+nenhuma das três métricas de decomposição o estado é \emph{outlier}; a especificidade
+capixaba é composicional (Tabela~\ref{tab:bench}), não mecânica.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+Métrica & ES obs. & previsto (porte) & resíduo & escore-$z$ & posição \\
+\midrule
+Vazamento do multiplicador & 22,8\% & 21,3\% & $+1{,}6$ p.p. & $+0{,}45$ & 8\textordmasculine/27 \\
+Razão de \emph{feedback} & 0,32\% & 0,45\% & $-0{,}12$ p.p. & $-0{,}05$ & 8\textordmasculine/27 \\
+HHI de destino do \emph{spillover} & 0,193 & 0,193 & $+0{,}000$ & $+0{,}03$ & 14\textordmasculine/27 \\
+\bottomrule
+\end{tabular}
+\caption{Modelo nulo $m_r=\alpha+\beta\ln(x_r)+\varepsilon_r$ nas 27 UFs (2008): o porte
+explica $R^2=0{,}59$ da razão de \emph{feedback} (e $R^2=0{,}91$ na escala das dez
+microrregiões), mas quase nada do vazamento e da concentração de destino
+($R^2\approx0{,}01$). O ES não excede o previsto em nenhuma métrica. Fonte:
+\texttt{14\_benchmark\_ufs.py} sobre \texttt{outputs/benchmark\_ufs.csv}.}
+\label{tab:zscores}
+\end{table}
+
+% =====================================================================
 \begin{thebibliography}{99}
 
 \bibitem[Antràs et al.(2012)]{antras2012measuring}
@@ -665,9 +924,22 @@ Carvalho, T. S., \& Perobelli, F. S. (2009). Avaliação da intensidade de emiss
 setoriais e na estrutura de exportações: um modelo inter-regional de insumo-produto São
 Paulo/restante do Brasil. \textit{Economia Aplicada}, 13(1), 99--124.
 
+\bibitem[Cella(1984)]{cella1984}
+Cella, G. (1984). The input-output measurement of interindustry linkages.
+\textit{Oxford Bulletin of Economics and Statistics}, 46(1), 73--84.
+
 \bibitem[Corden \& Neary(1982)]{cordenneary1982}
 Corden, W. M., \& Neary, J. P. (1982). Booming sector and de-industrialisation in a small
 open economy. \textit{The Economic Journal}, 92(368), 825--848.
+
+\bibitem[Dietzenbacher et al.(1993)]{dietzenbacher1993}
+Dietzenbacher, E., van der Linden, J. A., \& Steenge, A. E. (1993). The regional extraction
+method: EC input-output comparisons. \textit{Economic Systems Research}, 5(2), 185--206.
+
+\bibitem[Domingues \& Haddad(2002)]{domingues2002matriz}
+Domingues, E. P., \& Haddad, E. A. (2002). Matriz inter-regional de insumo-produto
+Minas Gerais/Resto do Brasil: estimação e extensão para exportações. In
+\textit{Anais do X Seminário sobre a Economia Mineira}. Diamantina, MG.
 
 \bibitem[Figueiredo et al.(2004)]{figueiredo2004agriculture}
 Figueiredo, M. G., Barros, A. L. M. de, \& Guilhoto, J. J. M. (2004). \textit{Agriculture
@@ -690,6 +962,11 @@ Cambridge, MA: MIT Press.
 Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
 insumo-produto a partir de dados preliminares das contas nacionais.
 \textit{Economia Aplicada}, 9(2), 277--299.
+
+\bibitem[Guilhoto et al.(2005)]{guilhoto2005linkages}
+Guilhoto, J. J. M., Sonis, M., \& Hewings, G. J. D. (2005). Linkages and multipliers in a
+multiregional framework: integration of alternative approaches. \textit{Australasian
+Journal of Regional Studies}, 11(1), 75--89.
 
 \bibitem[Haddad et al.(2017)]{haddad2017iioas}
 Haddad, E. A., Gonçalves Júnior, C. A., \& Nascimento, T. O. (2017).
@@ -721,6 +998,10 @@ preliminary results. \textit{Papers of the Regional Science Association}, 17, 10
 Miller, R. E., \& Blair, P. D. (2009). \textit{Input-Output Analysis: Foundations and
 Extensions}. 2nd ed. Cambridge University Press.
 
+\bibitem[Miyazawa(1966)]{miyazawa1966}
+Miyazawa, K. (1966). Internal and external matrix multipliers in the input-output model.
+\textit{Hitotsubashi Journal of Economics}, 7(1), 38--55.
+
 \bibitem[Morceiro(2012)]{morceiro2012}
 Morceiro, P. C. (2012). \textit{Desindustrialização na economia brasileira no período
 2000--2011: abordagens e indicadores}. São Paulo: Cultura Acadêmica.
@@ -730,6 +1011,10 @@ Nassif, L., Teixeira, L., \& Rocha, F. (2015). Houve redução do impacto da ind
 economia brasileira no período 1996--2009? Uma análise das matrizes insumo-produto.
 \textit{Economia e Sociedade}, 24(2), 355--378.
 
+\bibitem[North(1955)]{north1955}
+North, D. C. (1955). Location theory and regional economic growth. \textit{Journal of
+Political Economy}, 63(3), 243--258.
+
 \bibitem[Oreiro \& Feijó(2010)]{oreiro2010}
 Oreiro, J. L. C. de, \& Feijó, C. A. (2010). Desindustrialização: conceituação, causas,
 efeitos e o caso brasileiro. \textit{Revista de Economia Política}, 30(2), 219--232.
@@ -738,6 +1023,10 @@ efeitos e o caso brasileiro. \textit{Revista de Economia Política}, 30(2), 219-
 Peixoto, F. C., Fochezatto, A., \& Porsse, A. A. (2013). Metodologia de análise
 inter-regional do agronegócio: aplicação ao caso do Rio Grande do Sul-restante do
 Brasil. \textit{Ensaios FEE}, 34(2), 585--618.
+
+\bibitem[Perroux(1955)]{perroux1955}
+Perroux, F. (1955). Note sur la notion de ``pôle de croissance''. \textit{Économie
+Appliquée}, 8(1--2), 307--320.
 
 \bibitem[Porsse et al.(2008)]{porsse2008matriz}
 Porsse, A. A., Peixoto, F. C., \& Palermo, P. U. (2008). \textit{Matriz de
@@ -762,6 +1051,10 @@ evidence. \textit{International Regional Science Review}, 8(3), 189--212.
 Sessa, C. B., Morandi, A. M., Lino, L. de S., Trindade, L. Z., \& Caliman, O. (2017).
 Implantação da Companhia Siderúrgica de Ubu: avaliação de impacto a partir da matriz
 insumo-produto do Espírito Santo. \textit{Economia e Desenvolvimento}, 28(2).
+
+\bibitem[Tiebout(1956)]{tiebout1956}
+Tiebout, C. M. (1956). Exports and regional economic growth. \textit{Journal of Political
+Economy}, 64(2), 160--164.
 
 \bibitem[Timmer et al.(2015)]{timmer2015wiod}
 Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J. (2015). An illustrated
