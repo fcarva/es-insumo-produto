@@ -24,9 +24,13 @@ import numpy as np, openpyxl
 warnings.filterwarnings("ignore")
 if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8")
 
-P   = r"C:/Users/DELL/Downloads/Material IO/Microrregiões do ES (2015).xlsx"
-OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
+P   = sys.argv[1] if len(sys.argv) > 1 else \
+      r"C:/Users/DELL/Downloads/Material IO/Microrregiões do ES (2015).xlsx"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 os.makedirs(OUT, exist_ok=True)
+if not os.path.exists(P):
+    sys.exit(f"[ERRO] matriz nao encontrada: {P}\n"
+             "Passe o caminho como argumento: python 24_micro_mult_chave.py <caminho do xlsx>")
 
 REG_NOME = {1:"Metropolitana",2:"Central Serrana",3:"Sudoeste Serrana",4:"Litoral Sul",
             5:"Central Sul",6:"Caparaó",7:"Rio Doce",8:"Centro-Oeste",9:"Nordeste",10:"Noroeste"}

@@ -24,9 +24,13 @@ import numpy as np
 import openpyxl
 if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8")
 
-DATA = r"C:/Users/DELL/Downloads/Material IO/Matrizes/MIP-ES-BR (2008).xlsx"
-OUT  = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
+DATA = sys.argv[1] if len(sys.argv) > 1 else \
+       r"C:/Users/DELL/Downloads/Material IO/Matrizes/MIP-ES-BR (2008).xlsx"
+OUT  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 os.makedirs(OUT, exist_ok=True)
+if not os.path.exists(DATA):
+    sys.exit(f"[ERRO] matriz nao encontrada: {DATA}\n"
+             "Passe o caminho como argumento: python 25_decomposicao_fd.py <caminho do xlsx>")
 num = lambda v: float(v) if isinstance(v, (int, float)) else 0.0
 
 wb = openpyxl.load_workbook(DATA, data_only=True); ws = wb["ES-BR"]
