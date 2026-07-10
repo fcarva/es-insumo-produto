@@ -58,9 +58,12 @@ setor-chave; ao longo de 2010--2021, a celulose adensa, a siderurgia oscila e a
 extração permanece enclave. Um benchmark com as 27 unidades da federação mostra que essa
 dualidade é \emph{genérica} ao método, mas que o ES é um de seus \emph{casos-limite} --- o
 segundo estado mais intensivo em setores de base e um dos de menor multiplicador de emprego.
-Essa base é, ademais, \emph{hiperaberta}: 24,9\% do multiplicador vaza para fora do estado, o
+Essa base é, ademais, \emph{aberta}: 24,9\% do multiplicador vaza para fora do estado e o
 \emph{spillover} escoa concentrado ao núcleo São Paulo--Rio (52,5\%) com \emph{feedback} de
-apenas 0,32\%, e essa lógica-plataforma reproduz-se, em \emph{escalas aninhadas}, entre as microrregiões.
+apenas 0,32\% --- mas um modelo nulo sobre as 27 unidades da federação mostra que essa
+mecânica é a prevista para o porte do estado (o ES não é \emph{outlier} em nenhuma métrica
+de decomposição): o que a abertura transporta de específico é a composição. Essa lógica
+reproduz-se, em \emph{escalas aninhadas}, entre as microrregiões.
 No território, o estado é um \emph{mosaico de vocações}:
 um núcleo metropolitano diversificado cercado por microrregiões especializadas
 (celulose no Rio Doce, rochas ornamentais no Central Sul, pelotização no Litoral Sul,
@@ -79,7 +82,7 @@ setores-chave; economia regional; Espírito Santo.
 \section{Introdução}
 \label{sec:intro}
 O Espírito Santo respondia, em 2008, por cerca de 2\% do produto nacional, mas sua
-estrutura produtiva é atípica: pequena, hiperaberta e organizada em torno de
+estrutura produtiva é atípica: pequena, aberta e organizada em torno de
 \emph{commodities} industriais de grande escala e intensivas em recursos naturais ---
 minério de ferro e pelotização, siderurgia, petróleo e gás, celulose e rochas
 ornamentais. Em menos de quatro décadas, a economia capixaba trocou de motor duas
@@ -97,7 +100,7 @@ pela demanda externa \citep{north1955,tiebout1956} --- e os \emph{polos de cresc
 indústrias motrizes que irradiam encadeamentos sobre a estrutura ao redor \citep{perroux1955}.
 Esse formato foi aplicado a diversos estados --- Mato Grosso
 \citep{figueiredo2004agriculture}, Rio Grande do Sul \citep{porsse2008matriz},
-entre outros. Para o Espírito Santo, há contribuições \emph{pontuais}:
+Pará \citep{sessofilho2010para}, entre outros. Para o Espírito Santo, há contribuições \emph{pontuais}:
 \citet{sessa2017ubu} avaliam o impacto socioeconômico de um projeto siderúrgico (a
 Companhia Siderúrgica de Ubu, em Anchieta) pela matriz capixaba, e \citet{ribeiro2024dinamica}
 regionalizam a matriz de 2015 nas dez microrregiões de planejamento, computando
@@ -243,7 +246,11 @@ mas o emprego que esse motor gera fica, em boa parte, aquém do seu peso --- é 
 interno que emprega. É a fotografia insumo-produto da \emph{base de exportação} de
 \citet{north1955} --- a demanda externa comanda o crescimento da produção ---, com a
 ressalva de \citet{tiebout1956} reaparecendo pelo lado do emprego: são as atividades
-\emph{residentes}, voltadas ao mercado interno, que carregam a ocupação.
+\emph{residentes}, voltadas ao mercado interno, que carregam a ocupação. O canal tieboutiano
+é visível no próprio fechamento do modelo: os multiplicadores de tipo~II --- que
+endogeneizam o consumo das famílias capixabas --- elevam o multiplicador médio de emprego de
+27,9 para 40,4 empregos por R\$\,1 milhão; é nesse circuito induzido, doméstico, que as
+atividades residentes se sustentam.
 
 \begin{table}[ht]
 \centering\small
@@ -310,7 +317,14 @@ no início desta seção (produção 1,76; emprego 27,9). As duas descrevem o me
 agregações distintas.} Nos indicadores neutros à composição --- multiplicador de produção (1,66; 14\textordmasculine)
 e ligação para trás ponderada (0,92; 14\textordmasculine) --- o ES é \emph{exatamente mediano}. É na
 \emph{composição} e no \emph{emprego} que ele se destaca: é o \textbf{segundo} estado mais intensivo em
-setores de base (36,4\%, só atrás de Mato Grosso) e está entre os de \textbf{menor} multiplicador de
+setores de base (36,4\%, só atrás de Mato Grosso)\footnote{A classificação
+base/\emph{commodity} (\texttt{10\_cluster\_setorial.py}) inclui Alimentos entre os setores de
+base --- escolha que eleva as parcelas de todos os estados, sobretudo dos cinco do grupo
+dinâmico cujo setor dominante é Alimentos (Tabela~\ref{tab:cluster}). O traço capixaba que
+independe desse rótulo é o setor \emph{dominante}: o ES é um dos três únicos estados do país,
+com Pará e Rio de Janeiro, liderados pela extrativa mineral. A reestimação do ranking
+excluindo Alimentos do rótulo fica registrada como checagem de replicação sobre
+\texttt{22\_*}/\texttt{10\_*}.} e está entre os de \textbf{menor} multiplicador de
 emprego (25,4 empregos por R\$ milhão; 24\textordmasculine\ de 27). O sintoma mais nítido: o emprego
 gerado por seu setor dominante equivale a apenas 39\% da média estadual --- o \textbf{segundo} valor
 mais baixo do país (mediana 65\%). O Espírito Santo não é, pois, um contraexemplo da regularidade, mas
@@ -464,7 +478,11 @@ Central Serrana & 1,5 & 1,43 & 82,3 & 0,31 \\
 \end{tabular}
 \caption{Multiplicadores de produção e renda (tipo I, ponderados pelo VBP setorial) e
 retenção intra-territorial do multiplicador, por microrregião (2015). A metrópole retém;
-a periferia extrativa vaza. Fonte: \texttt{24\_micro\_mult\_chave.py} sobre
+a periferia extrativa vaza. Nota: a retenção é a razão das somas ponderadas
+($\sum_j w_j O^{\mathrm{intra}}_j / \sum_j w_j O_j$) e difere, por construção, da média
+ponderada das razões setoriais usada em \S\ref{sec:plataforma} e no Apêndice~\ref{ap:s23}
+(Metropolitana: vazamento de 8,4\%, i.e., retenção de 91,6\%); as duas agregações descrevem
+o mesmo fluxo. Fonte: \texttt{24\_micro\_mult\_chave.py} sobre
 \texttt{outputs/micro\_multiplicadores.csv}.}
 \label{tab:micro}
 \end{table}
@@ -636,12 +654,17 @@ minério\,$\to$\,aço\,$\to$\,produtos de metal retém, internamente, encadeamen
 série nacional (1,41\,$\to$\,1,51): é o ramo de base com a trajetória estrutural mais favorável.
 \textbf{(iii) Diversificar com endereço territorial}: o mapa de vocação indica onde agregar valor
 sem partir do zero --- rochas ornamentais no Central Sul, têxtil no Centro-Oeste, agroindústria nas
-serranas. Por fim, a forte presença de setores extrativos de alto valor e baixo emprego direto ---
+serranas; a extração hipotética dá a medida do risco que essa agenda mitiga --- sem a metrópole,
+a produção da periferia cairia 13,0\%, e diversificar os territórios é também reduzir a
+mono-dependência do núcleo. Por fim, a forte presença de setores extrativos de alto valor e baixo emprego direto ---
 o ES é o segundo estado cujo setor líder menos emprega (Tabela~\ref{tab:bench}) --- recoloca os
 \textbf{royalties} não como detalhe fiscal, mas como o mecanismo central de \emph{captura de valor}
 de uma economia cuja riqueza, hoje, transita mais do que se fixa: dado o peso do petróleo (cerca de
 um quarto do produto estadual), a destinação das participações governamentais ao adensamento e à
-diversificação é, ela própria, uma política estrutural.
+diversificação é, ela própria, uma política estrutural --- tanto mais porque, como mostra o
+modelo nulo, o retorno via encadeamento é estruturalmente limitado para o porte capixaba (o
+\emph{feedback} observado fica abaixo até do previsto): a captura fiscal é o canal de retorno
+que resta.
 
 Fica registrada, por fim, a extensão \emph{ambiental} do diagnóstico: assim como exporta valor a
 montante, a economia de base capixaba exporta \emph{carbono incorporado} --- minério, siderurgia,
@@ -757,7 +780,10 @@ identidade em blocos
 \end{equation}
 donde $B^{LL}=\Delta_{LL}\Delta_L$: o bloco intra-regional da inversa global é o
 multiplicador interno \emph{amplificado} pelo externo, e o termo de \emph{feedback}
-de~\eqref{eq:feedback} é $(\Delta_{LL}-I)\Delta_L\,y^{L}$.
+de~\eqref{eq:feedback} é $(\Delta_{LL}-I)\Delta_L\,y^{L}$. No sistema bi-regional deste
+artigo, esse efeito do multiplicador externo capixaba é exatamente o \emph{feedback} de
+R\$\,164 milhões (0,32\% da injeção) reportado em \S\ref{sec:plataforma}: a amplificação
+externa do ES é praticamente nula.
 
 \subsection{Ligações de Rasmussen--Hirschman e grau de integração}
 \label{ap:rh}
@@ -835,7 +861,10 @@ $\bar{A}$ e $\bar{y}$, e recomputa-se $\bar{x}=(I-\bar{A})^{-1}\bar{y}$
 \citep{dietzenbacher1993,millerblair2009}. A perda relativa
 $\sum_{i\notin g}(x_i-\bar{x}_i)\big/\sum_{i\notin g}x_i$ mede a produção do resto do
 sistema que deixaria de existir sem $g$ --- aplicada no texto à extração da Região
-Metropolitana do sistema microrregional (\S\ref{sec:territorio}).
+Metropolitana do sistema microrregional (\S\ref{sec:territorio}). No experimento reportado,
+a injeção é a demanda final \emph{intra-estadual} (a demanda das dez microrregiões por seus
+próprios produtos); a queda de 13,0\% na produção da periferia deve ser lida sob essa
+injeção.
 
 % =====================================================================
 \section{Robustez e tratamento de dados}
@@ -1051,6 +1080,11 @@ evidence. \textit{International Regional Science Review}, 8(3), 189--212.
 Sessa, C. B., Morandi, A. M., Lino, L. de S., Trindade, L. Z., \& Caliman, O. (2017).
 Implantação da Companhia Siderúrgica de Ubu: avaliação de impacto a partir da matriz
 insumo-produto do Espírito Santo. \textit{Economia e Desenvolvimento}, 28(2).
+
+\bibitem[Sesso Filho \& Guilhoto(2010)]{sessofilho2010para}
+Sesso Filho, U. A., \& Guilhoto, J. J. M. (2010). Estrutura produtiva do Pará e sua
+inter-relação com o restante da economia brasileira: uma análise de insumo-produto.
+\textit{Revista Brasileira de Estudos Regionais e Urbanos}, 4(2), 81--104.
 
 \bibitem[Tiebout(1956)]{tiebout1956}
 Tiebout, C. M. (1956). Exports and regional economic growth. \textit{Journal of Political
