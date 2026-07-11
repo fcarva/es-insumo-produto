@@ -82,6 +82,31 @@ pct_ext_setor = x_ext[L] / np.where(x_full[L] == 0, 1, x_full[L]) * 100
 ext_prod = (prod_k[0] + prod_k[1]) / prod_tot * 100
 ext_emp  = (emp_k[0] + emp_k[1]) / emp_tot * 100
 
+# --- verificacao dedicada: VARIACAO DE ESTOQUES ES (o componente negativo) ---
+# 3 niveis: (a) demanda final DIRETA lida da matriz (coluna BK do xlsx, VarEst do
+# bloco ES; produtos ES = linhas 7-32); (b) producao INDUZIDA x = B@y (e o que a
+# Tabela 1 reporta); (c) por que o emprego atribuido pode ser POSITIVO com
+# producao negativa (composicao setorial: inducao negativa nos capital-intensivos,
+# positiva nos trabalho-intensivos).
+y_est = FD[:, 5]                          # VarEst ES (produtos ES e RB)
+x_est = B @ y_est
+emp_est = w_emp[L] * x_est[L]
+print("-" * 78)
+print("VERIFICACAO — VARIACAO DE ESTOQUES ES (por que -1%):")
+print(f"  (a) dem. final direta, produtos ES  (=SOMA(BK7:BK32) no xlsx): R$ {FD[L,5].sum():>10,.1f} mi")
+print(f"      dem. final direta, todos produtos (=SOMA(BK7:BK58))      : R$ {y_est.sum():>10,.1f} mi")
+print(f"  (b) producao INDUZIDA nos setores do ES (B@y, linha da Tab.1): R$ {x_est[L].sum():>10,.1f} mi"
+      f"  ({x_est[L].sum()/prod_tot*100:+.2f}% do total)")
+o_est = np.argsort(x_est[L])
+print("      inducao mais NEGATIVA:",
+      ", ".join(f"{names[j][:18]} ({x_est[L][j]:,.0f})" for j in o_est[:3]))
+pos = [j for j in o_est[::-1] if x_est[L][j] > 0][:3]
+if pos:
+    print("      inducao POSITIVA     :",
+          ", ".join(f"{names[j][:18]} (+{x_est[L][j]:,.0f})" for j in pos))
+print(f"  (c) emprego atribuido: {emp_est.sum()/1e3:+,.1f} mil — pode ser positivo com"
+      f" producao negativa se a inducao positiva cai em setores trabalho-intensivos")
+
 print("=" * 78)
 print("C4 — QUEM PUXA A ECONOMIA DO ES? Decomposicao pela demanda final (2008)")
 print("=" * 78)
