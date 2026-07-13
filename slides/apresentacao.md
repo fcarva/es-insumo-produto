@@ -1,5 +1,5 @@
 ---
-title: O Espírito Santo como economia-plataforma
+title: Estrutura Produtiva do Espírito Santo — uma análise de insumo-produto
 tags: apresentação, insumo-produto, PPGEco
 slideOptions:
   theme: white
@@ -81,7 +81,7 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal tr.sum-row td{ background:var(--b50); font-weight:700; color:var(--ink);
                        border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); }
 
-/* Resultado 3 — cluster por dentro */
+/* tabelas compactas */
 .reveal .t3{ width:100%; font-size:.7em; }
 .reveal .t3 th, .reveal .t3 td{ padding:.2em .65em; line-height:1.25; }
 .reveal .t3 td, .reveal .t3 th{ text-align:right; }
@@ -104,36 +104,11 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 .reveal section.center ul, .reveal section.center ol{ display:inline-block; text-align:left; }
 .reveal section.center h2, .reveal section.center h3{ border-bottom:none; }
 
-/* SLIDE DE FIGURA: imagem domina, texto mínimo.
-   max-height em px (coord. do slide), não vh — vh é relativo à janela e
-   estoura em tela cheia (1080p: 72vh ≈ 778px > 720). */
+/* SLIDE DE FIGURA: imagem domina, texto mínimo (max-height em px = coord. do slide) */
 .reveal section.fig h2{ border-bottom:none; margin-bottom:.12em; font-size:1.0em; }
 .reveal section.fig img{ max-height:550px; border:none; display:block; margin:.25em auto; }
-.reveal section.fig1 img{ max-height:628px; }   /* R1 não tem legenda separada: ocupa mais */
+.reveal section.fig1 img{ max-height:628px; }
 .reveal section.fig blockquote{ font-size:.78em; margin-top:.25em; }
-
-/* DUAS COLUNAS (figura + texto lado a lado) */
-.reveal .cols{ display:flex; gap:1.1em; align-items:center; }
-.reveal .cols .cfig{ flex:1.5 1 0; }
-.reveal .cols .ctxt{ flex:1 1 0; }
-.reveal .cols img{ max-height:66vh; }
-
-/* TABELA DENSA (distribuição completa dos 26 setores) */
-.reveal section.xs h2{ margin-bottom:.18em; }
-.reveal .xs .footnote{ font-size:.5em; line-height:1.3; }
-/* Estilo no próprio <table class="t4"> — robusto: independe da classe .xs do
-   slide (que vem de comentário e pode não pegar em todo renderizador). */
-.reveal .t4{ width:100%; font-size:.46em; line-height:1.18; table-layout:fixed; }
-.reveal .t4 th{ font-size:.82em; padding:.3em .45em; }
-.reveal .t4 td{ padding:.14em .45em; }
-.reveal .t4 td:first-child, .reveal .t4 th:first-child{ width:22%; }   /* Setor largo */
-.reveal .t4 td:not(:first-child), .reveal .t4 th:not(:first-child){ text-align:right; white-space:nowrap; }
-.reveal .t4 tbody tr:nth-child(even) td{ background:var(--b50); }      /* zebra suave */
-/* separadores de grupo (Ligações | Emprego | Peso), sutis */
-.reveal .t4 td:nth-child(6), .reveal .t4 th:nth-child(6),
-.reveal .t4 td:nth-child(8), .reveal .t4 th:nth-child(8),
-.reveal .t4 td:nth-child(10), .reveal .t4 th:nth-child(10){
-  border-left:1px solid var(--b200); }
 
 /* utilidades */
 .reveal .stat{ font-weight:800; font-size:1.4em; line-height:1.05; }
@@ -149,11 +124,12 @@ html, body, .reveal-viewport, .reveal, .reveal .slides{ background-color:var(--p
 
 <!-- .slide: class="center" -->
 
-# O Espírito Santo como economia-plataforma
+# Estrutura Produtiva do Espírito Santo
+## uma análise de insumo-produto
 
-Encadeamentos, vazamento de multiplicadores e a assimetria *spillover*/*feedback* na cadeia inter-regional de valor
+Multiplicadores, setores-chave, demanda, vocação territorial e a face plataforma de uma economia de base
 
-`MIP ES × Brasil 2008 · matriz interestadual 27-UF · WIOD 2014`
+`MIP ES × Brasil 2008 · série N68 2010–2021 · 10 microrregiões 2015 · 27 UFs · WIOD`
 
 <br>
 
@@ -161,308 +137,264 @@ Encadeamentos, vazamento de multiplicadores e a assimetria *spillover*/*feedback
 <span class="footnote">Análise de Insumo-Produto · Prof. Dr. Celso Bissoli Sessa · 2026/1</span>
 
 Note:
-O ES não é uma versão em miniatura do Brasil, e sim uma economia-plataforma — pequena, hiperaberta, organizada em torno de setores cuja demanda final se realiza fora do estado. Base: matriz inter-regional ES × restante do Brasil (2008), matriz interestadual das 27 UFs e WIOD 2014. Todos os números são reprodutíveis a partir do repositório.
+Caracterização da economia capixaba no gênero clássico brasileiro "Estrutura Produtiva de [Estado]" — a bateria completa de insumo-produto, em quatro frentes: retrato 2008, quem puxa a demanda, pano de fundo temporal 2010–2021 e vocação territorial 2015, mais a face da abertura. Todos os números reproduzíveis do repositório.
 
 ---
 
-## O Brasil e o Espírito Santo
+## Uma economia atípica — e uma lacuna
 
-**Visão convencional** — uma economia estadual que reproduz, em escala reduzida, a estrutura produtiva do país.
+**O ES em duas linhas:** ≈2% do produto nacional; trocou de motor **duas vezes** em 40 anos — café → indústria de base (anos 1980: CST, Samarco, Aracruz) → **petróleo** (~¼ do produto estadual).
 
-**Economia-plataforma** — pequena, hiperaberta, estruturada em torno de setores cuja **demanda final se realiza fora do estado**.
+**O gênero:** a escola brasileira consolidou o formato "Estrutura Produtiva de [Estado]" — MT (Figueiredo et al. 2004), RS (Porsse et al. 2008), **Pará** (Sesso Filho & Guilhoto 2010)...
+
+**A lacuna:** para o ES, só contribuições pontuais (Ubu: Sessa et al. 2017; microrregiões: Ribeiro et al. 2024). **Falta a caracterização abrangente.**
+
+> **Três perguntas descritivas:** (i) *que tipo de economia* é o ES — e **quem a puxa**? (ii) como seus setores de base evoluíram **no tempo**? (iii) qual a **vocação** de cada território?
+
+Note:
+Não é teste de hipótese: é caracterização sistemática e reprodutível, no formato que o campo consolidou para outros estados e nunca fez de forma abrangente para o ES.
+
+---
+
+## As duas lentes da teoria regional
+
+**Base de exportação** — o crescimento regional é comandado pela demanda **externa** (North 1955); a réplica de Tiebout (1956): as atividades **residentes** e o mercado interno importam.
+
+**Polos de crescimento** — o crescimento aparece em **pontos**: indústrias motrizes que irradiam encadeamentos (Perroux 1955).
 
 <br>
 
-**Três perguntas organizam a análise:**
-
-1. Para onde vai o **multiplicador capixaba** — quanto fica e quanto vaza?
-2. **Para onde** vaza — quem absorve o encadeamento que escapa?
-3. Que **estágio na cadeia de valor** esse destino revela?
+> A bateria insumo-produto **operacionaliza as duas lentes**: a decomposição da demanda final mede a base exportadora; as ligações puras medem os polos.
 
 Note:
-A intuição comum trata um estado como "mini-país". O trabalho testa e rejeita isso para o ES. A novidade frente à versão anterior: além de "quanto vaza", respondemos "para onde vaza" (decomposição interestadual) e situamos o ES em cadeias de valor.
+O artigo ancora a caracterização nas duas tradições fundadoras — e o dado capixaba conversa com as duas: North aparece na produção puxada de fora, Tiebout no emprego que fica com o mercado interno, Perroux nos polos identificados pelas ligações puras.
 
 ---
 
-## Contexto — o ES em 2008
+## Dados & método
 
-### ≈ 2,0% do produto nacional
+| Matriz | Recorte | Papel |
+|---|---|---|
+| **ES × restante do BR (2008)** | 26 setores, c/ **emprego** | retrato estrutural + quem puxa |
+| Interestadual **27 UFs (2008)** | 26 setores/UF | benchmark + destino do vazamento |
+| **Série nacional N68** | 68 setores, 2010–2021 | pano de fundo temporal |
+| **10 microrregiões ES (2015)** | 35 setores | vocação territorial |
+| WIOD 2014 | 44 países, 56 setores | posição em cadeias globais |
 
-Economia **aberta**: elevado coeficiente de comércio interestadual — boa parte dos insumos e da demanda cruza a fronteira do estado.
+**Bateria:** multiplicadores (produção/emprego/renda, tipos I e II) · Rasmussen-Hirschman (frente por **Ghosh**) · **ligações puras** (GHS) · LQ/HHI · decomposição da demanda final · Isard/Miyazawa · **modelo nulo de porte** · **extração hipotética**.
 
-<br>
-
-Setores de maior peso, com **demanda final fora do estado**:
-
-- Mineração · Metalurgia · Celulose e papel
-- Refino de petróleo · Transporte e complexo portuário
+<span class="footnote">Regionalização IIOAS (Haddad et al. 2017). Formulário completo nos Apêndices A/B do artigo; pipeline reprodutível `pesquisa/01–26` + CSVs versionados.</span>
 
 Note:
-O ponto não é o tamanho (2% do PIB), e sim a estrutura: pauta concentrada em setores de passagem (minério, metalurgia, celulose/papel, refino, complexo logístico-portuário). Pequeno + hiperaberto + concentrado em setores cuja demanda final está fora → tese plataforma.
+Três matrizes-âncora + benchmark + CGV. O método está todo em apêndice no artigo, equação a equação — Isard aditivo, Miyazawa multiplicativo, GHS na linhagem de Cella, modelo nulo, HEM.
 
 ---
 
-## Dados & fontes
+## Retrato 2008 — os líderes não empregam
 
-**Núcleo — MIP inter-regional ES × restante do Brasil (2008)**
-26 setores por região, R\$ milhões, contábil e balanceada, com vetor de pessoal ocupado. Regionalização (Guilhoto & Sesso Filho, 2005) + fluxos IIOAS (Haddad et al., 2017).
+Multiplicador de produção médio: **1,76** (tipo I) · **2,45** (tipo II).
 
-**Geografia — matriz interestadual das 27 UFs (2008)** → rastreia o *destino* do vazamento, estado a estado.
+**O contraste central do retrato:**
 
-**Cadeias globais — WIOD 2014 (44 regiões, 56 setores)** → *upstreamness* (Antràs-Chor).
-
-> **Validação.** Vazamento médio do multiplicador = <span class="stat">24,9%</span> &nbsp;converge com os **27,4%** de Haddad et al. (2017). A bi-regional e a interestadual dão a **mesma** injeção e o mesmo spillover. ✓
-
-Note:
-Matriz contábil e perfeitamente balanceada (consistência 0,00%). A interestadual é o que permite o resultado novo de "para onde vaza". Credibilidade: nosso vazamento converge com Haddad; e a bi-regional e a interestadual se validam mutuamente.
-
----
-
-## Método I — arcabouço inter-regional (Isard)
-
-Duas regiões: $L$ (ES) e $M$ (restante do Brasil). Coeficientes e inversa de Leontief em blocos:
-
-$$
-A=\begin{bmatrix} A^{LL} & A^{LM}\\ A^{ML} & A^{MM}\end{bmatrix},
-\qquad
-\begin{bmatrix} x^{L}\\ x^{M}\end{bmatrix}=(I-A)^{-1}\begin{bmatrix} f^{L}\\ f^{M}\end{bmatrix}=B\,f
-$$
-
-com $A=Z\hat{x}^{-1}$. Os blocos **fora da diagonal** ($A^{LM},A^{ML}$) carregam o comércio entre ES e Brasil.
-
-Note:
-Quatro blocos: intra na diagonal, inter fora dela. São os blocos de fora da diagonal que carregam o comércio ES↔Brasil — e que permitem separar spillover de feedback. f = demanda final.
-
----
-
-## Método I — *spillover* e *feedback*
-
-Resolvendo para a região $L$, a forma reduzida traz o **feedback** explícito:
-
-$$
-x^{L}=\underbrace{(I-A^{LL})^{-1}}_{\text{intra}}f^{L}
-+\underbrace{\big[(I-A^{LL}-A^{LM}(I-A^{MM})^{-1}A^{ML})^{-1}-(I-A^{LL})^{-1}\big]f^{L}}_{\text{feedback}}
-$$
-
-- $\Delta f^{L}$ eleva a produção em $M$ → ***spillover***
-- essa produção requer insumos de volta a $L$ → ***feedback***
-
-> O modelo inter-regional **isola a magnitude** de cada efeito — a matriz isolada do ES só mediria o vazamento total, não seu destino.
-
-Note:
-A vantagem decisiva da inter-regional é separar spillover de feedback. Spillover = produção que a demanda capixaba puxa para fora; feedback = o que retorna ao ES como insumo. É o experimento do Resultado 1.
-
----
-
-## Método II — multiplicadores & vazamento
-
-A partir de $B=(I-A)^{-1}$, o **multiplicador de produção** (soma de coluna) decompõe-se em retido e vazado:
-
-$$
-O_j=\underbrace{\textstyle\sum_{i\in L} b_{ij}}_{O^{L}_j\ \text{(retido)}}
-+\underbrace{\textstyle\sum_{i\in M} b_{ij}}_{O^{M}_j\ \text{(vazado)}}
-,\qquad
-\text{vazamento}_j=\frac{O^{M}_j}{O_j}
-$$
-
-**Emprego** ($w_i=\text{ocupações}_i/x_i$): $\;E_j=\sum_i w_i\,b_{ij}$.
-**Upstreamness** (Antràs-Chor): $\;U=(I-G)^{-1}\mathbf{1}$, &nbsp; $G_{ij}=z_{ij}/x_i$.
-
-Note:
-O multiplicador de produção é a soma de coluna da inversa; a decomposição retido/vazado é a métrica central. Emprego usa o coeficiente de trabalho. Upstreamness mede a distância ao consumo final — quanto maior, mais "a montante".
-
----
-
-<!-- .slide: class="fig fig1" -->
-
-## Resultado 1 — o ES move o país, que não o move de volta
-
-![Sankey — destino do spillover do ES](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_sankey.png)
-
-Note:
-O número que prende a plateia. A demanda final do ES (R$51,5 bi) põe em movimento R$81,8 bi de produção: 78% fica no ES, R$18,2 bi vazam (spillover) e só R$164 mi — 0,32% — retornam (feedback). A barra de contexto no topo mostra a assimetria; o diagrama estratifica o destino. Pausa após o 0,32%.
-
----
-
-## Resultado 1 — a assimetria, em números
-
-**Experimento:** injeta-se a demanda final do ES por produtos do ES, $f^{L}$, com $f^{M}=0$.
-
-| Fluxo | Magnitude |
+| Quem multiplica... | Setores |
 |---|---|
-| **Injeção** — demanda final do ES por produtos do ES | R\$ 51,5 bi |
-| Produção total posta em movimento | R\$ 81,8 bi |
-| → ***Spillover*** — produção no restante do Brasil | **R\$ 18,2 bi** |
-| ← ***Feedback*** — retorno ao ES | **R\$ 164 mi · <span class="es">0,32%</span>** |
+| **Produção** | alimentos (2,31) · refino (2,11) · mat. transporte · químicos |
+| **Emprego** (27,9/R$ mi) | **têxtil (67,9)** · pecuária (57) · alojamento (50) · serviços (49) |
+| **Renda** | educação · adm. pública · saúde · serviços |
 
-> **O estado puxa o país; o país quase não o puxa de volta.** Do total posto em movimento, **78% fica no ES**.
-
-<span class="footnote">Convenção Miller-Blair reprodutível (Tipo I). A assimetria é robusta: feedback/injeção = 0,15–0,32% sob qualquer convenção.</span>
+> Os setores que **lideram** a economia capixaba não são os que **empregam** nem os que **distribuem renda** — nenhum trabalho-intensivo é setor de base.
 
 Note:
-A versão-semente reportava 60,6/22,4/0,26%, que não reproduzem na matriz; adotamos a convenção Miller-Blair reprodutível. A tese qualitativa não muda.
+O trade-off clássico da industrialização de base, agora medido: produção nos pesados, emprego nos trabalho-intensivos, renda nos serviços/público.
 
 ---
 
 <!-- .slide: class="fig" -->
 
-## Resultado 2 — para onde vaza: o Sudeste absorve dois terços
+## Retrato 2008 — dualidade: enclave × setor-chave
 
-![Destino do spillover por estado e macrorregião](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_spillover_destino.png)
+![Mapa de ligações dos 26 setores](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/fig_setores_chave.png)
 
-> <span class="nuc">**Sudeste (ex-ES) = 65%**</span> &nbsp;·&nbsp; <span class="nuc">SP 38%</span> · <span class="nuc">RJ 15%</span> · <span class="clu">MG 13%</span>. O ES alimenta seus vizinhos mais ricos.
+> Setores-chave = **transformação** (refino, químicos, metalurgia...). A **mineração**: frente ≈1,2, trás ≈0,9 — fornecedora a montante, **enclave**. Ligações puras (polos perrouxianos): **mineração 4,4 · metalurgia 3,4**.
 
 Note:
-O vazamento não se dispersa: dois terços ficam no próprio Sudeste, mais da metade no eixo SP-RJ. SP/RJ em azul (núcleo), MG/pares em verde (cluster). O encadeamento que escapa é capturado a jusante por economias mais diversificadas.
+A dualidade que organiza o artigo: extração-enclave (compra pouco internamente) vs transformação-chave. Pelas ligações puras — ponderadas por tamanho, na linhagem Cella→GHS — mineração e metalurgia são os polos de crescimento no sentido de Perroux.
 
 ---
 
-<!-- .slide: class="fig" -->
+## Quem puxa a economia — North e Tiebout no dado
 
-## Resultado 3 — o ES num cluster de estados dinâmicos
+$x^{(k)}=B\,y^{(k)}$: produção e emprego atribuídos a cada componente da demanda final.
 
-![O ES no cluster — destino e abertura](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_cluster.png)
+| Componente | Produção | Emprego |
+|---|--:|--:|
+| **Demanda externa** (RB + exportações) | **61,7%** | **47,5%** |
+| Consumo das famílias ES | 18,8% | 25,7% |
+| Governo + ISFLSF ES | 13,1% | 16,1% |
+| FBCF + estoques ES | 6,3% | 10,7% |
 
-> O ES escoa <span class="nuc">**52,5% ao núcleo SP/RJ**</span> e só <span class="clu">31,5% aos pares</span> — o elo vai ao centro, o capital não volta.
+> O motor da produção está **fora** (North); o emprego fica desproporcionalmente com o **mercado interno** (Tiebout). O canal tieboutiano é o **tipo II**: o induzido eleva o multiplicador de emprego de 27,9 → **40,4**.
+
+<span class="footnote">Refino/metalurgia/mineração: >96% puxados de fora. Adm. pública/educação/saúde: ≥90% domésticos. Variação de estoques negativa em 2008 (desova de crise).</span>
 
 Note:
-Ponte com um debate de mercado contemporâneo (Apex Partners): um cluster de estados dinâmicos sub-cobertos pelo capital, do qual o ES faz parte e que exclui justamente SP/RJ. Contraparte estrutural: o ES gera encadeamento que escoa para o núcleo, com feedback ~0.
+A fotografia insumo-produto da base de exportação — com a nuance distributiva: quem produz para fora não é quem emprega. 61,7% da produção vs 47,5% do emprego.
 
 ---
 
 <!-- .slide: class="tight" -->
 
-## Resultado 3 — o cluster por dentro
-
-8 estados de crescimento acima da média, **sub-cobertos pelo mercado de capitais** (leitura Apex Partners), que excluem o núcleo SP/RJ.
+## Benchmark 27 UFs — genérico em tipo, extremo em grau
 
 <table class="t3">
 <thead>
-<tr><th>Estado</th><th>PIB %</th><th>Vaz. %</th><th>Mult. méd.</th><th>Base/<em>comm.</em> %</th><th>Setor dominante</th></tr>
+<tr><th>Métrica</th><th>ES</th><th>posição</th><th>mediana 27 UFs</th><th>leitura</th></tr>
 </thead>
 <tbody>
-<tr class="es-row"><td><span class="es">ES</span></td><td>2,2</td><td>22,8</td><td>1,76</td><td><strong>36,4</strong></td><td>Mineração</td></tr>
-<tr><td>MG</td><td>9,5</td><td>20,9</td><td>1,85</td><td>29,6</td><td>Metalurgia</td></tr>
-<tr><td>SC</td><td>4,1</td><td>22,5</td><td>1,80</td><td>21,7</td><td>Alimentos</td></tr>
-<tr><td>PR</td><td>6,0</td><td>22,3</td><td>1,90</td><td>28,0</td><td>Alimentos</td></tr>
-<tr><td>RS</td><td>6,7</td><td>21,8</td><td>1,93</td><td>24,6</td><td>Alimentos</td></tr>
-<tr><td>GO</td><td>2,6</td><td>25,1</td><td>1,89</td><td>32,8</td><td>Alimentos</td></tr>
-<tr><td>MT</td><td>1,8</td><td>27,4</td><td>2,01</td><td>43,4</td><td>Agricultura</td></tr>
-<tr><td>MS</td><td>1,1</td><td>25,7</td><td>1,78</td><td>30,1</td><td>Alimentos</td></tr>
-<tr class="sum-row"><td>Cluster (8 UF)</td><td>33,9</td><td>23,6</td><td>1,87</td><td>30,8</td><td>—</td></tr>
-<tr class="nuc-row"><td>SP</td><td>32,0</td><td><strong>14,2</strong></td><td>1,84</td><td>18,0</td><td>Serv. privados</td></tr>
-<tr class="nuc-row"><td>RJ</td><td>11,2</td><td>15,6</td><td>1,71</td><td>27,4</td><td>Mineração</td></tr>
-<tr class="sum-row"><td>Núcleo SP/RJ</td><td>43,3</td><td>14,9</td><td>1,77</td><td>22,7</td><td>—</td></tr>
+<tr><td>Mult. de produção (pond.)</td><td>1,66</td><td>14º</td><td>1,66</td><td>exatamente mediano</td></tr>
+<tr><td>Ligação para trás (pond.)</td><td>0,92</td><td>14º</td><td>0,92</td><td>exatamente mediano</td></tr>
+<tr class="es-row"><td>Setores de base (%)</td><td><strong>36,4</strong></td><td><strong>2º</strong></td><td>21,0</td><td>extremo (só MT acima)</td></tr>
+<tr class="es-row"><td>Mult. de emprego (/R$ mi)</td><td>25,4</td><td>24º</td><td>42,5</td><td>entre os menores</td></tr>
+<tr class="es-row"><td>Emprego do líder ÷ média</td><td>0,39</td><td>2º menor</td><td>0,65</td><td>líder que não emprega</td></tr>
 </tbody>
 </table>
 
-<span class="footnote">Mult. méd. = multiplicador de produção médio. O ES é o 2º mais intensivo em base (só MT acima) e, com o RJ, o único cujo setor dominante é Mineração. Resumo: PIB = soma; demais = média simples.</span>
+> O ES não é contraexemplo da regularidade — é um de seus **casos-limite**: a economia onde a base pesa mais e menos emprego direto distribui. Setor dominante = **Mineração**: só ES, PA e RJ no país.
+
+<span class="footnote">Médias ponderadas pela produção, matriz interestadual (por isso ≠ 1,76/27,9 da bi-regional — nota de conciliação no artigo). Classificação de base declarada em nota (inclui Alimentos).</span>
 
 Note:
-Dentro do cluster, o ES é dos mais "commodity" e abertos; o núcleo SP/RJ retém (SP é o menos aberto do país, 14,2%). Isso reforça o caráter-plataforma do ES mesmo entre seus pares dinâmicos.
-
----
-
-<!-- .slide: class="xs" -->
-
-## Resultado 4 — vazamento do multiplicador: distribuição completa
-
-<table class="t4">
-<thead>
-<tr><th>Setor</th><th class="n" style="text-transform:none">O<sub>j</sub></th><th class="n">Retido</th><th class="n">Vazado</th><th class="n">Vaz. %</th><th class="n">L.trás</th><th class="n">L.fr</th><th class="n">M.empr</th><th class="n">Empr. %</th><th class="n">VBP</th></tr>
-</thead>
-<tbody>
-<tr><td>Imobiliário/aluguel</td><td>1,15</td><td>1,09</td><td>0,06</td><td>5,3</td><td>0,64</td><td>0,65</td><td>6,3</td><td>12,3</td><td>3,5</td></tr>
-<tr><td>Educação</td><td>1,31</td><td>1,16</td><td>0,15</td><td>11,6</td><td>0,73</td><td>0,57</td><td>33,6</td><td>7,1</td><td>3,4</td></tr>
-<tr><td>Financeiro/seguros</td><td>1,47</td><td>1,28</td><td>0,19</td><td>12,8</td><td>0,82</td><td>1,21</td><td>12,7</td><td>20,6</td><td>3,0</td></tr>
-<tr><td>Adm. pública</td><td>1,43</td><td>1,21</td><td>0,21</td><td>15,0</td><td>0,80</td><td>0,60</td><td>19,5</td><td>16,0</td><td>6,4</td></tr>
-<tr><td>Comércio</td><td>1,42</td><td>1,19</td><td>0,23</td><td>16,0</td><td>0,79</td><td>0,91</td><td>36,9</td><td>7,6</td><td>10,5</td></tr>
-<tr><td>Serviços privados</td><td>1,50</td><td>1,23</td><td>0,27</td><td>17,9</td><td>0,84</td><td>1,18</td><td>49,2</td><td>8,4</td><td>8,2</td></tr>
-<tr><td>Saúde</td><td>1,54</td><td>1,24</td><td>0,29</td><td>19,1</td><td>0,86</td><td>0,57</td><td>28,7</td><td>14,9</td><td>3,3</td></tr>
-<tr><td>Eletricidade/gás/água</td><td>1,83</td><td>1,45</td><td>0,39</td><td>21,0</td><td>1,02</td><td>1,32</td><td>11,6</td><td>28,4</td><td>2,1</td></tr>
-<tr><td>Agricultura/silvic.</td><td>1,45</td><td>1,14</td><td>0,31</td><td>21,6</td><td>0,81</td><td>0,93</td><td>46,7</td><td>9,9</td><td>3,9</td></tr>
-<tr><td>Mineração</td><td>1,64</td><td>1,26</td><td>0,37</td><td>22,7</td><td>0,91</td><td>1,23</td><td>10,1</td><td>42,4</td><td>16,7</td></tr>
-<tr><td>Máquinas/equip.</td><td>2,00</td><td>1,50</td><td>0,50</td><td>24,9</td><td>1,12</td><td>0,93</td><td>17,2</td><td>26,5</td><td>0,8</td></tr>
-<tr><td>Construção</td><td>1,70</td><td>1,26</td><td>0,43</td><td>25,5</td><td>0,95</td><td>0,69</td><td>30,1</td><td>16,1</td><td>6,9</td></tr>
-<tr><td>Mat. de transporte</td><td>2,10</td><td>1,55</td><td>0,55</td><td>26,1</td><td>1,17</td><td>1,11</td><td>16,0</td><td>29,7</td><td>0,2</td></tr>
-<tr><td>Refino/coque</td><td>2,11</td><td>1,53</td><td>0,59</td><td>27,8</td><td>1,18</td><td>1,17</td><td>21,7</td><td><strong>61,6</strong></td><td>0,5</td></tr>
-<tr><td>Têxtil/vestuário</td><td>1,87</td><td>1,35</td><td>0,53</td><td>28,1</td><td>1,04</td><td>0,82</td><td>67,9</td><td>17,8</td><td>0,8</td></tr>
-<tr><td>Metalurgia</td><td>1,96</td><td>1,39</td><td>0,57</td><td>29,3</td><td>1,09</td><td>1,30</td><td>11,3</td><td><strong>49,3</strong></td><td>10,7</td></tr>
-<tr><td>Químicos/farma</td><td>2,10</td><td>1,48</td><td>0,62</td><td>29,4</td><td>1,17</td><td>1,71</td><td>13,3</td><td>41,2</td><td>1,1</td></tr>
-<tr><td>Mat. elétrico/eletrôn.</td><td>1,99</td><td>1,40</td><td>0,59</td><td>29,8</td><td>1,11</td><td>1,12</td><td>15,5</td><td>34,2</td><td>0,6</td></tr>
-<tr><td>Pecuária e pesca</td><td>1,64</td><td>1,14</td><td>0,49</td><td>30,2</td><td>0,91</td><td>1,08</td><td>57,0</td><td>19,4</td><td>1,5</td></tr>
-<tr><td>Transporte/armaz.</td><td>1,77</td><td>1,24</td><td>0,54</td><td>30,3</td><td>0,99</td><td>1,22</td><td>22,4</td><td>23,1</td><td>8,6</td></tr>
-<tr><td>Indústrias diversas</td><td>1,84</td><td>1,28</td><td>0,56</td><td>30,5</td><td>1,02</td><td>0,74</td><td>40,3</td><td>16,3</td><td>0,6</td></tr>
-<tr><td>Min. não-metálicos</td><td>1,90</td><td>1,32</td><td>0,58</td><td>30,7</td><td>1,06</td><td>1,09</td><td>23,1</td><td>28,2</td><td>2,7</td></tr>
-<tr><td>Alojamento/alim.</td><td>1,76</td><td>1,20</td><td>0,56</td><td>31,9</td><td>0,98</td><td>0,75</td><td>50,2</td><td>22,2</td><td>2,1</td></tr>
-<tr><td>Madeira/papel</td><td>1,96</td><td>1,26</td><td>0,70</td><td>35,8</td><td>1,09</td><td>0,84</td><td>21,9</td><td><strong>50,3</strong></td><td>2,8</td></tr>
-<tr><td>Borracha/plástico</td><td>2,05</td><td>1,30</td><td>0,75</td><td>36,8</td><td>1,14</td><td>1,26</td><td>19,9</td><td>32,9</td><td>0,3</td></tr>
-<tr><td><strong>Alimentos</strong></td><td>2,31</td><td>1,45</td><td>0,86</td><td><strong>37,4</strong></td><td>1,29</td><td>0,78</td><td>42,5</td><td><strong>56,5</strong></td><td>3,5</td></tr>
-</tbody>
-</table>
-
-<span class="footnote">O<sub>j</sub> = multiplicador de produção (Retido + Vazado = O<sub>j</sub>). L.trás / L.fr = ligações de Rasmussen para trás / frente (>1 = acima da média). M.empr = empregos por R\$ mi. VBP em R\$ bi. Ordenado por vazamento de produção; média ES **24,9%** (simples) / **22,8%** (ponderada).</span>
-
-Note:
-Distribuição completa dos 26 setores, ordenada pelo vazamento de produção. Imobiliário quase não vaza (5,3%, local); alimentos vaza muito (37,4%). No emprego, os setores pesados (refino 61,6, alimentos 56,5, madeira 50,3, metalurgia 49,3) lideram. Médias: 24,9% simples / 22,8% ponderada.
-
----
-
-## Resultado 5 — o vazamento de emprego é ainda mais agudo
-
-Nos setores pesados, **metade ou mais** do emprego puxado pela demanda capixaba realiza-se fora do estado.
-
-| Setor | % do emprego que vaza |
-|---|--:|
-| Refino de petróleo | **61,6%** |
-| Alimentos | 56,5% |
-| Madeira e papel | 50,3% |
-| Metalurgia | 49,3% |
-
-> **Núcleo operacional** da tese: o ES movimenta a cadeia, mas o emprego associado se materializa lá fora.
-
-Note:
-O vazamento é mais agudo no emprego e concentrado nos setores pesados. Metade ou mais dos postos que a demanda capixaba sustenta nesses setores ficam fora do ES.
+A resposta ao "específico × genérico": nos indicadores neutros à composição o ES é mediano; é na composição e no emprego que ele é extremo.
 
 ---
 
 <!-- .slide: class="fig" -->
 
-## Resultado 6 — o ES está preso a montante da cadeia de valor
+## O tempo (2010–2021) — celulose adensa, extração dispensa
 
-![Upstreamness da pauta do ES — WIOD 2014](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_upstreamness.png)
+![Trajetória das ligações dos setores-base](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/fig_trajetoria_n68.png)
 
-> Pauta do ES: <span class="es">**3,12**</span> &nbsp;·&nbsp; Brasil 1,91 · mundo 2,31 · mineração no **percentil ~98** global.
+> **Celulose**: 1,41 → **1,51** (único setor-base que adensa). **Siderurgia**: recuo em 2021 = **efeito de preço** do aço (matrizes a preços correntes — diagnóstico próprio). **Extração**: sempre <1 — enclave.
+
+<span class="footnote">Ressalva de objeto: série NACIONAL — tendência dos setores, não do estado (o ES só tem âncoras 2008 e 2015).</span>
 
 Note:
-A inter-regional mostra para onde vaza; a CGV mostra o porquê estrutural. ES preso a montante: upstreamness 3,12 contra 1,91 do Brasil. Fornecedor de matéria-prima; o valor a jusante (manufatura, marca, serviços) está fora.
+A dualidade do retrato persiste no tempo. A queda da siderurgia em 2021 foi investigada (diag_sider.py): não é quebra de classificação, é o salto do preço do aço sobre coeficientes a preços correntes.
 
 ---
 
-## Síntese
+<!-- .slide: class="fig" -->
 
-O mapa do vazamento é, ao mesmo tempo, um mapa de **fragilidade** e de **oportunidade**.
+## O território (2015) — um mosaico de vocações
 
-**Fragilidade** — setores que apenas transitam pelo estado (mineração, refino): multiplicador e emprego vazam; o valor realiza-se fora, sobretudo no núcleo SP/RJ.
+![Quociente locacional por setor e microrregião](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/fig_micro_vocacao.png)
 
-**Oportunidade** — setores que retêm multiplicador e adensam cadeia (alimentos, serviços): motores efetivos de profundidade do mercado regional.
-
-> A análise insumo-produto operacionaliza a **"vocação local"**: distingue os setores que aprofundam a cadeia dos que apenas a atravessam — base para teses de adensamento e de **mercado de capitais fora do eixo Rio–SP**.
+> Núcleo metropolitano diversificado (62% da produção) cercado por especializações: **celulose** no Rio Doce (LQ 8,2) · **rochas** no Central Sul (7,7) · **pelotização** no Litoral Sul (9,5) · **têxtil** no Centro-Oeste (9,6) · **pecuária** na Central Serrana (21,9).
 
 Note:
-A mesma quantidade — o vazamento — tem dupla leitura. Fragilidade: dependência externa. Oportunidade: onde adensar (setores que retêm). Elo com a leitura de capital do Resultado 3.
+Cada território acende exatamente no setor que a geografia econômica conhecida prevê — a vocação valida a chave das microrregiões. Os enclaves extrativos são também os territórios mais mono-estruturais (HHI).
+
+---
+
+## O território — centro e periferia, medidos
+
+| Microrregião | % VBP | Mult. (pond.) | **Retenção intra** | Mult. renda |
+|---|--:|--:|--:|--:|
+| Metropolitana | 62,3 | 1,64 | **90,9%** | 0,37 |
+| Rio Doce | 10,6 | 1,64 | 74,3% | 0,31 |
+| Litoral Sul | 4,1 | 1,76 | **66,2%** | 0,34 |
+| Caparaó | 1,9 | 1,42 | 88,2% | 0,39 |
+
+**A metrópole retém; a periferia extrativa compra na metrópole.**
+
+> **Extração hipotética:** removida a Metropolitana do sistema, a produção das demais microrregiões cairia <span class="stat es">−13,0%</span>
+
+<span class="footnote">Multiplicador simples ≈ idêntico entre regiões (tecnologia IIOAS comum): o que difere é composição e retenção. Retenção = razão das somas ponderadas (conciliação com o vazamento 8,4% em nota do artigo).</span>
+
+Note:
+O desenho centro-periferia deixa de ser qualitativo: a periferia depende do núcleo capixaba como o estado depende do Sudeste. Nenhum plano sub-estadual dispunha desse número.
+
+---
+
+<!-- .slide: class="fig" -->
+
+## A face plataforma — vazamento e destino
+
+![Sankey — destino do spillover do ES](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_sankey.png)
+
+> Vazamento médio **24,9%** · spillover R$ 18,2 bi · **feedback 0,32%** · núcleo SP+RJ absorve **52,5%**. No emprego, os pesados vazam metade ou mais (refino **61,6%**).
+
+Note:
+A herança do trabalho anterior, agora como UMA seção da caracterização: a economia de base realiza parte do seu encadeamento fora — e o destino é concentrado nos vizinhos ricos.
+
+---
+
+<!-- .slide: class="fig" -->
+
+## Mas a mecânica é a prevista para o porte
+
+![Invariância de escala — feedback × porte nas duas escalas](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/figuras/fractal_duas_escalas.png)
+
+> **Modelo nulo** ($m_r=\alpha+\beta\ln x_r+\varepsilon$): o ES **não é outlier** em nenhuma métrica (z: +0,45 · −0,05 · +0,03); feedback observado **abaixo** do previsto. Retorno é privilégio de núcleo: SP+RJ **1,97%** vs 0,49%. MG (60%) e RS (55%) escoam **mais** ao núcleo que o ES (52,5%).
+
+<span class="footnote">R² = 0,59 (27 UFs) e 0,91 (10 microrregiões): a mesma mecânica de posição-e-porte nas duas escalas.</span>
+
+Note:
+O teste que poderia derrubar a retórica — e foi publicado: a mecânica do vazamento é genérica. O que é específico do ES não é a decomposição, é a COMPOSIÇÃO que ela transporta. Honestidade que virou diferencial no parecer.
+
+---
+
+<!-- .slide: class="fig" -->
+
+## A contraparte global — fornecedor a montante
+
+![Upstreamness da pauta do ES — WIOD 2014](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/es_upstreamness.png)
+
+> Pauta do ES: <span class="es">**3,12**</span> · Brasil 1,91 · mundo 2,31 · mineração 33ª de 2.279 (~p99). O valor a jusante realiza-se em outras regiões e países.
+
+Note:
+Tradução em escala de cadeia global do mesmo diagnóstico: economia de base, a montante. Tratamento da base WIOD (185 pares excluídos) documentado no Apêndice B.
+
+---
+
+## Síntese — três descrições do mesmo dado
+
+**O ES é uma economia de base, dual e puxada de fora**: líderes grandes, a montante, intensivos em capital — que geram encadeamento, mas pouco emprego e renda diretos.
+
+| Lente | O que o dado mostra |
+|---|---|
+| **North** (base de exportação) | demanda externa puxa **61,7%** da produção |
+| **Perroux** (polos motrizes) | mineração (4,4) e metalurgia (3,4) concentram o encadeamento |
+| **Cano/Friedmann** (centro-periferia) | o valor escoa ao núcleo — do Litoral Sul à Grande Vitória, do ES ao Sudeste, em **escalas aninhadas** |
+
+Note:
+Base exportadora que comanda a produção, polos que concentram o encadeamento e hierarquia centro-periferia que captura o valor: três descrições do mesmo dado — o parágrafo-síntese do artigo.
+
+---
+
+## Política — três alavancas + o canal que resta
+
+**(i) Adensar a jusante da base mineral** — minério → aço → produtos de metal: a metalurgia já é setor-chave; estender a cadeia retém encadeamento que hoje escoa.
+
+**(ii) Apostar na celulose** — único setor-base cuja ligação para trás **cresce** (1,41→1,51).
+
+**(iii) Diversificar com endereço territorial** — rochas, têxtil, agroindústria; a extração hipotética dá a medida do risco mitigado (**−13%** sem a metrópole).
+
+> **Royalties**: se o retorno via encadeamento é estruturalmente limitado para o porte (feedback *abaixo* do previsto), a **captura fiscal** é o canal de retorno que resta — destiná-la ao adensamento é política estrutural.
+
+Note:
+As alavancas saem do próprio dado. E o modelo nulo dá o fecho ao argumento fiscal: não adianta esperar o retorno pelo encadeamento; ele não vem, para nenhum estado desse porte.
 
 ---
 
 ## Limitações & agenda
 
-1. **Quebra estrutural** — matriz de 2008; Fundão (2015) alterou o peso de extração/pelotização. Fluxos interestaduais *estimados* (IIOAS). WIOD: ES sem assento → aproximação via Brasil.
-2. **Dinâmica intra-ES** — o sistema das microrregiões (2015) mostra o padrão se replicando: a metrópole retém, a periferia vaza.
-3. **Série longitudinal 2000 × 2014** — o ES subiu ou desceu na cadeia no boom de commodities?
-4. **MRIO mundial** — destino internacional do valor e do emprego das exportações.
+1. **Âncoras, não série**: o ES tem 2008 e 2015; a série 2010–2021 é nacional (tendência dos setores) e a preços correntes (deflação pendente).
+2. **Fluxos estimados** (IIOAS); sistema microrregional sem vetor de emprego e com um setor desbalanceado (sensibilidade S23 no Apêndice B).
+3. **Agenda imediata — a segunda âncora**: matriz interestadual **2019** (Haddad et al. 2025; 68 setores, satélites de emprego e CO₂) → comparação 2008×2019 (`26_ancora_2019.py`, pronto) e **carbono-plataforma** (`23_*`, pronto): a base exporta valor a montante **e carbono incorporado**.
 
 Note:
-Escopo congelado em 2008 + WIOD 2014. Limitações viram programa: intra-ES (padrão se replica), série 2000-2014, MRIO mundial. "Por que 2008?": é a vintage da matriz balanceada disponível, defendida pela inércia estrutural das cadeias de base.
+Limites declarados de frente — e cada um com o pipeline correspondente já montado no repositório, esperando só o dado.
 
 ---
 
@@ -470,13 +402,13 @@ Escopo congelado em 2008 + WIOD 2014. Limitações viram programa: intra-ES (pad
 
 ## Obrigado
 
-**O ES não é um mini-Brasil — é a plataforma exportadora do país.**
+**Uma economia de base, dual, puxada de fora — cuja especificidade não está na mecânica do vazamento, mas na composição que ela transporta.**
 
 <br>
 
-<span class="footnote">Código, dados, PDF e estes slides são reprodutíveis · github.com/fcarva/es-insumo-produto</span>
+<span class="footnote">Artigo (19 págs., 36 refs., apêndices metodológicos), código, tabelas e estes slides são reprodutíveis · github.com/fcarva/es-insumo-produto</span>
 
-<span class="footnote">Isard (1951) · Miller & Blair (2009) · Rasmussen (1956) · Guilhoto & Sesso Filho (2005) · Haddad et al. (2017) · Antràs et al. (2012) · Timmer et al. (WIOD) · Dietzenbacher & Lahr (2013)</span>
+<span class="footnote">North (1955) · Tiebout (1956) · Perroux (1955) · Isard (1951) · Miyazawa (1966) · Rasmussen (1956) · Hirschman (1958) · Cella (1984) · Guilhoto-Sonis-Hewings (2005) · Miller & Blair (2009) · Haddad et al. (2017, 2025) · Antràs et al. (2012)</span>
 
 Note:
-Frase-síntese e abertura para perguntas. Prováveis: por que 2008; por que os números mudaram (auditoria/reprodutibilidade, convergência com Haddad); implicação de política (adensar setores que retêm; sub-cobertura de capital). Pipeline reprodutível no repositório. Obrigado.
+Frase-síntese e perguntas. Prováveis: por que 2008 (âncora disponível + inércia estrutural; 2019 é a agenda); a diferença 1,76 vs 1,66 (simples/bi-regional vs ponderado/interestadual — nota no artigo); o que mudou com o modelo nulo (a tese-plataforma virou pano de fundo; a especificidade é composicional). Obrigado.
