@@ -37,6 +37,11 @@ for %%f in (24_micro_mult_chave 25_decomposicao_fd) do (
         )
     )
 )
+REM preserva alteracoes locais RASTREADAS (ex.: paper editado) em um stash,
+REM sem tocar neste .bat — tudo recuperavel depois com: git stash pop
+git stash push -m "pre-fechar_R1 (alteracoes locais preservadas)" -- paper pesquisa src slides dados README.md CITATION.cff Makefile >nul 2>&1
+echo   - se havia alteracoes locais rastreadas, foram preservadas em 'git stash'
+
 git checkout %BRANCH% || goto :fail
 git pull origin %BRANCH% || goto :fail
 
