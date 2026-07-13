@@ -716,7 +716,11 @@ diversificação, adensamento de cadeia e captura de valor na economia capixaba.
 \label{ap:metodologia}
 Este apêndice reúne, equação a equação, o ferramental cujos resultados o corpo do texto
 reporta. A notação segue \citet{millerblair2009}; todos os instrumentos estão implementados
-nas rotinas reprodutíveis de \texttt{pesquisa/}.
+nas rotinas reprodutíveis de \texttt{pesquisa/}. Em todo o apêndice supõe-se $A\ge 0$
+\emph{produtiva} (condição de Hawkins--Simon; raio espectral menor que a unidade), o que
+garante que as inversas de Leontief utilizadas existem e são não-negativas --- condição
+verificada empiricamente em cada sistema (inversa não-negativa e finita; a exceção de
+coluna do sistema microrregional é documentada no Apêndice~\ref{ap:s23}).
 
 \subsection{Sistema de Leontief e multiplicadores}
 \label{ap:leontief}
@@ -728,11 +732,21 @@ x=(I-A)^{-1}y \equiv By,
 \end{equation}
 com $y$ a demanda final. O multiplicador de produção do setor $j$ é $O_j=\sum_i b_{ij}$; os de
 emprego e renda são $E_j=\sum_i w_i\,b_{ij}$ e $R_j=\sum_i v_i\,b_{ij}$, com coeficientes
-diretos $w_i=\mathrm{ocup}_i/x_i$ e $v_i=\mathrm{rem}_i/x_i$. No fechamento de \emph{tipo II},
-o consumo das famílias capixabas e a renda das remunerações dos setores do ES entram como
-linha e coluna adicionais de $A$; num sistema bi-regional, esse fechamento fornece um
-\emph{limite inferior} do efeito induzido local, pois parte do consumo das famílias se
-realiza em produtos do restante do Brasil e não retorna como demanda ao ES.
+diretos $w_i=\mathrm{ocup}_i/x_i$ e $v_i=\mathrm{rem}_i/x_i$. No fechamento de
+\emph{tipo II}, o modelo é aumentado com o setor-família do ES:
+\begin{equation}
+\bar{A}=\begin{bmatrix} A & h\\ v' & 0\end{bmatrix},
+\qquad h_i=\frac{c_i}{\sum_{k\in L}\mathrm{rem}_k},
+\label{eq:tipo2}
+\end{equation}
+em que $c_i$ é o consumo das famílias capixabas do produto $i$, o denominador é a renda
+total das remunerações dos setores do ES ($L$) e $v$ é o vetor de coeficientes de renda
+com $v_i=0$ para $i\notin L$; os multiplicadores de tipo II são computados sobre
+$(I-\bar{A})^{-1}$, descartada a linha-família. Num sistema bi-regional, esse fechamento
+fornece um \emph{limite inferior} do efeito induzido local: fechar também para o consumo
+em produtos do restante do Brasil apenas \emph{acrescentaria} coeficientes não-negativos
+a $\bar{A}$, e a inversa de Leontief é monótona no coeficiente --- $A\le A'$ elemento a
+elemento implica $(I-A)^{-1}\le(I-A')^{-1}$, pela série de Neumann.
 
 \subsection{Partição inter-regional de Isard}
 \label{ap:isard}
@@ -746,7 +760,9 @@ A=\begin{bmatrix} A^{LL} & A^{LM}\\ A^{ML} & A^{MM}\end{bmatrix},
 \begin{bmatrix} y^{L}\\ y^{M}\end{bmatrix}.
 \label{eq:isard}
 \end{equation}
-Resolvendo para $L$ obtém-se a forma reduzida com o termo de \emph{feedback} explícito:
+No caso geral, $x^{L}=B^{LL}y^{L}+B^{LM}y^{M}$. Para uma injeção restrita à demanda por
+produtos de $L$ ($y^{M}=0$ --- o experimento de \S\ref{sec:plataforma}), resolver para $L$
+dá a forma reduzida com o termo de \emph{feedback} explícito:
 \begin{equation}
 x^{L}
 =\underbrace{(I-A^{LL})^{-1}y^{L}}_{\text{intra}}
@@ -754,7 +770,7 @@ x^{L}
 \label{eq:feedback}
 \end{equation}
 O \emph{vazamento} do multiplicador da coluna $j$ é $O^{M}_j/O_j$, com
-$O^{M}_j=\sum_{i\in M}b_{ij}$; o \emph{spillover} de uma injeção $y^{L}$ é
+$O^{M}_j=\sum_{i\in M}b_{ij}$; o \emph{spillover} dessa injeção é
 $x^{M}=(I-A^{MM})^{-1}A^{ML}x^{L}$; a razão de \emph{feedback} é o segundo termo
 de~\eqref{eq:feedback} normalizado pela injeção.
 
@@ -804,9 +820,9 @@ A=\begin{bmatrix} a_{jj} & A_{jr}\\ A_{rj} & A_{rr}\end{bmatrix},
 \qquad \Delta_j=(1-a_{jj})^{-1},\quad \Delta_r=(I-A_{rr})^{-1},
 \label{eq:ghs_part}
 \end{equation}
-e medem, em valores correntes,
+e medem, em valores correntes (com $\iota$ o vetor-soma de uns),
 \begin{equation}
-\mathrm{PBL}_j=\Delta_r A_{rj}\,\Delta_j\,y_j,
+\mathrm{PBL}_j=\iota'\,\Delta_r A_{rj}\,\Delta_j\,y_j,
 \qquad
 \mathrm{PFL}_j=\Delta_j A_{jr}\,\Delta_r\,y_r,
 \qquad
@@ -814,8 +830,9 @@ e medem, em valores correntes,
 \label{eq:ghs}
 \end{equation}
 respectivamente o impacto puro da demanda do setor $j$ sobre o resto da economia
-(expurgadas as compras internas do próprio setor) e o impacto puro da produção do resto da
-economia sobre o setor $j$. No texto, $\mathrm{PBL}/\mathrm{PFL}/\mathrm{PTL}$ são
+(expurgadas as compras internas do próprio setor; o pré-multiplicador $\iota'$ soma o
+efeito sobre os $n-1$ setores restantes) e o impacto puro da produção do resto da
+economia sobre o setor $j$ ($\mathrm{PFL}_j$ já é escalar, pois $A_{jr}$ é vetor-linha). No texto, $\mathrm{PBL}/\mathrm{PFL}/\mathrm{PTL}$ são
 reportadas padronizadas pela média dos 26 setores do ES.
 
 \subsection{Decomposição pela demanda final}
@@ -850,8 +867,10 @@ m_r=\alpha+\beta\ln(x_r)+\varepsilon_r,
 \end{equation}
 em que $x_r$ é a produção total da unidade. O $R^2$ mede quanto o porte explica; o resíduo
 padronizado (escore-$z$) $z_r=\hat{\varepsilon}_r/\hat{\sigma}_\varepsilon$ mede o quanto a
-unidade-foco excede o previsto pelo porte --- a candidata a especificidade. Os resultados
-para o ES estão no Apêndice~\ref{ap:zscores}.
+unidade-foco excede o previsto pelo porte --- a candidata a especificidade. O ajuste é
+\emph{descritivo}: com $n=27$ (e $n=10$ na escala microrregional) não se pretende
+inferência estatística, apenas a separação contábil entre o previsto pelo porte e o
+resíduo. Os resultados para o ES estão no Apêndice~\ref{ap:zscores}.
 
 \subsection{Extração hipotética}
 \label{ap:hem}

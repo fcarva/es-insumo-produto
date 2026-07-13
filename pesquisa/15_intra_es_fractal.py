@@ -152,3 +152,14 @@ with open(os.path.join(OUT, "intra_es_fractal.csv"), "w", newline="", encoding="
         wr.writerow([f"R{g+1}", REG_NOME[g+1], f"{share[g]*100:.2f}", f"{leak[g]:.4f}", f"{feed[g]:.5f}",
                      f"{hhi[g]:.4f}", "" if g==METRO else f"{to_metro[g]*100:.1f}", int(g==METRO)])
 print("salvo: intra_es_fractal.csv")
+
+# persiste a extracao hipotetica (F4 do review theorist-toolbox): a cadeia do
+# "-13,0%" citado no artigo nao pode terminar num print de console.
+with open(os.path.join(OUT, "extracao_hipotetica.csv"), "w", newline="", encoding="utf-8") as f:
+    wr = csv.writer(f)
+    wr.writerow(["experimento", "regiao_extraida", "injecao_mi", "perda_producao_periferia_pct"])
+    wr.writerow(["HEM da metropole sob demanda final intra-ES",
+                 f"R{METRO+1} {REG_NOME[METRO+1]}",
+                 f"{float(sum(fd_own(g) for g in range(NR)).sum()):.1f}",
+                 f"{loss*100:.2f}"])
+print("salvo: extracao_hipotetica.csv")

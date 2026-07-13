@@ -13,7 +13,19 @@ setlocal
 cd /d "%~dp0"
 set BRANCH=claude/espirito-santo-io-analysis-5gpy8h
 
-echo [1/4] Atualizando a branch %BRANCH%...
+REM localiza o Python (python no PATH, ou o launcher py do Windows)
+set "PY=python"
+%PY% --version >nul 2>&1 || set "PY=py -3"
+%PY% --version >nul 2>&1 || (
+    echo [ERRO] Python nao encontrado. Instale de python.org e reabra o terminal.
+    exit /b 1
+)
+%PY% -c "import numpy, openpyxl" >nul 2>&1 || (
+    echo [ERRO] Dependencias ausentes. Rode:  %PY% -m pip install numpy openpyxl
+    exit /b 1
+)
+
+echo [1/5] Atualizando a branch %BRANCH%...
 git fetch origin %BRANCH% || goto :fail
 
 REM preserva scripts locais NAO rastreados antes do checkout (evita conflito)
@@ -29,17 +41,22 @@ git checkout %BRANCH% || goto :fail
 git pull origin %BRANCH% || goto :fail
 
 echo.
-echo [2/4] Rodando 25_decomposicao_fd.py (decomposicao da demanda final)...
-python "pesquisa\25_decomposicao_fd.py" || goto :failassert
+echo [2/5] Rodando 25_decomposicao_fd.py (decomposicao da demanda final)...
+%PY% "pesquisa\25_decomposicao_fd.py" || goto :failassert
 
 echo.
-echo [3/4] Rodando 24_micro_mult_chave.py (multiplicadores territoriais)...
-python "pesquisa\24_micro_mult_chave.py" || goto :failassert
+echo [3/5] Rodando 24_micro_mult_chave.py (multiplicadores territoriais)...
+%PY% "pesquisa\24_micro_mult_chave.py" || goto :failassert
 
 echo.
-echo [4/4] Asserts OK — commitando e pushando os CSVs...
+echo [4/5] Rodando 15_intra_es_fractal.py (persiste a extracao hipotetica — F4)...
+%PY% "pesquisa\15_intra_es_fractal.py" || goto :failassert
+
+echo.
+echo [5/5] Asserts OK — commitando e pushando os CSVs...
 git add pesquisa/outputs/decomposicao_fd.csv pesquisa/outputs/decomposicao_fd_setorial.csv pesquisa/outputs/micro_multiplicadores.csv
-git commit -m "R1: CSVs das Tabelas 1 e 4 gerados do dado bruto (autoverificacao OK)" || goto :fail
+if exist "pesquisa\outputs\extracao_hipotetica.csv" git add pesquisa/outputs/extracao_hipotetica.csv pesquisa/outputs/intra_es_fractal.csv
+git commit -m "R1+F4: CSVs das Tabelas 1/4 e da extracao hipotetica gerados do dado bruto (autoverificacao OK)" || goto :fail
 git push origin %BRANCH% || goto :fail
 
 echo.

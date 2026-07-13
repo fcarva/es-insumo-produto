@@ -104,3 +104,38 @@ sobretudo com $n=10$"), ecoando o que os Limites já dizem.
 ---
 *Regra do protocolo observada: o revisor NÃO editou o manuscrito — este arquivo é o único
 produto da rodada. Correções são responsabilidade do autor (rodada 2 mediante re-review).*
+
+---
+
+# Review of es_estrutura_produtiva.tex, round 2 (re-review)
+
+- Reviewer: paper-reviewer (theorist-toolbox) — persistente entre rodadas
+- Date: 2026-07-13
+- Manuscrito revisado: 20 págs., 36 refs., nova eq.~(2) (`eq:tipo2`)
+- **Verdict: REQUEST_CHANGES — resta exclusivamente F1** (compromisso: APPROVE
+  automático quando os CSVs de F1 chegarem com os asserts `[OK]`)
+- Round: 2
+
+## Verificação dos achados da rodada 1
+
+| # | Status | Verificação |
+|---|---|---|
+| **F2** | **RESOLVIDO** | A.2 agora abre com o caso geral ($x^{L}=B^{LL}y^{L}+B^{LM}y^{M}$) e declara a hipótese da injeção restrita ($y^{M}=0$, remetendo ao experimento de §7) antes da eq. do feedback; a frase do spillover foi amarrada à mesma injeção ("dessa injeção"). O fecho do A.3 herda a hipótese via referência à equação. Correto. |
+| **F3** | **RESOLVIDO** | $\mathrm{PBL}_j=\iota'\Delta_r A_{rj}\Delta_j y_j$ — dimensões re-conferidas: $(1{\times}(n{-}1))((n{-}1){\times}(n{-}1))((n{-}1){\times}1)\cdot$escalares $=$ escalar ✓; $\iota$ definido no texto; nota de que PFL já é escalar adicionada. A equação agora corresponde exatamente à implementação (`17_*:82`). |
+| **F4** | **RESOLVIDO (código)** | `15_intra_es_fractal.py` agora persiste `outputs/extracao_hipotetica.csv` (experimento, região extraída, injeção, perda %); `fechar_R1.bat` roda o `15` e commita o artefato. O CSV materializa na próxima execução sobre o dado bruto (mesmo evento que fecha F1). |
+| **F5** | **RESOLVIDO** | Fechamento tipo II exibido como matriz aumentada (`eq:tipo2`) com $h_i=c_i/\sum_{k\in L}\mathrm{rem}_k$ e $v_i=0$ para $i\notin L$, "descartada a linha-família" — espelha `17_*:56–62`. |
+| **F6** | **RESOLVIDO** | "Limite inferior" agora justificado pela monotonicidade elementar da inversa ($A\le A'\Rightarrow(I-A)^{-1}\le(I-A')^{-1}$, série de Neumann). |
+| **F7** | **RESOLVIDO** | Preâmbulo do Apêndice A declara $A\ge0$ produtiva (Hawkins–Simon, raio espectral $<1$) com remissão à exceção documentada (B.2/S23). |
+| **F8** | **RESOLVIDO** | A.8 declara o caráter descritivo do ajuste ($n=27$; $n=10$) — sem pretensão inferencial. |
+| **F1** | **ABERTO** | CSVs das Tabelas 1/4 seguem ausentes; depende de execução na máquina do autor (`fechar_R1.bat`, agora com detecção de Python/`py`, checagem de dependências e o passo do `15`). |
+
+## Varredura de problemas novos (introduzidos pela revisão)
+
+- `eq:tipo2` bem-formada; label única; numeração das equações subsequentes deslocada sem
+  quebra (todas as remissões são por `\ref`). Compilação: 3 passadas, 0 erros, 0 refs
+  indefinidas; checagem estrutural 48 labels / 36↔36 cites. **Nenhum problema novo.**
+
+## What was good (rodada 2)
+
+- As correções foram mínimas e cirúrgicas — nenhuma reescrita oportunista fora do escopo
+  dos achados (verificado por diff), exatamente como o protocolo de preservação exige.
