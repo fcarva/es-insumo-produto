@@ -169,6 +169,24 @@ compila `es_insumo_produto.tex`).
 **Sequência sugerida até a entrega (18/07):** P0+P1 imediatos → P2+P3 (o "recheio" perdido) →
 P4+P5 (literatura) → P6/P7 se houver fôlego (senão ficam como agenda declarada, que o texto já faz).
 
+### Status da execução (atualizado em 2026-07-13)
+
+| # | Status | Observação |
+|---|---|---|
+| P0 | ⏳ **1 clique do autor** | `fechar_R1.bat` na máquina local roda `24`/`25`, valida asserts e commita os 2 CSVs sozinho |
+| P1 | ✅ | README/CITATION/Makefile descrevem a v3 |
+| P2 | ✅ | Apêndices A (9 subseções, 8 equações) e B (5 subseções) no `.tex` |
+| P3 | ✅ | z-scores, extração hipotética (−13%), núcleo 1,97% vs cluster 0,49% reintegrados |
+| P4 | ✅ | North/Tiebout/Perroux + ponte tipo II; Domingues & Haddad (2002) no benchmark |
+| P5 | ✅ parcial | Pará citado (Sesso Filho & Guilhoto 2010, RBERU 4(2), verificado); SC/MA fora — metadados não confirmados (rede bloqueou as fontes primárias) |
+| P6 | 🔧 infraestrutura pronta | `26_ancora_2019.py` fail-closed: para sem o dado, inspeciona layout no 1º contato, computa a bateria com LAYOUT confirmado. **Falta:** baixar os suplementos de Haddad et al. (2025) — RBERU art. 1225 ou NEREUS/USP (hosts bloqueados pela rede deste ambiente) — para `dados/MIP_2019/` |
+| P7 | 🔧 pipeline pronto (`23`) | o satélite de CO₂ vem no MESMO pacote da matriz 2019 → agregar aos 26 setores em `dados/co2_intensidade.csv` |
+| P8 | ✅ | este arquivo é o índice-mestre (apontado no README) |
+
+**Pós-plano (rodada 3 de parecer, `REVIEW_FULL_MODE_V2.md`):** decisão Minor Revision (banda
+superior) → Accept condicional; R2–R4 e S1–S5 aplicados (`RESPOSTA_AOS_PARECERISTAS.md`,
+seção rodada 3); R1 = P0. Artigo: 19 págs, 36 refs, 0 indefinidas.
+
 ## 7. Estado editorial (para não retrabalhar o que está fechado)
 
 - Parecer v3: Major → 4 obrigatórios + 4 sugeridos **FULLY ADDRESSED** → re-review **Minor→Accept**
