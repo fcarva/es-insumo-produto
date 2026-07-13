@@ -61,3 +61,62 @@ compila sem erro nem citação indefinida. 4 obrigatórios + 4 sugeridos = **tod
 ## Estado da compilação
 `paper/es_estrutura_produtiva.pdf` — **7 páginas, 3 figuras, 2 tabelas, 10 referências**; compila sem
 erro nem citação indefinida. Os 4 itens obrigatórios estão **FULLY ADDRESSED**; 0 concern silenciado.
+
+---
+
+# Rodada 3 — parecer da versão com apêndices (`REVIEW_FULL_MODE_V2.md`)
+
+*Decisão da rodada: Minor Revision (banda superior) → Accept condicional a R1–R4. Data: 2026-07-10.*
+
+## Itens obrigatórios
+
+### R1 — Rastro reprodutível das Tabelas 1 e 4 — **PENDENTE (autor)**
+Único item que depende da máquina local: rodar `pesquisa/25_decomposicao_fd.py` e
+`pesquisa/24_micro_mult_chave.py` sobre o `Material IO`, conferir os asserts de
+autoverificação (`[OK] todos os numeros publicados reproduzidos`) e commitar
+`outputs/decomposicao_fd.csv` + `outputs/micro_multiplicadores.csv`. Status muda para
+FULLY ADDRESSED com o commit dos 2 CSVs.
+
+### R2 — Conciliação 8,4% × 9,1% (Metropolitana) — **FULLY ADDRESSED**
+Nota adicionada à legenda da Tabela~`tab:micro`: a retenção da tabela é a **razão das somas
+ponderadas** ($\sum w O^{intra}/\sum w O$ = 90,9%), distinta da **média ponderada das razões
+setoriais** usada em §7/Apêndice B.2 (vazamento 8,4% ⇒ retenção 91,6%); as duas agregações
+descrevem o mesmo fluxo. Mesma solução do precedente 24,9/22,8 (nota de rodapé).
+
+### R3 — Resumo absorve o modelo nulo; "hiperaberta" moderada — **FULLY ADDRESSED**
+Abstract reescrito: "hiperaberta" → "aberta" + frase nova: *"um modelo nulo sobre as 27 UFs
+mostra que essa mecânica é a prevista para o porte do estado (o ES não é outlier em nenhuma
+métrica de decomposição): o que a abertura transporta de específico é a composição"*.
+"Hiperaberta" também moderada no §1.
+
+### R4 — Sensibilidade da classificação base/commodity — **ADDRESSED (via declaração + reformulação)**
+O ranking ex-Alimentos **não é recomputável** dos CSVs versionados (só agregados por UF);
+adotado o caminho alternativo sancionado pelo parecer: nota de rodapé no §4 que (i) declara a
+inclusão de Alimentos no rótulo (`10_cluster_setorial.py`) e seu efeito de elevar as parcelas,
+(ii) apresenta o traço independente do rótulo — o ES é um dos 3 únicos estados (com PA e RJ)
+cujo setor dominante é a extrativa mineral — e (iii) registra a reestimação ex-Alimentos como
+checagem de replicação sobre `22_*`/`10_*`.
+
+## Itens sugeridos (todos atacados)
+- **S1 (escopo da injeção do HEM)** — **FULLY ADDRESSED**: Apêndice A.9 declara que a extração
+  usa a demanda final intra-estadual; o −13,0% deve ser lido sob essa injeção.
+- **S2 (Miyazawa não explorado)** — **FULLY ADDRESSED**: Apêndice A.3 agora reporta o número —
+  o efeito do multiplicador externo capixaba, $(\Delta_{LL}-I)\Delta_L y^L$, é exatamente o
+  feedback de R$ 164 mi (0,32%); a amplificação externa é praticamente nula.
+- **S3 (Tiebout em uma oração)** — **FULLY ADDRESSED**: ponte explícita com o fechamento
+  tipo II (mult. de emprego 27,9 → 40,4 por R$ 1 mi; média do `es_caracterizacao_2008.csv`,
+  verificada) — o circuito induzido é o canal tieboutiano.
+- **S4 (precedentes PA/SC/MA)** — **PARTIALLY ADDRESSED (honesto)**: Pará verificado por
+  convergência dupla e citado — Sesso Filho & Guilhoto (2010), RBERU 4(2):81–104
+  (`sessofilho2010para`, §1). SC (Revista Catarinense de Economia) e MA **não** atingiram
+  confirmação sólida de autoria/ano (fontes primárias bloqueadas pela rede; metadados de busca
+  ambíguos) e ficaram FORA, conforme a disciplina de citação da skill; registrados como agenda.
+- **S5 (política amarrada aos números novos)** — **FULLY ADDRESSED**: alavanca (iii) cita o
+  −13,0% (mono-dependência do núcleo); parágrafo de royalties amarrado ao modelo nulo (retorno
+  via encadeamento abaixo até do previsto para o porte ⇒ captura fiscal como canal restante).
+
+## Estado da compilação (rodada 3)
+`paper/es_estrutura_produtiva.pdf` — **19 páginas, 6 figuras, 5 tabelas + 2 apêndices,
+36 referências**; compila sem erro nem citação indefinida (3 passadas de pdflatex; checagem
+estrutural: 36 cites ↔ 36 bibitems, 28 refs com label, ambientes balanceados).
+3 obrigatórios FULLY + 1 pendente-do-autor (R1) + 5 sugeridos atacados (S4 parcial, honesto).
