@@ -1,0 +1,11 @@
+regiao,nome,share_VBP_pct,mult_prod_simples,mult_prod_pond,retencao_intra_pct,mult_renda_pond
+R1,Metropolitana,62.28,1.5791,1.6414,90.88,0.3721
+R2,Central Serrana,1.54,1.5694,1.4255,82.33,0.3141
+R3,Sudoeste Serrana,1.85,1.5748,1.4844,80.59,0.3693
+R4,Litoral Sul,4.11,1.5749,1.7581,66.18,0.3405
+R5,Central Sul,6.25,1.5787,1.6013,79.44,0.3806
+R6,Caparaó,1.93,1.5731,1.4176,88.22,0.3907
+R7,Rio Doce,10.63,1.5803,1.6369,74.32,0.3130
+R8,Centro-Oeste,4.42,1.5756,1.5317,85.60,0.3755
+R9,Nordeste,4.85,1.5833,1.4982,85.26,0.3187
+R10,Noroeste,2.14,1.5754,1.4965,87.31,0.3550
