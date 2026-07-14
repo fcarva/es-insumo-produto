@@ -173,7 +173,7 @@ P4+P5 (literatura) → P6/P7 se houver fôlego (senão ficam como agenda declara
 
 | # | Status | Observação |
 |---|---|---|
-| P0 | ⏳ **1 clique do autor** | `fechar_R1.bat` na máquina local roda `24`/`25`, valida asserts e commita os 2 CSVs sozinho |
+| P0 | ✅ **fechado** (commit `9cc83ea`) | `fechar_R1.bat` executado: asserts `[OK]` nos 3 scripts; 4 CSVs commitados; paridade verificada célula a célula (APPROVE do review theorist-toolbox) |
 | P1 | ✅ | README/CITATION/Makefile descrevem a v3 |
 | P2 | ✅ | Apêndices A (9 subseções, 8 equações) e B (5 subseções) no `.tex` |
 | P3 | ✅ | z-scores, extração hipotética (−13%), núcleo 1,97% vs cluster 0,49% reintegrados |
