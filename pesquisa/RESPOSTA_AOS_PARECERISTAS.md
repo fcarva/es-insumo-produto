@@ -70,12 +70,13 @@ erro nem citação indefinida. Os 4 itens obrigatórios estão **FULLY ADDRESSED
 
 ## Itens obrigatórios
 
-### R1 — Rastro reprodutível das Tabelas 1 e 4 — **PENDENTE (autor)**
-Único item que depende da máquina local: rodar `pesquisa/25_decomposicao_fd.py` e
-`pesquisa/24_micro_mult_chave.py` sobre o `Material IO`, conferir os asserts de
-autoverificação (`[OK] todos os numeros publicados reproduzidos`) e commitar
-`outputs/decomposicao_fd.csv` + `outputs/micro_multiplicadores.csv`. Status muda para
-FULLY ADDRESSED com o commit dos 2 CSVs.
+### R1 — Rastro reprodutível das Tabelas 1 e 4 — **FULLY ADDRESSED** (commit `9cc83ea`)
+Fechado pelo autor via `fechar_R1.bat`: scripts `25`/`24`/`15` executados sobre o
+`Material IO` com **todos os asserts `[OK]`**; 4 CSVs commitados (`decomposicao_fd`,
+`decomposicao_fd_setorial`, `micro_multiplicadores`, `extracao_hipotetica`). Paridade
+verificada independentemente célula a célula contra as Tabelas 1 e 4 (rodada 3 do review
+theorist-toolbox, veredito **APPROVE**); versões locais originais dos scripts preservadas
+como `*.local.py`.
 
 ### R2 — Conciliação 8,4% × 9,1% (Metropolitana) — **FULLY ADDRESSED**
 Nota adicionada à legenda da Tabela~`tab:micro`: a retenção da tabela é a **razão das somas

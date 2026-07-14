@@ -139,3 +139,43 @@ produto da rodada. Correções são responsabilidade do autor (rodada 2 mediante
 
 - As correções foram mínimas e cirúrgicas — nenhuma reescrita oportunista fora do escopo
   dos achados (verificado por diff), exatamente como o protocolo de preservação exige.
+
+---
+
+# Review of es_estrutura_produtiva.tex, round 3 (final)
+
+- Reviewer: paper-reviewer (theorist-toolbox) — persistente entre rodadas
+- Date: 2026-07-13
+- Evento: commit `9cc83ea` (autor, máquina local) com os 4 CSVs gerados do dado bruto
+- **Verdict: APPROVE**
+- Round: 3
+
+## Verificação do F1 (o único achado aberto)
+
+Cumprindo o compromisso da rodada 2, o veredito foi condicionado à chegada dos CSVs com
+asserts `[OK]` — e à **verificação independente de paridade**, feita nesta rodada célula a
+célula contra as tabelas publicadas:
+
+- **`decomposicao_fd.csv` × Tabela 1**: todas as 7 linhas × 4 colunas conferem
+  (RB 34.197,7 → 34,2 bi; externa = 32,69+29,06 = 61,75% → 61,7 e 29,64+17,86 =
+  **47,50%** exato; variação de estoques −1.021,3 mi/−0,98% → −1,0/−1,0; totais
+  104.621,7 mi e 1.611.736 ocupações). ✓
+- **`micro_multiplicadores.csv` × Tabela 4**: as 10 microrregiões × 4 colunas conferem
+  (Metropolitana 62,28/1,6414/90,88/0,3721 → 62,3/1,64/90,9/0,37; Litoral Sul
+  66,18 → 66,2; Caparaó 1,4176 → 1,42; ...). O multiplicador simples uniforme
+  (1,57–1,58 nas dez regiões) confirma a afirmação do §5. A coluna de retenção
+  confirma, no dado real, a agregação razão-das-somas (90,88) — distinta, como a nota
+  de conciliação da Tabela 4 explica, da média-das-razões (91,6). ✓
+- **`extracao_hipotetica.csv` × §5/A.9 (F4)**: perda de 12,98% → 13,0% publicado, sob a
+  injeção intra-estadual declarada (R$ 65.985,4 mi). A cadeia do −13,0% agora termina
+  num artefato versionado. ✓
+- Asserts de autoverificação dos scripts `25`/`24` reportados `[OK]` em execução no dado
+  bruto pelo autor; scripts locais originais preservados como `*.local.py` para
+  comparação de proveniência.
+
+## Encerramento
+
+F1–F8: todos resolvidos e verificados. Nenhum achado remanescente. O manuscrito (20
+págs., 36 refs., Apêndices A/B) fecha com: (i) formulário matemático sem lacunas de
+hipótese nem inconsistências dimensionais; (ii) zero hand-waving textual; (iii) cadeia
+número→script→CSV completa para **todos** os resultados citados no corpo. APPROVE.
