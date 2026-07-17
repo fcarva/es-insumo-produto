@@ -187,6 +187,12 @@ P4+P5 (literatura) → P6/P7 se houver fôlego (senão ficam como agenda declara
 superior) → Accept condicional; R2–R4 e S1–S5 aplicados (`RESPOSTA_AOS_PARECERISTAS.md`,
 seção rodada 3); R1 = P0. Artigo: 19 págs, 36 refs, 0 indefinidas.
 
+**Rodada seguinte (planejada em 2026-07-16):** rodada **editorial** em
+[`PLANO_MELHORIAS.md`](PLANO_MELHORIAS.md) — resumo 422→≤200 palavras, as 6 figuras
+(diagnóstico figura a figura; Sankey diverge do texto), correções (babel ausente,
+"quatro/cinco" limites, abstract EN faltante), diagramação e a nova seção "Quadro analítico"
+organizando as lentes de economia regional pelos instrumentos de insumo-produto.
+
 ## 7. Estado editorial (para não retrabalhar o que está fechado)
 
 - Parecer v3: Major → 4 obrigatórios + 4 sugeridos **FULLY ADDRESSED** → re-review **Minor→Accept**
