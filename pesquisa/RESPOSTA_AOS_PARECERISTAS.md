@@ -120,3 +120,40 @@ checagem de replicação sobre `22_*`/`10_*`.
 36 referências**; compila sem erro nem citação indefinida (3 passadas de pdflatex; checagem
 estrutural: 36 cites ↔ 36 bibitems, 28 refs com label, ambientes balanceados).
 3 obrigatórios FULLY + 1 pendente-do-autor (R1) + 5 sugeridos atacados (S4 parcial, honesto).
+
+---
+
+# Rodada 4 — resposta ao parecer full-mode da versão pós-editorial (`REVIEW_FULL_MODE_V3.md`)
+
+*Stage 4 REVISE sobre a decisão da rodada 4: Minor Revision (banda superior) → Accept
+condicional a F1. Data: 2026-07-17. Itens 1–6 do Revision Roadmap aplicados nesta rodada;
+item 7 (= F1) permanece com o autor.*
+
+## Itens do roadmap
+
+- **1 (W-R1-1, legenda Fig. 4 × Apêndice B.3)** — **FULLY ADDRESSED**: B.3 ganhou a
+  conciliação do transbordamento total que a legenda referencia — **R$ 18,2 bi**
+  (bi-regional) × **R$ 18,1 bi** (interestadual, 27 UFs), mesma injeção; a remissão da
+  legenda agora aponta para conteúdo existente.
+- **2 (W-EIC-1, abstract EN)** — **FULLY ADDRESSED**: "manufacturing emerges as key
+  sectors" → "manufacturing **concentrates** the key sectors" (concordância).
+- **3 (W-R2-1, claim de raridade)** — **FULLY ADDRESSED**: §2 não afirma mais que o gênero
+  "raramente emprega" os instrumentos; diz apenas o que eles fazem ("acrescido de dois
+  instrumentos de aferição — o benchmark interestadual e o modelo nulo de porte — que
+  separam...").
+- **4 (W-R2-2, enquadramento de SC)** — **FULLY ADDRESSED**: Bittencourt et al. (2023)
+  reenquadrado como "a leitura da indústria estadual sobre a MIP de 2018" — sem esticar o
+  gênero. *Nota:* atualiza o S4 da rodada 1 — SC agora TEM precedente verificado (RBERU
+  17(1), 90–112, conferido via RePEc/IDEAS); MA segue fora (metadados inacessíveis).
+- **5 (W-R1-2, convenção de fonte nas legendas)** — **FULLY ADDRESSED**: as 6 figuras agora
+  citam o **script gerador do dado** sobre o CSV (17, 18, 20, 02, 14/15, 08), a mesma
+  convenção das tabelas; os scripts de figura (09/11/16/19/21) seguem documentados no
+  repositório e no Makefile (`make figuras`).
+- **6 (W-R3-1, condicionalidade temporal)** — **FULLY ADDRESSED**: abertura das alavancas
+  agora declara "condicionais, como toda a leitura de política aqui, às safras das âncoras
+  (§Limitações)".
+- **7 (F1/DA-2)** — **PENDENTE DO AUTOR** (inalterado): `fechar_R1.bat` na máquina local
+  fecha os CSVs das Tabelas 2 e 5 e habilita a checagem DA-1 (reestimação do ranking de base
+  sem Alimentos, sobre `22_*`/`10_*`).
+
+## Estado da compilação (rodada 4)

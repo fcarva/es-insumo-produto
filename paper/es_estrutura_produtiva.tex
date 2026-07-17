@@ -75,7 +75,7 @@ interregional system of the state's ten planning microregions (2015). The pictur
 of a \emph{dual resource-based economy}: the leading sectors --- mining, oil, steel, and
 pulp --- concentrate linkages (the largest pure linkages) but generate little direct
 employment and income; extraction operates as an \emph{enclave}, while manufacturing
-emerges as key sectors. A final-demand decomposition quantifies the decoupling: demand
+concentrates the key sectors. A final-demand decomposition quantifies the decoupling: demand
 external to the state induces \textbf{61.7\%} of output but only 47.5\% of employment. A
 benchmark across the 27 Brazilian states shows that the duality is generic in kind but
 extreme in degree --- ES is the second most base-intensive state. Across the territory, a
@@ -189,13 +189,13 @@ insumo-produto neste artigo.}
 É nesse quadro que se consolidou, no Brasil, o gênero ``estrutura produtiva de
 [estado]'': Minas Gerais inaugurou o desenho bi-regional \citep{domingues2002matriz},
 seguido de Mato Grosso \citep{figueiredo2004agriculture}, Rio Grande do Sul
-\citep{porsse2008matriz}, Pará \citep{sessofilho2010para} e Santa Catarina
-\citep{bittencourt2023sc}; o recorte multiestadual tem precedente no sistema
+\citep{porsse2008matriz}, Pará \citep{sessofilho2010para} --- e, em Santa Catarina, a leitura da indústria
+estadual sobre a MIP de 2018 \citep{bittencourt2023sc}; o recorte multiestadual tem precedente no sistema
 inter-regional do Nordeste \citep{guilhoto2010nordeste} e o recorte intra-estadual, no
 sistema dos municípios paulistas \citep{ichihara2008geo}. Este artigo traz o formato ao
-Espírito Santo, com dois instrumentos de aferição que o gênero raramente emprega: o
-benchmark interestadual e o modelo nulo de porte, que separam, no retrato, o que é
-regularidade do método do que é específico do estado.
+Espírito Santo, acrescido de dois instrumentos de aferição --- o benchmark interestadual
+e o modelo nulo de porte --- que separam, no retrato, o que é regularidade do método do
+que é específico do estado.
 
 % =====================================================================
 \section{Dados}
@@ -388,7 +388,7 @@ ligações) é moderado: 0,16 para trás, 0,28 para frente.
 \caption{Mapa de ligações dos 26 setores do ES (2008). O quadrante superior-direito
 (vermelho) reúne os setores-chave (poder e sensibilidade de dispersão acima da média),
 todos rotulados; a mineração aparece como forte fornecedora a montante, com baixa ligação
-para trás. Fonte: \texttt{19\_fig\_caracterizacao.py} sobre
+para trás. Fonte: \texttt{17\_caracterizacao\_es\_2008.py} sobre
 \texttt{outputs/es\_caracterizacao\_2008.csv}.}
 \label{fig:chave}
 \end{figure}
@@ -591,7 +591,7 @@ convergem para o mesmo desenho de um estado polarizado entre núcleo e periferia
 concentra (vermelho) o setor de sua vocação; a Metropolitana, diversificada, não exibe
 especialização extrema. Exibem-se os dez setores (de 35) que definem as vocações
 territoriais; a escala de cor é truncada em $\mathrm{LQ}=6$ --- os valores anotados são
-os exatos. Fonte: \texttt{21\_fig\_micro.py} sobre \texttt{outputs/micro\_LQ.csv}.}
+os exatos. Fonte: \texttt{20\_caracterizacao\_micro.py} sobre \texttt{outputs/micro\_LQ.csv}.}
 \label{fig:vocacao}
 \end{figure}
 
@@ -643,7 +643,7 @@ a mesma assimetria de captura a jusante que o ES exibe pelo lado do minério.
 R\$\,18,1 bilhões transbordados, o Sudeste absorve 65\% e o núcleo São Paulo--Rio de
 Janeiro, 52,5\%; o \emph{feedback} de volta ao ES é de apenas 0,32\% da injeção. No
 sistema bi-regional do texto, o mesmo experimento transborda R\$\,18,2 bi --- a diferença
-é de agregação (Apêndice~\ref{ap:medias}). Fonte: \texttt{11\_fig\_sankey.py} sobre
+é de agregação (Apêndice~\ref{ap:medias}). Fonte: \texttt{02\_interestadual.py} sobre
 \texttt{outputs/es\_spillover\_destino.csv}.}
 \label{fig:sankey}
 \end{figure}
@@ -678,7 +678,9 @@ que essa mecânica genérica transporta.
 \includegraphics[width=\linewidth]{fig_fractal.pdf}
 \caption{Invariância de escala da razão de \emph{feedback}: cresce com o porte da unidade nas
 duas escalas --- 27 UFs no Brasil ($R^2=0{,}59$) e 10 microrregiões no ES ($R^2=0{,}91$). A
-mesma mecânica de posição-e-porte opera em ambas. Fonte: \texttt{14\_*} e \texttt{15\_*}.}
+mesma mecânica de posição-e-porte opera em ambas. Fonte: \texttt{14\_benchmark\_ufs.py} e
+\texttt{15\_intra\_es\_fractal.py} sobre \texttt{outputs/benchmark\_ufs.csv} e
+\texttt{outputs/intra\_es\_fractal.csv}.}
 \label{fig:fractal2}
 \end{figure}
 
@@ -700,7 +702,7 @@ uma economia de base, fornecedora a montante.
 \caption{\emph{Upstreamness} (Antràs-Chor) da pauta exportadora do ES, WIOD 2014: o estado
 posiciona-se a montante da cadeia de valor (pauta 3,12; Brasil 1,91; mundo 2,31). Barras
 ordenadas pelo peso do setor na pauta exportadora capixaba. Fonte:
-\texttt{09\_fig\_upstreamness.py} sobre \texttt{outputs/es\_upstreamness.csv}.}
+\texttt{08\_es\_upstreamness.py} sobre \texttt{outputs/es\_upstreamness.csv}.}
 \label{fig:upstream}
 \end{figure}
 
@@ -743,7 +745,9 @@ celulose) do que na extração, cujos elos domésticos são estruturalmente rare
 território, o mosaico de vocações indica que uma política de diversificação produtiva
 precisa de endereço sub-estadual: o desafio do núcleo metropolitano (adensar a
 indústria de base) é distinto do desafio das microrregiões especializadas (agregar
-valor à celulose, às rochas, ao agro). Três alavancas emergem do próprio dado. \textbf{(i) Adensar a jusante da base mineral}: a
+valor à celulose, às rochas, ao agro). Três alavancas emergem do próprio dado ---
+condicionais, como toda a leitura de política aqui, às safras das âncoras
+(\S\ref{sec:limites}). \textbf{(i) Adensar a jusante da base mineral}: a
 mineração e a siderurgia têm as maiores ligações puras (4,4 e 3,4) mas a metalurgia já é
 setor-chave e a fabricação de produtos de metal tem multiplicador elevado --- estender a cadeia
 minério\,$\to$\,aço\,$\to$\,produtos de metal retém, internamente, encadeamento que hoje escoa.
@@ -1019,7 +1023,10 @@ Três números descrevem o mesmo fenômeno sob agregações distintas: \textbf{2
 da literatura); \textbf{22,9\%} (bi-regional) e \textbf{22,8\%} (interestadual) são as
 médias \emph{ponderadas pela produção}; e \textbf{27,4\%} é a parcela inter-regional do
 multiplicador total do ES na matriz de \citet{haddad2017iioas}, medida em outra safra
-(2011) e outra agregação (68 setores).
+(2011) e outra agregação (68 setores). A mesma conciliação vale para o transbordamento
+total da injeção da demanda final do ES por seus próprios produtos: \textbf{R\$\,18,2 bi}
+no sistema bi-regional e \textbf{R\$\,18,1 bi} na agregação interestadual das 27 UFs
+(Figura~\ref{fig:sankey}).
 
 \subsection{Convenção de \emph{spillover}/\emph{feedback}}
 \label{ap:convencao}
