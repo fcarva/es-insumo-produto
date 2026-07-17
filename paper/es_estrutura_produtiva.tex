@@ -8,23 +8,29 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\renewcommand{\abstractname}{Resumo}
-\renewcommand{\refname}{Referências}
+\usepackage{lmodern}
+\usepackage[english,brazilian]{babel} % brazilian ativo (hifenização PT); english p/ o abstract
+\usepackage{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
 \usepackage[round,authoryear]{natbib}
 \usepackage[hidelinks]{hyperref}
 \geometry{margin=2.5cm}
+
+% Versão cega para avaliação por pares: trocar por \anontrue antes de compilar
+\newif\ifanon
+\anonfalse
 \graphicspath{{../pesquisa/outputs/}{../figuras/}}
 
 \title{\textbf{Estrutura Produtiva do Espírito Santo:\\ uma análise de insumo-produto}\\[2pt]
 \large Multiplicadores, setores-chave, demanda, vocação territorial e a face
 plataforma de uma economia de base (2008--2021)}
-\author{Felipe Carvalho\\
-\small PPGEco --- UFES \quad$\cdot$\quad Análise de Insumo-Produto --- Prof. Dr. Celso Bissoli Sessa}
+\author{\ifanon Autor omitido para avaliação cega\else Felipe Carvalho\\
+\small PPGEco --- UFES \quad$\cdot$\quad Análise de Insumo-Produto --- Prof. Dr. Celso Bissoli Sessa\fi}
 \date{julho de 2026}
 
 \begin{document}
@@ -252,7 +258,7 @@ endogeneizam o consumo das famílias capixabas --- elevam o multiplicador médio
 27,9 para 40,4 empregos por R\$\,1 milhão; é nesse circuito induzido, doméstico, que as
 atividades residentes se sustentam.
 
-\begin{table}[ht]
+\begin{table}[tbp]
 \centering\small
 \begin{tabular}{lrrrr}
 \toprule
@@ -295,7 +301,7 @@ dinamismo se transmite à economia adjacente pelos encadeamentos --- exatamente 
 medida de ligações puras quantifica. O grau de integração (coeficiente de variação das
 ligações) é moderado: 0,16 para trás, 0,28 para frente.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=.92\linewidth]{fig_setores_chave.png}
 \caption{Mapa de ligações dos 26 setores do ES (2008). O quadrante superior-direito
@@ -331,7 +337,7 @@ mais baixo do país (mediana 65\%). O Espírito Santo não é, pois, um contraex
 um de seus \emph{casos-limite}: a economia onde a base extrativa-industrial pesa mais e menos emprego
 direto distribui.
 
-\begin{table}[ht]
+\begin{table}[tbp]
 \centering\small
 \begin{tabular}{lrrr}
 \toprule
@@ -358,7 +364,7 @@ Minas Gerais, economia mineral vizinha cuja matriz bi-regional \citep{domingues2
 inaugurou esse desenho para os estados brasileiros e já documentava transbordamentos
 intensos, e pouco recíprocos, ao restante do país.
 
-\begin{table}[ht]
+\begin{table}[tbp]
 \centering\small
 \begin{tabular}{lrrrl}
 \toprule
@@ -410,7 +416,7 @@ de ferro registra seu pico de integração justamente em 2015--2016, em torno do
 rompimento de Fundão, recuando em seguida. A transformação carrega os encadeamentos; a
 extração os dispensa.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=.95\linewidth]{fig_trajetoria_n68.png}
 \caption{Ligação para trás dos setores-base do ES na estrutura nacional, 2010--2021
@@ -458,7 +464,7 @@ assinatura de enclave, agora na dimensão territorial do fluxo. A \emph{extraç�
 das demais microrregiões cairia \textbf{13,0\%} --- a periferia capixaba depende do núcleo
 capixaba como o estado, visto de fora, depende do Sudeste (\S\ref{sec:plataforma}).
 
-\begin{table}[ht]
+\begin{table}[tbp]
 \centering\small
 \begin{tabular}{lrrrr}
 \toprule
@@ -495,7 +501,7 @@ apenas onde os multiplicadores são altos, mas em que cada território é especi
 quanto do encadeamento fica nele ---, e os dois resultados
 convergem para o mesmo desenho de um estado polarizado entre núcleo e periferias vocacionadas.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\linewidth]{fig_micro_vocacao.png}
 \caption{Quociente locacional por setor e microrregião (2015). Cada território
@@ -520,7 +526,7 @@ alimentos vazam 37,4\%. No emprego, o vazamento dos setores
 pesados é ainda maior --- metade ou mais do trabalho que a demanda capixaba mobiliza realiza-se
 fora do estado: refino 61,6\%, alimentos 56,5\%, madeira/papel 50,3\% e metalurgia 49,3\%.
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering\small
 \input{tab_setores.tex}
 \caption{Multiplicador de produção ($O_j$), vazamentos de produção e de emprego e
@@ -544,7 +550,7 @@ agronegócio gaúcho, \citet{peixoto2013metodologia} estimam que apenas 0,4\% do
 do restante do Brasil decorre de elos com o Rio Grande do Sul, ante 7,9\% no sentido inverso ---
 a mesma assimetria de captura a jusante que o ES exibe pelo lado do minério.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=.92\linewidth]{es_sankey.png}
 \caption{Destino do \emph{spillover} do ES, estratificado por macrorregião e estado. O núcleo
@@ -579,7 +585,7 @@ destino). O que é próprio do ES, como mostra o benchmark composicional
 (Tabela~\ref{tab:bench}), não é a mecânica do vazamento, mas a \emph{composição de base}
 que essa mecânica genérica transporta.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\linewidth]{fractal_duas_escalas.png}
 \caption{Invariância de escala da razão de \emph{feedback}: cresce com o porte da unidade nas
@@ -600,7 +606,7 @@ outras regiões e países --- a leitura por \emph{ranking}, e não por nível br
 Apêndice~\ref{ap:wiod}. É a tradução, na escala da cadeia global, do mesmo diagnóstico:
 uma economia de base, fornecedora a montante.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=.86\linewidth]{es_upstreamness.png}
 \caption{\emph{Upstreamness} (Antràs-Chor) da pauta exportadora do ES, WIOD 2014: o estado
@@ -676,7 +682,7 @@ o aparato reprodutível já está montado, à espera do vetor de emissões.
 % =====================================================================
 \section{Limitações}
 \label{sec:limites}
-Quatro limites são declarados. \textbf{(i)} O panorama temporal cobre 2010--2021, o
+Cinco limites são declarados. \textbf{(i)} O panorama temporal cobre 2010--2021, o
 horizonte da série insumo-produto; a leitura estrutural não alcança 2022--2025, que
 exigiria indicadores não-insumo-produto (Contas Regionais, comércio exterior, produção
 de petróleo). \textbf{(ii)} A série de 68 setores é \emph{nacional}: a trajetória dos
@@ -933,7 +939,7 @@ A Tabela~\ref{tab:zscores} consolida o modelo nulo da eq.~\eqref{eq:nulo} para o
 nenhuma das três métricas de decomposição o estado é \emph{outlier}; a especificidade
 capixaba é composicional (Tabela~\ref{tab:bench}), não mecânica.
 
-\begin{table}[ht]
+\begin{table}[tbp]
 \centering\small
 \begin{tabular}{lrrrrr}
 \toprule
