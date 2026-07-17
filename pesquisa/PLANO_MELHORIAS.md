@@ -14,6 +14,24 @@ convenções fechadas.
 
 ---
 
+## Status da execução (2026-07-17)
+
+| Eixo | Status | Observação |
+|---|---|---|
+| **A** Resumo | ✅ | 422 → **181 palavras**; nenhum número exclusivo do resumo |
+| **B** Figuras | ✅ | 6 figuras regeneradas (PNG 300 dpi + PDF vetorial no `.tex`); 7 scripts portáveis; housekeeping completo |
+| **C** Correções | ✅ | "cinco limites"; Sankey conciliado na legenda (18,1 interestadual × 18,2 bi-regional, Ap. B.3); **abstract EN adicionado**; refs FLQ-2016/CHARM/Riddington restauradas em §Dados+§Limitações |
+| **D** Diagramação | ✅ | babel+microtype+lmodern+caption; floats `[tbp]`; `\ifanon`; 21 págs., 0 refs indefinidas, 0 overfull |
+| **E** Teoria regional | ✅ | §2 "Quadro analítico" com tabela-síntese; Introdução emagrecida; remissões no corpo sem duplicação |
+| C.3 refs novas | ✅ | Richardson 1985 (JRS 25(4), 607–661), Guilhoto et al. 2010 (BNB), Ichihara & Guilhoto 2008 (48º ERSA), **SC verificado**: Bittencourt et al. 2023 (RBERU 17(1), 90–112). **MA fora**: metadados inacessíveis (REN/BNB 403) |
+| Aceite global | ✅ | números figura↔texto↔CSV conferidos (celulose 1,41→1,51; spillover 18,1/37,8/52,5/65,4; upstream 1,91/2,31; 8 setores-chave) |
+
+Pendências que permanecem (fora do escopo desta rodada): **F1** (`fechar_R1.bat` na máquina do
+autor), **P6/P7** (matriz 2019 + CO₂), conferência final das normas RBERU no ato da submissão
+(template/citação — site da revista inacessível deste ambiente).
+
+---
+
 ## 0. Visão geral
 
 | Eixo | O que faz | Esforço | Depende de |
