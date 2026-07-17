@@ -196,6 +196,13 @@ instrumentos de insumo-produto, com tabela-síntese); 7 refs novas verificadas (
 Flegg et al. 2016; Többen & Kronenberg 2015; Riddington et al. 2006). Artigo: 21 págs.,
 43 refs, 0 indefinidas.
 
+**Rodada 4 de parecer (2026-07-17):** full-mode sobre a versão pós-editorial
+(`REVIEW_FULL_MODE_V3.md`) — decisão **Minor (banda superior) → Accept condicional a F1**;
+itens 1–6 do roadmap aplicados na hora (`RESPOSTA_AOS_PARECERISTAS.md`, rodada 4): conciliação
+18,2/18,1 no Apêndice B.3, gramática do abstract EN, claim de raridade removido de §2,
+Bittencourt 2023 reenquadrado, legendas de figura na convenção script-do-dado, alavancas
+condicionadas às safras. Resta só F1 (autor).
+
 ## 7. Estado editorial (para não retrabalhar o que está fechado)
 
 - Parecer v3: Major → 4 obrigatórios + 4 sugeridos **FULLY ADDRESSED** → re-review **Minor→Accept**

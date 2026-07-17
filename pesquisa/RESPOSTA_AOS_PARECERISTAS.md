@@ -157,3 +157,8 @@ item 7 (= F1) permanece com o autor.*
   sem Alimentos, sobre `22_*`/`10_*`).
 
 ## Estado da compilação (rodada 4)
+`paper/es_estrutura_produtiva.pdf` — **21 páginas, 6 figuras (PDF vetorial), 7 tabelas
+(incl. tabela-síntese do quadro analítico) + 2 apêndices, 43 referências**; compila sem
+erro, 0 citações indefinidas, 0 overfull (3 passadas). 6/7 itens do roadmap FULLY
+ADDRESSED; decisão vigente: **Accept condicional a F1** (compromisso de APPROVE automático
+quando os CSVs chegarem com asserts `[OK]`).
