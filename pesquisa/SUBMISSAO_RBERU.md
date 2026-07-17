@@ -82,7 +82,7 @@ Trilha interna: 3 rodadas de parecer simulado (`REVIEW_*`) com todos os itens ap
 
 ## Checklist de submissão
 
-- [ ] Rodar `fechar_R1.bat` (fecha o rastro reprodutível das Tabelas 1 e 4) — **antes de submeter**
+- [x] Rodar `fechar_R1.bat` (rastro reprodutível das tabelas de decomposição e territorial) — **fechado em 2026-07-17** (commit `9cc83ea`; asserts `[OK]`; paridade reconferida)
 - [ ] Conferir normas RBERU (template, anonimização para avaliação cega — remover nome/agradecimentos do PDF cego)
 - [ ] Gerar versão anonimizada do `.tex` (autor/afiliação/repositório mascarados)
 - [ ] Carta ao editor (acima) + destaques no formulário

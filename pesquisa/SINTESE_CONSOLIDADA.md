@@ -201,7 +201,7 @@ Flegg et al. 2016; Többen & Kronenberg 2015; Riddington et al. 2006). Artigo: 2
 itens 1–6 do roadmap aplicados na hora (`RESPOSTA_AOS_PARECERISTAS.md`, rodada 4): conciliação
 18,2/18,1 no Apêndice B.3, gramática do abstract EN, claim de raridade removido de §2,
 Bittencourt 2023 reenquadrado, legendas de figura na convenção script-do-dado, alavancas
-condicionadas às safras. Resta só F1 (autor).
+condicionadas às safras. **F1 fechado no mesmo dia**: autor rodou `fechar_R1.bat` (asserts `[OK]`; CSVs `9cc83ea` + APPROVE `31f1e0e` integrados ao PR #3 por cherry-pick; paridade reconferida 6/6 + 10/10) → decisão **ACCEPT**. Agenda restante: DA-1 (ranking sem Alimentos), P6/P7.
 
 ## 7. Estado editorial (para não retrabalhar o que está fechado)
 

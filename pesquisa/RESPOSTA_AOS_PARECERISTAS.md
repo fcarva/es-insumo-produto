@@ -153,13 +153,20 @@ item 7 (= F1) permanece com o autor.*
 - **6 (W-R3-1, condicionalidade temporal)** — **FULLY ADDRESSED**: abertura das alavancas
   agora declara "condicionais, como toda a leitura de política aqui, às safras das âncoras
   (§Limitações)".
-- **7 (F1/DA-2)** — **PENDENTE DO AUTOR** (inalterado): `fechar_R1.bat` na máquina local
-  fecha os CSVs das Tabelas 2 e 5 e habilita a checagem DA-1 (reestimação do ranking de base
-  sem Alimentos, sobre `22_*`/`10_*`).
+- **7 (F1/DA-2)** — **FULLY ADDRESSED** (2026-07-17): autor rodou `fechar_R1.bat`; asserts
+  `[OK]`, 4 CSVs commitados (`9cc83ea`, na branch antiga) e **integrados ao PR #3 por
+  cherry-pick** junto com o APPROVE da rodada theorist-toolbox (`31f1e0e`). Paridade
+  **reconferida nesta rodada** contra as Tabelas 2 e 5 da versão atual: 6/6 componentes da
+  decomposição (externa exata 61,74%/47,50%; totais 104.621,7 mi / 1.611.736 ocupações) e
+  10/10 microrregiões (divergências aparentes em Nordeste/Noroeste eram arredondamento
+  half-even do verificador; os valores crus 4,85 e 0,3550 arredondam para os publicados
+  4,9 e 0,36). A checagem DA-1 (ranking de base sem Alimentos, `22_*`/`10_*`) segue como
+  única agenda de replicação — não bloqueia.
 
 ## Estado da compilação (rodada 4)
 `paper/es_estrutura_produtiva.pdf` — **21 páginas, 6 figuras (PDF vetorial), 7 tabelas
 (incl. tabela-síntese do quadro analítico) + 2 apêndices, 43 referências**; compila sem
-erro, 0 citações indefinidas, 0 overfull (3 passadas). 6/7 itens do roadmap FULLY
-ADDRESSED; decisão vigente: **Accept condicional a F1** (compromisso de APPROVE automático
-quando os CSVs chegarem com asserts `[OK]`).
+erro, 0 citações indefinidas, 0 overfull (3 passadas). **7/7 itens do roadmap FULLY
+ADDRESSED** (item 7 fechado pelo autor em 2026-07-17 via `fechar_R1.bat`); pelo compromisso
+das rodadas, a decisão vigente passa a **ACCEPT** — cadeia número→script→CSV completa para
+todas as tabelas do corpo.

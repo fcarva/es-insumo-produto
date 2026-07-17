@@ -241,3 +241,15 @@ re-review documental basta.
 
 *Itens 1–6 aplicáveis nesta sessão; item 7 permanece com o autor. Após 1–6 + recompilação,
 manuscrito segue em Accept condicional a F1.*
+
+---
+
+## Post-scriptum (2026-07-17, mesmo dia): F1 fechado → decisão vira ACCEPT
+
+O autor executou `fechar_R1.bat` sobre o `Material IO`: asserts `[OK]` nos scripts
+`25`/`24`/`15`, 4 CSVs commitados (`9cc83ea`) e integrados a esta branch por cherry-pick,
+junto com o APPROVE da rodada theorist-toolbox (`31f1e0e`). Paridade reconferida contra a
+versão atual do manuscrito (Tabelas 2 e 5): 6/6 componentes e 10/10 microrregiões. Com
+DA-2/W-R1-3 resolvido, cai a última condição da regra de ferro #4 e vale o compromisso das
+rodadas: **ACCEPT**. Único item de agenda (não bloqueante): checagem DA-1 do ranking de
+base sem Alimentos (`22_*`/`10_*`).

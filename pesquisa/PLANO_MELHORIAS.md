@@ -26,9 +26,9 @@ convenções fechadas.
 | C.3 refs novas | ✅ | Richardson 1985 (JRS 25(4), 607–661), Guilhoto et al. 2010 (BNB), Ichihara & Guilhoto 2008 (48º ERSA), **SC verificado**: Bittencourt et al. 2023 (RBERU 17(1), 90–112). **MA fora**: metadados inacessíveis (REN/BNB 403) |
 | Aceite global | ✅ | números figura↔texto↔CSV conferidos (celulose 1,41→1,51; spillover 18,1/37,8/52,5/65,4; upstream 1,91/2,31; 8 setores-chave) |
 
-Pendências que permanecem (fora do escopo desta rodada): **F1** (`fechar_R1.bat` na máquina do
-autor), **P6/P7** (matriz 2019 + CO₂), conferência final das normas RBERU no ato da submissão
-(template/citação — site da revista inacessível deste ambiente).
+Pendências que permanecem: ~~F1~~ **fechado em 2026-07-17** (`fechar_R1.bat` do autor;
+CSVs integrados ao PR #3); **P6/P7** (matriz 2019 + CO₂); conferência final das normas RBERU
+no ato da submissão (template/citação — site da revista inacessível deste ambiente).
 
 ---
 
