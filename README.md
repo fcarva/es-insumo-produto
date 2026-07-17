@@ -41,7 +41,7 @@ es-insumo-produto/
 │   ├── outputs/                     # CSVs e figuras gerados (versionados)
 │   ├── SINTESE_CONSOLIDADA.md       # ÍNDICE-MESTRE do projeto (o que existe, o que falta)
 │   └── *.md                         # deep researches, resultados, auditorias, pareceres
-├── figuras/                         # figuras finais do artigo
+├── figuras/                         # artes da v1/slides (as figuras do artigo vivem em pesquisa/outputs/)
 ├── src/io_core.py                   # funções-núcleo (Isard/Miller-Blair, RH/Ghosh)
 └── dados/                           # dados de terceiros NÃO versionados (ver dados/README.md)
 ```

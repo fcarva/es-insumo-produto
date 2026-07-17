@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-11_fig_sankey.py — Sankey ESTRATIFICADO, padrão editorial (Nexo / Flexoki suave).
-Topo: barra de contexto (retido 78% | vaza 22% | feedback 0,3%).
-Baixo: destino do spillover do ES por macrorregião e estado, com respiro e
-rótulos coloridos por papel (núcleo SP/RJ=azul, cluster=verde, resto=cinza).
+11_fig_sankey.py — Sankey ESTRATIFICADO do destino do spillover do ES, por
+macrorregião e estado, com rótulos coloridos por papel (núcleo SP/RJ=azul,
+cluster=verde, resto=cinza). Padrão editorial: sem título/contexto embutidos —
+a legenda LaTeX assume (injeção/spillover/feedback na convenção fechada).
 Todos os "$" são escapados (\\$) para evitar o modo matemático do matplotlib.
 """
-import os, csv
+import os, sys, csv
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.path import Path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import estilo as st; st.apply()
 
-OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 spill = {r["regiao"]: float(r["spillover_RS_mi"]) for r in
          csv.DictReader(open(os.path.join(OUT, "es_spillover_destino.csv"), encoding="utf-8"))}
 res = {r["metrica"]: float(r["valor_pct"]) for r in
@@ -42,30 +43,8 @@ children = {
  "Centro-Oeste": [("GO", spill["GO"], "CLU"), ("demais CO", mtot["Centro-Oeste"]-spill["GO"], "RES")],
  "Norte": [("Norte (7 UFs)", mtot["Norte"], "RES")]}
 
-fig = plt.figure(figsize=(11.5, 8.9))
-gs = fig.add_gridspec(2, 1, height_ratios=[1, 8.2], hspace=0.32,
-                      left=0.045, right=0.86, top=0.85, bottom=0.07)
-axt = fig.add_subplot(gs[0]); axm = fig.add_subplot(gs[1])
-
-# ---- título / dek / fonte (Nexo: à esquerda) ----
-fig.text(0.045, 0.955, "Para onde vaza o Espírito Santo", fontsize=17, fontweight="bold", color=st.INK)
-fig.text(0.045, 0.915, "Destino do spillover de produção, por macrorregião e estado · MIP inter-regional ES × Brasil, 2008",
-         fontsize=10.5, color=st.INK_SOFT)
-fig.text(0.045, 0.015, "Fonte: matriz insumo-produto inter-regional ES × Brasil (2008), modelo de Isard · elaboração própria",
-         fontsize=8, color=st.INK_SOFT)
-
-# ---- barra de contexto (retido / vaza / feedback) ----
-axt.set_xlim(0, TOTAL); axt.set_ylim(-1, 1.2); axt.axis("off")
-axt.add_patch(patches.Rectangle((0, -0.45), RETIDO, 0.9, color=NODE["ES"]))
-axt.add_patch(patches.Rectangle((RETIDO, -0.45), SPILL_TOT, 0.9, color=NODE["RES"]))
-axt.text(RETIDO/2, 0, f"Retido no ES   {RETIDO/TOTAL*100:.0f}%", ha="center", va="center",
-         fontsize=11.5, fontweight="bold", color="#5A2A22")
-axt.text(RETIDO+SPILL_TOT/2, 0, f"Vaza   {SPILL_TOT/TOTAL*100:.0f}%", ha="center", va="center",
-         fontsize=10, color=st.INK)
-axt.text(0, 0.95, f"Da produção que a demanda final do ES põe em movimento ({money(TOTAL)})",
-         ha="left", va="bottom", fontsize=9, color=st.INK_SOFT)
-axt.text(0, -0.95, "de volta ao ES (feedback): apenas 0,3% — a interdependência é quase unilateral",
-         ha="left", va="top", fontsize=8.6, color=TXT["ES"])
+fig, axm = plt.subplots(figsize=(11.5, 7.0))
+fig.subplots_adjust(left=0.045, right=0.86, top=0.98, bottom=0.02)
 
 # ---- Sankey do spillover ----
 T = SPILL_TOT
@@ -115,5 +94,4 @@ for nm, val, r in L1:
 axm.set_xlim(-0.16, 1.02)
 axm.set_ylim(min(b for a, b in L2pos.values()) - 0.04*T, T + 0.04*T)
 axm.axis("off")
-fig.savefig(os.path.join(OUT, "es_sankey.png"))
-print("ok es_sankey.png (Nexo / estratificado)")
+st.salvar(fig, OUT, "es_sankey")

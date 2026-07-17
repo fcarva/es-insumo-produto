@@ -24,7 +24,7 @@
 % Versão cega para avaliação por pares: trocar por \anontrue antes de compilar
 \newif\ifanon
 \anonfalse
-\graphicspath{{../pesquisa/outputs/}{../figuras/}}
+\graphicspath{{../pesquisa/outputs/}}
 
 \title{\textbf{Estrutura Produtiva do Espírito Santo:\\ uma análise de insumo-produto}\\[2pt]
 \large Multiplicadores, setores-chave, demanda, vocação territorial e a face
@@ -303,10 +303,12 @@ ligações) é moderado: 0,16 para trás, 0,28 para frente.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=.92\linewidth]{fig_setores_chave.png}
+\includegraphics[width=.92\linewidth]{fig_setores_chave.pdf}
 \caption{Mapa de ligações dos 26 setores do ES (2008). O quadrante superior-direito
-(vermelho) reúne os setores-chave (poder e sensibilidade de dispersão acima da média);
-a mineração aparece como forte fornecedora a montante, com baixa ligação para trás.}
+(vermelho) reúne os setores-chave (poder e sensibilidade de dispersão acima da média),
+todos rotulados; a mineração aparece como forte fornecedora a montante, com baixa ligação
+para trás. Fonte: \texttt{19\_fig\_caracterizacao.py} sobre
+\texttt{outputs/es\_caracterizacao\_2008.csv}.}
 \label{fig:chave}
 \end{figure}
 
@@ -418,10 +420,11 @@ extração os dispensa.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=.95\linewidth]{fig_trajetoria_n68.png}
+\includegraphics[width=.95\linewidth]{fig_trajetoria_n68.pdf}
 \caption{Ligação para trás dos setores-base do ES na estrutura nacional, 2010--2021
 (série de 68 setores). Celulose e siderurgia acima da unidade (setores-chave); extração
-de petróleo e de minério abaixo (enclaves de baixa ligação doméstica).}
+de petróleo e de minério abaixo (enclaves de baixa ligação doméstica). Fonte:
+\texttt{18\_trajetoria\_n68.py} sobre \texttt{outputs/trajetoria\_n68.csv}.}
 \label{fig:traj}
 \end{figure}
 
@@ -503,10 +506,12 @@ convergem para o mesmo desenho de um estado polarizado entre núcleo e periferia
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\linewidth]{fig_micro_vocacao.png}
+\includegraphics[width=\linewidth]{fig_micro_vocacao.pdf}
 \caption{Quociente locacional por setor e microrregião (2015). Cada território
 concentra (vermelho) o setor de sua vocação; a Metropolitana, diversificada, não exibe
-especialização extrema.}
+especialização extrema. Exibem-se os dez setores (de 35) que definem as vocações
+territoriais; a escala de cor é truncada em $\mathrm{LQ}=6$ --- os valores anotados são
+os exatos. Fonte: \texttt{21\_fig\_micro.py} sobre \texttt{outputs/micro\_LQ.csv}.}
 \label{fig:vocacao}
 \end{figure}
 
@@ -552,10 +557,14 @@ a mesma assimetria de captura a jusante que o ES exibe pelo lado do minério.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=.92\linewidth]{es_sankey.png}
-\caption{Destino do \emph{spillover} do ES, estratificado por macrorregião e estado. O núcleo
-SP/RJ absorve a maior parte; a produção retida no ES e o \emph{feedback} de volta
-($\approx$0,3\%) constam do subtítulo. Fonte: \texttt{11\_fig\_sankey.py}.}
+\includegraphics[width=.92\linewidth]{es_sankey.pdf}
+\caption{Destino do \emph{spillover} do ES, estratificado por macrorregião e estado
+(injeção da demanda final do ES por produtos do ES, matriz interestadual de 2008): dos
+R\$\,18,1 bilhões transbordados, o Sudeste absorve 65\% e o núcleo São Paulo--Rio de
+Janeiro, 52,5\%; o \emph{feedback} de volta ao ES é de apenas 0,32\% da injeção. No
+sistema bi-regional do texto, o mesmo experimento transborda R\$\,18,2 bi --- a diferença
+é de agregação (Apêndice~\ref{ap:medias}). Fonte: \texttt{11\_fig\_sankey.py} sobre
+\texttt{outputs/es\_spillover\_destino.csv}.}
 \label{fig:sankey}
 \end{figure}
 
@@ -587,7 +596,7 @@ que essa mecânica genérica transporta.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\linewidth]{fractal_duas_escalas.png}
+\includegraphics[width=\linewidth]{fig_fractal.pdf}
 \caption{Invariância de escala da razão de \emph{feedback}: cresce com o porte da unidade nas
 duas escalas --- 27 UFs no Brasil ($R^2=0{,}59$) e 10 microrregiões no ES ($R^2=0{,}91$). A
 mesma mecânica de posição-e-porte opera em ambas. Fonte: \texttt{14\_*} e \texttt{15\_*}.}
@@ -608,9 +617,11 @@ uma economia de base, fornecedora a montante.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=.86\linewidth]{es_upstreamness.png}
+\includegraphics[width=.86\linewidth]{es_upstreamness.pdf}
 \caption{\emph{Upstreamness} (Antràs-Chor) da pauta exportadora do ES, WIOD 2014: o estado
-posiciona-se a montante da cadeia de valor (pauta 3,12; Brasil 1,91; mundo 2,31).}
+posiciona-se a montante da cadeia de valor (pauta 3,12; Brasil 1,91; mundo 2,31). Barras
+ordenadas pelo peso do setor na pauta exportadora capixaba. Fonte:
+\texttt{09\_fig\_upstreamness.py} sobre \texttt{outputs/es\_upstreamness.csv}.}
 \label{fig:upstream}
 \end{figure}
 

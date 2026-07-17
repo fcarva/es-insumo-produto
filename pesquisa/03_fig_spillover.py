@@ -5,7 +5,7 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import estilo as st; st.apply()
 
-OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 spill = {r["regiao"]: float(r["spillover_RS_mi"]) for r in
          csv.DictReader(open(os.path.join(OUT, "es_spillover_destino.csv"), encoding="utf-8"))}
 total = sum(spill.values())

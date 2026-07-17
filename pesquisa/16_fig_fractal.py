@@ -8,13 +8,13 @@ Le: outputs/benchmark_ufs.csv, outputs/intra_es_fractal.csv.
 """
 import os, sys
 import numpy as np, pandas as pd
+import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import estilo
 if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8")
 
-OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
-FIG = r"C:/Users/DELL/Documents/es-insumo-produto/figuras"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 estilo.apply()
 
 uf = pd.read_csv(os.path.join(OUT, "benchmark_ufs.csv"))
@@ -28,7 +28,7 @@ def fitline(x, y):
 
 # ----------------------------- FIG 1: FRACTAL ------------------------------- #
 fig, (axL, axR) = plt.subplots(1, 2, figsize=(11.5, 5.2))
-fig.subplots_adjust(left=0.065, right=0.975, top=0.80, bottom=0.13, wspace=0.22)
+fig.subplots_adjust(left=0.065, right=0.975, top=0.93, bottom=0.13, wspace=0.22)
 
 # painel esquerdo: 27 UFs
 x1 = np.log(uf["producao_mi"].values); y1 = uf["feedback_razao"].values*100
@@ -46,8 +46,11 @@ for lab in ("ES","SP","RJ","MT"):
     axL.annotate(lab, (np.log(r.producao_mi), r.feedback_razao*100), fontsize=8.5,
                  color=estilo.INK, xytext=_off[lab], ha=_ha[lab], textcoords="offset points", fontweight="bold")
 axL.set_title(f"Escala nacional · 27 UFs (2008)", fontsize=11)
-axL.set_xlabel("log da produção do estado"); axL.set_ylabel("razão de feedback  (%)")
-axL.text(0.97, 0.05, f"R²={r2:.2f}", transform=axL.transAxes, ha="right", color=estilo.INK_SOFT, fontsize=9)
+axL.set_xlabel("log da produção do estado (R\\$ milhões de 2008)")
+axL.set_ylabel("razão de feedback  (%)")
+axL.xaxis.set_major_formatter(estilo.eixo_virgula(0))
+axL.yaxis.set_major_formatter(estilo.eixo_virgula(1))
+axL.text(0.97, 0.05, f"R²={estilo.br(r2, 2)}", transform=axL.transAxes, ha="right", color=estilo.INK_SOFT, fontsize=9)
 
 # painel direito: 10 microrregioes ES
 mi2 = mi.copy()
@@ -67,15 +70,14 @@ for nm in ("Metropolitana","Rio Doce","Litoral Sul"):
                  color=estilo.INK, xytext=(dx,dy), ha=ha, textcoords="offset points", fontweight="bold")
 axR.set_xlim(axR.get_xlim()[0], axR.get_xlim()[1]+0.35)
 axR.set_title("Escala intra-ES · 10 microrregiões (2015)", fontsize=11)
-axR.set_xlabel("log do share de produção na microrregião"); axR.set_ylabel("razão de feedback  (%)")
-axR.text(0.97, 0.05, f"R²={r2b:.2f}", transform=axR.transAxes, ha="right", color=estilo.INK_SOFT, fontsize=9)
+axR.set_xlabel("log da participação no VBP do ES (%)")
+axR.set_ylabel("razão de feedback  (%)")
+axR.xaxis.set_major_formatter(estilo.eixo_virgula(1))
+axR.yaxis.set_major_formatter(estilo.eixo_virgula(2))
+axR.text(0.97, 0.05, f"R²={estilo.br(r2b, 2)}", transform=axR.transAxes, ha="right", color=estilo.INK_SOFT, fontsize=9)
 
-estilo.nexo(fig, "A economia-plataforma em escalas aninhadas",
-    "O feedback inter-regional cresce com o porte da unidade — a MESMA regularidade governa estados dentro do Brasil e microrregiões dentro do ES.",
-    "Fonte: MIP interestadual 27-UF (2008) e sistema inter-regional das microrregiões do ES (2015). Razão de feedback = retorno/injeção (Miller-Blair, inversa particionada).")
-fig.savefig(os.path.join(OUT, "fig_fractal.png"), dpi=160)
-fig.savefig(os.path.join(FIG, "fractal_duas_escalas.png"), dpi=160)
-print("salvo: fig_fractal.png  (R2 nac.={:.2f} / intra-ES={:.2f})".format(r2, r2b))
+estilo.salvar(fig, OUT, "fig_fractal")
+print("R2 nac.={:.2f} / intra-ES={:.2f}".format(r2, r2b))
 
 # ------------------ FIG 2: PERIFERIA -> METROPOLE (intra-ES) ----------------- #
 fig2, ax = plt.subplots(figsize=(9.6, 5.4))

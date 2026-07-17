@@ -2,8 +2,14 @@
 """
 estilo.py — paleta e tema das figuras (Flexoki/Kepano: papel quente, pastéis,
 minimalista). Importado pelos scripts de figura. Cores de Steph Ango (Flexoki).
+
+Padrão das figuras do ARTIGO (rodada editorial): sem título/subtítulo/fonte
+embutidos (a legenda LaTeX assume), vírgula decimal, PNG 300 dpi + PDF vetorial
+(`salvar`). `nexo()` permanece para as artes de slides.
 """
+import os
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
 # tons base
 PAPER    = "#FFFCF0"   # (legado) papel quente — não mais usado como fundo
@@ -37,6 +43,23 @@ def nexo(fig, title, dek="", source="", x=0.045):
         fig.text(x, 0.912, dek, fontsize=9.8, color=INK_SOFT, ha="left", va="top")
     if source:
         fig.text(x, 0.022, source, fontsize=7.8, color=INK_SOFT, ha="left", va="bottom")
+
+
+def br(v, casas=1):
+    """Número em convenção brasileira (vírgula decimal)."""
+    return f"{v:.{casas}f}".replace(".", ",")
+
+
+def eixo_virgula(casas=1):
+    """Formatter de eixo com vírgula decimal."""
+    return FuncFormatter(lambda v, pos: br(v, casas))
+
+
+def salvar(fig, out_dir, nome, dpi=300):
+    """Salva PNG (300 dpi, p/ slides e visualização) + PDF vetorial (o .tex usa o PDF)."""
+    fig.savefig(os.path.join(out_dir, nome + ".png"), dpi=dpi)
+    fig.savefig(os.path.join(out_dir, nome + ".pdf"))
+    print(f"salvo: {nome}.png / {nome}.pdf")
 
 
 def apply():

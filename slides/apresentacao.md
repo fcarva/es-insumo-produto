@@ -333,7 +333,7 @@ A herança do trabalho anterior, agora como UMA seção da caracterização: a e
 
 ## Mas a mecânica é a prevista para o porte
 
-![Invariância de escala — feedback × porte nas duas escalas](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/figuras/fractal_duas_escalas.png)
+![Invariância de escala — feedback × porte nas duas escalas](https://raw.githubusercontent.com/fcarva/es-insumo-produto/main/pesquisa/outputs/fig_fractal.png)
 
 > **Modelo nulo** ($m_r=\alpha+\beta\ln x_r+\varepsilon$): o ES **não é outlier** em nenhuma métrica (z: +0,45 · −0,05 · +0,03); feedback observado **abaixo** do previsto. Retorno é privilégio de núcleo: SP+RJ **1,97%** vs 0,49%. MG (60%) e RS (55%) escoam **mais** ao núcleo que o ES (52,5%).
 
