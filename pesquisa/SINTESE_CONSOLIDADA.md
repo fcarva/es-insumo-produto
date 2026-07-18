@@ -173,7 +173,7 @@ P4+P5 (literatura) → P6/P7 se houver fôlego (senão ficam como agenda declara
 
 | # | Status | Observação |
 |---|---|---|
-| P0 | ⏳ **1 clique do autor** | `fechar_R1.bat` na máquina local roda `24`/`25`, valida asserts e commita os 2 CSVs sozinho |
+| P0 | ✅ **fechado** (commit `9cc83ea`) | `fechar_R1.bat` executado: asserts `[OK]` nos 3 scripts; 4 CSVs commitados; paridade verificada célula a célula (APPROVE do review theorist-toolbox) |
 | P1 | ✅ | README/CITATION/Makefile descrevem a v3 |
 | P2 | ✅ | Apêndices A (9 subseções, 8 equações) e B (5 subseções) no `.tex` |
 | P3 | ✅ | z-scores, extração hipotética (−13%), núcleo 1,97% vs cluster 0,49% reintegrados |
@@ -186,6 +186,22 @@ P4+P5 (literatura) → P6/P7 se houver fôlego (senão ficam como agenda declara
 **Pós-plano (rodada 3 de parecer, `REVIEW_FULL_MODE_V2.md`):** decisão Minor Revision (banda
 superior) → Accept condicional; R2–R4 e S1–S5 aplicados (`RESPOSTA_AOS_PARECERISTAS.md`,
 seção rodada 3); R1 = P0. Artigo: 19 págs, 36 refs, 0 indefinidas.
+
+**Rodada editorial (planejada 2026-07-16, executada 2026-07-17):** plano e status em
+[`PLANO_MELHORIAS.md`](PLANO_MELHORIAS.md) — resumo 422→181 palavras; 6 figuras regeneradas
+no padrão editorial (PDF vetorial, vírgula decimal, sem título embutido); abstract EN;
+babel/microtype/caption; nova §2 "Quadro analítico" (lentes de economia regional ↔
+instrumentos de insumo-produto, com tabela-síntese); 7 refs novas verificadas (Richardson
+1985; Guilhoto et al. 2010 NE; Ichihara & Guilhoto 2008; Bittencourt et al. 2023 SC;
+Flegg et al. 2016; Többen & Kronenberg 2015; Riddington et al. 2006). Artigo: 21 págs.,
+43 refs, 0 indefinidas.
+
+**Rodada 4 de parecer (2026-07-17):** full-mode sobre a versão pós-editorial
+(`REVIEW_FULL_MODE_V3.md`) — decisão **Minor (banda superior) → Accept condicional a F1**;
+itens 1–6 do roadmap aplicados na hora (`RESPOSTA_AOS_PARECERISTAS.md`, rodada 4): conciliação
+18,2/18,1 no Apêndice B.3, gramática do abstract EN, claim de raridade removido de §2,
+Bittencourt 2023 reenquadrado, legendas de figura na convenção script-do-dado, alavancas
+condicionadas às safras. **F1 fechado no mesmo dia**: autor rodou `fechar_R1.bat` (asserts `[OK]`; CSVs `9cc83ea` + APPROVE `31f1e0e` integrados ao PR #3 por cherry-pick; paridade reconferida 6/6 + 10/10) → decisão **ACCEPT**. Agenda restante: DA-1 (ranking sem Alimentos), P6/P7.
 
 ## 7. Estado editorial (para não retrabalhar o que está fechado)
 

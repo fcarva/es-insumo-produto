@@ -70,12 +70,13 @@ erro nem citação indefinida. Os 4 itens obrigatórios estão **FULLY ADDRESSED
 
 ## Itens obrigatórios
 
-### R1 — Rastro reprodutível das Tabelas 1 e 4 — **PENDENTE (autor)**
-Único item que depende da máquina local: rodar `pesquisa/25_decomposicao_fd.py` e
-`pesquisa/24_micro_mult_chave.py` sobre o `Material IO`, conferir os asserts de
-autoverificação (`[OK] todos os numeros publicados reproduzidos`) e commitar
-`outputs/decomposicao_fd.csv` + `outputs/micro_multiplicadores.csv`. Status muda para
-FULLY ADDRESSED com o commit dos 2 CSVs.
+### R1 — Rastro reprodutível das Tabelas 1 e 4 — **FULLY ADDRESSED** (commit `9cc83ea`)
+Fechado pelo autor via `fechar_R1.bat`: scripts `25`/`24`/`15` executados sobre o
+`Material IO` com **todos os asserts `[OK]`**; 4 CSVs commitados (`decomposicao_fd`,
+`decomposicao_fd_setorial`, `micro_multiplicadores`, `extracao_hipotetica`). Paridade
+verificada independentemente célula a célula contra as Tabelas 1 e 4 (rodada 3 do review
+theorist-toolbox, veredito **APPROVE**); versões locais originais dos scripts preservadas
+como `*.local.py`.
 
 ### R2 — Conciliação 8,4% × 9,1% (Metropolitana) — **FULLY ADDRESSED**
 Nota adicionada à legenda da Tabela~`tab:micro`: a retenção da tabela é a **razão das somas
@@ -120,3 +121,52 @@ checagem de replicação sobre `22_*`/`10_*`.
 36 referências**; compila sem erro nem citação indefinida (3 passadas de pdflatex; checagem
 estrutural: 36 cites ↔ 36 bibitems, 28 refs com label, ambientes balanceados).
 3 obrigatórios FULLY + 1 pendente-do-autor (R1) + 5 sugeridos atacados (S4 parcial, honesto).
+
+---
+
+# Rodada 4 — resposta ao parecer full-mode da versão pós-editorial (`REVIEW_FULL_MODE_V3.md`)
+
+*Stage 4 REVISE sobre a decisão da rodada 4: Minor Revision (banda superior) → Accept
+condicional a F1. Data: 2026-07-17. Itens 1–6 do Revision Roadmap aplicados nesta rodada;
+item 7 (= F1) permanece com o autor.*
+
+## Itens do roadmap
+
+- **1 (W-R1-1, legenda Fig. 4 × Apêndice B.3)** — **FULLY ADDRESSED**: B.3 ganhou a
+  conciliação do transbordamento total que a legenda referencia — **R$ 18,2 bi**
+  (bi-regional) × **R$ 18,1 bi** (interestadual, 27 UFs), mesma injeção; a remissão da
+  legenda agora aponta para conteúdo existente.
+- **2 (W-EIC-1, abstract EN)** — **FULLY ADDRESSED**: "manufacturing emerges as key
+  sectors" → "manufacturing **concentrates** the key sectors" (concordância).
+- **3 (W-R2-1, claim de raridade)** — **FULLY ADDRESSED**: §2 não afirma mais que o gênero
+  "raramente emprega" os instrumentos; diz apenas o que eles fazem ("acrescido de dois
+  instrumentos de aferição — o benchmark interestadual e o modelo nulo de porte — que
+  separam...").
+- **4 (W-R2-2, enquadramento de SC)** — **FULLY ADDRESSED**: Bittencourt et al. (2023)
+  reenquadrado como "a leitura da indústria estadual sobre a MIP de 2018" — sem esticar o
+  gênero. *Nota:* atualiza o S4 da rodada 1 — SC agora TEM precedente verificado (RBERU
+  17(1), 90–112, conferido via RePEc/IDEAS); MA segue fora (metadados inacessíveis).
+- **5 (W-R1-2, convenção de fonte nas legendas)** — **FULLY ADDRESSED**: as 6 figuras agora
+  citam o **script gerador do dado** sobre o CSV (17, 18, 20, 02, 14/15, 08), a mesma
+  convenção das tabelas; os scripts de figura (09/11/16/19/21) seguem documentados no
+  repositório e no Makefile (`make figuras`).
+- **6 (W-R3-1, condicionalidade temporal)** — **FULLY ADDRESSED**: abertura das alavancas
+  agora declara "condicionais, como toda a leitura de política aqui, às safras das âncoras
+  (§Limitações)".
+- **7 (F1/DA-2)** — **FULLY ADDRESSED** (2026-07-17): autor rodou `fechar_R1.bat`; asserts
+  `[OK]`, 4 CSVs commitados (`9cc83ea`, na branch antiga) e **integrados ao PR #3 por
+  cherry-pick** junto com o APPROVE da rodada theorist-toolbox (`31f1e0e`). Paridade
+  **reconferida nesta rodada** contra as Tabelas 2 e 5 da versão atual: 6/6 componentes da
+  decomposição (externa exata 61,74%/47,50%; totais 104.621,7 mi / 1.611.736 ocupações) e
+  10/10 microrregiões (divergências aparentes em Nordeste/Noroeste eram arredondamento
+  half-even do verificador; os valores crus 4,85 e 0,3550 arredondam para os publicados
+  4,9 e 0,36). A checagem DA-1 (ranking de base sem Alimentos, `22_*`/`10_*`) segue como
+  única agenda de replicação — não bloqueia.
+
+## Estado da compilação (rodada 4)
+`paper/es_estrutura_produtiva.pdf` — **21 páginas, 6 figuras (PDF vetorial), 7 tabelas
+(incl. tabela-síntese do quadro analítico) + 2 apêndices, 43 referências**; compila sem
+erro, 0 citações indefinidas, 0 overfull (3 passadas). **7/7 itens do roadmap FULLY
+ADDRESSED** (item 7 fechado pelo autor em 2026-07-17 via `fechar_R1.bat`); pelo compromisso
+das rodadas, a decisão vigente passa a **ACCEPT** — cadeia número→script→CSV completa para
+todas as tabelas do corpo.

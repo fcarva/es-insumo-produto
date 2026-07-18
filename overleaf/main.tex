@@ -1,9 +1,18 @@
 % =====================================================================
-%  Estrutura Produtiva do Espírito Santo: uma análise de insumo-produto
-%  Felipe Carvalho — PPGEco/UFES — Análise de Insumo-Produto (2026/1)
+%  PACOTE OVERLEAF — Estrutura Produtiva do Espirito Santo (ABNT)
+%  Upload no Overleaf: New Project -> Upload Project. Compilador: pdfLaTeX.
+%  Arquivo principal: main.tex. Figuras vetoriais em figs/ (PDF).
 %
-%  Números reproduzíveis de pesquisa/17_caracterizacao_es_2008.py (C1),
-%  18_trajetoria_n68.py (C2), 20/24 (C3 território) e 25_decomposicao_fd.py (C4).
+%  Versao: pos-rodada editorial + rodada 4 de parecer (ACCEPT) — 21 pags.,
+%  43 referencias, resumo 181 palavras + abstract EN, secao 2 "Quadro
+%  analitico". Versao cega para avaliacao: trocar nonfalse por nontrue.
+%
+%  Referencias: ABNT NBR 6023:2018 (lista) + NBR 10520:2023 (citacoes
+%  autor-data via natbib round/authoryear). Os rotulos opcionais dos
+%  ibitem controlam as citacoes — nao remover.
+%
+%  Fonte canonica e pipeline reprodutivel:
+%  github.com/fcarva/es-insumo-produto (paper/es_estrutura_produtiva.tex)
 % =====================================================================
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -24,7 +33,7 @@
 % Versão cega para avaliação por pares: trocar por \anontrue antes de compilar
 \newif\ifanon
 \anonfalse
-\graphicspath{{../pesquisa/outputs/}}
+\graphicspath{{figs/}}
 
 \title{\textbf{Estrutura Produtiva do Espírito Santo:\\ uma análise de insumo-produto}\\[2pt]
 \large Multiplicadores, setores-chave, demanda, vocação territorial e a face
@@ -1065,197 +1074,214 @@ microrregiões), mas quase nada do vazamento e da concentração de destino
 \begin{thebibliography}{99}
 
 \bibitem[Antràs et al.(2012)]{antras2012measuring}
-Antràs, P., Chor, D., Fally, T., \& Hillberry, R. (2012). Measuring the upstreamness of
-production and trade flows. \textit{American Economic Review}, 102(3), 412--416.
+ANTRÀS, P.; CHOR, D.; FALLY, T.; HILLBERRY, R. Measuring the upstreamness of
+production and trade flows. \textbf{American Economic Review}, v.~102, n.~3,
+p.~412--416, 2012.
 
 \bibitem[Araújo Júnior(2018)]{araujojunior2018cgv}
-Araújo Júnior, I. F. de (2018). \textit{Três ensaios sobre a análise das cadeias globais de
-valor}. Tese de Doutorado, Universidade Federal de Juiz de Fora.
+ARAÚJO JÚNIOR, I. F. de. \textbf{Três ensaios sobre a análise das cadeias globais
+de valor}. 2018. Tese (Doutorado em Economia) -- Universidade Federal de Juiz de
+Fora, Juiz de Fora, 2018.
 
 \bibitem[Bittencourt et al.(2023)]{bittencourt2023sc}
-Bittencourt, P., Fachinello, A. L., Mazzucco, B., \& Arroyo, A. F. (2023). A indústria
-catarinense entre seu passado agro e o futuro TEC: a integração local, nacional e global
-a partir da MIP 2018. \textit{Revista Brasileira de Estudos Regionais e Urbanos}, 17(1),
-90--112.
+BITTENCOURT, P.; FACHINELLO, A. L.; MAZZUCCO, B.; ARROYO, A. F. A indústria
+catarinense entre seu passado agro e o futuro TEC: a integração local, nacional e
+global a partir da MIP 2018. \textbf{Revista Brasileira de Estudos Regionais e
+Urbanos}, v.~17, n.~1, p.~90--112, 2023.
 
 \bibitem[Cano(1985)]{cano1985}
-Cano, W. (1985). \textit{Desequilíbrios regionais e concentração industrial no Brasil:
-1930--1970}. São Paulo: Global Editora.
+CANO, W. \textbf{Desequilíbrios regionais e concentração industrial no Brasil}:
+1930--1970. São Paulo: Global, 1985.
 
 \bibitem[Carvalho \& Perobelli(2009)]{carvalho2009avaliacao}
-Carvalho, T. S., \& Perobelli, F. S. (2009). Avaliação da intensidade de emissões de CO$_2$
-setoriais e na estrutura de exportações: um modelo inter-regional de insumo-produto São
-Paulo/restante do Brasil. \textit{Economia Aplicada}, 13(1), 99--124.
+CARVALHO, T. S.; PEROBELLI, F. S. Avaliação da intensidade de emissões de CO$_2$
+setoriais e na estrutura de exportações: um modelo inter-regional de insumo-produto
+São Paulo/restante do Brasil. \textbf{Economia Aplicada}, v.~13, n.~1, p.~99--124, 2009.
 
 \bibitem[Cella(1984)]{cella1984}
-Cella, G. (1984). The input-output measurement of interindustry linkages.
-\textit{Oxford Bulletin of Economics and Statistics}, 46(1), 73--84.
+CELLA, G. The input-output measurement of interindustry linkages. \textbf{Oxford
+Bulletin of Economics and Statistics}, v.~46, n.~1, p.~73--84, 1984.
 
 \bibitem[Corden \& Neary(1982)]{cordenneary1982}
-Corden, W. M., \& Neary, J. P. (1982). Booming sector and de-industrialisation in a small
-open economy. \textit{The Economic Journal}, 92(368), 825--848.
+CORDEN, W. M.; NEARY, J. P. Booming sector and de-industrialisation in a small
+open economy. \textbf{The Economic Journal}, v.~92, n.~368, p.~825--848, 1982.
 
 \bibitem[Dietzenbacher et al.(1993)]{dietzenbacher1993}
-Dietzenbacher, E., van der Linden, J. A., \& Steenge, A. E. (1993). The regional extraction
-method: EC input-output comparisons. \textit{Economic Systems Research}, 5(2), 185--206.
+DIETZENBACHER, E.; VAN DER LINDEN, J. A.; STEENGE, A. E. The regional extraction
+method: EC input-output comparisons. \textbf{Economic Systems Research}, v.~5,
+n.~2, p.~185--206, 1993.
 
 \bibitem[Domingues \& Haddad(2002)]{domingues2002matriz}
-Domingues, E. P., \& Haddad, E. A. (2002). Matriz inter-regional de insumo-produto
-Minas Gerais/Resto do Brasil: estimação e extensão para exportações. In
-\textit{Anais do X Seminário sobre a Economia Mineira}. Diamantina, MG.
+DOMINGUES, E. P.; HADDAD, E. A. Matriz inter-regional de insumo-produto Minas
+Gerais/Resto do Brasil: estimação e extensão para exportações. In: SEMINÁRIO SOBRE
+A ECONOMIA MINEIRA, 10., 2002, Diamantina. \textbf{Anais} [\ldots]. Diamantina:
+Cedeplar/UFMG, 2002.
 
 \bibitem[Figueiredo et al.(2004)]{figueiredo2004agriculture}
-Figueiredo, M. G., Barros, A. L. M. de, \& Guilhoto, J. J. M. (2004). \textit{Agriculture
-and productive structure of the state of Mato Grosso, Brazil: an input-output approach}.
-Input-Output and General Equilibrium Conference, Bruxelas.
+FIGUEIREDO, M. G.; BARROS, A. L. M. de; GUILHOTO, J. J. M. Agriculture and
+productive structure of the state of Mato Grosso, Brazil: an input-output approach.
+In: INPUT-OUTPUT AND GENERAL EQUILIBRIUM CONFERENCE, 2004, Bruxelas.
+\textbf{Anais} [\ldots]. Bruxelas, 2004.
 
 \bibitem[Flegg et al.(1995)]{flegg1995lq}
-Flegg, A. T., Webber, C. D., \& Elliott, M. V. (1995). On the appropriate use of location
-quotients in generating regional input-output tables. \textit{Regional Studies}, 29(6), 547--561.
+FLEGG, A. T.; WEBBER, C. D.; ELLIOTT, M. V. On the appropriate use of location
+quotients in generating regional input-output tables. \textbf{Regional Studies},
+v.~29, n.~6, p.~547--561, 1995.
 
 \bibitem[Flegg \& Webber(2000)]{flegg2000flq}
-Flegg, A. T., \& Webber, C. D. (2000). Regional size, regional specialization and the FLQ
-formula. \textit{Regional Studies}, 34(6), 563--569.
+FLEGG, A. T.; WEBBER, C. D. Regional size, regional specialization and the FLQ
+formula. \textbf{Regional Studies}, v.~34, n.~6, p.~563--569, 2000.
 
 \bibitem[Flegg et al.(2016)]{flegg2016evaluating}
-Flegg, A. T., Mastronardi, L. J., \& Romero, C. A. (2016). Evaluating the FLQ and AFLQ
+FLEGG, A. T.; MASTRONARDI, L. J.; ROMERO, C. A. Evaluating the FLQ and AFLQ
 formulae for estimating regional input coefficients: empirical evidence for the
-province of Córdoba, Argentina. \textit{Economic Systems Research}, 28(1), 21--37.
+province of Córdoba, Argentina. \textbf{Economic Systems Research}, v.~28, n.~1,
+p.~21--37, 2016.
 
 \bibitem[Friedmann(1966)]{friedmann1966}
-Friedmann, J. (1966). \textit{Regional Development Policy: A Case Study of Venezuela}.
-Cambridge, MA: MIT Press.
+FRIEDMANN, J. \textbf{Regional development policy}: a case study of Venezuela.
+Cambridge, MA: MIT Press, 1966.
 
 \bibitem[Guilhoto \& Sesso Filho(2005)]{guilhoto2005estimacao}
-Guilhoto, J. J. M., \& Sesso Filho, U. A. (2005). Estimação da matriz
-insumo-produto a partir de dados preliminares das contas nacionais.
-\textit{Economia Aplicada}, 9(2), 277--299.
+GUILHOTO, J. J. M.; SESSO FILHO, U. A. Estimação da matriz insumo-produto a partir
+de dados preliminares das contas nacionais. \textbf{Economia Aplicada}, v.~9,
+n.~2, p.~277--299, 2005.
 
 \bibitem[Guilhoto et al.(2005)]{guilhoto2005linkages}
-Guilhoto, J. J. M., Sonis, M., \& Hewings, G. J. D. (2005). Linkages and multipliers in a
-multiregional framework: integration of alternative approaches. \textit{Australasian
-Journal of Regional Studies}, 11(1), 75--89.
+GUILHOTO, J. J. M.; SONIS, M.; HEWINGS, G. J. D. Linkages and multipliers in a
+multiregional framework: integration of alternative approaches.
+\textbf{Australasian Journal of Regional Studies}, v.~11, n.~1, p.~75--89, 2005.
 
 \bibitem[Guilhoto et al.(2010)]{guilhoto2010nordeste}
-Guilhoto, J. J. M., Azzoni, C. R., Ichihara, S. M., Kadota, D. K., \& Haddad, E. A.
-(2010). \textit{Matriz de insumo-produto do Nordeste e estados: metodologia e
-resultados}. Fortaleza: Banco do Nordeste do Brasil.
+GUILHOTO, J. J. M.; AZZONI, C. R.; ICHIHARA, S. M.; KADOTA, D. K.; HADDAD, E. A.
+\textbf{Matriz de insumo-produto do Nordeste e estados}: metodologia e resultados.
+Fortaleza: Banco do Nordeste do Brasil, 2010.
 
 \bibitem[Haddad et al.(2017)]{haddad2017iioas}
-Haddad, E. A., Gonçalves Júnior, C. A., \& Nascimento, T. O. (2017).
-Matriz interestadual de insumo-produto para o Brasil: uma aplicação do método
-IIOAS. \textit{Revista Brasileira de Estudos Regionais e Urbanos}, 11(4), 424--446.
+HADDAD, E. A.; GONÇALVES JÚNIOR, C. A.; NASCIMENTO, T. O. Matriz interestadual de
+insumo-produto para o Brasil: uma aplicação do método IIOAS. \textbf{Revista
+Brasileira de Estudos Regionais e Urbanos}, v.~11, n.~4, p.~424--446, 2017.
 
 \bibitem[Haddad et al.(2025)]{haddad2025matriz}
-Haddad, E. A., Araújo, I. F. de, Rocha, A., \& Vale, V. de A. (2025). Matriz interestadual de
-insumo-produto para o Brasil, 2019. \textit{Revista Brasileira de Estudos Regionais e Urbanos},
-19(4), 607--638.
+HADDAD, E. A.; ARAÚJO, I. F. de; ROCHA, A.; VALE, V. de A. Matriz interestadual de
+insumo-produto para o Brasil, 2019. \textbf{Revista Brasileira de Estudos
+Regionais e Urbanos}, v.~19, n.~4, p.~607--638, 2025.
 
 \bibitem[Hirschman(1958)]{hirschman1958}
-Hirschman, A. O. (1958). \textit{The Strategy of Economic Development}. New Haven:
-Yale University Press.
+HIRSCHMAN, A. O. \textbf{The strategy of economic development}. New Haven: Yale
+University Press, 1958.
 
 \bibitem[Ichihara \& Guilhoto(2008)]{ichihara2008geo}
-Ichihara, S. M., \& Guilhoto, J. J. M. (2008). Geoprocessing and estimation of
-interregional input-output systems: an application to the state of São Paulo in Brazil.
-In: \textit{48th Congress of the European Regional Science Association}. Liverpool: ERSA.
+ICHIHARA, S. M.; GUILHOTO, J. J. M. Geoprocessing and estimation of interregional
+input-output systems: an application to the state of São Paulo in Brazil. In:
+CONGRESS OF THE EUROPEAN REGIONAL SCIENCE ASSOCIATION, 48., 2008, Liverpool.
+\textbf{Anais} [\ldots]. Liverpool: ERSA, 2008.
 
 \bibitem[Isard(1951)]{isard1951}
-Isard, W. (1951). Interregional and regional input-output analysis: a model of a
-space-economy. \textit{The Review of Economics and Statistics}, 33(4), 318--328.
+ISARD, W. Interregional and regional input-output analysis: a model of a
+space-economy. \textbf{The Review of Economics and Statistics}, v.~33, n.~4,
+p.~318--328, 1951.
 
 \bibitem[Junius \& Oosterhaven(2003)]{junius2003gras}
-Junius, T., \& Oosterhaven, J. (2003). The solution of updating or regionalizing a matrix with
-both positive and negative entries. \textit{Economic Systems Research}, 15(1), 87--96.
+JUNIUS, T.; OOSTERHAVEN, J. The solution of updating or regionalizing a matrix
+with both positive and negative entries. \textbf{Economic Systems Research},
+v.~15, n.~1, p.~87--96, 2003.
 
 \bibitem[Miller(1966)]{miller1966}
-Miller, R. E. (1966). Interregional feedback effects in input-output models: some
-preliminary results. \textit{Papers of the Regional Science Association}, 17, 105--125.
+MILLER, R. E. Interregional feedback effects in input-output models: some
+preliminary results. \textbf{Papers of the Regional Science Association}, v.~17,
+p.~105--125, 1966.
 
 \bibitem[Miller \& Blair(2009)]{millerblair2009}
-Miller, R. E., \& Blair, P. D. (2009). \textit{Input-Output Analysis: Foundations and
-Extensions}. 2nd ed. Cambridge University Press.
+MILLER, R. E.; BLAIR, P. D. \textbf{Input-output analysis}: foundations and
+extensions. 2.~ed. Cambridge: Cambridge University Press, 2009.
 
 \bibitem[Miyazawa(1966)]{miyazawa1966}
-Miyazawa, K. (1966). Internal and external matrix multipliers in the input-output model.
-\textit{Hitotsubashi Journal of Economics}, 7(1), 38--55.
+MIYAZAWA, K. Internal and external matrix multipliers in the input-output model.
+\textbf{Hitotsubashi Journal of Economics}, v.~7, n.~1, p.~38--55, 1966.
 
 \bibitem[Morceiro(2012)]{morceiro2012}
-Morceiro, P. C. (2012). \textit{Desindustrialização na economia brasileira no período
-2000--2011: abordagens e indicadores}. São Paulo: Cultura Acadêmica.
+MORCEIRO, P. C. \textbf{Desindustrialização na economia brasileira no período
+2000--2011}: abordagens e indicadores. São Paulo: Cultura Acadêmica, 2012.
 
 \bibitem[Nassif et al.(2015)]{nassif2015}
-Nassif, L., Teixeira, L., \& Rocha, F. (2015). Houve redução do impacto da indústria na
-economia brasileira no período 1996--2009? Uma análise das matrizes insumo-produto.
-\textit{Economia e Sociedade}, 24(2), 355--378.
+NASSIF, L.; TEIXEIRA, L.; ROCHA, F. Houve redução do impacto da indústria na
+economia brasileira no período 1996--2009? Uma análise das matrizes
+insumo-produto. \textbf{Economia e Sociedade}, v.~24, n.~2, p.~355--378, 2015.
 
 \bibitem[North(1955)]{north1955}
-North, D. C. (1955). Location theory and regional economic growth. \textit{Journal of
-Political Economy}, 63(3), 243--258.
+NORTH, D. C. Location theory and regional economic growth. \textbf{Journal of
+Political Economy}, v.~63, n.~3, p.~243--258, 1955.
 
 \bibitem[Oreiro \& Feijó(2010)]{oreiro2010}
-Oreiro, J. L. C. de, \& Feijó, C. A. (2010). Desindustrialização: conceituação, causas,
-efeitos e o caso brasileiro. \textit{Revista de Economia Política}, 30(2), 219--232.
+OREIRO, J. L. C. de; FEIJÓ, C. A. Desindustrialização: conceituação, causas,
+efeitos e o caso brasileiro. \textbf{Revista de Economia Política}, v.~30, n.~2,
+p.~219--232, 2010.
 
 \bibitem[Peixoto et al.(2013)]{peixoto2013metodologia}
-Peixoto, F. C., Fochezatto, A., \& Porsse, A. A. (2013). Metodologia de análise
+PEIXOTO, F. C.; FOCHEZATTO, A.; PORSSE, A. A. Metodologia de análise
 inter-regional do agronegócio: aplicação ao caso do Rio Grande do Sul-restante do
-Brasil. \textit{Ensaios FEE}, 34(2), 585--618.
+Brasil. \textbf{Ensaios FEE}, v.~34, n.~2, p.~585--618, 2013.
 
 \bibitem[Perroux(1955)]{perroux1955}
-Perroux, F. (1955). Note sur la notion de ``pôle de croissance''. \textit{Économie
-Appliquée}, 8(1--2), 307--320.
+PERROUX, F. Note sur la notion de ``pôle de croissance''. \textbf{Économie
+Appliquée}, v.~8, n.~1--2, p.~307--320, 1955.
 
 \bibitem[Porsse et al.(2008)]{porsse2008matriz}
-Porsse, A. A., Peixoto, F. C., \& Palermo, P. U. (2008). \textit{Matriz de
-insumo-produto inter-regional Rio Grande do Sul--Restante do Brasil 2003: metodologia
-e resultados}. Textos para Discussão FEE, n. 38. Porto Alegre: FEE.
+PORSSE, A. A.; PEIXOTO, F. C.; PALERMO, P. U. \textbf{Matriz de insumo-produto
+inter-regional Rio Grande do Sul--Restante do Brasil 2003}: metodologia e
+resultados. Porto Alegre: FEE, 2008. (Textos para Discussão FEE, n.~38).
 
 \bibitem[Rasmussen(1956)]{rasmussen1956}
-Rasmussen, P. N. (1956). \textit{Studies in Intersectoral Relations}. Amsterdam:
-North-Holland.
+RASMUSSEN, P. N. \textbf{Studies in intersectoral relations}. Amsterdam:
+North-Holland, 1956.
 
 \bibitem[Ribeiro et al.(2024)]{ribeiro2024dinamica}
-Ribeiro, L. C. de S., Santos, G. F. dos, Cerqueira, R. B. de, Sousa Filho, J. F. de,
-Tresinari, E. M., \& Rocha, A. R. F. da (2024). Dinâmica e estrutura produtiva do Espírito
-Santo: uma análise através da regionalização da matriz de insumo-produto para o estado em 2015.
-\textit{Revista Brasileira de Estudos Regionais e Urbanos}, 18(4), 596--622.
+RIBEIRO, L. C. de S.; SANTOS, G. F. dos; CERQUEIRA, R. B. de; SOUSA FILHO, J. F.
+de; TRESINARI, E. M.; ROCHA, A. R. F. da. Dinâmica e estrutura produtiva do
+Espírito Santo: uma análise através da regionalização da matriz de insumo-produto
+para o estado em 2015. \textbf{Revista Brasileira de Estudos Regionais e Urbanos},
+v.~18, n.~4, p.~596--622, 2024.
 
 \bibitem[Richardson(1985)]{richardson1985}
-Richardson, H. W. (1985). Input-output and economic base multipliers: looking backward
-and forward. \textit{Journal of Regional Science}, 25(4), 607--661.
+RICHARDSON, H. W. Input-output and economic base multipliers: looking backward and
+forward. \textbf{Journal of Regional Science}, v.~25, n.~4, p.~607--661, 1985.
 
 \bibitem[Riddington et al.(2006)]{riddington2006comparison}
-Riddington, G., Gibson, H., \& Anderson, J. (2006). Comparison of gravity model,
-survey and location quotient-based local area tables and multipliers.
-\textit{Regional Studies}, 40(9), 1069--1081.
+RIDDINGTON, G.; GIBSON, H.; ANDERSON, J. Comparison of gravity model, survey and
+location quotient-based local area tables and multipliers. \textbf{Regional
+Studies}, v.~40, n.~9, p.~1069--1081, 2006.
 
 \bibitem[Round(1983)]{round1983nonsurvey}
-Round, J. I. (1983). Nonsurvey techniques: a critical review of the theory and the
-evidence. \textit{International Regional Science Review}, 8(3), 189--212.
+ROUND, J. I. Nonsurvey techniques: a critical review of the theory and the
+evidence. \textbf{International Regional Science Review}, v.~8, n.~3,
+p.~189--212, 1983.
 
 \bibitem[Sessa et al.(2017)]{sessa2017ubu}
-Sessa, C. B., Morandi, A. M., Lino, L. de S., Trindade, L. Z., \& Caliman, O. (2017).
-Implantação da Companhia Siderúrgica de Ubu: avaliação de impacto a partir da matriz
-insumo-produto do Espírito Santo. \textit{Economia e Desenvolvimento}, 28(2).
+SESSA, C. B.; MORANDI, A. M.; LINO, L. de S.; TRINDADE, L. Z.; CALIMAN, O.
+Implantação da Companhia Siderúrgica de Ubu: avaliação de impacto a partir da
+matriz insumo-produto do Espírito Santo. \textbf{Economia e Desenvolvimento},
+v.~28, n.~2, 2017.
 
 \bibitem[Sesso Filho \& Guilhoto(2010)]{sessofilho2010para}
-Sesso Filho, U. A., \& Guilhoto, J. J. M. (2010). Estrutura produtiva do Pará e sua
-inter-relação com o restante da economia brasileira: uma análise de insumo-produto.
-\textit{Revista Brasileira de Estudos Regionais e Urbanos}, 4(2), 81--104.
+SESSO FILHO, U. A.; GUILHOTO, J. J. M. Estrutura produtiva do Pará e sua
+inter-relação com o restante da economia brasileira: uma análise de
+insumo-produto. \textbf{Revista Brasileira de Estudos Regionais e Urbanos}, v.~4,
+n.~2, p.~81--104, 2010.
 
 \bibitem[Tiebout(1956)]{tiebout1956}
-Tiebout, C. M. (1956). Exports and regional economic growth. \textit{Journal of Political
-Economy}, 64(2), 160--164.
+TIEBOUT, C. M. Exports and regional economic growth. \textbf{Journal of Political
+Economy}, v.~64, n.~2, p.~160--164, 1956.
 
 \bibitem[Timmer et al.(2015)]{timmer2015wiod}
-Timmer, M. P., Dietzenbacher, E., Los, B., Stehrer, R., \& de Vries, G. J. (2015). An illustrated
-user guide to the World Input-Output Database. \textit{Review of International Economics}, 23(3),
-575--605.
+TIMMER, M. P.; DIETZENBACHER, E.; LOS, B.; STEHRER, R.; DE VRIES, G. J. An
+illustrated user guide to the World Input-Output Database. \textbf{Review of
+International Economics}, v.~23, n.~3, p.~575--605, 2015.
 
 \bibitem[Többen \& Kronenberg(2015)]{tobben2015charm}
-Többen, J., \& Kronenberg, T. (2015). Construction of multi-regional input-output
-tables using the CHARM method. \textit{Economic Systems Research}, 27(4), 487--507.
+TÖBBEN, J.; KRONENBERG, T. Construction of multi-regional input-output tables
+using the CHARM method. \textbf{Economic Systems Research}, v.~27, n.~4,
+p.~487--507, 2015.
 
 \end{thebibliography}
 

@@ -5,7 +5,7 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import estilo as st; st.apply()
 
-OUT = r"C:/Users/DELL/Documents/es-insumo-produto/pesquisa/outputs"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs")
 res = {r["metrica"]: float(r["valor_pct"]) for r in
        csv.DictReader(open(os.path.join(OUT, "cluster_resumo.csv"), encoding="utf-8"))}
 states = list(csv.DictReader(open(os.path.join(OUT, "cluster.csv"), encoding="utf-8")))
