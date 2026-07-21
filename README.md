@@ -15,7 +15,9 @@ JEL: R15 · D57 · C67
 na tradição brasileira de análise de economias estaduais ("Estrutura Produtiva de [Estado]"),
 com ancoragem na teoria clássica do desenvolvimento regional (base de exportação — North/Tiebout;
 polos de crescimento — Perroux) e apêndices metodológicos completos (Isard/Miyazawa, ligações
-puras GHS, modelo nulo de porte, extração hipotética).
+puras GHS, extração hipotética). Versão sintetizada para o Trabalho Final da disciplina
+(15–20 páginas): sem regressão (modelo nulo) e sem upstreamness, com tabela completa de
+multiplicadores (produção/emprego/renda, tipos I e II).
 
 ### As quatro frentes empíricas
 
@@ -25,7 +27,7 @@ puras GHS, modelo nulo de porte, extração hipotética).
 | **Quem puxa (2008)** | idem | demanda externa ao estado induz **61,7% da produção mas só 47,5% do emprego** |
 | **Panorama temporal (2010–2021)** | série nacional de 68 setores (NEREUS) | celulose adensa (1,41→1,51); siderurgia recua em 2021 por efeito de preço; extração permanece enclave |
 | **Vocação territorial (2015)** | sistema inter-regional das 10 microrregiões (35 setores) | mosaico de vocações (LQ); metrópole retém 90,9% do multiplicador vs 66,2% no Litoral Sul; extração hipotética da metrópole: −13% na periferia |
-| **+ Abertura/plataforma** | ES×RB + interestadual 27 UFs + WIOD 2014 | vazamento 24,9%; spillover ao núcleo SP/RJ 52,5% com feedback 0,32%; modelo nulo: ES não é outlier em mecânica (z-scores +0,45/−0,05/+0,03); upstreamness da pauta 3,12 |
+| **+ Abertura/plataforma** | ES×RB + interestadual 27 UFs | vazamento 24,9%; spillover ao núcleo SP/RJ 52,5% com feedback 0,32%; benchmark composicional: a especificidade capixaba é a composição de base, não a mecânica do vazamento |
 
 ## Estrutura do repositório
 
@@ -37,7 +39,7 @@ es-insumo-produto/
 │   ├── es_plataforma_fractal.tex    # v2 arquivada (invariância de escala)
 │   └── paper_creation_process.tex   # registro do processo (Stage 6)
 ├── pesquisa/
-│   ├── 01–25_*.py                   # pipeline reprodutível (scripts numerados)
+│   ├── 01–27_*.py                   # pipeline reprodutível (scripts numerados)
 │   ├── outputs/                     # CSVs e figuras gerados (versionados)
 │   ├── SINTESE_CONSOLIDADA.md       # ÍNDICE-MESTRE do projeto (o que existe, o que falta)
 │   └── *.md                         # deep researches, resultados, auditorias, pareceres
@@ -73,8 +75,8 @@ artefato reprodutível, já que os dados brutos de terceiros não podem ser redi
 (a) MIP inter-regional **ES × restante do Brasil (2008)**, 26 setores por região, com vetores de
 emprego e remunerações; (b) MIP **interestadual 27 UFs (2008)**; (c) sistema inter-regional das
 **10 microrregiões de planejamento do ES (2015)**, 35 setores; (d) série nacional **Nível 68
-(2010–2021)** do NEREUS/USP; (e) **WIOD 2014** para a camada de cadeias globais de valor.
-Regionalização pelo método IIOAS (Haddad et al., 2017). Ver `dados/README.md`.
+(2010–2021)** do NEREUS/USP. Regionalização pelo método IIOAS (Haddad et al., 2017).
+Ver `dados/README.md`.
 
 ## Como citar
 
