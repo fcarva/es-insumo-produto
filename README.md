@@ -1,7 +1,7 @@
 # Estrutura Produtiva do Espírito Santo: uma análise de insumo-produto
 
-**Multiplicadores, setores-chave, demanda, vocação territorial e a face plataforma de uma
-economia de base (2008–2021).**
+**Multiplicadores, setores-chave, demanda, composição territorial da indústria e a face
+plataforma de uma economia de base (2008–2021).**
 
 Felipe Carvalho · PPGEco/UFES
 Análise de Insumo-Produto · Prof. Dr. Celso Bissoli Sessa · 2026/1
@@ -26,7 +26,7 @@ multiplicadores (produção/emprego/renda, tipos I e II).
 | **Retrato estrutural (2008)** | MIP inter-regional ES × restante do Brasil, 26 setores, com emprego | mult. produção 1,76 (tipo I) / 2,45 (tipo II); emprego concentrado nos trabalho-intensivos; extração-enclave vs transformação-chave; ligações puras: mineração 4,4, metalurgia 3,4; benchmark 27 UFs: ES 2º em base (36,4%), "genérico em tipo, extremo em grau" |
 | **Quem puxa (2008)** | idem | demanda externa ao estado induz **61,7% da produção mas só 47,5% do emprego** |
 | **Panorama temporal (2010–2021)** | série nacional de 68 setores (NEREUS) | celulose adensa (1,41→1,51); siderurgia recua em 2021 por efeito de preço; extração permanece enclave |
-| **Vocação territorial (2015)** | sistema inter-regional das 10 microrregiões (35 setores) | mosaico de vocações (LQ); metrópole retém 90,9% do multiplicador vs 66,2% no Litoral Sul; extração hipotética da metrópole: −13% na periferia |
+| **Composição territorial (2015)** | sistema inter-regional das 10 microrregiões (35 setores) | mosaico de especializações (LQ); metrópole retém 90,9% do multiplicador vs 66,2% no Litoral Sul; extração hipotética da metrópole: −13% na periferia |
 | **+ Abertura/plataforma** | ES×RB + interestadual 27 UFs | vazamento 24,9%; spillover ao núcleo SP/RJ 52,5% com feedback 0,32%; benchmark composicional: a especificidade capixaba é a composição de base, não a mecânica do vazamento |
 
 ## Estrutura do repositório
