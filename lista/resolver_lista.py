@@ -35,7 +35,8 @@ sys.path.insert(0, str(RAIZ / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from io_core import coef_tecnicos, ghosh_inversa, leontief_inversa  # noqa: E402
-from mip_nereus import COMPONENTES_DF, MIPAno, carregar_mip, escrever_sintetico, inspecionar, norm  # noqa: E402
+from mip_nereus import (COMPONENTES_DF, MIPAno, carregar_A_conferencia,  # noqa: E402
+                        carregar_mip, escrever_sintetico, inspecionar, norm)
 
 # IPCA (IBGE, variação % dez/dez — série histórica oficial); fator acumulado
 # atualiza valores de 2010 para preços de 2020 (Questão 7).
@@ -121,23 +122,47 @@ def q2_cenarios(s: Sistema, choque_mi: float, i_agro: int) -> dict:
     return out
 
 
+def grupos_margem(mip: MIPAno) -> tuple[list[int], list[int]]:
+    """setores que produzem as margens da cesta: comércio e transporte."""
+    idx_c = [i for i, nm in enumerate(mip.nomes) if norm(nm).startswith("comercio")]
+    idx_t = [i for i, nm in enumerate(mip.nomes) if norm(nm).startswith("transporte")]
+    return idx_c, idx_t
+
+
 def q3_upcf(s: Sistema, choque_mi: float) -> dict:
-    """R$ choque de consumo das famílias distribuído pela UPCF (cesta observada,
-    produtos nacionais + importados); impacto sobre importações e emprego."""
+    """R$ choque de consumo das famílias repartido pela UPCF — a cesta observada a
+    preço de CONSUMIDOR: produtos nacionais a preço básico + importados + impostos
+    + margens (aba '12': linhas Importação/Impostos/Margens × coluna Famílias).
+    As margens são demanda por serviços de comércio e transporte e voltam ao vetor
+    de choque nesses setores (rateio pelo VBP do grupo); impostos não geram
+    produção; a parcela importada é vazamento direto. Impactos: importações
+    (diretas + induzidas via m = importação intermediária/x) e emprego."""
     mip = s.mip
     c_nac = mip.y["familias"]
-    c_imp = mip.y_imp.get("familias", np.zeros(s.n))
-    base = float(c_nac.sum() + c_imp.sum())
-    dy_nac = choque_mi * c_nac / base
-    dimp_direta = choque_mi * float(c_imp.sum()) / base
-    dx = s.B @ dy_nac
+    imp = mip.fd_fam.get("importacao", 0.0)
+    imposto = mip.fd_fam.get("impostos", 0.0)
+    marg_c = mip.fd_fam.get("margens_comercio", 0.0)
+    marg_t = mip.fd_fam.get("margens_transporte", 0.0)
+    den = float(c_nac.sum() + imp + imposto + marg_c + marg_t)
+    cesta = c_nac.copy()
+    idx_c, idx_t = grupos_margem(mip)
+    for idxs, m in ((idx_c, marg_c), (idx_t, marg_t)):
+        if idxs and m:
+            w = mip.x[idxs] / mip.x[idxs].sum()
+            for k, i in enumerate(idxs):
+                cesta[i] += m * w[k]
+    dy = choque_mi * cesta / den
+    dx = s.B @ dy
+    dimp_direta = choque_mi * imp / den
     dimp_induzida = float(s.m_coef @ dx)
-    return {"dy_nac": dy_nac, "dx": dx,
-            "share_imp_cesta": float(c_imp.sum()) / base,
+    return {"dy": dy, "dx": dx, "den": den,
+            "share_imp_cesta": imp / den, "share_imposto": imposto / den,
+            "share_margens": (marg_c + marg_t) / den,
             "dimp_direta": dimp_direta, "dimp_induzida": dimp_induzida,
             "dimp_total": dimp_direta + dimp_induzida,
+            "dimposto": choque_mi * imposto / den,
             "demp": float(s.w_emp @ dx), "demp_setor": s.w_emp * dx,
-            "dprod": float(dx.sum())}
+            "dprod": float(dx.sum()), "idx_c": idx_c, "idx_t": idx_t}
 
 
 def q5_campo_influencia(s: Sistema, eps: float = EPS_CAMPO) -> np.ndarray:
@@ -269,8 +294,8 @@ def _ref_mat(aba, i=None, j=None, n=68):
 
 COL_DADOS = {"x": "C", "rem": "D", "va": "E", "ocup": "F", "imp": "G",
              "exportacao": "H", "governo": "I", "isflsf": "J", "familias": "K",
-             "fbcf": "L", "estoque": "M", "ytot": "N", "fam_imp": "O",
-             "w_emp": "P", "v_renda": "Q", "v_va": "R", "m_coef": "S"}
+             "fbcf": "L", "estoque": "M", "ytot": "N",
+             "w_emp": "O", "v_renda": "P", "v_va": "Q", "m_coef": "R"}
 
 
 def _aba_dados(wb, tag, mip: MIPAno):
@@ -282,8 +307,7 @@ def _aba_dados(wb, tag, mip: MIPAno):
     rot = ["Código", "Setor", "VBP (x)", "Remunerações", "VA (PIB)", "Ocupações",
            "Import. intermediária", "Exportações", "Governo", "ISFLSF",
            "Cons. famílias (nac.)", "FBCF", "Var. estoques", "Demanda final total",
-           "Cons. famílias (import.)", "w = ocup/x", "v_renda = rem/x",
-           "v_va = VA/x", "m = imp/x"]
+           "w = ocup/x", "v_renda = rem/x", "v_va = VA/x", "m = imp/x"]
     _cab_tabela(ws, 5, 1, rot, larguras=[7, 36] + [13] * (len(rot) - 2))
     n = mip.n
     for i in range(n):
@@ -297,23 +321,20 @@ def _aba_dados(wb, tag, mip: MIPAno):
             c = ws.cell(r, 3 + k, float(v))
             c.font = F_TXT; c.number_format = NUM_MI; c.border = BORDA
         ws.cell(r, 14, f"=SUM(H{r}:M{r})").number_format = NUM_MI
-        fam_imp = mip.y_imp.get("familias", np.zeros(n))[i]
-        ws.cell(r, 15, float(fam_imp)).number_format = NUM_MI
-        for col, expr in (("P", f"=IF(C{r}=0,0,F{r}/C{r})"),
-                          ("Q", f"=IF(C{r}=0,0,D{r}/C{r})"),
-                          ("R", f"=IF(C{r}=0,0,E{r}/C{r})"),
-                          ("S", f"=IF(C{r}=0,0,G{r}/C{r})")):
+        for col, expr in (("O", f"=IF(C{r}=0,0,F{r}/C{r})"),
+                          ("P", f"=IF(C{r}=0,0,D{r}/C{r})"),
+                          ("Q", f"=IF(C{r}=0,0,E{r}/C{r})"),
+                          ("R", f"=IF(C{r}=0,0,G{r}/C{r})")):
             c = ws[f"{col}{r}"]
             c.value = expr; c.font = F_TXT
-            c.number_format = NUM_MULT if col == "P" else "0.000000"
-        for col in "NOPQRS":
-            ws[f"{col}{r}"].font = F_TXT
+            c.number_format = NUM_MULT if col == "O" else "0.000000"
+        ws[f"N{r}"].font = F_TXT
         if i % 2:
-            for k in range(1, 20):
+            for k in range(1, 19):
                 ws.cell(r, k).fill = FILL_ZEB
     r_tot = 6 + n
     ws.cell(r_tot, 2, "TOTAL").font = F_NEG
-    for col in "CDEFGHIJKLMNO":
+    for col in "CDEFGHIJKLMN":
         ws[f"{col}{r_tot}"] = f"=SUM({col}6:{col}{5 + n})"
         ws[f"{col}{r_tot}"].font = F_NEG
         ws[f"{col}{r_tot}"].number_format = NUM_MI
@@ -389,9 +410,12 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         "da coluna FBCF (produtos nacionais). Premissa: o choque recai sobre produtos "
         "nacionais nos dois cenários (célula de entrada azul/amarela pode ser alterada).",
         "5. Q3 (UPCF): o incremento de R$ 120 bi é repartido pela cesta observada do consumo "
-        "das famílias (produtos nacionais + importados) — a 'unidade padrão de consumo'. "
-        "Parcela importada da cesta vira importação DIRETA; a produção nacional induzida gera "
-        "importação INDUZIDA via coeficientes m = importação intermediária/x. Emprego pelo "
+        "das famílias a preço de CONSUMIDOR — nacional a preço básico + importados + impostos "
+        "+ margens (linhas Importação/Impostos/Margens × coluna Famílias da aba 12; a soma "
+        "reproduz exatamente o consumo total). Margens são demanda por serviços de comércio e "
+        "transporte e voltam ao vetor de choque nesses setores (rateio pelo VBP do grupo); "
+        "impostos não geram produção; a parcela importada é importação DIRETA; a produção "
+        "induzida gera importação INDUZIDA via m = importação intermediária/x. Emprego pelo "
         "modelo aberto (o choque JÁ é o consumo induzido).",
         "6. Q4: ligação para trás pela inversa de Leontief e para frente pela inversa de GHOSH "
         "(Miller & Blair, 2009), normalizadas pela média geral; setor-chave: ambas > 1.",
@@ -589,38 +613,66 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     q3 = q3_upcf(s20, 120_000.0)
     ws = wb.create_sheet("Q3_UPCF")
     _titulo(ws, "Questão 3 — Reajuste do salário mínimo: +R$ 120 bi de consumo das famílias (2020)",
-            "Choque distribuído pela UPCF (cesta observada do consumo das famílias, produtos "
-            "nacionais + importados). Impactos: importações (diretas + induzidas) e emprego.",
+            "Choque repartido pela UPCF — a cesta observada a preço de consumidor: produtos "
+            "nacionais + importados + impostos + margens (aba 12 da MIP, coluna Famílias). "
+            "Margens voltam como demanda de comércio/transporte; impostos não geram produção.",
             ncols=12)
     resp = [
-        f"Parcela importada da cesta de consumo: {q3['share_imp_cesta']:.2%} → importação "
-        f"DIRETA de R$ {q3['dimp_direta']:,.0f} mi do choque de R$ 120.000 mi.",
-        f"A produção nacional induzida (ΔX = R$ {q3['dprod']:,.0f} mi) puxa importação "
-        f"INDUZIDA de insumos de R$ {q3['dimp_induzida']:,.0f} mi (coeficientes m = "
-        f"importação intermediária/x).",
-        f"IMPORTAÇÕES TOTAIS: R$ {q3['dimp_total']:,.0f} mi "
-        f"({q3['dimp_total'] / 120_000:.1%} do choque).",
-        f"EMPREGO: {q3['demp']:,.0f} ocupações geradas — cerca de "
-        f"{q3['demp'] / 120:,.1f} ocupações por R$ 1 bi de reajuste distribuído.",
-        "Leitura: parte relevante do estímulo vaza para o exterior via cesta de consumo e "
-        "insumos importados; o efeito-emprego concentra-se em comércio, alimentos e serviços — "
-        "setores que atendem diretamente a UPCF (tabela e coluna Δocup abaixo).",
+        f"Composição da cesta (UPCF): {1 - q3['share_imp_cesta'] - q3['share_imposto'] - q3['share_margens']:.1%} "
+        f"produtos nacionais a preço básico; {q3['share_imp_cesta']:.1%} importados; "
+        f"{q3['share_imposto']:.1%} impostos; {q3['share_margens']:.1%} margens de "
+        "comércio/transporte (realocadas como demanda desses serviços).",
+        f"IMPORTAÇÕES: diretas R$ {q3['dimp_direta']:,.0f} mi (cesta importada) + induzidas "
+        f"R$ {q3['dimp_induzida']:,.0f} mi (insumos da produção, m = importação/x) = "
+        f"R$ {q3['dimp_total']:,.0f} mi ({q3['dimp_total'] / 120_000:.1%} do choque).",
+        f"EMPREGO: {q3['demp']:,.0f} ocupações geradas pela produção induzida "
+        f"(ΔX = R$ {q3['dprod']:,.0f} mi) — cerca de {q3['demp'] / 120:,.0f} ocupações "
+        "por R$ 1 bi de reajuste.",
+        f"Memo: R$ {q3['dimposto']:,.0f} mi do choque viram impostos sobre produtos "
+        "(não geram produção). O efeito-emprego concentra-se nos setores que atendem a UPCF "
+        "(coluna Δ ocupações abaixo).",
     ]
     r0 = _resposta(ws, 5, resp, ncols=12)
     ws.cell(r0, 1, "Choque (R$ milhões):").font = F_NEG
     c = ws.cell(r0, 3, 120_000.0)
     c.font = F_IN; c.fill = FILL_IN; c.number_format = NUM_MI
     Lch = f"$C${r0}"
-    den = (f"(SUM({_faixa_dado('2020', 'familias', n)})"
-           f"+SUM({_faixa_dado('2020', 'fam_imp', n)}))")
-    lin_dy = r0 + 2
-    ws.cell(lin_dy, 2, "Δy nacional (UPCF) — linha auxiliar").font = F_SUB
+    itens_cesta = [
+        ("Cesta importada (aba 12: Importação × Famílias)",
+         m20.fd_fam.get("importacao", 0.0)),
+        ("Impostos na cesta (aba 12: Impostos × Famílias)",
+         m20.fd_fam.get("impostos", 0.0)),
+        ("Margens de comércio (aba 12: Margens/Comércio × Famílias)",
+         m20.fd_fam.get("margens_comercio", 0.0)),
+        ("Margens de transporte (aba 12: Margens/Transporte × Famílias)",
+         m20.fd_fam.get("margens_transporte", 0.0)),
+    ]
+    for k, (rot, v) in enumerate(itens_cesta):
+        ws.cell(r0 + 1 + k, 2, rot).font = F_TXT
+        cc = ws.cell(r0 + 1 + k, 3, float(v))
+        cc.font = F_TXT; cc.number_format = NUM_MI
+    r_den = r0 + 5
+    ws.cell(r_den, 2, "Cesta total das famílias (denominador da UPCF)").font = F_NEG
+    ws.cell(r_den, 3, f"=SUM({_faixa_dado('2020', 'familias', n)})"
+                      f"+SUM(C{r0 + 1}:C{r0 + 4})").font = F_NEG
+    ws[f"C{r_den}"].number_format = NUM_MI
+    DEN = f"$C${r_den}"
+    C_IMP, C_TAX, C_MGC, C_MGT = (f"$C${r0 + 1}", f"$C${r0 + 2}",
+                                  f"$C${r0 + 3}", f"$C${r0 + 4}")
+    soma_xc = "+".join(_celula_dado("2020", "x", i) for i in q3["idx_c"]) or "1"
+    soma_xt = "+".join(_celula_dado("2020", "x", i) for i in q3["idx_t"]) or "1"
+    lin_dy = r_den + 2
+    ws.cell(lin_dy, 2, "Δy (UPCF: nacional + margens realocadas) — linha auxiliar").font = F_SUB
     for j in range(n):
-        c = ws.cell(lin_dy, 3 + j,
-                    f"={Lch}*{_celula_dado('2020', 'familias', j)}/{den}")
+        termo = f"{_celula_dado('2020', 'familias', j)}"
+        if j in q3["idx_c"]:
+            termo += f"+{C_MGC}*{_celula_dado('2020', 'x', j)}/({soma_xc})"
+        if j in q3["idx_t"]:
+            termo += f"+{C_MGT}*{_celula_dado('2020', 'x', j)}/({soma_xt})"
+        c = ws.cell(lin_dy, 3 + j, f"={Lch}*({termo})/{DEN}")
         c.font = F_TXT; c.number_format = NUM_MI
     r1 = lin_dy + 2
-    _cab_tabela(ws, r1, 1, ["Código", "Setor", "Δ consumo nac. (UPCF)", "Δx induzido",
+    _cab_tabela(ws, r1, 1, ["Código", "Setor", "Δ demanda (UPCF)", "Δx induzido",
                             "Δ importação induzida", "Δ ocupações"],
                 larguras=[8, 36, 15, 13, 15, 13])
     for i in range(n):
@@ -644,9 +696,11 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     r2 = r_tot + 2
     linhas_sint = [
         ("Importação direta (cesta importada da UPCF)",
-         f"={Lch}*SUM({_faixa_dado('2020', 'fam_imp', n)})/{den}", q3["dimp_direta"]),
+         f"={Lch}*{C_IMP}/{DEN}", q3["dimp_direta"]),
         ("Importação induzida (insumos da produção)", f"=E{r_tot}", q3["dimp_induzida"]),
         ("IMPORTAÇÕES — TOTAL", None, q3["dimp_total"]),
+        ("Impostos sobre produtos (vazamento fiscal, memo)",
+         f"={Lch}*{C_TAX}/{DEN}", q3["dimposto"]),
         ("Ocupações geradas — TOTAL", f"=F{r_tot}", q3["demp"]),
     ]
     for k, (rot, formula, valor) in enumerate(linhas_sint):
@@ -988,7 +1042,7 @@ def main():
 
     m10 = carregar_mip(args.m2010, 2010)
     m20 = carregar_mip(args.m2020, 2020)
-    for m in (m10, m20):
+    for m, arq in ((m10, args.m2010), (m20, args.m2020)):
         for a in m.validar():
             print(f"[aviso {m.ano}] {a}")
         tot = m.x.sum()
@@ -996,6 +1050,13 @@ def main():
         if not 5e6 < tot < 5e7:
             print(f"[aviso {m.ano}] VBP total fora da ordem de grandeza esperada para o "
                   "Brasil — confira a unidade (esperado: R$ milhões)")
+        A13 = carregar_A_conferencia(arq)
+        if A13 is not None and A13.shape == (m.n, m.n):
+            A_calc = coef_tecnicos(m.Z, m.x)
+            print(f"[{m.ano}] conferência A (Z/x̂) vs aba 13 do arquivo: "
+                  f"desvio máximo {np.abs(A_calc - A13).max():.2e}")
+        else:
+            print(f"[{m.ano}] aba 13 indisponível p/ conferência — seguindo com Z/x̂")
     if [norm(x) for x in m10.nomes] != [norm(x) for x in m20.nomes]:
         print("[aviso] classificações de 2010 e 2020 diferem — Q4/Q7 exigem setores alinhados")
 
