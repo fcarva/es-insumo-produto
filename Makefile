@@ -1,4 +1,11 @@
-.PHONY: paper paper-v1 figuras clean
+.PHONY: paper paper-v1 figuras clean lista lista-selftest
+
+# Lista de exercícios (2026/1): requer as MIPs nacionais em dados/ (ver lista/README.md)
+lista:
+	python lista/resolver_lista.py --m2010 "dados/MIP-BR 2010 (Nível 68).xlsm" --m2020 "dados/MIP-BR 2020 (Nível 68).xlsm"
+
+lista-selftest:
+	python lista/resolver_lista.py --selftest
 
 # Artigo principal (v3 - caracterizacao da estrutura produtiva)
 paper:

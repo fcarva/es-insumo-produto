@@ -20,7 +20,11 @@ venv/
 dados/*.csv
 dados/*.xlsx
 dados/*.xls
+dados/*.xlsm
 !dados/README.md
+
+# lista de exercícios: artefatos temporários do selftest
+lista/tmp_selftest/
 
 # SO
 .DS_Store
