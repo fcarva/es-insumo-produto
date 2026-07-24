@@ -70,14 +70,19 @@ class Sistema:
         self.v_va = mip.va / xs                  # VA por R$ 1
         self.m_coef = mip.imp_int / xs           # importação intermediária por R$ 1
 
-        # fechamento tipo II (famílias endógenas): linha = renda (remunerações),
-        # coluna = consumo das famílias / massa de remunerações  [pesquisa/17]
-        hh = mip.rem.sum()
+        # fechamento tipo II (famílias endógenas) na CONVENÇÃO DA PLANILHA DO
+        # PROFESSOR (abas 20/22/23 dos arquivos MIP-BR): a renda das famílias é o
+        # VALOR ADICIONADO BRUTO (não só as remunerações). Linha adicional = VA por
+        # unidade de produção (v_va); coluna adicional = consumo das famílias por
+        # unidade da massa de VA. Reproduz a aba 23 (mult. tipo II) e a aba 22
+        # (geradores tipo II) com desvio < 1e-14. (O fechamento por remunerações,
+        # usado no artigo do ES em pesquisa/17, é uma alternativa mais estreita.)
+        hh = mip.va.sum()
         self.hc = mip.y["familias"] / (hh if hh else 1.0)
         A2 = np.zeros((n + 1, n + 1))
         A2[:n, :n] = self.A
         A2[:n, n] = self.hc
-        A2[n, :n] = self.v_renda
+        A2[n, :n] = self.v_va
         self.A2 = A2
         self.B2 = np.linalg.inv(np.eye(n + 1) - A2)
 
@@ -95,11 +100,16 @@ class Sistema:
             "va_II":   (self.v_va[:, None] * B2n).sum(0),
         }
 
-    # ---- Q4: ligações de Rasmussen-Hirschman (backward Leontief, forward Ghosh)
+    # ---- Q4: ligações de Rasmussen-Hirschman na convenção da planilha do
+    # professor (aba 14): AMBAS pela inversa de Leontief — para trás pela soma de
+    # COLUNA (poder de dispersão) e para frente pela soma de LINHA (sensibilidade
+    # da dispersão), normalizadas pela média geral de B. Reproduz a aba 14 com
+    # desvio < 1e-14. (A inversa de Ghosh, aba 'Ghosh'/G_20xx, dá uma medida
+    # alternativa de sensibilidade da oferta — ver nota da aba Q4_RH.)
     def rasmussen(self) -> tuple[np.ndarray, np.ndarray]:
         n = self.n
         bl = self.B.sum(0) / n / self.B.mean()
-        fl = self.G.sum(1) / n / self.G.mean()
+        fl = self.B.sum(1) / n / self.B.mean()
         return bl, fl
 
 
@@ -400,7 +410,7 @@ def _matriz(ws, M, nomes, cods, fmt=NUM_MULT, extra_rotulo=None):
         zebra = bool(i % 2)
         c = ws.cell(r, 2, extra_rotulo if eh_extra else cods[i])
         c.alignment = CENTRO
-        c = ws.cell(r, 3, "Famílias (renda ↔ consumo)" if eh_extra else nomes[i])
+        c = ws.cell(r, 3, "Famílias (VA ↔ consumo)" if eh_extra else nomes[i])
         c.alignment = VCENTRO
         c = ws.cell(r, 4, i + 1)
         c.alignment = CENTRO
@@ -588,9 +598,12 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         "como VALORES (inversão 68×68 feita externamente em NumPy — conferível por MINVERSE; "
         "a matriz A reproduz a aba 13 do arquivo-fonte com desvio < 1e-15); todas as demais "
         "células derivam delas por fórmula e recalculam.",
-        "2. Tipo II: modelo fechado para as famílias — coluna adicional = consumo das famílias "
-        "por unidade de massa de remunerações; linha adicional = remunerações por unidade de "
-        "produção (idêntico a pesquisa/17 do repositório).",
+        "2. Tipo II: modelo fechado para as famílias na CONVENÇÃO DA PLANILHA DO PROFESSOR "
+        "(abas 20/22/23 da MIP) — a renda das famílias é o VALOR ADICIONADO BRUTO: linha "
+        "adicional = VA por unidade de produção (v_va); coluna adicional = consumo das famílias "
+        "por unidade da massa de VA. Reproduz a aba 23 (mult. tipo II) e a aba 22 (geradores "
+        "tipo II) com desvio < 1e-14. O fechamento por remunerações (renda do trabalho apenas), "
+        "usado no artigo do ES em pesquisa/17, é uma alternativa mais estreita.",
         "3. Multiplicador de emprego em OCUPAÇÕES por R$ 1 milhão de demanda final; renda e VA "
         "em R$ por R$ de demanda final.",
         "4. Q2: choque de R$ 10 bi = 10.000 (R$ milhões). Cenário (a): tudo na linha de "
@@ -605,8 +618,11 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         "impostos não geram produção; a parcela importada é importação DIRETA; a produção "
         "induzida gera importação INDUZIDA via m = importação intermediária/x. Emprego pelo "
         "modelo aberto (o choque JÁ é o consumo induzido).",
-        "6. Q4: ligação para trás pela inversa de Leontief e para frente pela inversa de GHOSH "
-        "(Miller & Blair, 2009), normalizadas pela média geral; setor-chave: ambas > 1.",
+        "6. Q4: índices de Rasmussen-Hirschman na convenção da aba 14 da MIP — AMBOS pela "
+        "inversa de Leontief, normalizados pela média geral: para trás = soma de coluna de B "
+        "(poder de dispersão); para frente = soma de linha de B (sensibilidade da dispersão); "
+        "setor-chave: ambos > 1. Reproduz a aba 14 com desvio < 1e-14. A inversa de Ghosh "
+        "(abas G_2010/G_2020) é uma medida alternativa de sensibilidade da oferta.",
         f"7. Q5: campo de influência (Sonis & Hewings) com ε = {EPS_CAMPO}; S(i,j) = Σ dos "
         "quadrados de F = [B(ε)−B]/ε para perturbação unitária em a(i,j). Cálculo fechado por "
         "Sherman-Morrison — numericamente idêntico ao laço do material de apoio em R "
@@ -662,7 +678,8 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         ("G_2020", s20.G, m20, "Matriz G — inversa de Ghosh (2020)",
          "G = (I−x̂⁻¹Z)⁻¹, colada como VALOR; usada na ligação para frente (Q4).", None),
         ("B2_2020", s20.B2, m20, "Matriz B2 — modelo fechado para as famílias (2020)",
-         "Inversa do sistema com famílias endógenas (tipo II); última linha/coluna = famílias.",
+         "Inversa do sistema com famílias endógenas (tipo II, fechamento por VALOR ADICIONADO "
+         "— convenção das abas 20/22/23 da MIP); última linha/coluna = famílias.",
          "FAM"),
         ("A_2010", s10.A, m10, "Matriz A — coeficientes técnicos nacionais (2010)",
          "a(i,j) = Z(i,j)/x(j); reproduz a aba 13 do arquivo-fonte (desvio < 1e-15).", None),
@@ -939,9 +956,10 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     chave20 = (bl20 > 1) & (fl20 > 1)
     ws = _nova_aba(wb, "Q4_RH",
                    "Questão 4 — Rasmussen-Hirschman e setores-chave: 2010 × 2020",
-                   "Ligação para trás: soma de coluna da inversa de Leontief normalizada pela "
-                   "média geral (U trás). Para frente: soma de linha da inversa de GHOSH "
-                   "normalizada (U frente). Setor-chave: ambas > 1.", TAB_Q)
+                   "Convenção da aba 14 da MIP: ambos os índices pela inversa de Leontief, "
+                   "normalizados pela média geral. Para trás (poder de dispersão) = soma de "
+                   "COLUNA de B; para frente (sensibilidade) = soma de LINHA de B. "
+                   "Setor-chave: ambos > 1.", TAB_Q)
     novos = [m20.nomes[i] for i in range(n) if chave20[i] and not chave10[i]]
     perdidos = [m20.nomes[i] for i in range(n) if chave10[i] and not chave20[i]]
     sint = [
@@ -956,12 +974,14 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
 
     def linha_q4(r, i):
         L = CL(MC0 + i)
-        for k, (aba_b, aba_g) in enumerate((("B_2010", "G_2010"), ("B_2020", "G_2020"))):
+        for k, aba_b in enumerate(("B_2010", "B_2020")):
             cb = 5 + k * 3
+            # para trás = soma de COLUNA de B; para frente = soma de LINHA de B
+            # (convenção da aba 14), ambas normalizadas pela média geral de B.
             ws.cell(r, cb, f"=SUM({aba_b}!{L}7:{L}{6 + n})*{n}"
                            f"/SUM({aba_b}!$E$7:${fimM}${6 + n})")
-            ws.cell(r, cb + 1, f"=SUM({_ref_mat(aba_g, i=i, n=n)})*{n}"
-                               f"/SUM({aba_g}!$E$7:${fimM}${6 + n})")
+            ws.cell(r, cb + 1, f"=SUM({_ref_mat(aba_b, i=i, n=n)})*{n}"
+                               f"/SUM({aba_b}!$E$7:${fimM}${6 + n})")
             ws.cell(r, cb + 2, f'=IF(AND({CL(cb)}{r}>1,{CL(cb + 1)}{r}>1),"CHAVE","")')
             ws.cell(r, cb + 2).alignment = CENTRO
         ws.cell(r, 11, f"=H{r}-E{r}")
@@ -979,6 +999,10 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         "leia em conjunto com a Q7 (SDA): quedas difusas de ligação para trás indicam "
         "substituição de insumos domésticos (por importados ou por serviços); ganhos "
         "concentrados sinalizam adensamento de cadeia.",
+        "Convenção: seguimos a aba 14 da MIP (ambos os índices pela inversa de Leontief). A "
+        "inversa de Ghosh (abas G_2010/G_2020) oferece uma medida alternativa de "
+        "sensibilidade da oferta para frente; sob ela o conjunto de setores-chave é mais "
+        "amplo. Para casar com o gabarito da planilha, a classificação-chave usa Leontief.",
     ])
     ws.freeze_panes = f"E{rH + 1}"
 

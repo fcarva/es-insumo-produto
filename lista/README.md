@@ -24,7 +24,20 @@ python lista/resolver_lista.py --m2010 "dados/MIP-BR 2010 (Nível 68).xlsm" \
 python lista/resolver_lista.py --inspect "dados/MIP-BR 2020 (Nível 68).xlsm"
 # validação de ponta a ponta com economia sintética (sem dados reais):
 python lista/resolver_lista.py --selftest
+# auditoria HARD contra as abas de cálculo do professor (dentro dos .xlsm):
+python lista/auditoria.py
 ```
+
+## Auditoria
+
+`lista/auditoria.py` confronta o solver, célula a célula, com as abas em que o
+**próprio professor** calcula a inversa de Leontief (`13`), a de Ghosh
+(`Ghosh`), os índices de ligação (`14`), os geradores tipo I/II (`15`/`22`) e os
+multiplicadores tipo I/II (`23`) — 26 confrontos, nos dois anos, todos com
+desvio de precisão de máquina (< 1e-13). O relatório está em
+[`AUDITORIA_LISTA.md`](AUDITORIA_LISTA.md), incluindo as **duas correções de
+convenção** que a auditoria motivou (fechamento tipo II por valor adicionado;
+ligação para frente pela soma de linha de Leontief).
 
 Saída: `lista/Lista_Exercicios_Respostas.xlsx` (+ `.confere.json` com células
 de auditoria fórmula×NumPy — use `verificar_recalculo()` após abrir/recalcular).
