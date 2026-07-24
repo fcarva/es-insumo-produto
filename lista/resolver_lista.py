@@ -218,41 +218,59 @@ def q7_sda(s0: Sistema, s1: Sistema, fator_ipca: float) -> dict:
 
 
 # =========================================================================== #
-# 2. GERADOR DO EXCEL — diagramação no padrão da planilha do professor
-#    (Calibri; título 26 azul em B2; margem na coluna A; código/atividade/índice
-#    nas colunas B/C/D; dados a partir de E; sem linhas de grade; cabeçalhos em
-#    azul-escuro; linhas de síntese em verde; abas coloridas por grupo)
+# 2. GERADOR DO EXCEL — diagramação minimalista na paleta FLEXOKI (kepano):
+#    fundo claro, cinzas quentes (base 50–800 sobre papel #FFFCF0), pastéis
+#    brandos para totais/entradas, bordas suaves e pouca cor forte. Rolagem
+#    confortável: cada questão congela apenas título + síntese compacta +
+#    cabeçalho da tabela; a leitura longa e os vetores auxiliares ficam
+#    abaixo da tabela.
 # =========================================================================== #
 CALIBRI = "Calibri"
-AZUL_TITULO = "FF0070C0"
-AZUL_CAB = "FF305496"          # accent1 -25% (cabeçalhos da planilha-fonte)
-AZUL_TAB_CAPA = "FF002060"     # cor das abas iniciais da planilha-fonte
-CINZA_TAB = "FF808080"
-CINZA_BLOCO = "FFD9D9D9"       # linhas de decomposição (padrão da aba 12)
-CINZA_CAIXA = "FFF2F2F2"       # caixa de resposta
-VERDE_TOT = "FF00B050"         # linhas-síntese (padrão das abas 12/13)
-AMARELO_IN = "FFFFFF00"
+# flexoki — tons de base (sobre papel #FFFCF0)
+INK = "FF100F0F"
+BASE_800 = "FF403E3C"
+BASE_700 = "FF575653"
+BASE_600 = "FF6F6E69"
+BASE_500 = "FF878580"
+BASE_300 = "FFB7B5AC"
+BASE_150 = "FFDAD8CE"
+BASE_100 = "FFE6E4D9"
+BASE_50 = "FFF2F0E5"
+AZUL_600 = "FF205EA6"
+# pastéis (mistura dos acentos flexoki-400 com o papel)
+VERDE_PASTEL = "FFE1E4C2"      # totais / linhas-síntese
+AMARELO_PASTEL = "FFF3E6B9"    # entradas editáveis
+LARANJA_PASTEL = "FFF8E0C9"    # destaque (setor extraído na Q6)
+AZUL_PASTEL = "FFC7D8E1"       # cor das abas de questão
 
-F_TITULO = Font(name=CALIBRI, size=26, bold=True, color=AZUL_TITULO)
-F_NOTA = Font(name=CALIBRI, size=10, bold=True, color="FF000000")
-F_CAB = Font(name=CALIBRI, size=8, bold=True, color="FFFFFFFF")
-F_DADO = Font(name=CALIBRI, size=8)
-F_DADO_NEG = Font(name=CALIBRI, size=8, bold=True)
-F_TAB = Font(name=CALIBRI, size=9)
-F_TAB_NEG = Font(name=CALIBRI, size=9, bold=True)
-F_TXT = Font(name=CALIBRI, size=10)
-F_NEG = Font(name=CALIBRI, size=10, bold=True)
-F_SECAO = Font(name=CALIBRI, size=11, bold=True, color=AZUL_CAB)
-F_IN = Font(name=CALIBRI, size=10, bold=True, color="FF0000FF")   # entrada editável
-F_AUX = Font(name=CALIBRI, size=8, italic=True, color="FF808080")
+F_TITULO = Font(name=CALIBRI, size=16, bold=True, color=INK)
+F_ENUN = Font(name=CALIBRI, size=9.5, color=BASE_600)
+F_SECAO = Font(name=CALIBRI, size=10, bold=True, color=BASE_700)
+F_SINT = Font(name=CALIBRI, size=10, color=INK)
+F_CAB = Font(name=CALIBRI, size=9, bold=True, color=BASE_800)
+F_CAB8 = Font(name=CALIBRI, size=8, bold=True, color=BASE_800)
+F_TAB = Font(name=CALIBRI, size=9, color="FF282726")
+F_TAB_NEG = Font(name=CALIBRI, size=9, bold=True, color=INK)
+F_DADO = Font(name=CALIBRI, size=8, color="FF282726")
+F_DADO_NEG = Font(name=CALIBRI, size=8, bold=True, color=INK)
+F_TXT = Font(name=CALIBRI, size=10, color=BASE_800)
+F_NEG = Font(name=CALIBRI, size=10, bold=True, color=BASE_800)
+F_IN = Font(name=CALIBRI, size=10, bold=True, color=AZUL_600)
+F_AUX = Font(name=CALIBRI, size=8, italic=True, color=BASE_500)
 
-FILL_CAB = PatternFill("solid", fgColor=AZUL_CAB)
-FILL_TOT = PatternFill("solid", fgColor=VERDE_TOT)
-FILL_BLOCO = PatternFill("solid", fgColor=CINZA_BLOCO)
-FILL_CAIXA = PatternFill("solid", fgColor=CINZA_CAIXA)
-FILL_IN = PatternFill("solid", fgColor=AMARELO_IN)
-FINA = Side(style="thin", color="FF9E9E9E")
-BORDA = Border(left=FINA, right=FINA, top=FINA, bottom=FINA)
+FILL_CAB = PatternFill("solid", fgColor=BASE_150)
+FILL_BLOCO = PatternFill("solid", fgColor=BASE_100)
+FILL_ZEBRA = PatternFill("solid", fgColor=BASE_50)
+FILL_CAIXA = PatternFill("solid", fgColor=BASE_50)
+FILL_TOT = PatternFill("solid", fgColor=VERDE_PASTEL)
+FILL_IN = PatternFill("solid", fgColor=AMARELO_PASTEL)
+FILL_DESTQ = PatternFill("solid", fgColor=LARANJA_PASTEL)
+
+FINA = Side(style="thin", color=BASE_150)
+MEIA = Side(style="thin", color=BASE_500)
+BORDA = Border(left=FINA, right=FINA, top=FINA, bottom=FINA)          # grades densas
+BORDA_H = Border(top=FINA, bottom=FINA)                               # tabelas de questão
+BORDA_CAB = Border(top=FINA, bottom=MEIA)                             # sublinhado do cabeçalho
 CENTRO = Alignment(horizontal="center", vertical="center", wrap_text=True)
 QUEBRA = Alignment(wrap_text=True, vertical="top")
 VCENTRO = Alignment(vertical="center")
@@ -273,29 +291,47 @@ COL_DADOS = {"x": "E", "rem": "F", "va": "G", "ocup": "H", "imp": "I",
              "fbcf": "N", "estoque": "O", "ytot": "P",
              "w_emp": "Q", "v_renda": "R", "v_va": "S", "m_coef": "T"}
 
+TAB_CAPA = "FFB7B5AC"
+TAB_DADOS = "FFDAD8CE"
+TAB_Q = AZUL_PASTEL
 
-def _nova_aba(wb, nome, titulo, nota, cor_tab):
-    """Aba no padrão da planilha-fonte: coluna A estreita, linha 1 baixa, título
-    26pt azul em B2, nota em negrito em B3 (caixa com quebra), sem grade."""
+
+def _nova_aba(wb, nome, titulo, nota, cor_tab, zoom=100):
+    """Aba flexoki: coluna A como margem, título 16pt em tinta, enunciado em
+    cinza quente logo abaixo, sem linhas de grade."""
     ws = wb.create_sheet(nome)
     ws.sheet_view.showGridLines = False
+    ws.sheet_view.zoomScale = zoom
     ws.sheet_properties.tabColor = cor_tab
-    ws.column_dimensions["A"].width = 0.9
-    ws.row_dimensions[1].height = 6.6
-    ws.row_dimensions[2].height = 33.6
+    ws.column_dimensions["A"].width = 1.2
+    ws.row_dimensions[1].height = 8
+    ws.row_dimensions[2].height = 22
     ws.cell(2, 2, titulo).font = F_TITULO
     ws.cell(2, 2).alignment = VCENTRO
     if nota:
         ws.merge_cells(start_row=3, start_column=2, end_row=3, end_column=LCOL_TXT)
         c = ws.cell(3, 2, nota)
-        c.font = F_NOTA; c.alignment = QUEBRA
-        ws.row_dimensions[3].height = max(15, 13 * math.ceil(len(nota) / 165))
+        c.font = F_ENUN; c.alignment = QUEBRA
+        ws.row_dimensions[3].height = max(13, 12.5 * math.ceil(len(nota) / 175))
     return ws
 
 
-def _caixa_resposta(ws, linha0, linhas_texto):
-    """Caixa 'Resposta' organizada: um marcador por linha, fundo cinza-claro."""
-    ws.cell(linha0, 2, "Resposta / leitura dos resultados").font = F_SECAO
+def _sintese(ws, linha0, linhas_texto):
+    """Síntese compacta (fica na área congelada): 1-3 marcadores curtos."""
+    ws.cell(linha0, 2, "Síntese").font = F_SECAO
+    r = linha0 + 1
+    for t in linhas_texto:
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=LCOL_TXT)
+        c = ws.cell(r, 2, "•  " + t)
+        c.font = F_SINT; c.alignment = QUEBRA
+        ws.row_dimensions[r].height = max(13.5, 13 * math.ceil(len(t) / 165))
+        r += 1
+    return r + 1
+
+
+def _caixa_leitura(ws, linha0, linhas_texto):
+    """Leitura/discussão completa (abaixo da tabela): caixa em cinza-claro."""
+    ws.cell(linha0, 2, "Leitura dos resultados").font = F_SECAO
     r = linha0 + 1
     for t in linhas_texto:
         ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=LCOL_TXT)
@@ -303,65 +339,79 @@ def _caixa_resposta(ws, linha0, linhas_texto):
         c.font = F_TXT; c.alignment = QUEBRA; c.fill = FILL_CAIXA
         for k in range(3, LCOL_TXT + 1):
             ws.cell(r, k).fill = FILL_CAIXA
-        ws.row_dimensions[r].height = max(14, 13.5 * math.ceil(len(t) / 155))
+        ws.row_dimensions[r].height = max(14, 13.5 * math.ceil(len(t) / 160))
         r += 1
-    return r + 1                                    # linha livre após a caixa
+    return r + 1
 
 
-def _cab_tabela(ws, linha, col0, rotulos, larguras=None):
+def _cab_tabela(ws, linha, col0, rotulos, larguras=None, fonte=None):
     ws.row_dimensions[linha].height = 24
     for k, rtl in enumerate(rotulos):
         c = ws.cell(linha, col0 + k, rtl)
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+        c.font = fonte or F_CAB; c.fill = FILL_CAB
+        c.border = BORDA_CAB; c.alignment = CENTRO
         if larguras:
             ws.column_dimensions[CL(col0 + k)].width = larguras[k]
 
 
-def _linha_total(ws, linha, col_ini, col_fim, rotulo="TOTAL", col_rotulo=3):
-    """linha-síntese verde no padrão da planilha-fonte."""
+def _linha_total(ws, linha, col_fim, rotulo="TOTAL", col_rotulo=3):
+    """linha-síntese em verde-pastel."""
     ws.cell(linha, col_rotulo, rotulo).font = F_TAB_NEG
     for k in range(2, col_fim + 1):
         ws.cell(linha, k).fill = FILL_TOT
-        ws.cell(linha, k).border = BORDA
-    _ = col_ini
+        ws.cell(linha, k).border = BORDA_H
 
 
 def _rotulo_aux(ws, linha, texto):
-    c = ws.cell(linha, 3, texto)
-    c.font = F_AUX
+    ws.cell(linha, 3, texto).font = F_AUX
+
+
+def _id_setor(ws, r, cod, nome, num, zebra=False):
+    """colunas de identificação (B código, C atividade, D nº) de uma linha."""
+    ws.cell(r, 2, cod).alignment = CENTRO
+    ws.cell(r, 3, nome).alignment = VCENTRO
+    ws.cell(r, 4, num).alignment = CENTRO
+    if zebra:
+        for k in (2, 3, 4):
+            ws.cell(r, k).fill = FILL_ZEBRA
 
 
 def _matriz(ws, M, nomes, cods, fmt=NUM_MULT, extra_rotulo=None):
-    """Matriz na gramática da planilha-fonte: Código (B), Atividades (C:D com o
-    índice da linha em D), índices 1..n no cabeçalho e dados a partir de E7."""
+    """Matriz com Código (B), Atividades (C:D com o índice da linha em D),
+    índices 1..n no cabeçalho e dados a partir de E7; zebra suave."""
     nlin, ncol = M.shape
     ws.merge_cells(start_row=6, start_column=3, end_row=6, end_column=4)
     for col, rtl in ((2, "Código"), (3, "Atividades")):
         c = ws.cell(6, col, rtl)
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
     ws.cell(6, 4).fill = FILL_CAB; ws.cell(6, 4).border = BORDA
     ws.column_dimensions["B"].width = 6.7
-    ws.column_dimensions["C"].width = 62
+    ws.column_dimensions["C"].width = 52
     ws.column_dimensions["D"].width = 4.4
     for j in range(ncol):
         c = ws.cell(6, MC0 + j, extra_rotulo if j >= len(cods) else j + 1)
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
         ws.column_dimensions[CL(MC0 + j)].width = 10.5
-    ws.row_dimensions[6].height = 15
+    ws.row_dimensions[6].height = 14
     for i in range(nlin):
         r = MR0 + i
-        ws.row_dimensions[r].height = 11
+        ws.row_dimensions[r].height = 11.5
         eh_extra = i >= len(nomes)
+        zebra = bool(i % 2)
         c = ws.cell(r, 2, extra_rotulo if eh_extra else cods[i])
-        c.font = F_DADO; c.border = BORDA; c.alignment = CENTRO
+        c.alignment = CENTRO
         c = ws.cell(r, 3, "Famílias (renda ↔ consumo)" if eh_extra else nomes[i])
-        c.font = F_DADO; c.border = BORDA; c.alignment = VCENTRO
+        c.alignment = VCENTRO
         c = ws.cell(r, 4, i + 1)
-        c.font = F_DADO; c.border = BORDA; c.alignment = CENTRO
+        c.alignment = CENTRO
         for j in range(ncol):
             c = ws.cell(r, MC0 + j, float(M[i, j]))
-            c.font = F_DADO; c.border = BORDA
             c.number_format = fmt; c.alignment = VCENTRO
+        for k in range(2, MC0 + ncol):
+            c = ws.cell(r, k)
+            c.font = F_DADO; c.border = BORDA
+            if zebra:
+                c.fill = FILL_ZEBRA
     ws.freeze_panes = "E7"
 
 
@@ -384,24 +434,23 @@ def _faixa_dado(tag, col, n):
 def _aba_dados(wb, tag, mip: MIPAno):
     """Tabela vertical (setores nas linhas) com vetores e coeficientes por fórmula."""
     ws = _nova_aba(wb, f"Dados_{tag}",
-                   f"DADOS — MIP BRASIL {tag}",
-                   "(valores correntes em R$ milhões; ocupações em pessoas) — vetores extraídos "
+                   f"Dados — MIP Brasil {tag}",
+                   "Valores correntes em R$ milhões; ocupações em pessoas. Vetores extraídos "
                    "da aba 12 da MIP-BR (Nível 68), NEREUS/CECEG; coeficientes por unidade de "
-                   "produção calculados por fórmula nas colunas Q a T.", CINZA_TAB)
+                   "produção calculados por fórmula nas colunas Q a T.", TAB_DADOS, zoom=90)
     rot = ["Código", "Atividades", "nº", "VBP (x)", "Remunerações", "VA (PIB)",
            "Ocupações", "Importação intermediária", "Exportações", "Governo",
            "ISFLSF", "Consumo das famílias (nac.)", "FBCF", "Variação de estoques",
            "Demanda final total", "w = ocup/x", "v renda = rem/x", "v VA = VA/x",
            "m = imp/x"]
-    _cab_tabela(ws, 6, 2, rot,
-                larguras=[6.7, 62, 4.4] + [12.5] * (len(rot) - 3))
+    _cab_tabela(ws, 6, 2, rot, larguras=[6.7, 52, 4.4] + [12.5] * (len(rot) - 3),
+                fonte=F_CAB8)
     n = mip.n
     for i in range(n):
         r = MR0 + i
-        ws.row_dimensions[r].height = 11
-        ws.cell(r, 2, mip.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, mip.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
+        ws.row_dimensions[r].height = 11.5
+        zebra = bool(i % 2)
+        _id_setor(ws, r, mip.cod[i], mip.nomes[i], i + 1)
         vals = [mip.x[i], mip.rem[i], mip.va[i], mip.ocup[i], mip.imp_int[i],
                 mip.y["exportacao"][i], mip.y["governo"][i], mip.y["isflsf"][i],
                 mip.y["familias"][i], mip.y["fbcf"][i], mip.y["estoque"][i]]
@@ -418,8 +467,10 @@ def _aba_dados(wb, tag, mip: MIPAno):
         for k in range(2, 21):
             c = ws.cell(r, k)
             c.font = F_DADO; c.border = BORDA
+            if zebra:
+                c.fill = FILL_ZEBRA
     r_tot = MR0 + n
-    _linha_total(ws, r_tot, 2, 20)
+    _linha_total(ws, r_tot, 20)
     for col in "EFGHIJKLMNOP":
         c = ws[f"{col}{r_tot}"]
         c.value = f"=SUM({col}7:{col}{6 + n})"
@@ -428,12 +479,22 @@ def _aba_dados(wb, tag, mip: MIPAno):
     return ws
 
 
-def _linha_indices(ws, linha, n, rotulo):
-    """cabeçalho auxiliar 1..n (para linhas de vetor nas abas de questão)."""
-    _rotulo_aux(ws, linha, rotulo)
-    for j in range(n):
-        c = ws.cell(linha, MC0 + j)
-        c.font = F_AUX
+def _tabela_setorial(ws, rH, cab, larguras, n, m, escreve_linha, destaque=None):
+    """esqueleto das tabelas de questão: cabeçalho, zebra, bordas horizontais."""
+    _cab_tabela(ws, rH, 2, cab, larguras=larguras)
+    for i in range(n):
+        r = rH + 1 + i
+        _id_setor(ws, r, m.cod[i], m.nomes[i], i + 1)
+        escreve_linha(r, i)
+        zebra = bool(i % 2)
+        for k in range(2, 2 + len(cab)):
+            c = ws.cell(r, k)
+            c.font = F_TAB; c.border = BORDA_H
+            if destaque is not None and i == destaque:
+                c.fill = FILL_DESTQ
+            elif zebra:
+                c.fill = FILL_ZEBRA
+    return rH + 1 + n                                   # linha do TOTAL
 
 
 def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema,
@@ -446,10 +507,10 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     wb.remove(wb.active)
 
     # ---------------- Capa ---------------- #
-    ws = _nova_aba(wb, "Capa", "LISTA DE EXERCÍCIOS — ANÁLISE DE INSUMO-PRODUTO",
-                   None, AZUL_TAB_CAPA)
-    ws.column_dimensions["B"].width = 34
-    ws.column_dimensions["C"].width = 92
+    ws = _nova_aba(wb, "Capa", "Lista de Exercícios — Análise de Insumo-Produto",
+                   None, TAB_CAPA)
+    ws.column_dimensions["B"].width = 30
+    ws.column_dimensions["C"].width = 96
     info = [
         ("Disciplina", "Análise de Insumo-Produto · PPGEco/UFES · 2026/1"),
         ("Professor", "Prof. Dr. Celso Bissoli Sessa"),
@@ -466,13 +527,13 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=LCOL_TXT)
         c = ws.cell(r, 2, f"*** ARQUIVO DE VALIDAÇÃO (selftest): economia SINTÉTICA de "
                           f"{n} setores — NÃO usa dados reais ***")
-        c.font = Font(name=CALIBRI, size=12, bold=True, color="FFC00000")
+        c.font = Font(name=CALIBRI, size=12, bold=True, color="FFAF3029")
         r += 2
     for rot, txt in info:
-        ws.cell(r, 2, rot).font = F_NEG
+        ws.cell(r, 2, rot).font = Font(name=CALIBRI, size=10, bold=True, color=BASE_600)
         c = ws.cell(r, 3, txt)
         c.font = F_TXT; c.alignment = QUEBRA
-        ws.row_dimensions[r].height = max(15, 13 * math.ceil(len(txt) / 90))
+        ws.row_dimensions[r].height = max(15, 13 * math.ceil(len(txt) / 95))
         r += 1
     r += 1
     ws.cell(r, 2, "Guia das abas").font = F_SECAO
@@ -491,34 +552,36 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         ("A, B, G, B2", "Coeficientes técnicos, inversa de Leontief, inversa de Ghosh e "
                         "modelo fechado (valores documentados — base das fórmulas)"),
     ]
-    _cab_tabela(ws, r, 2, ["Aba", "Conteúdo"], larguras=[34, 92])
+    _cab_tabela(ws, r, 2, ["Aba", "Conteúdo"], larguras=[30, 96])
     for k, (aba, desc) in enumerate(guia):
         rr = r + 1 + k
         ws.cell(rr, 2, aba).font = F_TAB_NEG
         ws.cell(rr, 3, desc).font = F_TAB
         for cc in (2, 3):
-            ws.cell(rr, cc).border = BORDA
+            ws.cell(rr, cc).border = BORDA_H
             ws.cell(rr, cc).alignment = VCENTRO
+            if k % 2:
+                ws.cell(rr, cc).fill = FILL_ZEBRA
     r = r + len(guia) + 2
     ws.cell(r, 2, "Legenda de células").font = F_SECAO
     legenda = [
-        (F_IN, FILL_IN, "Azul sobre amarelo — entrada editável (choques, IPCA): a pasta recalcula"),
-        (F_TAB, FILL_BLOCO, "Cinza — decomposições e parâmetros lidos da MIP (aba 12)"),
-        (F_TAB_NEG, FILL_TOT, "Verde — linhas-síntese/totais (padrão da planilha-fonte)"),
+        (F_IN, FILL_IN, "Amarelo-pastel, texto azul — entrada editável (choques, IPCA): a pasta recalcula"),
+        (F_TAB, FILL_BLOCO, "Cinza-quente — parâmetros lidos da MIP (aba 12)"),
+        (F_TAB_NEG, FILL_TOT, "Verde-pastel — linhas-síntese e totais"),
         (F_TAB, None, "Sem preenchimento — fórmula viva sobre as abas de dados/matrizes"),
     ]
     for k, (f, fill, txt) in enumerate(legenda):
         rr = r + 1 + k
         c = ws.cell(rr, 2, "célula")
-        c.font = f; c.border = BORDA; c.alignment = CENTRO
+        c.font = f; c.border = BORDA_H; c.alignment = CENTRO
         if fill:
             c.fill = fill
         ws.cell(rr, 3, txt).font = F_TXT
 
     # ---------------- Metodologia ---------------- #
-    ws = _nova_aba(wb, "Metodologia", "NOTAS METODOLÓGICAS E PREMISSAS",
+    ws = _nova_aba(wb, "Metodologia", "Notas metodológicas e premissas",
                    "Todas as hipóteses assumidas na resolução estão listadas aqui; "
-                   "as fórmulas citadas seguem Miller & Blair (2009).", AZUL_TAB_CAPA)
+                   "as fórmulas citadas seguem Miller & Blair (2009).", TAB_CAPA)
     met = [
         "1. Modelo aberto: A = Z·x̂⁻¹ sobre os fluxos NACIONAIS (aba 12 da MIP-BR); "
         "B = (I−A)⁻¹ (Leontief); Ghosh: G = (I−x̂⁻¹Z)⁻¹. As matrizes B, G e B2 estão coladas "
@@ -569,43 +632,47 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
             c = ws.cell(r, 2, t)
             c.font = F_TXT; c.alignment = QUEBRA
             ws.row_dimensions[r].height = max(15, 13.5 * math.ceil(len(t) / 155))
+        else:
+            ws.row_dimensions[r].height = 8
         r += 1
 
     # ---------------- Setores ---------------- #
-    ws = _nova_aba(wb, "Setores", "CLASSIFICAÇÃO SETORIAL",
-                   "Nível 68 (NEREUS/CECEG) — comum às matrizes de 2010 e 2020.",
-                   AZUL_TAB_CAPA)
+    ws = _nova_aba(wb, "Setores", "Classificação setorial",
+                   "Nível 68 (NEREUS/CECEG) — comum às matrizes de 2010 e 2020.", TAB_CAPA)
     _cab_tabela(ws, 6, 2, ["Código", "Atividades", "nº"], larguras=[8, 70, 5])
     for i in range(n):
         r = MR0 + i
-        for cc, v in ((2, m20.cod[i]), (3, m20.nomes[i]), (4, i + 1)):
-            c = ws.cell(r, cc, v)
-            c.font = F_TAB; c.border = BORDA
-            c.alignment = CENTRO if cc != 3 else VCENTRO
+        _id_setor(ws, r, m20.cod[i], m20.nomes[i], i + 1, zebra=bool(i % 2))
+        for cc in (2, 3, 4):
+            ws.cell(r, cc).font = F_TAB
+            ws.cell(r, cc).border = BORDA_H
+            if i % 2:
+                ws.cell(r, cc).fill = FILL_ZEBRA
+    ws.freeze_panes = "A7"
 
     # ---------------- Dados e matrizes ---------------- #
     _aba_dados(wb, "2020", m20)
     _aba_dados(wb, "2010", m10)
     matrizes = [
-        ("A_2020", s20.A, m20, "MATRIZ A — COEFICIENTES TÉCNICOS NACIONAIS (2020)",
+        ("A_2020", s20.A, m20, "Matriz A — coeficientes técnicos nacionais (2020)",
          "a(i,j) = Z(i,j)/x(j); reproduz a aba 13 do arquivo-fonte (desvio < 1e-15).", None),
-        ("B_2020", s20.B, m20, "MATRIZ B — INVERSA DE LEONTIEF (2020)",
+        ("B_2020", s20.B, m20, "Matriz B — inversa de Leontief (2020)",
          "B = (I−A)⁻¹, colada como VALOR (inversão externa NumPy; confira com MINVERSE). "
          "Base das fórmulas das questões.", None),
-        ("G_2020", s20.G, m20, "MATRIZ G — INVERSA DE GHOSH (2020)",
+        ("G_2020", s20.G, m20, "Matriz G — inversa de Ghosh (2020)",
          "G = (I−x̂⁻¹Z)⁻¹, colada como VALOR; usada na ligação para frente (Q4).", None),
-        ("B2_2020", s20.B2, m20, "MATRIZ B2 — MODELO FECHADO PARA AS FAMÍLIAS (2020)",
+        ("B2_2020", s20.B2, m20, "Matriz B2 — modelo fechado para as famílias (2020)",
          "Inversa do sistema com famílias endógenas (tipo II); última linha/coluna = famílias.",
          "FAM"),
-        ("A_2010", s10.A, m10, "MATRIZ A — COEFICIENTES TÉCNICOS NACIONAIS (2010)",
+        ("A_2010", s10.A, m10, "Matriz A — coeficientes técnicos nacionais (2010)",
          "a(i,j) = Z(i,j)/x(j); reproduz a aba 13 do arquivo-fonte (desvio < 1e-15).", None),
-        ("B_2010", s10.B, m10, "MATRIZ B — INVERSA DE LEONTIEF (2010)",
+        ("B_2010", s10.B, m10, "Matriz B — inversa de Leontief (2010)",
          "B = (I−A)⁻¹, colada como VALOR; usada em Q4 e Q7.", None),
-        ("G_2010", s10.G, m10, "MATRIZ G — INVERSA DE GHOSH (2010)",
+        ("G_2010", s10.G, m10, "Matriz G — inversa de Ghosh (2010)",
          "G = (I−x̂⁻¹Z)⁻¹, colada como VALOR; usada na ligação para frente (Q4).", None),
     ]
     for nome, M, mp, tit, nota, extra in matrizes:
-        ws = _nova_aba(wb, nome, tit, nota, CINZA_TAB)
+        ws = _nova_aba(wb, nome, tit, nota, TAB_DADOS, zoom=85)
         _matriz(ws, M, mp.nomes, mp.cod, fmt=NUM_MULT, extra_rotulo=extra)
 
     fimM = CL(MC0 - 1 + n)                       # última coluna das matrizes
@@ -613,38 +680,28 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     # ================= Q1 — multiplicadores ================= #
     mult = s20.multiplicadores()
     ws = _nova_aba(wb, "Q1_Multiplicadores",
-                   "QUESTÃO 1 — MULTIPLICADORES (2020), TIPOS I E II",
+                   "Questão 1 — Multiplicadores (2020), tipos I e II",
                    "Multiplicadores de produção, emprego, renda e valor adicionado para todos "
-                   "os setores. Tipo I: modelo aberto (matriz B_2020). Tipo II: modelo fechado "
-                   "para as famílias (matriz B2_2020). Emprego em ocupações por R$ 1 milhão; "
-                   "renda e VA em R$ por R$ 1,00 de demanda final.", "FF0070C0")
+                   "os setores. Tipo I: modelo aberto (B_2020). Tipo II: modelo fechado para "
+                   "as famílias (B2_2020). Emprego em ocupações por R$ 1 milhão; renda e VA em "
+                   "R$ por R$ 1,00 de demanda final.", TAB_Q)
     o_emp = np.argsort(mult["emp_II"])[::-1]
     o_ren = np.argsort(mult["renda_II"])[::-1]
-    resp = [
-        f"Multiplicador de produção médio (2020): {mult['prod_I'].mean():.3f} (tipo I) e "
-        f"{mult['prod_II'].mean():.3f} (tipo II) — o efeito induzido pelo consumo das famílias "
-        f"amplia o encadeamento médio em {(mult['prod_II'].mean() / mult['prod_I'].mean() - 1) * 100:.1f}%.",
-        f"Maior capacidade de GERAÇÃO DE EMPREGO (tipo II): {m20.nomes[o_emp[0]]} "
-        f"({mult['emp_II'][o_emp[0]]:.1f} ocup./R$ mi), seguido de {m20.nomes[o_emp[1]]} e "
-        f"{m20.nomes[o_emp[2]]} — setores trabalho-intensivos lideram.",
-        f"Maior capacidade de GERAÇÃO DE RENDA (tipo II): {m20.nomes[o_ren[0]]} "
-        f"(R$ {mult['renda_II'][o_ren[0]]:.3f} por R$ 1,00), seguido de {m20.nomes[o_ren[1]]} e "
-        f"{m20.nomes[o_ren[2]]}.",
-        "Rankings de emprego e renda nas duas tabelas à direita; a tabela principal traz os "
-        "oito multiplicadores por setor com a posição em cada ranking.",
+    sint = [
+        f"Produção: média {mult['prod_I'].mean():.3f} (tipo I) e {mult['prod_II'].mean():.3f} "
+        f"(tipo II). Maior geração de EMPREGO (II): {m20.nomes[o_emp[0]]} "
+        f"({mult['emp_II'][o_emp[0]]:.1f} ocup./R$ mi); de RENDA (II): {m20.nomes[o_ren[0]]} "
+        f"(R$ {mult['renda_II'][o_ren[0]]:.3f}/R$ 1,00).",
+        "Rankings completos de emprego e renda abaixo da tabela principal.",
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
+    rH = _sintese(ws, 5, sint)
     cab = ["Código", "Atividades", "nº", "Produção I", "Produção II",
            "Emprego I (ocup/R$ mi)", "Emprego II (ocup/R$ mi)", "Renda I", "Renda II",
            "VA I", "VA II", "Rank emprego II", "Rank renda II"]
-    _cab_tabela(ws, r0, 2, cab, larguras=[6.7, 46, 4.4] + [11.5] * 10)
-    r_ini, r_fim = r0 + 1, r0 + n
-    for i in range(n):
-        r = r0 + 1 + i
+    r_ini, r_fim = rH + 1, rH + n
+
+    def linha_q1(r, i):
         L = CL(MC0 + i)
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
         formulas = [
             f"=SUM(B_2020!{L}7:{L}{6 + n})",
             f"=SUM(B2_2020!{L}7:{L}{6 + n})",
@@ -656,69 +713,107 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
             f"=SUMPRODUCT({_faixa_dado('2020', 'v_va', n)},B2_2020!{L}7:{L}{6 + n})",
         ]
         for k, f in enumerate(formulas):
-            c = ws.cell(r, 5 + k, f)
-            c.number_format = NUM_MULT
+            ws.cell(r, 5 + k, f).number_format = NUM_MULT
         ws.cell(r, 13, f"=RANK(H{r},$H${r_ini}:$H${r_fim},0)").alignment = CENTRO
         ws.cell(r, 14, f"=RANK(J{r},$J${r_ini}:$J${r_fim},0)").alignment = CENTRO
-        for k in range(2, 15):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
+
+    r_tot = _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4] + [11.5] * 10, n, m20, linha_q1)
     confere[f"Q1_Multiplicadores!E{r_ini}"] = float(mult["prod_I"][0])
     confere[f"Q1_Multiplicadores!F{r_ini}"] = float(mult["prod_II"][0])
     confere[f"Q1_Multiplicadores!G{r_ini}"] = float(mult["emp_I"][0])
     confere[f"Q1_Multiplicadores!J{r_ini}"] = float(mult["renda_II"][0])
     topk = min(10, n)
-    for bloco, (rot, ordem, col_val) in enumerate(
-            [("RANKING — GERAÇÃO DE EMPREGO (TIPO II)", o_emp, "H"),
-             ("RANKING — GERAÇÃO DE RENDA (TIPO II)", o_ren, "J")]):
-        c0 = 16 + bloco * 4
-        ws.cell(r0 - 1, c0, rot).font = F_SECAO
-        _cab_tabela(ws, r0, c0, ["#", "Atividades", "Multiplicador"],
-                    larguras=[4, 40, 12])
+    r = r_tot + 2
+    for rot, ordem, col_val in (("Ranking — geração de emprego (tipo II)", o_emp, "H"),
+                                ("Ranking — geração de renda (tipo II)", o_ren, "J")):
+        ws.cell(r, 2, rot).font = F_SECAO
+        _cab_tabela(ws, r + 1, 2, ["#", "Atividades", "", "Multiplicador"])
         for k in range(topk):
-            r = r0 + 1 + k
+            rr = r + 2 + k
             i = int(ordem[k])
-            ws.cell(r, c0, k + 1).alignment = CENTRO
-            ws.cell(r, c0 + 1, f"=C{r0 + 1 + i}").alignment = VCENTRO
-            v = ws.cell(r, c0 + 2, f"={col_val}{r0 + 1 + i}")
+            ws.cell(rr, 2, k + 1).alignment = CENTRO
+            ws.merge_cells(start_row=rr, start_column=3, end_row=rr, end_column=4)
+            ws.cell(rr, 3, f"=C{rH + 1 + i}").alignment = VCENTRO
+            v = ws.cell(rr, 5, f"={col_val}{rH + 1 + i}")
             v.number_format = NUM_MULT
-            for cc in range(c0, c0 + 3):
-                ws.cell(r, cc).font = F_TAB
-                ws.cell(r, cc).border = BORDA
-    ws.freeze_panes = f"E{r0 + 1}"
+            for cc in (2, 3, 4, 5):
+                ws.cell(rr, cc).font = F_TAB
+                ws.cell(rr, cc).border = BORDA_H
+                if k % 2:
+                    ws.cell(rr, cc).fill = FILL_ZEBRA
+        r = r + 2 + topk + 2
+    _caixa_leitura(ws, r, [
+        f"O efeito induzido pelo consumo das famílias amplia o encadeamento médio em "
+        f"{(mult['prod_II'].mean() / mult['prod_I'].mean() - 1) * 100:.1f}% (tipo II vs tipo I).",
+        f"Emprego (tipo II): {m20.nomes[o_emp[0]]}, {m20.nomes[o_emp[1]]} e "
+        f"{m20.nomes[o_emp[2]]} lideram — setores trabalho-intensivos.",
+        f"Renda (tipo II): {m20.nomes[o_ren[0]]}, {m20.nomes[o_ren[1]]} e "
+        f"{m20.nomes[o_ren[2]]} lideram.",
+    ])
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q2 — choques ================= #
     q2 = q2_cenarios(s20, 10_000.0, i_agro)
     ws = _nova_aba(wb, "Q2_Choques",
-                   "QUESTÃO 2 — CHOQUES DE R$ 10 BILHÕES (2020)",
+                   "Questão 2 — Choques de R$ 10 bilhões (2020)",
                    "Δx = B·Δy. Cenário (a): +R$ 10 bi nas exportações da Agricultura. "
                    "Cenário (b): +R$ 10 bi na formação bruta de capital fixo, distribuídos "
-                   "pela estrutura observada da coluna de investimento da MIP.", "FF0070C0")
+                   "pela estrutura observada da coluna de investimento da MIP.", TAB_Q)
     ganha = "a" if q2["a_agro_export"]["dprod"] >= q2["b_fbcf"]["dprod"] else "b"
     ganha_va = "a" if q2["a_agro_export"]["dva"] >= q2["b_fbcf"]["dva"] else "b"
-    resp = [
-        f"Produção nacional: cenário (a) gera ΔX = R$ {q2['a_agro_export']['dprod']:,.0f} mi; "
-        f"cenário (b) gera ΔX = R$ {q2['b_fbcf']['dprod']:,.0f} mi → maior impacto no "
-        f"cenário ({ganha}).",
-        f"Valor adicionado: (a) ΔVAB = R$ {q2['a_agro_export']['dva']:,.0f} mi; "
-        f"(b) ΔVAB = R$ {q2['b_fbcf']['dva']:,.0f} mi → maior impacto no cenário ({ganha_va}).",
+    sint = [
+        f"Produção: (a) ΔX = R$ {q2['a_agro_export']['dprod']:,.0f} mi × (b) ΔX = "
+        f"R$ {q2['b_fbcf']['dprod']:,.0f} mi → maior impacto no cenário ({ganha}). "
+        f"VAB: (a) R$ {q2['a_agro_export']['dva']:,.0f} mi × (b) R$ {q2['b_fbcf']['dva']:,.0f} mi "
+        f"→ cenário ({ganha_va}).",
+    ]
+    rP = _sintese(ws, 5, sint)
+    ws.cell(rP, 2, "Choque (R$ milhões) — célula editável").font = F_NEG
+    ce = ws.cell(rP, 5, 10_000.0)
+    ce.font = F_IN; ce.fill = FILL_IN; ce.number_format = NUM_MI; ce.border = BORDA
+    ws.cell(rP, 7, f"cenário (a) aplica o choque em: {m20.nomes[i_agro]}").font = F_AUX
+    Lch = f"$E${rP}"
+    rH = rP + 2
+    r_tot = rH + 1 + n
+    lin_dya = r_tot + 2 + 5 + 2                       # após a caixa de leitura (5 linhas)
+    lin_dyb = lin_dya + 1
+    cab = ["Código", "Atividades", "nº", "Δx (a)", "ΔVA (a)", "Δocup (a)",
+           "Δx (b)", "ΔVA (b)", "Δocup (b)"]
+
+    def linha_q2(r, i):
+        bfila = _ref_mat("B_2020", i=i, n=n)
+        ws.cell(r, 5, f"=SUMPRODUCT({bfila},$E${lin_dya}:${fimM}${lin_dya})")
+        ws.cell(r, 6, f"=E{r}*{_celula_dado('2020', 'v_va', i)}")
+        ws.cell(r, 7, f"=E{r}*{_celula_dado('2020', 'w_emp', i)}")
+        ws.cell(r, 8, f"=SUMPRODUCT({bfila},$E${lin_dyb}:${fimM}${lin_dyb})")
+        ws.cell(r, 9, f"=H{r}*{_celula_dado('2020', 'v_va', i)}")
+        ws.cell(r, 10, f"=H{r}*{_celula_dado('2020', 'w_emp', i)}")
+        for k in range(5, 11):
+            ws.cell(r, k).number_format = NUM_MI if k not in (7, 10) else "#,##0.0"
+
+    _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4] + [12.5] * 6, n, m20, linha_q2)
+    _linha_total(ws, r_tot, 10)
+    for col in "EFGHIJ":
+        c = ws[f"{col}{r_tot}"]
+        c.value = f"=SUM({col}{rH + 1}:{col}{r_tot - 1})"
+        c.font = F_TAB_NEG; c.number_format = NUM_MI
+    confere[f"Q2_Choques!E{r_tot}"] = q2["a_agro_export"]["dprod"]
+    confere[f"Q2_Choques!H{r_tot}"] = q2["b_fbcf"]["dprod"]
+    confere[f"Q2_Choques!F{r_tot}"] = q2["a_agro_export"]["dva"]
+    confere[f"Q2_Choques!I{r_tot}"] = q2["b_fbcf"]["dva"]
+    _caixa_leitura(ws, r_tot + 2, [
         f"Emprego (memo): (a) {q2['a_agro_export']['demp']:,.0f} ocupações; "
         f"(b) {q2['b_fbcf']['demp']:,.0f}.",
-        "Implicações: o crescimento puxado pelo agronegócio concentra o impulso numa cadeia "
-        "curta e intensiva em recursos naturais — multiplica menos VA por real de choque quando "
-        "a cadeia é pouco adensada e vaza para importações de insumos; já a formação de capital "
-        "espalha a demanda por máquinas, construção e serviços técnicos, eleva a capacidade "
-        "produtiva FUTURA (efeito não capturado pelo modelo estático) e tende a gerar mais "
-        "empregos urbanos. A comparação numérica diz qual efeito de CURTO PRAZO domina; a "
-        "escolha de modelo de desenvolvimento envolve também a dinâmica de longo prazo.",
-    ]
-    r0 = _caixa_resposta(ws, 5, resp)
-    ws.cell(r0, 2, "Choque (R$ milhões)").font = F_NEG
-    ce = ws.cell(r0, 5, 10_000.0)
-    ce.font = F_IN; ce.fill = FILL_IN; ce.number_format = NUM_MI; ce.border = BORDA
-    ws.cell(r0 + 1, 2, f"Setor do cenário (a): {m20.nomes[i_agro]}").font = F_AUX
-    Lch = f"$E${r0}"
-    lin_dya, lin_dyb = r0 + 3, r0 + 4
+        "O crescimento puxado pelo agronegócio concentra o impulso numa cadeia curta e "
+        "intensiva em recursos naturais — multiplica menos VA por real de choque quando a "
+        "cadeia é pouco adensada e vaza para importações de insumos.",
+        "A formação de capital espalha a demanda por máquinas, construção e serviços "
+        "técnicos, eleva a capacidade produtiva FUTURA (efeito não capturado pelo modelo "
+        "estático) e tende a gerar mais empregos urbanos.",
+        "A comparação numérica diz qual efeito de CURTO PRAZO domina; a escolha de modelo "
+        "de desenvolvimento envolve também a dinâmica de longo prazo.",
+        "Vetores auxiliares Δy abaixo (referenciados pelas fórmulas da tabela).",
+    ])
     _rotulo_aux(ws, lin_dya, "Δy do cenário (a) — vetor auxiliar (colunas E em diante)")
     _rotulo_aux(ws, lin_dyb, "Δy do cenário (b) — vetor auxiliar")
     for j in range(n):
@@ -728,136 +823,71 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
                      f"/SUM({_faixa_dado('2020', 'fbcf', n)})")
         for c in (ca, cb):
             c.font = F_AUX; c.number_format = NUM_MI
-    r1 = lin_dyb + 2
-    _cab_tabela(ws, r1, 2, ["Código", "Atividades", "nº", "Δx (a)", "ΔVA (a)",
-                            "Δocup (a)", "Δx (b)", "ΔVA (b)", "Δocup (b)"],
-                larguras=[6.7, 46, 4.4] + [12.5] * 6)
-    for i in range(n):
-        r = r1 + 1 + i
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
-        bfila = _ref_mat("B_2020", i=i, n=n)
-        ws.cell(r, 5, f"=SUMPRODUCT({bfila},$E${lin_dya}:${fimM}${lin_dya})")
-        ws.cell(r, 6, f"=E{r}*{_celula_dado('2020', 'v_va', i)}")
-        ws.cell(r, 7, f"=E{r}*{_celula_dado('2020', 'w_emp', i)}")
-        ws.cell(r, 8, f"=SUMPRODUCT({bfila},$E${lin_dyb}:${fimM}${lin_dyb})")
-        ws.cell(r, 9, f"=H{r}*{_celula_dado('2020', 'v_va', i)}")
-        ws.cell(r, 10, f"=H{r}*{_celula_dado('2020', 'w_emp', i)}")
-        for k in range(2, 11):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
-            if k >= 5:
-                c.number_format = NUM_MI if k not in (7, 10) else "#,##0.0"
-    r_tot = r1 + 1 + n
-    _linha_total(ws, r_tot, 2, 10)
-    for col in "EFGHIJ":
-        c = ws[f"{col}{r_tot}"]
-        c.value = f"=SUM({col}{r1 + 1}:{col}{r_tot - 1})"
-        c.font = F_TAB_NEG; c.number_format = NUM_MI
-    confere[f"Q2_Choques!E{r_tot}"] = q2["a_agro_export"]["dprod"]
-    confere[f"Q2_Choques!H{r_tot}"] = q2["b_fbcf"]["dprod"]
-    confere[f"Q2_Choques!F{r_tot}"] = q2["a_agro_export"]["dva"]
-    confere[f"Q2_Choques!I{r_tot}"] = q2["b_fbcf"]["dva"]
-    ws.freeze_panes = f"E{r1 + 1}"
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q3 — UPCF ================= #
     q3 = q3_upcf(s20, 120_000.0)
     ws = _nova_aba(wb, "Q3_UPCF",
-                   "QUESTÃO 3 — REAJUSTE DO SALÁRIO MÍNIMO: +R$ 120 BI DE CONSUMO (2020)",
+                   "Questão 3 — Reajuste do salário mínimo: +R$ 120 bi de consumo (2020)",
                    "Choque repartido pela UPCF — a cesta observada do consumo das famílias a "
                    "preço de consumidor: produtos nacionais + importados + impostos + margens "
                    "(aba 12 da MIP, coluna Famílias). Margens voltam como demanda de "
-                   "comércio/transporte; impostos não geram produção.", "FF0070C0")
-    resp = [
-        f"Composição da cesta (UPCF): {1 - q3['share_imp_cesta'] - q3['share_imposto'] - q3['share_margens']:.1%} "
-        f"produtos nacionais a preço básico; {q3['share_imp_cesta']:.1%} importados; "
-        f"{q3['share_imposto']:.1%} impostos; {q3['share_margens']:.1%} margens de "
-        "comércio/transporte (realocadas como demanda desses serviços).",
-        f"IMPORTAÇÕES: diretas R$ {q3['dimp_direta']:,.0f} mi (cesta importada) + induzidas "
-        f"R$ {q3['dimp_induzida']:,.0f} mi (insumos da produção, m = importação/x) = "
-        f"R$ {q3['dimp_total']:,.0f} mi ({q3['dimp_total'] / 120_000:.1%} do choque).",
-        f"EMPREGO: {q3['demp']:,.0f} ocupações geradas pela produção induzida "
-        f"(ΔX = R$ {q3['dprod']:,.0f} mi) — cerca de {q3['demp'] / 120:,.0f} ocupações "
-        "por R$ 1 bi de reajuste.",
-        f"Memo: R$ {q3['dimposto']:,.0f} mi do choque viram impostos sobre produtos "
-        "(não geram produção). O efeito-emprego concentra-se nos setores que atendem a UPCF "
-        "(coluna Δ ocupações abaixo).",
+                   "comércio/transporte; impostos não geram produção.", TAB_Q)
+    sint = [
+        f"IMPORTAÇÕES: R$ {q3['dimp_direta']:,.0f} mi diretas + R$ {q3['dimp_induzida']:,.0f} mi "
+        f"induzidas = R$ {q3['dimp_total']:,.0f} mi ({q3['dimp_total'] / 120_000:.1%} do choque).",
+        f"EMPREGO: {q3['demp']:,.0f} ocupações geradas (ΔX = R$ {q3['dprod']:,.0f} mi) — "
+        f"≈ {q3['demp'] / 120:,.0f} ocupações por R$ 1 bi de reajuste.",
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
-    ws.cell(r0, 2, "Choque (R$ milhões)").font = F_NEG
-    ce = ws.cell(r0, 5, 120_000.0)
+    rP = _sintese(ws, 5, sint)
+    rotP = ["Choque (editável)", "Cesta importada", "Impostos na cesta",
+            "Margens de comércio", "Margens de transporte", "Cesta total (denom.)"]
+    ws.cell(rP, 2, "Parâmetros da UPCF (R$ mi; aba 12 × coluna Famílias)").font = F_NEG
+    for k, rtl in enumerate(rotP):
+        c = ws.cell(rP + 1, 5 + k, rtl)
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA_CAB; c.alignment = CENTRO
+    ws.row_dimensions[rP + 1].height = 22
+    rV = rP + 2
+    valores = [m20.fd_fam.get("importacao", 0.0), m20.fd_fam.get("impostos", 0.0),
+               m20.fd_fam.get("margens_comercio", 0.0),
+               m20.fd_fam.get("margens_transporte", 0.0)]
+    ce = ws.cell(rV, 5, 120_000.0)
     ce.font = F_IN; ce.fill = FILL_IN; ce.number_format = NUM_MI; ce.border = BORDA
-    Lch = f"$E${r0}"
-    itens_cesta = [
-        ("Cesta importada (aba 12: Importação × Famílias)",
-         m20.fd_fam.get("importacao", 0.0)),
-        ("Impostos na cesta (aba 12: Impostos × Famílias)",
-         m20.fd_fam.get("impostos", 0.0)),
-        ("Margens de comércio (aba 12: Margens/Comércio × Famílias)",
-         m20.fd_fam.get("margens_comercio", 0.0)),
-        ("Margens de transporte (aba 12: Margens/Transporte × Famílias)",
-         m20.fd_fam.get("margens_transporte", 0.0)),
-    ]
-    for k, (rot, v) in enumerate(itens_cesta):
-        rr = r0 + 1 + k
-        ws.merge_cells(start_row=rr, start_column=2, end_row=rr, end_column=4)
-        c = ws.cell(rr, 2, rot)
+    for k, v in enumerate(valores):
+        c = ws.cell(rV, 6 + k, float(v))
         c.font = F_TAB; c.fill = FILL_BLOCO; c.border = BORDA
-        cc = ws.cell(rr, 5, float(v))
-        cc.font = F_TAB; cc.fill = FILL_BLOCO; cc.border = BORDA
-        cc.number_format = NUM_MI
-    r_den = r0 + 5
-    ws.merge_cells(start_row=r_den, start_column=2, end_row=r_den, end_column=4)
-    ws.cell(r_den, 2, "Cesta total das famílias (denominador da UPCF)").font = F_TAB_NEG
-    cd = ws.cell(r_den, 5, f"=SUM({_faixa_dado('2020', 'familias', n)})"
-                           f"+SUM(E{r0 + 1}:E{r0 + 4})")
-    cd.font = F_TAB_NEG; cd.number_format = NUM_MI
-    for cc in (2, 3, 4, 5):
-        ws.cell(r_den, cc).fill = FILL_TOT
-        ws.cell(r_den, cc).border = BORDA
-    DEN = f"$E${r_den}"
-    C_IMP, C_TAX, C_MGC, C_MGT = (f"$E${r0 + 1}", f"$E${r0 + 2}",
-                                  f"$E${r0 + 3}", f"$E${r0 + 4}")
+        c.number_format = NUM_MI
+    cd = ws.cell(rV, 10, f"=SUM({_faixa_dado('2020', 'familias', n)})+SUM(F{rV}:I{rV})")
+    cd.font = F_TAB_NEG; cd.fill = FILL_TOT; cd.border = BORDA
+    cd.number_format = NUM_MI
+    Lch = f"$E${rV}"
+    C_IMP, C_TAX, C_MGC, C_MGT = (f"$F${rV}", f"$G${rV}", f"$H${rV}", f"$I${rV}")
+    DEN = f"$J${rV}"
     soma_xc = "+".join(_celula_dado("2020", "x", i) for i in q3["idx_c"]) or "1"
     soma_xt = "+".join(_celula_dado("2020", "x", i) for i in q3["idx_t"]) or "1"
-    lin_dy = r_den + 2
-    _rotulo_aux(ws, lin_dy, "Δy da UPCF (nacional + margens realocadas) — vetor auxiliar")
-    for j in range(n):
-        termo = f"{_celula_dado('2020', 'familias', j)}"
-        if j in q3["idx_c"]:
-            termo += f"+{C_MGC}*{_celula_dado('2020', 'x', j)}/({soma_xc})"
-        if j in q3["idx_t"]:
-            termo += f"+{C_MGT}*{_celula_dado('2020', 'x', j)}/({soma_xt})"
-        c = ws.cell(lin_dy, MC0 + j, f"={Lch}*({termo})/{DEN}")
-        c.font = F_AUX; c.number_format = NUM_MI
-    r1 = lin_dy + 2
-    _cab_tabela(ws, r1, 2, ["Código", "Atividades", "nº", "Δ demanda (UPCF)",
-                            "Δx induzido", "Δ importação induzida", "Δ ocupações"],
-                larguras=[6.7, 46, 4.4, 14, 13, 14, 13])
-    for i in range(n):
-        r = r1 + 1 + i
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
+    rH = rV + 2
+    r_tot = rH + 1 + n
+    lin_dy = r_tot + 2 + 6 + 2 + 5 + 2               # síntese de impactos + leitura
+    cab = ["Código", "Atividades", "nº", "Δ demanda (UPCF)", "Δx induzido",
+           "Δ importação induzida", "Δ ocupações"]
+
+    def linha_q3(r, i):
         ws.cell(r, 5, f"={CL(MC0 + i)}{lin_dy}")
         ws.cell(r, 6, f"=SUMPRODUCT({_ref_mat('B_2020', i=i, n=n)},"
                       f"$E${lin_dy}:${fimM}${lin_dy})")
         ws.cell(r, 7, f"=F{r}*{_celula_dado('2020', 'm_coef', i)}")
         ws.cell(r, 8, f"=F{r}*{_celula_dado('2020', 'w_emp', i)}")
-        for k in range(2, 9):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
-            if k >= 5:
-                c.number_format = NUM_MI if k < 8 else "#,##0.0"
-    r_tot = r1 + 1 + n
-    _linha_total(ws, r_tot, 2, 8)
+        for k in range(5, 9):
+            ws.cell(r, k).number_format = NUM_MI if k < 8 else "#,##0.0"
+
+    _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4, 14, 13, 14, 13], n, m20, linha_q3)
+    _linha_total(ws, r_tot, 8)
     for col in "EFGH":
         c = ws[f"{col}{r_tot}"]
-        c.value = f"=SUM({col}{r1 + 1}:{col}{r_tot - 1})"
+        c.value = f"=SUM({col}{rH + 1}:{col}{r_tot - 1})"
         c.font = F_TAB_NEG; c.number_format = NUM_MI
     r2 = r_tot + 2
-    ws.cell(r2 - 1, 2, "Síntese dos impactos").font = F_SECAO
+    ws.cell(r2, 2, "Síntese dos impactos").font = F_SECAO
     linhas_sint = [
         ("Importação direta (cesta importada da UPCF)",
          f"={Lch}*{C_IMP}/{DEN}", q3["dimp_direta"]),
@@ -871,15 +901,36 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         rr = r2 + 1 + k
         ws.merge_cells(start_row=rr, start_column=2, end_row=rr, end_column=5)
         c = ws.cell(rr, 2, rot)
-        c.font = F_TAB_NEG; c.border = BORDA
+        c.font = F_TAB_NEG; c.border = BORDA_H
         cc = ws.cell(rr, 6)
         cc.value = formula if formula else f"=F{r2 + 1}+F{r2 + 2}"
-        cc.font = F_TAB_NEG; cc.number_format = NUM_MI; cc.border = BORDA
+        cc.font = F_TAB_NEG; cc.number_format = NUM_MI; cc.border = BORDA_H
         if "TOTAL" in rot:
             for col in range(2, 7):
                 ws.cell(rr, col).fill = FILL_TOT
         confere[f"Q3_UPCF!F{rr}"] = valor
-    ws.freeze_panes = f"E{r1 + 1}"
+    _caixa_leitura(ws, r2 + 7, [
+        f"Composição da cesta (UPCF): "
+        f"{1 - q3['share_imp_cesta'] - q3['share_imposto'] - q3['share_margens']:.1%} produtos "
+        f"nacionais a preço básico; {q3['share_imp_cesta']:.1%} importados; "
+        f"{q3['share_imposto']:.1%} impostos; {q3['share_margens']:.1%} margens de "
+        "comércio/transporte (realocadas como demanda desses serviços).",
+        "Parte relevante do estímulo vaza para o exterior (cesta importada + insumos "
+        "importados da produção induzida) e para impostos.",
+        "O efeito-emprego concentra-se nos setores que atendem diretamente a UPCF — "
+        "ver a coluna Δ ocupações da tabela.",
+        "Vetor auxiliar Δy da UPCF abaixo (referenciado pelas fórmulas da tabela).",
+    ])
+    _rotulo_aux(ws, lin_dy, "Δy da UPCF (nacional + margens realocadas) — vetor auxiliar")
+    for j in range(n):
+        termo = f"{_celula_dado('2020', 'familias', j)}"
+        if j in q3["idx_c"]:
+            termo += f"+{C_MGC}*{_celula_dado('2020', 'x', j)}/({soma_xc})"
+        if j in q3["idx_t"]:
+            termo += f"+{C_MGT}*{_celula_dado('2020', 'x', j)}/({soma_xt})"
+        c = ws.cell(lin_dy, MC0 + j, f"={Lch}*({termo})/{DEN}")
+        c.font = F_AUX; c.number_format = NUM_MI
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q4 — Rasmussen-Hirschman ================= #
     bl10, fl10 = s10.rasmussen()
@@ -887,34 +938,24 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
     chave10 = (bl10 > 1) & (fl10 > 1)
     chave20 = (bl20 > 1) & (fl20 > 1)
     ws = _nova_aba(wb, "Q4_RH",
-                   "QUESTÃO 4 — RASMUSSEN-HIRSCHMAN E SETORES-CHAVE: 2010 × 2020",
+                   "Questão 4 — Rasmussen-Hirschman e setores-chave: 2010 × 2020",
                    "Ligação para trás: soma de coluna da inversa de Leontief normalizada pela "
                    "média geral (U trás). Para frente: soma de linha da inversa de GHOSH "
-                   "normalizada (U frente). Setor-chave: ambas > 1.", "FF0070C0")
+                   "normalizada (U frente). Setor-chave: ambas > 1.", TAB_Q)
     novos = [m20.nomes[i] for i in range(n) if chave20[i] and not chave10[i]]
     perdidos = [m20.nomes[i] for i in range(n) if chave10[i] and not chave20[i]]
-    resp = [
-        f"Setores-chave em 2010: {int(chave10.sum())}; em 2020: {int(chave20.sum())} "
-        f"(critério RH estrito: U trás > 1 e U frente > 1).",
-        ("Entraram no grupo-chave até 2020: " + "; ".join(novos)) if novos
-        else "Nenhum setor entrou no grupo-chave entre 2010 e 2020.",
-        ("Saíram do grupo-chave: " + "; ".join(perdidos)) if perdidos
-        else "Nenhum setor saiu do grupo-chave entre 2010 e 2020.",
-        "Transformações estruturais: as colunas Δ mostram onde o encadeamento para trás e "
-        "para frente mudou na década — leia em conjunto com a Q7 (SDA): quedas difusas de "
-        "ligação para trás indicam substituição de insumos domésticos (por importados ou por "
-        "serviços), enquanto ganhos concentrados sinalizam adensamento de cadeia.",
+    sint = [
+        f"Setores-chave: {int(chave10.sum())} em 2010 → {int(chave20.sum())} em 2020 "
+        "(critério estrito: U trás > 1 e U frente > 1).",
+        (("Entraram: " + "; ".join(novos) + ". ") if novos else "Nenhum setor entrou. ")
+        + (("Saíram: " + "; ".join(perdidos) + ".") if perdidos else "Nenhum setor saiu."),
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
+    rH = _sintese(ws, 5, sint)
     cab = ["Código", "Atividades", "nº", "U trás 2010", "U frente 2010", "Chave 2010",
            "U trás 2020", "U frente 2020", "Chave 2020", "Δ trás", "Δ frente", "Mudança"]
-    _cab_tabela(ws, r0, 2, cab, larguras=[6.7, 46, 4.4] + [10.5] * 9)
-    for i in range(n):
-        r = r0 + 1 + i
+
+    def linha_q4(r, i):
         L = CL(MC0 + i)
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
         for k, (aba_b, aba_g) in enumerate((("B_2010", "G_2010"), ("B_2020", "G_2020"))):
             cb = 5 + k * 3
             ws.cell(r, cb, f"=SUM({aba_b}!{L}7:{L}{6 + n})*{n}"
@@ -927,198 +968,194 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         ws.cell(r, 12, f"=I{r}-F{r}")
         ws.cell(r, 13, f'=IF(G{r}=J{r},"",IF(J{r}="CHAVE","entrou","saiu"))')
         ws.cell(r, 13).alignment = CENTRO
-        for k in range(2, 14):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
-            if k in (5, 6, 8, 9, 11, 12):
-                c.number_format = NUM_IDX
-    confere[f"Q4_RH!E{r0 + 1}"] = float(bl10[0])
-    confere[f"Q4_RH!I{r0 + 1}"] = float(fl20[0])
-    ws.freeze_panes = f"E{r0 + 1}"
+        for k in (5, 6, 8, 9, 11, 12):
+            ws.cell(r, k).number_format = NUM_IDX
+
+    r_tot = _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4] + [10.5] * 9, n, m20, linha_q4)
+    confere[f"Q4_RH!E{rH + 1}"] = float(bl10[0])
+    confere[f"Q4_RH!I{rH + 1}"] = float(fl20[0])
+    _caixa_leitura(ws, r_tot + 2, [
+        "As colunas Δ mostram onde o encadeamento para trás e para frente mudou na década — "
+        "leia em conjunto com a Q7 (SDA): quedas difusas de ligação para trás indicam "
+        "substituição de insumos domésticos (por importados ou por serviços); ganhos "
+        "concentrados sinalizam adensamento de cadeia.",
+    ])
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q5 — campo de influência (2010) ================= #
     S = q5_campo_influencia(s10)
     ws = _nova_aba(wb, "Q5_CampoInfluencia",
-                   "QUESTÃO 5 — CAMPOS DE INFLUÊNCIA DOS SETORES (BRASIL, 2010)",
+                   "Questão 5 — Campos de influência dos setores (Brasil, 2010)",
                    f"Sonis & Hewings; ε = {EPS_CAMPO}. S(i,j) mede quanto uma variação no "
-                   "coeficiente a(i,j) se propaga pela economia (Σ dos quadrados de [B(ε)−B]/ε). "
-                   "Equivalente exato do laço em R do material de apoio (Vale & Perobelli), "
-                   "via Sherman-Morrison. Matriz S como VALOR; médias e destaques por fórmula.",
-                   "FF0070C0")
+                   "coeficiente a(i,j) se propaga pela economia (Σ dos quadrados de "
+                   "[B(ε)−B]/ε). Equivalente exato do laço em R do material de apoio "
+                   "(Vale & Perobelli), via Sherman-Morrison. Matriz S como VALOR; médias e "
+                   "destaques por fórmula.", TAB_Q, zoom=90)
     Srow = S.mean(1); Scol = S.mean(0)
     o_link = np.dstack(np.unravel_index(np.argsort(S, axis=None)[::-1], S.shape))[0]
-    resp = [
+    sint = [
         f"Elo de maior campo de influência: a({m10.nomes[o_link[0][0]]} → "
         f"{m10.nomes[o_link[0][1]]}), S = {S[o_link[0][0], o_link[0][1]]:,.1f}.",
-        "Setores cujas LINHAS mais influenciam (vendedores estratégicos): "
-        + "; ".join(m10.nomes[i] for i in np.argsort(Srow)[::-1][:3]) + ".",
-        "Setores cujas COLUNAS mais influenciam (compradores estratégicos): "
+        "Vendedores estratégicos (linhas): "
+        + "; ".join(m10.nomes[i] for i in np.argsort(Srow)[::-1][:3])
+        + ". Compradores estratégicos (colunas): "
         + "; ".join(m10.nomes[j] for j in np.argsort(Scol)[::-1][:3]) + ".",
-        "Interpretação: elos com S alto são os pontos onde mudanças tecnológicas (variações "
-        "de coeficiente) mais alteram a inversa de Leontief — candidatos naturais a política "
-        "industrial; coincidem majoritariamente com os setores-chave da Q4.",
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
+    rH = _sintese(ws, 5, sint)
     topk = min(20, n * n)
-    ws.cell(r0 - 1, 16, "TOP ELOS a(i,j) POR CAMPO DE INFLUÊNCIA").font = F_SECAO
-    _cab_tabela(ws, r0, 16, ["#", "Vendedor (i)", "Comprador (j)", "S(i,j)"],
-                larguras=[4, 36, 36, 12])
-    r_mat0 = r0 + topk + 3
-    for k in range(topk):
-        i, j = int(o_link[k][0]), int(o_link[k][1])
-        r = r0 + 1 + k
-        ws.cell(r, 16, k + 1).alignment = CENTRO
-        ws.cell(r, 17, m10.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 18, m10.nomes[j]).alignment = VCENTRO
-        v = ws.cell(r, 19, f"={CL(MC0 + j)}{r_mat0 + 1 + i}")
-        v.number_format = NUM_MI2
-        for cc in range(16, 20):
-            ws.cell(r, cc).font = F_TAB
-            ws.cell(r, cc).border = BORDA
-    ws.cell(r_mat0 - 1, 2, "MATRIZ S — linhas = vendedor (i), colunas = comprador (j); "
-                           "médias por fórmula nas bordas").font = F_SECAO
-    ws.merge_cells(start_row=r_mat0, start_column=3, end_row=r_mat0, end_column=4)
-    for col, rtl in ((2, "Código"), (3, "Atividades")):
-        c = ws.cell(r_mat0, col, rtl)
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
-    ws.cell(r_mat0, 4).fill = FILL_CAB; ws.cell(r_mat0, 4).border = BORDA
+    r_mat0 = rH + 1 + topk + 2 + 3 + 2               # após leitura (3 linhas)
     ws.column_dimensions["B"].width = 6.7
     ws.column_dimensions["C"].width = 46
     ws.column_dimensions["D"].width = 4.4
+    ws.row_dimensions[rH].height = 24
+    # cabeçalho do top-20 de elos: vendedor em C:D, comprador em F:I, S em K
+    for c0, c1, rtl in ((2, 2, "#"), (3, 4, "Vendedor (i)"),
+                        (6, 9, "Comprador (j)"), (11, 11, "S(i,j)")):
+        if c1 > c0:
+            ws.merge_cells(start_row=rH, start_column=c0, end_row=rH, end_column=c1)
+        for cc in range(c0, c1 + 1):
+            ws.cell(rH, cc).font = F_CAB
+            ws.cell(rH, cc).fill = FILL_CAB
+            ws.cell(rH, cc).border = BORDA_CAB
+        ws.cell(rH, c0, rtl).alignment = CENTRO
+    for k in range(topk):
+        i, j = int(o_link[k][0]), int(o_link[k][1])
+        r = rH + 1 + k
+        ws.cell(r, 2, k + 1).alignment = CENTRO
+        ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=4)
+        ws.cell(r, 3, m10.nomes[i]).alignment = VCENTRO
+        ws.merge_cells(start_row=r, start_column=6, end_row=r, end_column=9)
+        ws.cell(r, 6, m10.nomes[j]).alignment = VCENTRO
+        v = ws.cell(r, 11, f"={CL(MC0 + j)}{r_mat0 + 1 + i}")
+        v.number_format = NUM_MI2
+        for cc in range(2, 12):
+            ws.cell(r, cc).font = F_TAB
+            ws.cell(r, cc).border = BORDA_H
+            if k % 2:
+                ws.cell(r, cc).fill = FILL_ZEBRA
+    _caixa_leitura(ws, rH + topk + 2, [
+        "Elos com S alto são os pontos onde mudanças tecnológicas (variações de coeficiente) "
+        "mais alteram a inversa de Leontief — candidatos naturais a política industrial.",
+        "Coincidem majoritariamente com os setores-chave da Q4.",
+        "Matriz S completa abaixo (68×68), com médias por linha e por coluna.",
+    ])
+    ws.cell(r_mat0 - 1, 2, "Matriz S — linhas = vendedor (i), colunas = comprador (j)").font = F_SECAO
+    ws.merge_cells(start_row=r_mat0, start_column=3, end_row=r_mat0, end_column=4)
+    for col, rtl in ((2, "Código"), (3, "Atividades")):
+        c = ws.cell(r_mat0, col, rtl)
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+    ws.cell(r_mat0, 4).fill = FILL_CAB; ws.cell(r_mat0, 4).border = BORDA
     for j in range(n):
         c = ws.cell(r_mat0, MC0 + j, j + 1)
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+        ws.column_dimensions[CL(MC0 + j)].width = 10.5
     c = ws.cell(r_mat0, MC0 + n, "média linha")
-    c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
+    c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
     for i in range(n):
         r = r_mat0 + 1 + i
-        ws.row_dimensions[r].height = 11
-        ws.cell(r, 2, m10.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m10.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
+        ws.row_dimensions[r].height = 11.5
+        _id_setor(ws, r, m10.cod[i], m10.nomes[i], i + 1)
         for j in range(n):
             c = ws.cell(r, MC0 + j, float(S[i, j]))
             c.number_format = NUM_MI2
         for k in range(2, MC0 + n):
             ws.cell(r, k).font = F_DADO
             ws.cell(r, k).border = BORDA
+            if i % 2:
+                ws.cell(r, k).fill = FILL_ZEBRA
         c = ws.cell(r, MC0 + n, f"=AVERAGE(E{r}:{fimM}{r})")
         c.font = F_DADO_NEG; c.number_format = NUM_MI2; c.border = BORDA
     r_med = r_mat0 + 1 + n
-    _linha_total(ws, r_med, 2, MC0 + n, rotulo="média coluna")
+    _linha_total(ws, r_med, MC0 + n, rotulo="média coluna")
     for j in range(n):
         c = ws.cell(r_med, MC0 + j,
                     f"=AVERAGE({CL(MC0 + j)}{r_mat0 + 1}:{CL(MC0 + j)}{r_med - 1})")
         c.font = F_DADO_NEG; c.number_format = NUM_MI2
     confere[f"Q5_CampoInfluencia!E{r_mat0 + 1}"] = float(S[0, 0])
-    ws.freeze_panes = f"E{r0 + 1}"
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q6 — extração hipotética ================= #
     q6 = q6_extracao(s20, i_q6)
     ws = _nova_aba(wb, "Q6_Extracao",
-                   f"QUESTÃO 6 — EXTRAÇÃO HIPOTÉTICA TOTAL (2020)",
+                   "Questão 6 — Extração hipotética total (2020)",
                    f"Setor extraído: {m20.nomes[i_q6]}. Zera-se a linha e a coluna do setor em "
                    "A e sua demanda final; a perda é a diferença entre a produção do sistema "
                    "completo (x = B·y) e a do sistema reduzido. Coluna 'x reduzido' colada como "
-                   "VALOR (nova inversão); demais colunas por fórmula.", "FF0070C0")
+                   "VALOR (nova inversão); demais colunas por fórmula.", TAB_Q)
     perda_rel = q6["perda"] / np.where(q6["x_base"] == 0, 1, q6["x_base"])
     o_par = np.argsort(np.where(np.arange(n) == i_q6, -1, perda_rel))[::-1]
-    resp = [
-        f"Perda de produção agregada: R$ {q6['perda_total']:,.0f} mi "
-        f"({q6['perda_pct']:.2%} da produção total) — inclui o próprio setor extraído.",
-        f"Perda de VA: R$ {q6['perda_va']:,.0f} mi; ocupações comprometidas: "
-        f"{q6['perda_emp']:,.0f}.",
-        "Setores mais paralisados (excluído o próprio, em % da sua produção): "
+    sint = [
+        f"Perda agregada: R$ {q6['perda_total']:,.0f} mi ({q6['perda_pct']:.2%} da produção); "
+        f"VA: R$ {q6['perda_va']:,.0f} mi; ocupações: {q6['perda_emp']:,.0f}.",
+        "Mais paralisados (excluído o próprio): "
         + "; ".join(f"{m20.nomes[i]} ({perda_rel[i]:.1%})" for i in o_par[:3]) + ".",
-        "Leitura: a extração mede a dependência estrutural da economia em relação ao setor — "
-        "compare com a Q4: setores-chave tendem a paralisar mais cadeias quando extraídos.",
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
-    _cab_tabela(ws, r0, 2, ["Código", "Atividades", "nº", "x baseline (B·y)",
-                            "x reduzido (valor)", "Perda", "Perda (% do setor)"],
-                larguras=[6.7, 46, 4.4, 15, 15, 15, 13])
-    for i in range(n):
-        r = r0 + 1 + i
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
+    rH = _sintese(ws, 5, sint)
+    cab = ["Código", "Atividades", "nº", "x baseline (B·y)", "x reduzido (valor)",
+           "Perda", "Perda (% do setor)"]
+
+    def linha_q6(r, i):
         ws.cell(r, 5, float(q6["x_base"][i])).number_format = NUM_MI
         ws.cell(r, 6, float(q6["x_ex"][i])).number_format = NUM_MI
         ws.cell(r, 7, f"=E{r}-F{r}").number_format = NUM_MI
         ws.cell(r, 8, f"=IF(E{r}=0,0,G{r}/E{r})").number_format = NUM_PCT
-        for k in range(2, 9):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
-        if i == i_q6:
-            for k in range(2, 9):
-                ws.cell(r, k).fill = FILL_BLOCO
-    r_tot = r0 + 1 + n
-    _linha_total(ws, r_tot, 2, 8)
+
+    r_tot = _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4, 15, 15, 15, 13], n, m20,
+                             linha_q6, destaque=i_q6)
+    _linha_total(ws, r_tot, 8)
     for col in "EFG":
         c = ws[f"{col}{r_tot}"]
-        c.value = f"=SUM({col}{r0 + 1}:{col}{r_tot - 1})"
+        c.value = f"=SUM({col}{rH + 1}:{col}{r_tot - 1})"
         c.font = F_TAB_NEG; c.number_format = NUM_MI
     ws[f"H{r_tot}"] = f"=G{r_tot}/E{r_tot}"
     ws[f"H{r_tot}"].font = F_TAB_NEG; ws[f"H{r_tot}"].number_format = NUM_PCT
     confere[f"Q6_Extracao!G{r_tot}"] = q6["perda_total"]
-    ws.freeze_panes = f"E{r0 + 1}"
+    _caixa_leitura(ws, r_tot + 2, [
+        "A extração mede a dependência estrutural da economia em relação ao setor — compare "
+        "com a Q4: setores-chave tendem a paralisar mais cadeias quando extraídos.",
+        "A linha destacada em laranja-pastel é o setor extraído (a perda inclui a própria "
+        "produção dele).",
+    ])
+    ws.freeze_panes = f"E{rH + 1}"
 
     # ================= Q7 — SDA ================= #
     fator = float(np.prod([1 + v / 100 for v in IPCA_ANUAL.values()]))
     q7 = q7_sda(s10, s20, fator)
     ws = _nova_aba(wb, "Q7_SDA",
-                   "QUESTÃO 7 — DECOMPOSIÇÃO ESTRUTURAL 2010→2020 (IPCA)",
+                   "Questão 7 — Decomposição estrutural 2010→2020 (IPCA)",
                    "SDA bipolar média: Δx = ½ΔB·(y0*+y1) + ½(B0+B1)·Δy, com y0* = y2010 × "
                    "fator IPCA acumulado. O deflator único não altera A/B de 2010 "
-                   "(coeficientes são razões) — atualiza apenas os níveis.", "FF0070C0")
+                   "(coeficientes são razões) — atualiza apenas os níveis.", TAB_Q)
     dtec, ddem, ddx = q7["tec"].sum(), q7["dem"].sum(), q7["dx"].sum()
-    resp = [
-        f"Fator IPCA acumulado dez/2010→dez/2020: {fator:.4f} (variações anuais do IBGE nas "
-        "células editáveis abaixo).",
-        f"Δx total (preços de 2020): R$ {ddx:,.0f} mi — decomposto em EFEITO TECNOLOGIA "
-        f"(mudança de coeficientes, ΔB): R$ {dtec:,.0f} mi ({dtec / ddx:.1%}) e EFEITO "
-        f"DEMANDA FINAL (Δy): R$ {ddem:,.0f} mi ({ddem / ddx:.1%}).",
-        "Leitura: efeito-demanda dominante com efeito-tecnologia menor é o padrão de uma "
-        "década de crescimento extensivo; onde o efeito-tecnologia é negativo houve "
-        "desadensamento de cadeia (consistente com as mudanças de ligação da Q4). A coluna "
-        "'checagem' comprova a aditividade exata da decomposição em cada setor.",
+    sint = [
+        f"Δx total (preços de 2020): R$ {ddx:,.0f} mi = EFEITO TECNOLOGIA (ΔB) "
+        f"R$ {dtec:,.0f} mi ({dtec / ddx:.1%}) + EFEITO DEMANDA FINAL (Δy) "
+        f"R$ {ddem:,.0f} mi ({ddem / ddx:.1%}). Fator IPCA: {fator:.4f}.",
     ]
-    r0 = _caixa_resposta(ws, 5, resp)
-    ws.cell(r0, 2, "IPCA % a.a. (IBGE)").font = F_NEG
+    rP = _sintese(ws, 5, sint)
+    ws.cell(rP, 2, "IPCA % a.a. (IBGE) — células editáveis").font = F_NEG
     for k, (ano, v) in enumerate(sorted(IPCA_ANUAL.items())):
-        c = ws.cell(r0 + 1, 5 + k, str(ano))
-        c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
-        c = ws.cell(r0 + 2, 5 + k, v)
+        c = ws.cell(rP + 1, 5 + k, str(ano))
+        c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA_CAB; c.alignment = CENTRO
+        c = ws.cell(rP + 2, 5 + k, v)
         c.font = F_IN; c.fill = FILL_IN; c.border = BORDA
         c.number_format = "0.00"; c.alignment = CENTRO
-    c = ws.cell(r0 + 1, 6 + len(IPCA_ANUAL), "fator acumulado")
-    c.font = F_CAB; c.fill = FILL_CAB; c.border = BORDA; c.alignment = CENTRO
-    fator_expr = "=" + "*".join(f"(1+{CL(5 + k)}{r0 + 2}/100)"
+    c = ws.cell(rP + 1, 6 + len(IPCA_ANUAL), "fator acumulado")
+    c.font = F_CAB8; c.fill = FILL_CAB; c.border = BORDA_CAB; c.alignment = CENTRO
+    fator_expr = "=" + "*".join(f"(1+{CL(5 + k)}{rP + 2}/100)"
                                 for k in range(len(IPCA_ANUAL)))
-    c_fat = ws.cell(r0 + 2, 6 + len(IPCA_ANUAL), fator_expr)
-    c_fat.font = F_TAB_NEG; c_fat.number_format = "0.0000"
+    c_fat = ws.cell(rP + 2, 6 + len(IPCA_ANUAL), fator_expr)
+    c_fat.font = F_TAB_NEG; c_fat.fill = FILL_TOT; c_fat.number_format = "0.0000"
     c_fat.border = BORDA; c_fat.alignment = CENTRO
-    FAT = f"${CL(6 + len(IPCA_ANUAL))}${r0 + 2}"
-    lin_ysum, lin_ydel = r0 + 4, r0 + 5
-    _rotulo_aux(ws, lin_ysum, "y0*+y1 — vetor auxiliar (colunas E em diante)")
-    _rotulo_aux(ws, lin_ydel, "y1−y0* — vetor auxiliar")
-    for j in range(n):
-        y0 = f"{_celula_dado('2010', 'ytot', j)}*{FAT}"
-        y1 = f"{_celula_dado('2020', 'ytot', j)}"
-        ca = ws.cell(lin_ysum, MC0 + j, f"={y0}+{y1}")
-        cb = ws.cell(lin_ydel, MC0 + j, f"={y1}-{y0}")
-        for c in (ca, cb):
-            c.font = F_AUX; c.number_format = NUM_MI
-    r1 = lin_ydel + 2
-    _cab_tabela(ws, r1, 2, ["Código", "Atividades", "nº", "x 2010 a preços 2020",
-                            "x 2020", "Δx", "Efeito tecnologia (ΔB)",
-                            "Efeito demanda (Δy)", "Checagem (tec+dem−Δx)"],
-                larguras=[6.7, 46, 4.4, 15, 14, 14, 15, 15, 14])
-    for i in range(n):
-        r = r1 + 1 + i
-        ws.cell(r, 2, m20.cod[i]).alignment = CENTRO
-        ws.cell(r, 3, m20.nomes[i]).alignment = VCENTRO
-        ws.cell(r, 4, i + 1).alignment = CENTRO
+    FAT = f"${CL(6 + len(IPCA_ANUAL))}${rP + 2}"
+    rH = rP + 4
+    r_tot = rH + 1 + n
+    lin_ysum = r_tot + 2 + 3 + 2                     # após a caixa de leitura (3 linhas)
+    lin_ydel = lin_ysum + 1
+    cab = ["Código", "Atividades", "nº", "x 2010 a preços 2020", "x 2020", "Δx",
+           "Efeito tecnologia (ΔB)", "Efeito demanda (Δy)", "Checagem (tec+dem−Δx)"]
+
+    def linha_q7(r, i):
         b0 = _ref_mat("B_2010", i=i, n=n)
         b1 = _ref_mat("B_2020", i=i, n=n)
         ws.cell(r, 5, f"={_celula_dado('2010', 'x', i)}*{FAT}")
@@ -1129,20 +1166,34 @@ def gerar_excel(saida: str, m10: MIPAno, m20: MIPAno, s10: Sistema, s20: Sistema
         ws.cell(r, 9, f"=0.5*(SUMPRODUCT({b1},$E${lin_ydel}:${fimM}${lin_ydel})"
                       f"+SUMPRODUCT({b0},$E${lin_ydel}:${fimM}${lin_ydel}))")
         ws.cell(r, 10, f"=H{r}+I{r}-G{r}")
-        for k in range(2, 11):
-            c = ws.cell(r, k)
-            c.font = F_TAB; c.border = BORDA
-            if k >= 5:
-                c.number_format = NUM_MI
-    r_tot = r1 + 1 + n
-    _linha_total(ws, r_tot, 2, 10)
+        for k in range(5, 11):
+            ws.cell(r, k).number_format = NUM_MI
+
+    _tabela_setorial(ws, rH, cab, [6.7, 46, 4.4, 15, 14, 14, 15, 15, 14], n, m20, linha_q7)
+    _linha_total(ws, r_tot, 10)
     for col in "EFGHIJ":
         c = ws[f"{col}{r_tot}"]
-        c.value = f"=SUM({col}{r1 + 1}:{col}{r_tot - 1})"
+        c.value = f"=SUM({col}{rH + 1}:{col}{r_tot - 1})"
         c.font = F_TAB_NEG; c.number_format = NUM_MI
     confere[f"Q7_SDA!H{r_tot}"] = float(q7["tec"].sum())
     confere[f"Q7_SDA!I{r_tot}"] = float(q7["dem"].sum())
-    ws.freeze_panes = f"E{r1 + 1}"
+    _caixa_leitura(ws, r_tot + 2, [
+        "Efeito-demanda dominante com efeito-tecnologia menor é o padrão de uma década de "
+        "crescimento extensivo; onde o efeito-tecnologia é negativo houve desadensamento de "
+        "cadeia (consistente com as mudanças de ligação da Q4).",
+        "A coluna 'checagem' comprova a aditividade exata da decomposição em cada setor.",
+        "Vetores auxiliares (y0*+y1 e y1−y0*) abaixo, referenciados pelas fórmulas.",
+    ])
+    _rotulo_aux(ws, lin_ysum, "y0*+y1 — vetor auxiliar (colunas E em diante)")
+    _rotulo_aux(ws, lin_ydel, "y1−y0* — vetor auxiliar")
+    for j in range(n):
+        y0 = f"{_celula_dado('2010', 'ytot', j)}*{FAT}"
+        y1 = f"{_celula_dado('2020', 'ytot', j)}"
+        ca = ws.cell(lin_ysum, MC0 + j, f"={y0}+{y1}")
+        cb = ws.cell(lin_ydel, MC0 + j, f"={y1}-{y0}")
+        for c in (ca, cb):
+            c.font = F_AUX; c.number_format = NUM_MI
+    ws.freeze_panes = f"E{rH + 1}"
 
     wb.save(saida)
     return confere
