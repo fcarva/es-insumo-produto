@@ -6,7 +6,12 @@ authors:
     given-names: Felipe
     affiliation: "PPGEco/UFES"
 year: 2026
+version: "1.0"
+date-released: "2026-07-29"
+license: MIT
+type: software
 url: "https://github.com/fcarva/es-insumo-produto"
+repository-code: "https://github.com/fcarva/es-insumo-produto"
 keywords:
   - insumo-produto
   - estrutura produtiva
