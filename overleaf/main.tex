@@ -473,11 +473,10 @@ inclui Alimentos entre os setores de base --- escolha que eleva as parcelas de t
 estados, sobretudo dos cinco do grupo dinâmico cujo setor dominante é Alimentos
 (Tabela~\ref{tab:cluster}). O traço capixaba que independe desse rótulo é o setor
 \emph{dominante}: o ES é um dos três únicos estados do país, com Pará e Rio de Janeiro,
-liderados pela extrativa mineral. A reestimação do ranking excluindo Alimentos do rótulo fica
-registrada como checagem de replicação sobre
-\href{https://github.com/fcarva/es-insumo-produto/blob/116a350/pesquisa/22_benchmark_caracterizacao.py}{\texttt{22\_benchmark\_caracterizacao.py}}
-e
-\href{https://github.com/fcarva/es-insumo-produto/blob/116a350/pesquisa/10_cluster_setorial.py}{\texttt{10\_cluster\_setorial.py}}.}
+liderados pela extrativa mineral. A posição no \emph{ranking} de intensidade em setores de base
+é, portanto, \textbf{condicional à classificação adotada}; o ranking reestimado sem Alimentos
+não é reportado aqui, e a afirmação deve ser lida sob esse rótulo. Já a liderança da extrativa
+mineral e o baixo emprego relativo do setor dominante independem dele.}
 e está entre os de \textbf{menor} multiplicador de emprego (25,4 empregos por R\$ milhão;
 24\textordmasculine\ de 27). O sintoma mais nítido: o emprego gerado por seu setor dominante
 equivale a apenas 39\% da média dos setores do estado --- o \textbf{segundo} valor mais baixo
@@ -586,7 +585,10 @@ Fonte: elaboração própria a partir de
 \section{A composição territorial (2015)}
 \label{sec:territorio}
 O sistema das dez microrregiões revela um \emph{mosaico de especializações}
-(Figura~\ref{fig:vocacao}). A Região Metropolitana (Grande Vitória) concentra 62\% da
+(Figura~\ref{fig:vocacao}). Os quocientes locacionais desta seção derivam da regionalização
+não censitária de 2015, sem correção do tipo FLQ, e por isso indicam a \emph{ordem} da
+especialização de cada território, não o seu nível exato (\S\ref{sec:limites}).
+A Região Metropolitana (Grande Vitória) concentra 62\% da
 produção estadual e é o núcleo diversificado --- petróleo, siderurgia (a usina de
 Tubarão) e serviços. Ao seu redor dispõem-se territórios especializados, cada qual com um
 quociente locacional elevado em seu setor: \textbf{celulose} no Rio Doce
@@ -619,7 +621,8 @@ microrregião varia de \textbf{90,9\%} na Metropolitana a \textbf{66,2\%} no Lit
 extrativo --- a periferia compra seus insumos na metrópole, não em si mesma. É a mesma
 assinatura de enclave, agora na dimensão territorial do fluxo. A \emph{extração hipotética}
 \citep{dietzenbacher1993} fecha o desenho: removida a Metropolitana do sistema, a produção
-das demais microrregiões cairia \textbf{13,0\%} --- a periferia capixaba depende do núcleo
+das demais microrregiões cairia \textbf{13,0\%} sob a injeção da demanda final
+\emph{intra-estadual} (Apêndice~\ref{ap:hem}) --- a periferia capixaba depende do núcleo
 capixaba como o estado, visto de fora, depende do Sudeste (\S\ref{sec:plataforma}).
 
 \begin{table}[tbp]
@@ -993,7 +996,11 @@ multiplicador interno \emph{amplificado} pelo externo, e o termo de \emph{feedba
 de~\eqref{eq:feedback} é $(\Delta_{LL}-I)\Delta_L\,y^{L}$. No sistema bi-regional deste
 artigo, esse efeito do multiplicador externo capixaba é exatamente o \emph{feedback} de
 R\$\,164 milhões (0,32\% da injeção) reportado em \S\ref{sec:plataforma}: a amplificação
-externa do ES é praticamente nula.
+externa do ES é praticamente nula. Registre-se que essa igualdade é uma \emph{identidade
+algébrica} entre as duas formas de escrever o mesmo termo, e não um cálculo independente: o
+valor reportado é o \emph{feedback} da eq.~\eqref{eq:feedback}, computado pela inversa
+particionada, e a decomposição de Miyazawa é apresentada aqui pela leitura que oferece --- a
+separação entre amplificação interna e externa ---, não como segunda estimativa do número.
 
 \subsection{Ligações de Rasmussen--Hirschman e grau de integração}
 \label{ap:rh}
@@ -1003,7 +1010,17 @@ $U_j=(B_{\cdot j}/n)\big/(\sum_{ij}b_{ij}/n^2)$, com $B_{\cdot j}=\sum_i b_{ij}$
 inversa de Ghosh $G=(I-F)^{-1}$, com $F=\hat{x}^{-1}Z$:
 $U_i=(G_{i\cdot}/n)\big/(\sum_{ij}g_{ij}/n^2)$, com $G_{i\cdot}=\sum_j g_{ij}$.
 \emph{Setores-chave} têm ambos os índices acima da unidade; o coeficiente de variação dos
-índices mede o grau de integração da economia.
+índices --- calculado como desvio-padrão \emph{populacional} sobre a média dos 26 setores ---
+mede o grau de integração da economia.
+
+Uma ressalva de interpretação acompanha o índice para frente. A inversa de Ghosh é o núcleo
+do modelo \emph{oferta-dirigido}, cuja leitura causal --- um choque de oferta primária
+propagando-se a jusante com coeficientes de alocação fixos --- é contestada na literatura por
+implicar substituição perfeita entre insumos. Aqui $G$ é usada no sentido restrito e
+consensual: como medida da \emph{posição} do setor na cadeia, isto é, de quanto da produção
+dos demais setores passa por ele a montante. Os índices para frente deste artigo, e a
+classificação de setores-chave que deles resulta, devem ser lidos como \emph{descrição de
+posição}, não como previsão do impacto de um choque de oferta.
 
 \subsection{Ligações puras (GHS)}
 \label{ap:puras}

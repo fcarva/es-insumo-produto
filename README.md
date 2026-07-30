@@ -44,7 +44,9 @@ es-insumo-produto/
 ├── overleaf/                        # pacote autocontido p/ Overleaf (ABNT; espelho do artigo principal)
 ├── auditoria/                       # pasta de auditoria dos dados (gerada por pesquisa/28_*.py)
 ├── figuras/                         # artes da v1/slides (as figuras do artigo vivem em pesquisa/outputs/)
-├── src/io_core.py                   # funções-núcleo (Isard/Miller-Blair, RH/Ghosh)
+├── src/io_core.py                   # implementação de referência (Isard/Miller-Blair, RH/Ghosh);
+│                                     # não importado pelo pipeline, que reimplementa cada rotina
+│                                     # localmente nos scripts numerados de pesquisa/
 └── dados/                           # dados de terceiros NÃO versionados (ver dados/README.md)
 ```
 

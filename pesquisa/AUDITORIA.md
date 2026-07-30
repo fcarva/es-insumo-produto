@@ -58,3 +58,27 @@ split do cluster fechando 100%, Sankey (R\$ 18,1 ≈ 18,2 bi) e *upstreamness* 3
 equacionamento (Isard/Miller-Blair, \emph{feedback}, Antràs-Chor). **Único ajuste:** conciliar
 **24,9%** (média simples entre setores, §4.1, comparável a Haddad) com **22,8%** (média
 ponderada pela produção, Tab.~3/Fig.~3) — resolvido por nota de rodapé na §4.1.
+
+## B7 — Integridade das referências
+Verificação de metadados bibliográficos das referências que sustentam número ou afirmação
+específica do paper — distinta de B2 (a metodologia que a referência sustenta) e de B6 (o
+conteúdo do manuscrito). Cada entrada recebe um veredito:
+
+- **VERIFICADA** — metadado (autor, ano, veículo, volume/página ou DOI) conferido contra a
+  fonte primária; confere.
+- **CORRIGIDA** — o `.tex` continha erro de metadado (título, escopo, tipo de publicação);
+  substituída pela entrada correta. Classificar a severidade (grave/média/menor) conforme o
+  risco de o erro enganar quem for checar a citação.
+- **UNVERIFIABLE_ACCESS** — o número ou o metadado não pôde ser conferido por bloqueio de
+  acesso à fonte (paywall, host indisponível no ambiente de auditoria). Não é reprovação: é
+  registro de que a checagem não foi feita, para não ser confundida com checagem feita.
+
+Regra do projeto: nenhuma referência entra na lista final sem metadados verificados; uma
+referência que só atinja `UNVERIFIABLE_ACCESS` fica registrada como tal e, se o número que ela
+sustenta for central, é motivo para não publicar aquele número até a checagem ser possível —
+não para publicá-lo com a referência como está.
+
+As referências efetivamente verificadas por este protocolo, com veredito e observação, estão
+na aba `15_Referencias` de `auditoria/auditoria_dados_es.xlsx` (gerada por
+`28_auditoria_xlsx.py`), que é o registro vivo — este parágrafo fixa apenas o vocabulário e o
+critério.

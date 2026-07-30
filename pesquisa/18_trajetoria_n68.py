@@ -49,13 +49,21 @@ def match_base(names):
 files = sorted(glob.glob(os.path.join(DIR, "MIP-BR *.xlsm")))
 years = [int(re.search(r"(20\d\d)", os.path.basename(f)).group(1)) for f in files]
 traj = {}   # (lab) -> list of (year, mult_prod, backward)
+diag_hs = []   # violacoes de soma-de-coluna, ano a ano (achado K da auditoria)
 base_map = None
 for f, yr in zip(files, years):
     names, A = load_A(f)
     n = A.shape[0]
-    if A.sum(0).max() >= 1:
-        # raros coef>1 (ex. setores com forte importação) — Leontief ainda finita se raio espectral<1
-        pass
+    # Guarda de produtividade (achado K). A versao anterior detectava soma de coluna >= 1
+    # e fazia 'pass', enquanto 14_benchmark_ufs.py usava assert na mesma checagem.
+    # Uniformizado aqui pela condicao CORRETA: soma de coluna < 1 e suficiente mas NAO
+    # necessaria; o que garante B = (I-A)^-1 finita e nao-negativa e raio espectral < 1.
+    # Entao: assert no raio espectral, e as violacoes de coluna ficam registradas em CSV
+    # em vez de silenciadas.
+    rho = float(np.abs(np.linalg.eigvals(A)).max())
+    assert rho < 1, f"{yr}: raio espectral {rho:.4f} >= 1 — Leontief nao converge"
+    for j in np.where(A.sum(0) >= 1)[0]:
+        diag_hs.append([yr, j + 1, names[j], f"{A.sum(0)[j]:.4f}", f"{rho:.4f}"])
     B = np.linalg.inv(np.eye(n) - A)
     mult = B.sum(0)
     backward = B.sum(0) / n / B.mean()
@@ -85,3 +93,14 @@ with open(os.path.join(OUT, "trajetoria_n68.csv"), "w", newline="", encoding="ut
         for yr, m, b in traj[lab]:
             wr.writerow([lab, yr, f"{m:.4f}", f"{b:.4f}"])
 print("\nsalvo: trajetoria_n68.csv")
+
+# diagnostico de Hawkins-Simon: arquivo vazio (so cabecalho) = nenhuma coluna viola
+with open(os.path.join(OUT, "diag_hawkins_n68.csv"), "w", newline="", encoding="utf-8") as fc:
+    wr = csv.writer(fc)
+    wr.writerow(["ano", "coluna", "setor", "soma_coluna_A", "raio_espectral_ano"])
+    wr.writerows(diag_hs)
+print(f"salvo: diag_hawkins_n68.csv ({len(diag_hs)} violacao(oes) de soma de coluna)")
+if diag_hs:
+    anos = sorted({d[0] for d in diag_hs})
+    print(f"  [ATENCAO] soma de coluna >= 1 em {len(diag_hs)} coluna(s), anos {anos}.")
+    print("  B segue finita (raio espectral < 1 checado). Ver achado K em 13_Metodo.")

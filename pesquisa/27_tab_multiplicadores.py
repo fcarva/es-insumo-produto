@@ -6,8 +6,13 @@ do ES a partir de outputs/es_caracterizacao_2008.csv (reprodutivel; o artigo faz
 um nos tipos I e II. Ordena pelo multiplicador de producao de tipo I e fecha com a
 media simples dos 26 setores.
 
-O multiplicador de emprego vem do CSV por R$ 1 de demanda final; o artigo reporta
-por R$ 1 milhao, dai a divisao por 1e6 em EMP_ESCALA.
+O multiplicador de emprego e reportado por R$ 1 milhao de demanda final. A escala em que o
+CSV grava mult_emp_I/II e DETECTADA automaticamente (ver abaixo), nao fixada: versoes do
+17_caracterizacao_es_2008.py anteriores ao achado J da auditoria gravavam esses valores
+multiplicados por 1e6 -- e emp_dir_Rmi/emp_ind_Rmi da mesma linha, nao --, o que descasava
+a unidade dentro do proprio CSV. O gerador foi corrigido, mas este script tem de continuar
+correto tanto sobre um CSV antigo (ainda por ai) quanto sobre um regenerado, sem exigir
+coordenacao manual entre os dois.
 
 Paths portaveis (ao contrario de 12_tab_setores.py, que fixa o diretorio da maquina
 do autor): tudo relativo a este arquivo. Escreve nas duas copias do pacote, para
@@ -19,8 +24,6 @@ AQUI  = os.path.dirname(os.path.abspath(__file__))
 RAIZ  = os.path.dirname(AQUI)
 OUT   = os.path.join(AQUI, "outputs")
 DEST  = [os.path.join(RAIZ, "overleaf"), os.path.join(RAIZ, "paper")]
-
-EMP_ESCALA = 1e6  # empregos por R$ 1 -> por R$ 1 milhao
 
 SHORT = {
     "Agricultura, silvicultura, exploração florestal": "Agricultura/silvicultura",
@@ -52,6 +55,24 @@ def f(r, c): return float(r[c])
 rows.sort(key=lambda r: -f(r, "mult_prod_I"))
 
 def br(x, d): return f"{x:.{d}f}".replace(".", ",")
+
+# Escala do emprego detectada pelo CSV (nao fixada): mult_emp_I e, por definicao, a soma dos
+# efeitos direto e indireto por R$ 1 milhao -- deve coincidir com emp_dir_Rmi+emp_ind_Rmi da
+# mesma linha. A razao mediana entre as duas formas de medir o mesmo numero diz se o CSV em
+# mao ja foi regenerado (razao ~1) ou e o formato anterior ao achado J (razao ~1e6).
+razoes = sorted(f(r, "mult_emp_I") / (f(r, "emp_dir_Rmi") + f(r, "emp_ind_Rmi"))
+                for r in rows if (f(r, "emp_dir_Rmi") + f(r, "emp_ind_Rmi")) > 0)
+razao_mediana = razoes[len(razoes) // 2]
+if abs(razao_mediana - 1e6) < 1e4:
+    EMP_ESCALA = 1e6
+elif abs(razao_mediana - 1.0) < 0.05:
+    EMP_ESCALA = 1.0
+else:
+    raise SystemExit(
+        f"[ERRO] escala de mult_emp_I nao reconhecida no CSV (razao mediana "
+        f"mult_emp_I/(emp_dir_Rmi+emp_ind_Rmi) = {razao_mediana:.4f}); esperado ~1 "
+        "(CSV corrigido) ou ~1e6 (CSV anterior ao achado J da auditoria).")
+print(f"escala de emprego detectada no CSV: {EMP_ESCALA:.0g} (razão mediana {razao_mediana:.4f})")
 
 # (coluna do csv, casas decimais, escala)
 COLS = [("mult_prod_I", 2, 1.0), ("mult_prod_II", 2, 1.0),

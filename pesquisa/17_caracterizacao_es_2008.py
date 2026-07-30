@@ -134,8 +134,11 @@ with open(os.path.join(OUT, "es_caracterizacao_2008.csv"), "w", newline="", enco
                  "mult_renda_I","mult_renda_II","emp_dir_Rmi","emp_ind_Rmi",
                  "lig_tras","lig_frente","PBL_idx","PFL_idx","PTL_idx","chave_RH"])
     for k, j in enumerate(L):
-        wr.writerow([names[k], f"{mp1[j]:.4f}", f"{mp2[j]:.4f}", f"{me1[j]*1e6:.2f}",
-                     f"{me2[j]*1e6:.2f}", f"{mr1[j]:.4f}", f"{mr2[j]:.4f}",
+        # me1/me2 ja estao por R$ 1 milhao de demanda final (mesma unidade de emp_dir/emp_ind);
+        # o *1e6 anterior descasava mult_emp_I da soma emp_dir_Rmi+emp_ind_Rmi na mesma linha
+        # (achado J da auditoria: 46.669.630,07 vs 46,67 para Agricultura).
+        wr.writerow([names[k], f"{mp1[j]:.4f}", f"{mp2[j]:.4f}", f"{me1[j]:.4f}",
+                     f"{me2[j]:.4f}", f"{mr1[j]:.4f}", f"{mr2[j]:.4f}",
                      f"{emp_dir[j]:.2f}", f"{emp_ind[j]:.2f}",
                      f"{bl[j]:.4f}", f"{fl[j]:.4f}", f"{pbl_i[j]:.4f}", f"{pfl_i[j]:.4f}",
                      f"{ptl_i[j]:.4f}", int(bl[j] > 1 and fl[j] > 1)])

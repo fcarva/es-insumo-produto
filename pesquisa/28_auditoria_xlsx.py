@@ -761,9 +761,9 @@ CRITERIOS = [
   "o Apêndice A.4 declara G = (I−F)⁻¹ com F = x̂⁻¹Z"),
  ("M6", "O modelo de Ghosh é oferta-dirigido: a ligação para frente vale como métrica de "
   "posição, não como previsão de impacto", "EXTERNO",
-  "Oosterhaven (1988); Dietzenbacher (1997) — ausente em todo o repositório", REV,
-  "o artigo diz 'pelo lado da oferta' (§3 e Apêndice A.4), mas em nenhum ponto registra que a "
-  "leitura causal do modelo é contestada. Ver achado N"),
+  "Oosterhaven (1988); Dietzenbacher (1997) — ausente em todo o repositório", OK,
+  "aplicado: o Apêndice A.4 agora declara que a leitura causal do modelo oferta-dirigido é "
+  "contestada e que os índices para frente descrevem posição, não impacto. Achado N fechado"),
  ("M7", "Tipo II é limite inferior do induzido local", "interno",
   "REVIEW_THEORIST_TOOLBOX.md:55 (F6)", OK,
   "o Apêndice A.1 traz o argumento de monotonicidade pela série de Neumann"),
@@ -796,29 +796,34 @@ CRITERIOS = [
   "26 / 35 / 68 setores e as safras 2008 / 2015 / 2010–2021 são declarados em §3.1 e nas "
   "Limitações (ii) e (iii)"),
  ("M16", "Todo número publicado precisa de artefato persistido, não de stdout", "interno",
-  "REVIEW_THEORIST_TOOLBOX.md:42 (F4)", REV,
-  "falha em um caso: a decomposição de Miyazawa do Apêndice A.3 não é computada por nenhum "
-  "script. Ver achado L"),
+  "REVIEW_THEORIST_TOOLBOX.md:42 (F4)", OK,
+  "o Apêndice A.3 agora declara explicitamente que a igualdade com Miyazawa é identidade "
+  "algébrica, não cálculo independente — não reivindica verificação que não existe. Achado L: "
+  "ver ROTEIRO_PENDENCIAS.md se as matrizes chegarem e Miyazawa vier a ser computado de fato"),
  ("M17", "Teste prometido e não rodado conta como teste falhando", "interno",
-  "REVIEW_THEORIST_TOOLBOX.md:14 (F1)", REV,
-  "falha em um caso: a reestimação do ranking de base sem Alimentos é prometida em nota de "
-  "rodapé no §4 e nunca foi executada. Ver achado M"),
+  "REVIEW_THEORIST_TOOLBOX.md:14 (F1)", OK,
+  "a nota do §4 não promete mais o teste; declara o ranking condicional ao rótulo adotado. "
+  "Achado M: a reestimação em si permanece no ROTEIRO_PENDENCIAS.md, aguardando as matrizes"),
  ("M18", "Percentuais calculados sobre os valores, não soma de parcelas arredondadas", "interno",
   "esta pasta, aba 03", OK,
   "corrigido nesta edição: somar a coluna de % do CSV dava um TOTAL de 100,01"),
  ("M19", "O CSV persistido precisa ser internamente coerente em unidade", "EXTERNO", "—", REV,
-  "falha: es_caracterizacao_2008.csv traz a mesma grandeza em duas unidades na mesma linha. "
-  "Ver achado J"),
+  "corrigido no código (17_caracterizacao_es_2008.py não grava mais ×1e6; "
+  "27_tab_multiplicadores.py detecta a escala pela invariante mult_emp_I≈emp_dir+emp_ind, "
+  "testado nos dois formatos). O CSV em outputs/ ainda não foi regenerado — falta a matriz. "
+  "Ver achado J e ROTEIRO_PENDENCIAS.md"),
  ("M20", "Cruzamento de escalas exige tabela-ponte de concordância", "interno",
   "DEEP_RESEARCH_PANORAMA.md:264", FORA,
   "a ponte 26↔35↔68 nunca foi construída; o artigo supre rotulando a comparação inter-escala "
   "como qualitativa, o que atende ao espírito da regra sem cumpri-la"),
  ("M21", "A guarda de Hawkins-Simon deve ser uniforme entre escalas", "EXTERNO",
-  "14_benchmark_ufs.py:42 vs 18_trajetoria_n68.py:56", REV,
-  "falha: um script usa assert, o outro detecta a violação e faz pass. Ver achado K"),
- ("M22", "A convenção do coeficiente de variação deve ser declarada", "EXTERNO", "—", FORA,
-  "o CV publicado (0,16 / 0,28) é o populacional; o amostral daria 0,17 / 0,29. A escolha não "
-  "está no texto. Ver achado S"),
+  "14_benchmark_ufs.py:42 vs 18_trajetoria_n68.py:56", OK,
+  "corrigido: 18_trajetoria_n68.py agora usa assert no raio espectral (a condição correta; "
+  "soma de coluna <1 é suficiente, não necessária) e persiste as violações de coluna em "
+  "outputs/diag_hawkins_n68.csv. Falta rodar com a pasta Nível 68 para saber se dispara em "
+  "algum ano — achado K, ROTEIRO_PENDENCIAS.md"),
+ ("M22", "A convenção do coeficiente de variação deve ser declarada", "EXTERNO", "—", OK,
+  "aplicado: o Apêndice A.4 agora declara que o CV é o populacional. Achado S fechado"),
 ]
 
 # afirmacao -> (indicador usado, criterios, veredito, ressalva ou redacao sugerida)
@@ -832,11 +837,13 @@ METODO = {
  "Metalurgia — vazamento de emprego": ("valor setorial direto", "M1", OK, ""),
  "Multiplicador de produção médio, tipo I": ("média simples, bi-regional", "M4 · M8", OK, ""),
  "Multiplicador de produção médio, tipo II": ("média simples, fechamento tipo II", "M7", OK, ""),
- "Multiplicador de emprego médio, tipo I": ("média simples, bi-regional", "M8 · M19", FORA,
-  "o número publicado está certo, mas a coluna mult_emp_I do CSV está gravada ×1e6 e a coluna "
-  "emp_dir_Rmi da mesma linha, não. Quem replicar pelo artefato erra por seis ordens de grandeza"),
- "Multiplicador de emprego médio, tipo II": ("média simples, tipo II", "M7 · M19", FORA,
-  "mesma incoerência de unidade no artefato (achado J)"),
+ "Multiplicador de emprego médio, tipo I": ("média simples, bi-regional", "M8 · M19", REV,
+  "número publicado correto; o código já foi corrigido (17_* não grava mais ×1e6; "
+  "27_tab_multiplicadores.py detecta a escala do CSV e produz a mesma tabela nos dois "
+  "formatos, testado). O artefato em outputs/ ainda não foi regenerado — pendente das "
+  "matrizes, ver ROTEIRO_PENDENCIAS.md (achado J)"),
+ "Multiplicador de emprego médio, tipo II": ("média simples, tipo II", "M7 · M19", REV,
+  "mesma situação: código corrigido, CSV pendente de regeneração (achado J)"),
  "Mineração — ligação pura total padronizada": ("PTL padronizada pela média dos 26", "M13", OK,
   "a nota do §4 declara o Pearson 0,96 no ponto de uso"),
  "Metalurgia — ligação pura total padronizada": ("PTL padronizada", "M13", OK, ""),
@@ -845,10 +852,10 @@ METODO = {
  "Produção total do ES (R$ bi)": ("total da decomposição", "M1", OK, ""),
  "Emprego total do ES (mil ocupações)": ("total da decomposição", "M1", OK, ""),
  "ES — base/commodity (%)": ("parcela do VBP nos setores rotulados base", "M17", REV,
-  "o rótulo inclui Alimentos (22_benchmark_caracterizacao.py:18) e a nota de rodapé do §4 promete "
-  "a reestimação sem Alimentos 'como checagem de replicação'. Enquanto ela não rodar, o '2º mais "
-  "intensivo' é condicional ao rótulo. Redação sugerida: '2º mais intensivo em setores de base "
-  "sob a classificação adotada, que inclui Alimentos'"),
+  "o rótulo inclui Alimentos (22_benchmark_caracterizacao.py:18). A nota do §4 não promete mais "
+  "o teste (M17 fechado no texto: a frase agora declara o ranking condicional ao rótulo "
+  "adotado); a reestimação em si — se o ES continuaria 2º sem Alimentos — segue pendente das "
+  "matrizes, ver ROTEIRO_PENDENCIAS.md (achado M)"),
  "ES — mult. de produção ponderado (interestadual)": ("média ponderada, interestadual",
   "M8 · M15", OK, "a nota de rodapé do §4 reconcilia com o 1,76 da média simples bi-regional"),
  "ES — mult. de emprego ponderado": ("média ponderada, interestadual", "M8 · M15", OK, ""),
@@ -867,21 +874,25 @@ METODO = {
   "a nota da Tabela 5 distingue da média ponderada das razões (91,6%)"),
  "Litoral Sul — retenção do multiplicador (%)": ("razão das somas ponderadas", "M8", OK, ""),
  "Metropolitana — % do VBP do ES": ("parcela do VBP", "M1", OK, ""),
- "Extração da metrópole — perda na periferia (%)": ("extração hipotética", "M12 · M16", FORA,
-  "a especificação da injeção (demanda final intra-estadual) está só no Apêndice A.7. Redação "
-  "sugerida no §6: '...cairia 13,0% sob a injeção da demanda final intra-estadual'"),
- "Celulose no Rio Doce — LQ": ("quociente locacional, 2015", "M10 · M20", FORA,
-  "o LQ de 2015 vem da regionalização CILQ sem correção FLQ; a ressalva está na Limitação (iii)"),
- "Minério no Litoral Sul — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
- "Têxtil no Centro-Oeste — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
- "Pecuária na Central Serrana — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
- "Rochas ornamentais no Central Sul — LQ": ("quociente locacional, 2015", "M10 · M20", FORA,
-  "além da ressalva do CILQ: o texto diz 'rochas ornamentais' e o dado é 'Minerais não-metálicos'. "
+ "Extração da metrópole — perda na periferia (%)": ("extração hipotética", "M12 · M16", OK,
+  "aplicado: o §6 agora especifica no ponto de uso que a injeção é a demanda final "
+  "intra-estadual, remetendo ao Apêndice A.7 — a ressalva deixou de estar só no apêndice"),
+ "Celulose no Rio Doce — LQ": ("quociente locacional, 2015", "M10 · M20", OK,
+  "aplicado: o §6 agora abre com a ressalva de que os LQ vêm da regionalização CILQ sem "
+  "correção FLQ e indicam ordem, não nível exato — no mesmo parágrafo dos números, não só "
+  "na Limitação (iii)"),
+ "Minério no Litoral Sul — LQ": ("quociente locacional, 2015", "M10 · M20", OK, "idem"),
+ "Têxtil no Centro-Oeste — LQ": ("quociente locacional, 2015", "M10 · M20", OK, "idem"),
+ "Pecuária na Central Serrana — LQ": ("quociente locacional, 2015", "M10 · M20", OK, "idem"),
+ "Rochas ornamentais no Central Sul — LQ": ("quociente locacional, 2015", "M10 · M20", OK,
+  "idem, mais o achado T: o texto diz 'rochas ornamentais' e o dado é 'Minerais não-metálicos'. "
   "Ver achado T"),
  "Celulose — ligação para trás em 2010": ("ligação de Leontief, série nacional",
   "M9 · M15 · M21", FORA,
-  "preços correntes (Limitação ii) e o script do panorama detecta violação de Hawkins-Simon sem "
-  "agir (achado K). A tendência de 12 anos é robusta ao efeito nominal; o nível de um ano, não"),
+  "preços correntes (ressalva na Limitação ii, não no ponto). A guarda de Hawkins-Simon do "
+  "script foi corrigida (achado K: assert no raio espectral); falta rodar com o Nível 68 para "
+  "saber se algum ano viola, ver ROTEIRO_PENDENCIAS.md. A tendência de 12 anos é robusta ao "
+  "efeito nominal; o nível de um ano, não"),
  "Celulose — ligação para trás em 2021": ("ligação de Leontief, série nacional",
   "M9 · M15 · M21", FORA, "idem"),
  "Celulose — multiplicador de produção em 2010": ("multiplicador, série nacional",
@@ -891,14 +902,16 @@ METODO = {
  "Participação do ES no PIB nacional (%)": ("parcela do valor adicionado", "M15", OK,
   "a Tabela 3 publica 2,2 e a introdução arredonda para 'cerca de 2%' — as duas leituras do "
   "mesmo 2,15"),
- "Mineração — ligação para frente (texto: ≈1,2)": ("ligação de Ghosh", "M5 · M6", REV,
-  "o número confere, mas sustenta a leitura de 'fornecedora a montante'. Por M6, a ligação de "
-  "Ghosh mede posição, não impacto — a frase do §4 não deve ser lida como previsão de efeito"),
+ "Mineração — ligação para frente (texto: ≈1,2)": ("ligação de Ghosh", "M5 · M6", OK,
+  "o número confere e sustenta a leitura de 'fornecedora a montante'. Aplicado: o Apêndice A.4 "
+  "agora declara que a ligação de Ghosh mede posição, não impacto — a frase do §4 deve ser lida "
+  "sob essa ressalva metodológica"),
  "Mineração — ligação para trás (texto: ≈0,9)": ("ligação de Leontief", "M5", OK, ""),
- "Grau de integração — CV da ligação para trás": ("CV populacional das ligações", "M22", FORA,
-  "o CV é o populacional; declarar qual, já que o amostral daria 0,17"),
+ "Grau de integração — CV da ligação para trás": ("CV populacional das ligações", "M22", OK,
+  "aplicado: o Apêndice A.4 agora declara que o CV é o populacional (o amostral daria 0,17)"),
  "Grau de integração — CV da ligação para frente": ("CV populacional das ligações",
-  "M6 · M22", FORA, "idem, e a ligação a frente é de Ghosh (M6): o amostral daria 0,29"),
+  "M6 · M22", OK, "idem, e a ligação a frente é de Ghosh (M6, também aplicado): o amostral "
+  "daria 0,29"),
  "Ligação pura × VBP — correlação de Pearson": ("Pearson entre PTL e VBP", "M13 · M16", OK,
   "agora auditável por fórmula na aba 02; antes só existia como print de console"),
  "Spillover ÷ injeção (%)": ("razão sobre a injeção declarada", "M11", OK, ""),
@@ -908,28 +921,40 @@ ACHADOS = [
  ("J", "es_caracterizacao_2008.csv grava mult_emp_I multiplicado por 1e6 (46.669.630,07) enquanto "
   "emp_dir_Rmi e emp_ind_Rmi, na mesma linha, somam 46,67. A mesma grandeza em duas unidades",
   "🟠 Médio", "reproducibility", "Não — os números publicados dividem por 1e6 corretamente",
-  "Gravar já por R$ 1 milhão, ou renomear a coluna para explicitar o fator", "ABERTO"),
+  "17_caracterizacao_es_2008.py corrigido (não grava mais ×1e6) e "
+  "27_tab_multiplicadores.py agora detecta a escala do CSV pela invariante "
+  "mult_emp_I≈emp_dir+emp_ind, testado nos dois formatos — produz a mesma Tabela 1 antes e "
+  "depois da regeneração",
+  "APLICADO no código; regeneração do CSV pendente da matriz MIP-ES-BR (2008).xlsx, "
+  "ver ROTEIRO_PENDENCIAS.md"),
  ("K", "18_trajetoria_n68.py:56-58 detecta soma de coluna de A ≥ 1 e executa pass; "
   "14_benchmark_ufs.py:42 usa assert para a mesma checagem", "🟠 Médio", "reproducibility",
   "Indeterminado — UNVERIFIABLE_ACCESS: as matrizes do Nível 68 não estão no repositório, "
   "não é possível saber se a violação dispara em algum ano",
-  "Trocar pass por assert, ou registrar em CSV quais anos violam e o raio espectral", "ABERTO"),
+  "Guarda uniformizada pela condição correta (ΣA<1 é suficiente, não necessária): assert no "
+  "raio espectral, mais outputs/diag_hawkins_n68.csv registrando violações de coluna por ano",
+  "APLICADO no código; execução pendente da pasta Nível 68 (12 arquivos), "
+  "ver ROTEIRO_PENDENCIAS.md"),
  ("L", "A decomposição de Miyazawa do Apêndice A.3 não é computada por nenhum script "
   "(varredura em *.py: zero ocorrências); a cadeia número→artefato fecha por identidade algébrica",
   "🟠 Médio", "reproducibility", "Não — o valor é o feedback já verificado, por identidade",
-  "Ou um script que compute Δ_LL e persista o CSV, ou uma frase no apêndice dizendo que o "
-  "resultado é identidade algébrica e não cálculo independente", "ABERTO"),
+  "O Apêndice A.3 agora declara explicitamente que a igualdade é identidade algébrica, não "
+  "cálculo independente — não reivindica verificação inexistente",
+  "APLICADO (declaração); computar Miyazawa de fato é opcional, ver ROTEIRO_PENDENCIAS.md "
+  "se as matrizes chegarem"),
  ("M", "A reestimação do ranking de base excluindo Alimentos é prometida em nota de rodapé no §4 "
   "'como checagem de replicação' e nunca foi executada (DA-1, aberto desde a rodada 3)",
   "🟠 Médio", "research-integrity",
   "Sim, condicionalmente — o '2º mais intensivo em base' (36,4%) e a mediana de 21,0 dependem do rótulo",
-  "Rodar 22_* e 10_* sem Alimentos e reportar o novo ranking, ou retirar a promessa da nota",
-  "ABERTO"),
+  "A nota do §4 não promete mais o teste; declara o ranking condicional à classificação "
+  "adotada, que inclui Alimentos",
+  "APLICADO (redação); a reestimação em si é a única pendência que pode mudar uma afirmação "
+  "publicada — pendente da matriz MIP-26x26-BR-2008.xlsx, ver ROTEIRO_PENDENCIAS.md"),
  ("N", "Nenhum documento do repositório registra a crítica canônica ao modelo de Ghosh como "
   "oferta-dirigido; Ghosh entra apenas como 'a convenção correta' para a ligação a frente",
   "🟠 Médio", "causal-identification", "Não — nenhum número muda",
-  "Meia frase no Apêndice A.4: a ligação a frente por Ghosh mede posição na cadeia, e a leitura "
-  "do modelo como oferta-dirigido é contestada na literatura", "ABERTO"),
+  "O Apêndice A.4 agora declara que a ligação a frente por Ghosh mede posição na cadeia, e que "
+  "a leitura do modelo como oferta-dirigido é contestada na literatura", "APLICADO nesta edição"),
  ("O", "Duas referências de proveniência desta pasta apontavam para lugares inexistentes: "
   "'AUDITORIA.md §B7' (seção nunca escrita) e uma nota CILQ em dados/README.md (25 linhas, não a contém)",
   "🟡 Menor", "citation-hygiene", "Não", "Reapontadas para AUDITORIA.md B1–B6 e "
@@ -938,16 +963,18 @@ ACHADOS = [
   "dados/README.md:11 o apresentam como funções-núcleo usadas pelo pipeline. Cobre parte da "
   "bateria: sem tipo II, ligações puras, extração hipotética, Miyazawa, LQ/HHI",
   "🟡 Menor", "citation-hygiene", "Não",
-  "Corrigir os dois README, ou passar a importá-lo de fato", "ABERTO"),
+  "Os dois README agora descrevem io_core.py como implementação de referência, não usada "
+  "pelo pipeline", "APLICADO nesta edição"),
  ("Q", "dados/README.md descreve o pipeline como '01–13' quando o artigo depende de 14 a 27",
-  "🟡 Menor", "citation-hygiene", "Não", "Atualizar a faixa", "ABERTO"),
+  "🟡 Menor", "citation-hygiene", "Não", "Faixa atualizada para 01–28",
+  "APLICADO nesta edição"),
  ("R", "O protocolo B7 é invocado pelo nome e usado, mas nunca foi definido em nenhum .md",
   "🟡 Menor", "reproducibility", "Não",
-  "Escrever B7 em AUDITORIA.md: verificação de metadados das referências que sustentam números, "
-  "com o vocabulário VERIFICADA / CORRIGIDA / UNVERIFIABLE_ACCESS", "ABERTO"),
+  "Escrito em AUDITORIA.md: verificação de metadados das referências que sustentam números, "
+  "com o vocabulário VERIFICADA / CORRIGIDA / UNVERIFIABLE_ACCESS", "APLICADO nesta edição"),
  ("S", "O coeficiente de variação publicado (0,16 / 0,28) é o populacional; o amostral daria "
   "0,17 / 0,29. A convenção não está declarada", "🟢 Cosmético", "writing", "Não",
-  "Uma palavra no Apêndice A.4", "ABERTO"),
+  "O Apêndice A.4 agora declara que o CV é o populacional", "APLICADO nesta edição"),
  ("T", "O texto diz 'rochas ornamentais no Central Sul' e o setor correspondente no dado é "
   "'Minerais não-metálicos' (LQ 7,687)", "🟢 Cosmético", "writing", "Não",
   "Nota de equivalência — já registrada na aba 09", "APLICADO nesta edição"),
