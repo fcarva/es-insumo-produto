@@ -37,11 +37,12 @@ es-insumo-produto/
 │   ├── es_plataforma_fractal.tex    # v2 arquivada (invariância de escala)
 │   └── paper_creation_process.tex   # registro do processo (Stage 6)
 ├── pesquisa/
-│   ├── 01–25_*.py                   # pipeline reprodutível (scripts numerados)
+│   ├── 01–28_*.py                   # pipeline reprodutível (scripts numerados)
 │   ├── outputs/                     # CSVs e figuras gerados (versionados)
 │   ├── SINTESE_CONSOLIDADA.md       # ÍNDICE-MESTRE do projeto (o que existe, o que falta)
 │   └── *.md                         # deep researches, resultados, auditorias, pareceres
 ├── overleaf/                        # pacote autocontido p/ Overleaf (ABNT; espelho do artigo principal)
+├── auditoria/                       # pasta de auditoria dos dados (gerada por pesquisa/28_*.py)
 ├── figuras/                         # artes da v1/slides (as figuras do artigo vivem em pesquisa/outputs/)
 ├── src/io_core.py                   # funções-núcleo (Isard/Miller-Blair, RH/Ghosh)
 └── dados/                           # dados de terceiros NÃO versionados (ver dados/README.md)
