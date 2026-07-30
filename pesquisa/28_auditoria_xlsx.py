@@ -149,10 +149,11 @@ ABAS = [
     ("10_Trajetoria",     "Setores de base na estrutura nacional, 2010–2021 (série Nível 68)"),
     ("11_Camada2015",     "Camada 2015 — regionalização CILQ: registro documental"),
     ("12_Verificacao",    "Verificação número-a-número: artigo ↔ fonte, com recomputação viva"),
-    ("13_Integridade",    "Integridade contábil e reprodutibilidade"),
-    ("14_Referencias",    "Integridade das referências bibliográficas"),
-    ("15_Defeitos",       "Defeitos encontrados na auditoria e status das correções"),
-    ("16_Proveniencia",   "Mapa script → output → o que computa"),
+    ("13_Metodo",         "Auditoria metodológica: o indicador sustenta o que a frase afirma?"),
+    ("14_Integridade",    "Integridade contábil e reprodutibilidade"),
+    ("15_Referencias",    "Integridade das referências bibliográficas"),
+    ("16_Defeitos",       "Defeitos encontrados na auditoria e status das correções"),
+    ("17_Proveniencia",   "Mapa script → output → o que computa"),
 ]
 
 # ================================================================== 00_Capa ======
@@ -277,17 +278,23 @@ h = moldura(ws, "Multiplicadores dos 26 setores do ES, tipos I e II (2008)",
 M0 = h + 1
 M1 = M0 + len(caract) - 1
 ordem = sorted(caract, key=lambda r: -f(r, "mult_prod_I"))
+# VBP unido por nome de setor: permite auditar na propria aba a dependencia de tamanho
+# da ligacao pura (CORREL(PTL;VBP) = 0,96), que o artigo afirma em nota de rodape.
+vbp_por_setor = {r["setor"]: f(r, "VBP") for r in setores}
 linhas = [[r["setor"], f(r, "mult_prod_I"), f(r, "mult_prod_II"),
            f(r, "mult_emp_I") / 1e6, f(r, "mult_emp_II") / 1e6,
            f(r, "mult_renda_I"), f(r, "mult_renda_II"),
            f(r, "lig_tras"), f(r, "lig_frente"), f(r, "PTL_idx"),
-           "sim" if r["chave_RH"].strip() in ("1", "1.0") else "—"] for r in ordem]
-linhas.append(["Média (simples)"] + [f"=AVERAGE({c}{M0}:{c}{M1})" for c in "CDEFGHIJK"] + [None])
+           "sim" if r["chave_RH"].strip() in ("1", "1.0") else "—",
+           vbp_por_setor.get(r["setor"])] for r in ordem]
+linhas.append(["Média (simples)"] + [f"=AVERAGE({c}{M0}:{c}{M1})" for c in "CDEFGHIJK"] +
+              [None, f"=SUM(M{M0}:M{M1})"])
 tabela(ws, h, [("Setor", None, "left"), ("Produção I", MULT, "right"), ("Produção II", MULT, "right"),
     ("Emprego I", MI, "right"), ("Emprego II", MI, "right"), ("Renda I", MULT, "right"),
     ("Renda II", MULT, "right"), ("Ligação trás", MULT, "right"), ("Ligação frente", MULT, "right"),
-    ("PTL (padron.)", MULT, "right"), ("Setor-chave", None, "center")],
-    linhas, {"B": 40, "C": 10, "D": 10, "E": 10, "F": 10, "G": 9, "H": 9, "I": 10, "J": 10, "K": 11, "L": 10},
+    ("PTL (padron.)", MULT, "right"), ("Setor-chave", None, "center"), ("VBP (R$ mi)", MI, "right")],
+    linhas, {"B": 40, "C": 10, "D": 10, "E": 10, "F": 10, "G": 9, "H": 9, "I": 10, "J": 10,
+             "K": 11, "L": 10, "M": 13},
     realce={len(caract): F_SINTESE})
 MUL_D0, MUL_D1 = M0, M1
 
@@ -422,7 +429,7 @@ linhas = [
 ]
 tabela(ws, h, [("Métrica", None, "left"), ("Valor", MULT, "right"), ("Observação", None, "left")],
     linhas, {"B": 52, "C": 16, "D": 46}, realce={5: F_SINTESE, 6: F_SINTESE, 7: F_SINTESE})
-SPI_FBK_PCT = S0 + 5
+SPI_FBK_PCT, SPI_INJ_PCT = S0 + 5, S0 + 6
 
 # ============================================================== 07_Destino =====
 ws = wb.create_sheet("07_Destino")
@@ -545,7 +552,7 @@ PROSA = {
    ["Viés do CILQ puro", "sem a correção FLQ (Flegg, Webber & Elliott 1995; Flegg & Webber 2000) o CILQ subestima o vazamento quanto menor a região; ES ~2% do PIB → 12,8% é limite inferior", "limitação declarada"],
    ["Situação dos dados", "as matrizes brutas de 2015 NÃO estão no container — registro documental da auditoria", "documental"]],
   {"B": 34, "C": 84, "D": 20}),
- "13_Integridade": (
+ "14_Integridade": (
   "Integridade contábil e reprodutibilidade",
   "Fontes: pesquisa/AUDITORIA.md (B1–B5) e pesquisa/AUDITORIA_HARD.md (§0, §3).",
   ["Verificação", "Resultado", "Fonte"],
@@ -559,7 +566,7 @@ PROSA = {
    ["Setor S23 do sistema microrregional", "coluna soma 1,07 (herança da regionalização); excluído, o vazamento da Metropolitana passa de 8,4% para 7,9% e a ordenação da retenção não muda", "Apêndice B.1 do artigo"],
    ["Ligações R-H", "Para trás pela inversa de Leontief; para frente pela inversa de Ghosh (corrigido)", "AUDITORIA.md B2/B4"]],
   {"B": 34, "C": 84, "D": 26}),
- "14_Referencias": (
+ "15_Referencias": (
   "Integridade das referências (protocolo B7)",
   "Fontes: pesquisa/AUDITORIA.md §B7 e pesquisa/AUDITORIA_HARD.md §1. Verificam-se aqui as "
   "referências que sustentam números do artigo; as entradas de Antràs et al. e de Timmer et al. "
@@ -573,7 +580,7 @@ PROSA = {
    ["Ribeiro et al. (2024)", "RBERU, 18(4), 596–622 — DOI 10.54766/rberu.v18i4.1111", "VERIFICADA", "mesma matriz de 2015 regionalizada; contraste da §6"],
    ["Sessa et al. (2017)", "Economia e Desenvolvimento, 28(2) — DOI 10.5902/1414650921397", "VERIFICADA", "matriz capixaba; impacto de Ubu"]],
   {"B": 34, "C": 60, "D": 18, "E": 62}),
- "15_Defeitos": (
+ "16_Defeitos": (
   "Defeitos encontrados na auditoria e status das correções",
   "Fonte: pesquisa/AUDITORIA_HARD.md §2 e §5. Nenhum defeito corrompe número publicado. Os itens "
   "B e E dizem respeito à camada de upstreamness/WIOD, que a revisão final do artigo abandonou — "
@@ -590,7 +597,7 @@ PROSA = {
    ["I", "🟠 Médio", "a versão anterior desta pasta auditava a revisão antiga do artigo (§4.1–§4.5, upstreamness) e não cobria os números da versão final", "APLICADO — abas e verificação sincronizadas nesta edição"]],
   {"B": 6, "C": 15, "D": 78, "E": 44}),
 }
-for nome in ("11_Camada2015", "13_Integridade", "14_Referencias", "15_Defeitos"):
+for nome in ("11_Camada2015", "14_Integridade", "15_Referencias", "16_Defeitos"):
     tit, nota, cab, dados, larg = PROSA[nome]
     ws = wb.create_sheet(nome)
     h = moldura(ws, tit, nota, [], len(cab))
@@ -691,6 +698,22 @@ CLAIMS = [
   "10_Trajetoria · 2º bloco", f"={TR}!{COL_2021}{tr2_row['Celulose/papel']}"),
  ("§4 / Tab.3", "Participação do ES no PIB nacional (%)", 2.2,
   "04_Cluster · linha do ES (a introdução arredonda para 'cerca de 2%')", f"={C}!D{CLU_ES}"),
+ # --- fecham a lacuna de cobertura: numeros publicados que a auditoria anterior nao verificava
+ ("§4", "Mineração — ligação para frente (texto: ≈1,2)", 1.2,
+  "02_Multiplicadores · coluna J", f"=INDEX({M}!J{MUL_D0}:J{MUL_D1},MATCH(\"Mineração\",{M}!B{MUL_D0}:B{MUL_D1},0))"),
+ ("§4", "Mineração — ligação para trás (texto: ≈0,9)", 0.9,
+  "02_Multiplicadores · coluna I", f"=INDEX({M}!I{MUL_D0}:I{MUL_D1},MATCH(\"Mineração\",{M}!B{MUL_D0}:B{MUL_D1},0))"),
+ ("§4", "Grau de integração — CV da ligação para trás", 0.16,
+  "02_Multiplicadores · STDEVP÷AVERAGE (CV populacional)",
+  f"=STDEVP({M}!I{MUL_D0}:I{MUL_D1})/AVERAGE({M}!I{MUL_D0}:I{MUL_D1})"),
+ ("§4", "Grau de integração — CV da ligação para frente", 0.28,
+  "02_Multiplicadores · STDEVP÷AVERAGE (CV populacional)",
+  f"=STDEVP({M}!J{MUL_D0}:J{MUL_D1})/AVERAGE({M}!J{MUL_D0}:J{MUL_D1})"),
+ ("§4", "Ligação pura × VBP — correlação de Pearson", 0.96,
+  "02_Multiplicadores · CORREL(PTL;VBP)",
+  f"=CORREL({M}!K{MUL_D0}:K{MUL_D1},{M}!M{MUL_D0}:M{MUL_D1})"),
+ ("§7", "Spillover ÷ injeção (%)", 35.0,
+  "06_Spillover · razão calculada", f"='06_Spillover'!C{SPI_INJ_PCT}"),
 ]
 V0 = h + 1
 linhas = []
@@ -714,8 +737,283 @@ c.alignment = Alignment(wrap_text=True, vertical="top")
 ws.merge_cells(start_row=fim + 1, start_column=2, end_row=fim + 1, end_column=8)
 ws.row_dimensions[fim + 1].height = 30
 
-# ========================================================= 16_Proveniencia =====
-ws = wb.create_sheet("16_Proveniencia")
+# ============================================================== 13_Metodo =====
+# Contraparte metodologica da 12: nao "o numero bate com o CSV?" (isso a 12 responde),
+# mas "o indicador usado sustenta o que a frase afirma?". Os criterios saem do protocolo
+# que o repo ja pratica; tres deles (M6, M19, M21) e a convencao do CV (M22) sao
+# externos, acrescentados porque o protocolo interno nao os cobre.
+OK, FORA, REV = "✓ ADEQUADO", "~ RESSALVA FORA DO PONTO", "⚑ REVISAR"
+
+CRITERIOS = [
+ ("M1", "Identidade contábil x = Z1 + y e aditividade exata da decomposição", "interno",
+  "AUDITORIA.md:6 · 25_decomposicao_fd.py:74", OK,
+  "assert de aditividade no próprio script; erro máximo de 0,00% registrado"),
+ ("M2", "Hawkins-Simon: soma de coluna de A < 1", "interno",
+  "AUDITORIA.md:7 · RESULTADOS_RQ_AB.md:103", OK,
+  "0,748 bi-regional e 0,895 interestadual; a exceção do S23 (1,07) é declarada e testada "
+  "por sensibilidade no Apêndice B.1"),
+ ("M3", "Inversa de Leontief não negativa: B = (I−A)⁻¹ ≥ 0", "interno",
+  "AUDITORIA.md:7 · 01_es_br_base.py:122", OK, "verificado em todos os sistemas"),
+ ("M4", "Multiplicadores ≥ 1", "interno", "PLANO_ARTIGO.md:49", OK,
+  "o mínimo publicado é 1,15 (serviços imobiliários), na Tabela 5"),
+ ("M5", "Ligação para frente pela inversa de Ghosh, não por soma de linha de Leontief", "interno",
+  "AUDITORIA.md:16 · src/io_core.py:127", OK,
+  "o Apêndice A.4 declara G = (I−F)⁻¹ com F = x̂⁻¹Z"),
+ ("M6", "O modelo de Ghosh é oferta-dirigido: a ligação para frente vale como métrica de "
+  "posição, não como previsão de impacto", "EXTERNO",
+  "Oosterhaven (1988); Dietzenbacher (1997) — ausente em todo o repositório", REV,
+  "o artigo diz 'pelo lado da oferta' (§3 e Apêndice A.4), mas em nenhum ponto registra que a "
+  "leitura causal do modelo é contestada. Ver achado N"),
+ ("M7", "Tipo II é limite inferior do induzido local", "interno",
+  "REVIEW_THEORIST_TOOLBOX.md:55 (F6)", OK,
+  "o Apêndice A.1 traz o argumento de monotonicidade pela série de Neumann"),
+ ("M8", "Duas agregações legítimas do mesmo fluxo exigem nota de reconciliação, nunca escolha "
+  "silenciosa", "interno", "AUDITORIA.md:58 · REVIEW_CARACTERIZACAO.md:21", OK,
+  "quatro precedentes no repo; o Apêndice B.2 concilia 24,9 / 22,9 / 22,8 / 27,4 e a nota da "
+  "Tabela 5 concilia 90,9 com 91,6"),
+ ("M9", "Preços correntes: oscilação anual em setor sensível a preço é efeito nominal, não "
+  "estrutural", "interno", "RESULTADOS_CARACTERIZACAO.md:151 · DEEP_RESEARCH_PANORAMA.md:81", OK,
+  "declarado na Limitação (ii) E no ponto de uso, no parágrafo da siderurgia em §5. A deflação "
+  "da série segue pendente como agenda"),
+ ("M10", "CILQ sem correção FLQ subestima o vazamento: o valor é limite inferior", "interno",
+  "REVISAO_LITERATURA_IIOAS.md:63", FORA,
+  "declarado na Limitação (iii) como 'ordens de grandeza', mas não no ponto dos LQ de 2015"),
+ ("M11", "A conclusão precisa ser invariante à convenção de spillover/feedback", "interno",
+  "06_reconciliacao.py:70", OK,
+  "o Apêndice B.3 reporta a banda 0,15–0,32% em quatro convenções alternativas"),
+ ("M12", "Extração hipotética: declarar a especificação da injeção no ponto do número", "interno",
+  "REVIEW_FULL_MODE_V2.md:102 (R1-W3)", FORA,
+  "o Apêndice A.7 declara que a injeção é a demanda final intra-estadual; o §6, onde os 13,0% "
+  "aparecem, não repete"),
+ ("M13", "Ligações puras são largamente tamanho: reportar junto com Rasmussen-Hirschman",
+  "interno", "17_caracterizacao_es_2008.py:88", OK,
+  "nota de rodapé no §4 com o Pearson 0,96, agora auditável na aba 02 pela coluna VBP"),
+ ("M14", "Modelo nulo é ajuste descritivo, sem pretensão inferencial", "interno",
+  "REVIEW_THEORIST_TOOLBOX.md:67 (F8)", "n/a nesta revisão",
+  "o apêndice de escores-z saiu da revisão final; nenhuma afirmação auditada depende dele"),
+ ("M15", "Cruzamento entre safras e agregações exige rótulo explícito", "interno",
+  "DEEP_RESEARCH_PANORAMA.md:264", OK,
+  "26 / 35 / 68 setores e as safras 2008 / 2015 / 2010–2021 são declarados em §3.1 e nas "
+  "Limitações (ii) e (iii)"),
+ ("M16", "Todo número publicado precisa de artefato persistido, não de stdout", "interno",
+  "REVIEW_THEORIST_TOOLBOX.md:42 (F4)", REV,
+  "falha em um caso: a decomposição de Miyazawa do Apêndice A.3 não é computada por nenhum "
+  "script. Ver achado L"),
+ ("M17", "Teste prometido e não rodado conta como teste falhando", "interno",
+  "REVIEW_THEORIST_TOOLBOX.md:14 (F1)", REV,
+  "falha em um caso: a reestimação do ranking de base sem Alimentos é prometida em nota de "
+  "rodapé no §4 e nunca foi executada. Ver achado M"),
+ ("M18", "Percentuais calculados sobre os valores, não soma de parcelas arredondadas", "interno",
+  "esta pasta, aba 03", OK,
+  "corrigido nesta edição: somar a coluna de % do CSV dava um TOTAL de 100,01"),
+ ("M19", "O CSV persistido precisa ser internamente coerente em unidade", "EXTERNO", "—", REV,
+  "falha: es_caracterizacao_2008.csv traz a mesma grandeza em duas unidades na mesma linha. "
+  "Ver achado J"),
+ ("M20", "Cruzamento de escalas exige tabela-ponte de concordância", "interno",
+  "DEEP_RESEARCH_PANORAMA.md:264", FORA,
+  "a ponte 26↔35↔68 nunca foi construída; o artigo supre rotulando a comparação inter-escala "
+  "como qualitativa, o que atende ao espírito da regra sem cumpri-la"),
+ ("M21", "A guarda de Hawkins-Simon deve ser uniforme entre escalas", "EXTERNO",
+  "14_benchmark_ufs.py:42 vs 18_trajetoria_n68.py:56", REV,
+  "falha: um script usa assert, o outro detecta a violação e faz pass. Ver achado K"),
+ ("M22", "A convenção do coeficiente de variação deve ser declarada", "EXTERNO", "—", FORA,
+  "o CV publicado (0,16 / 0,28) é o populacional; o amostral daria 0,17 / 0,29. A escolha não "
+  "está no texto. Ver achado S"),
+]
+
+# afirmacao -> (indicador usado, criterios, veredito, ressalva ou redacao sugerida)
+METODO = {
+ "Vazamento médio de produção (média simples)": ("média simples entre 26 setores", "M8", OK, ""),
+ "Vazamento médio de produção (ponderado pelo VBP)": ("média ponderada pelo VBP", "M8", OK,
+  "as duas médias aparecem na mesma frase do §7 e no Apêndice B.2 — é o precedente do repo cumprido"),
+ "Serviços imobiliários — vazamento de produção": ("valor setorial direto", "M1", OK, ""),
+ "Alimentos — vazamento de produção": ("valor setorial direto", "M1", OK, ""),
+ "Refino — vazamento de emprego": ("valor setorial direto", "M1", OK, ""),
+ "Metalurgia — vazamento de emprego": ("valor setorial direto", "M1", OK, ""),
+ "Multiplicador de produção médio, tipo I": ("média simples, bi-regional", "M4 · M8", OK, ""),
+ "Multiplicador de produção médio, tipo II": ("média simples, fechamento tipo II", "M7", OK, ""),
+ "Multiplicador de emprego médio, tipo I": ("média simples, bi-regional", "M8 · M19", FORA,
+  "o número publicado está certo, mas a coluna mult_emp_I do CSV está gravada ×1e6 e a coluna "
+  "emp_dir_Rmi da mesma linha, não. Quem replicar pelo artefato erra por seis ordens de grandeza"),
+ "Multiplicador de emprego médio, tipo II": ("média simples, tipo II", "M7 · M19", FORA,
+  "mesma incoerência de unidade no artefato (achado J)"),
+ "Mineração — ligação pura total padronizada": ("PTL padronizada pela média dos 26", "M13", OK,
+  "a nota do §4 declara o Pearson 0,96 no ponto de uso"),
+ "Metalurgia — ligação pura total padronizada": ("PTL padronizada", "M13", OK, ""),
+ "Demanda externa ao estado — % da produção": ("soma de dois componentes de y", "M1 · M18", OK, ""),
+ "Demanda externa ao estado — % do emprego": ("soma de dois componentes de y", "M1 · M18", OK, ""),
+ "Produção total do ES (R$ bi)": ("total da decomposição", "M1", OK, ""),
+ "Emprego total do ES (mil ocupações)": ("total da decomposição", "M1", OK, ""),
+ "ES — base/commodity (%)": ("parcela do VBP nos setores rotulados base", "M17", REV,
+  "o rótulo inclui Alimentos (22_benchmark_caracterizacao.py:18) e a nota de rodapé do §4 promete "
+  "a reestimação sem Alimentos 'como checagem de replicação'. Enquanto ela não rodar, o '2º mais "
+  "intensivo' é condicional ao rótulo. Redação sugerida: '2º mais intensivo em setores de base "
+  "sob a classificação adotada, que inclui Alimentos'"),
+ "ES — mult. de produção ponderado (interestadual)": ("média ponderada, interestadual",
+  "M8 · M15", OK, "a nota de rodapé do §4 reconcilia com o 1,76 da média simples bi-regional"),
+ "ES — mult. de emprego ponderado": ("média ponderada, interestadual", "M8 · M15", OK, ""),
+ "ES — ligação para trás ponderada": ("ligação de Leontief ponderada", "M5 · M15", OK, ""),
+ "ES — emprego do líder ÷ média do estado": ("razão sobre o setor dominante", "M15", OK,
+  "não depende do rótulo base: o setor dominante é determinado por porte"),
+ "Mediana das 27 UFs — base/commodity (%)": ("mediana entre 27 UFs", "M17", REV,
+  "a mediana é calculada sobre a mesma coluna rotulada; herda a condicionalidade do achado M"),
+ "Mediana das 27 UFs — mult. de emprego": ("mediana entre 27 UFs", "M8", OK, ""),
+ "Mediana das 27 UFs — líder ÷ média": ("mediana entre 27 UFs", "M15", OK, ""),
+ "Sudeste excl. ES absorve (%)": ("soma de parcelas de destino", "M11", OK, ""),
+ "Núcleo SP+RJ absorve (%)": ("soma de parcelas de destino", "M11", OK, ""),
+ "Feedback ÷ injeção (%)": ("razão da inversa particionada", "M11", OK,
+  "o Apêndice B.3 mostra a invariância à convenção (0,15–0,32%)"),
+ "Metropolitana — retenção do multiplicador (%)": ("razão das somas ponderadas", "M8", OK,
+  "a nota da Tabela 5 distingue da média ponderada das razões (91,6%)"),
+ "Litoral Sul — retenção do multiplicador (%)": ("razão das somas ponderadas", "M8", OK, ""),
+ "Metropolitana — % do VBP do ES": ("parcela do VBP", "M1", OK, ""),
+ "Extração da metrópole — perda na periferia (%)": ("extração hipotética", "M12 · M16", FORA,
+  "a especificação da injeção (demanda final intra-estadual) está só no Apêndice A.7. Redação "
+  "sugerida no §6: '...cairia 13,0% sob a injeção da demanda final intra-estadual'"),
+ "Celulose no Rio Doce — LQ": ("quociente locacional, 2015", "M10 · M20", FORA,
+  "o LQ de 2015 vem da regionalização CILQ sem correção FLQ; a ressalva está na Limitação (iii)"),
+ "Minério no Litoral Sul — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
+ "Têxtil no Centro-Oeste — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
+ "Pecuária na Central Serrana — LQ": ("quociente locacional, 2015", "M10 · M20", FORA, "idem"),
+ "Rochas ornamentais no Central Sul — LQ": ("quociente locacional, 2015", "M10 · M20", FORA,
+  "além da ressalva do CILQ: o texto diz 'rochas ornamentais' e o dado é 'Minerais não-metálicos'. "
+  "Ver achado T"),
+ "Celulose — ligação para trás em 2010": ("ligação de Leontief, série nacional",
+  "M9 · M15 · M21", FORA,
+  "preços correntes (Limitação ii) e o script do panorama detecta violação de Hawkins-Simon sem "
+  "agir (achado K). A tendência de 12 anos é robusta ao efeito nominal; o nível de um ano, não"),
+ "Celulose — ligação para trás em 2021": ("ligação de Leontief, série nacional",
+  "M9 · M15 · M21", FORA, "idem"),
+ "Celulose — multiplicador de produção em 2010": ("multiplicador, série nacional",
+  "M9 · M21", FORA, "idem"),
+ "Celulose — multiplicador de produção em 2021": ("multiplicador, série nacional",
+  "M9 · M21", FORA, "idem"),
+ "Participação do ES no PIB nacional (%)": ("parcela do valor adicionado", "M15", OK,
+  "a Tabela 3 publica 2,2 e a introdução arredonda para 'cerca de 2%' — as duas leituras do "
+  "mesmo 2,15"),
+ "Mineração — ligação para frente (texto: ≈1,2)": ("ligação de Ghosh", "M5 · M6", REV,
+  "o número confere, mas sustenta a leitura de 'fornecedora a montante'. Por M6, a ligação de "
+  "Ghosh mede posição, não impacto — a frase do §4 não deve ser lida como previsão de efeito"),
+ "Mineração — ligação para trás (texto: ≈0,9)": ("ligação de Leontief", "M5", OK, ""),
+ "Grau de integração — CV da ligação para trás": ("CV populacional das ligações", "M22", FORA,
+  "o CV é o populacional; declarar qual, já que o amostral daria 0,17"),
+ "Grau de integração — CV da ligação para frente": ("CV populacional das ligações",
+  "M6 · M22", FORA, "idem, e a ligação a frente é de Ghosh (M6): o amostral daria 0,29"),
+ "Ligação pura × VBP — correlação de Pearson": ("Pearson entre PTL e VBP", "M13 · M16", OK,
+  "agora auditável por fórmula na aba 02; antes só existia como print de console"),
+ "Spillover ÷ injeção (%)": ("razão sobre a injeção declarada", "M11", OK, ""),
+}
+
+ACHADOS = [
+ ("J", "es_caracterizacao_2008.csv grava mult_emp_I multiplicado por 1e6 (46.669.630,07) enquanto "
+  "emp_dir_Rmi e emp_ind_Rmi, na mesma linha, somam 46,67. A mesma grandeza em duas unidades",
+  "🟠 Médio", "reproducibility", "Não — os números publicados dividem por 1e6 corretamente",
+  "Gravar já por R$ 1 milhão, ou renomear a coluna para explicitar o fator", "ABERTO"),
+ ("K", "18_trajetoria_n68.py:56-58 detecta soma de coluna de A ≥ 1 e executa pass; "
+  "14_benchmark_ufs.py:42 usa assert para a mesma checagem", "🟠 Médio", "reproducibility",
+  "Indeterminado — UNVERIFIABLE_ACCESS: as matrizes do Nível 68 não estão no repositório, "
+  "não é possível saber se a violação dispara em algum ano",
+  "Trocar pass por assert, ou registrar em CSV quais anos violam e o raio espectral", "ABERTO"),
+ ("L", "A decomposição de Miyazawa do Apêndice A.3 não é computada por nenhum script "
+  "(varredura em *.py: zero ocorrências); a cadeia número→artefato fecha por identidade algébrica",
+  "🟠 Médio", "reproducibility", "Não — o valor é o feedback já verificado, por identidade",
+  "Ou um script que compute Δ_LL e persista o CSV, ou uma frase no apêndice dizendo que o "
+  "resultado é identidade algébrica e não cálculo independente", "ABERTO"),
+ ("M", "A reestimação do ranking de base excluindo Alimentos é prometida em nota de rodapé no §4 "
+  "'como checagem de replicação' e nunca foi executada (DA-1, aberto desde a rodada 3)",
+  "🟠 Médio", "research-integrity",
+  "Sim, condicionalmente — o '2º mais intensivo em base' (36,4%) e a mediana de 21,0 dependem do rótulo",
+  "Rodar 22_* e 10_* sem Alimentos e reportar o novo ranking, ou retirar a promessa da nota",
+  "ABERTO"),
+ ("N", "Nenhum documento do repositório registra a crítica canônica ao modelo de Ghosh como "
+  "oferta-dirigido; Ghosh entra apenas como 'a convenção correta' para a ligação a frente",
+  "🟠 Médio", "causal-identification", "Não — nenhum número muda",
+  "Meia frase no Apêndice A.4: a ligação a frente por Ghosh mede posição na cadeia, e a leitura "
+  "do modelo como oferta-dirigido é contestada na literatura", "ABERTO"),
+ ("O", "Duas referências de proveniência desta pasta apontavam para lugares inexistentes: "
+  "'AUDITORIA.md §B7' (seção nunca escrita) e uma nota CILQ em dados/README.md (25 linhas, não a contém)",
+  "🟡 Menor", "citation-hygiene", "Não", "Reapontadas para AUDITORIA.md B1–B6 e "
+  "RESULTADOS_RQ_AB.md:103", "APLICADO nesta edição"),
+ ("P", "src/io_core.py não é importado por nenhum script (zero imports), mas README.md:47 e "
+  "dados/README.md:11 o apresentam como funções-núcleo usadas pelo pipeline. Cobre parte da "
+  "bateria: sem tipo II, ligações puras, extração hipotética, Miyazawa, LQ/HHI",
+  "🟡 Menor", "citation-hygiene", "Não",
+  "Corrigir os dois README, ou passar a importá-lo de fato", "ABERTO"),
+ ("Q", "dados/README.md descreve o pipeline como '01–13' quando o artigo depende de 14 a 27",
+  "🟡 Menor", "citation-hygiene", "Não", "Atualizar a faixa", "ABERTO"),
+ ("R", "O protocolo B7 é invocado pelo nome e usado, mas nunca foi definido em nenhum .md",
+  "🟡 Menor", "reproducibility", "Não",
+  "Escrever B7 em AUDITORIA.md: verificação de metadados das referências que sustentam números, "
+  "com o vocabulário VERIFICADA / CORRIGIDA / UNVERIFIABLE_ACCESS", "ABERTO"),
+ ("S", "O coeficiente de variação publicado (0,16 / 0,28) é o populacional; o amostral daria "
+  "0,17 / 0,29. A convenção não está declarada", "🟢 Cosmético", "writing", "Não",
+  "Uma palavra no Apêndice A.4", "ABERTO"),
+ ("T", "O texto diz 'rochas ornamentais no Central Sul' e o setor correspondente no dado é "
+  "'Minerais não-metálicos' (LQ 7,687)", "🟢 Cosmético", "writing", "Não",
+  "Nota de equivalência — já registrada na aba 09", "APLICADO nesta edição"),
+ ("U", "Tensão no cânone interno: DEEP_RESEARCH_CARACTERIZACAO.md:60 diz que as ligações puras "
+  "corrigem o viés de Rasmussen-Hirschman por não pesar tamanho; a Limitação (iv) diz que elas "
+  "favorecem setores grandes. As duas leituras são defensáveis", "🟢 Declarado", "writing",
+  "Não", "Nenhuma ação necessária; registrado para o caso de o parecerista notar", "ABERTO"),
+ ("V", "24_micro_mult_chave.py e 25_decomposicao_fd.py declaram em docstring ser reconstrução de "
+  "um original não versionado a tempo; alimentam a Tabela 5 e a Tabela 2", "🟡 Menor",
+  "reproducibility", "Não — a autoverificação de ambos bate com os valores publicados",
+  "Nenhuma, além de manter a autoverificação", "declarado/transparente"),
+ ("W", "Seis números publicados não tinham linha de verificação: as ligações ≈1,2 e ≈0,9 da "
+  "mineração, os dois coeficientes de variação, o Pearson 0,96 e os 35% da injeção",
+  "🟠 Médio", "research-integrity", "Não", "Seis linhas acrescentadas à aba 12",
+  "APLICADO nesta edição"),
+]
+
+falta = [c[1] for c in CLAIMS if c[1] not in METODO]
+if falta:
+    raise SystemExit("[ERRO] afirmacoes sem veredito metodologico: " + " | ".join(falta))
+
+ws = wb.create_sheet("13_Metodo")
+h = moldura(ws, "Auditoria metodológica das afirmações numéricas",
+    "A aba 12 pergunta se o número publicado bate com o CSV; esta pergunta se o indicador usado "
+    "sustenta o que a frase afirma — são coisas diferentes. Os critérios saem do protocolo que o "
+    "repositório já pratica (AUDITORIA.md B1–B6, AUDITORIA_HARD.md §0–§5, os gates INTEGRITY, os "
+    "achados F1–F8 do parecer matemático); quatro são externos, acrescentados porque o protocolo "
+    "interno não os cobre, e vêm marcados como tal na coluna Origem.",
+    [f"{sum(1 for v in METODO.values() if v[2] == OK)} das {len(METODO)} afirmações passam sem "
+     f"ressalva; {sum(1 for v in METODO.values() if v[2] == FORA)} têm ressalva declarada longe do "
+     f"número; {sum(1 for v in METODO.values() if v[2] == REV)} pedem revisão.",
+     "Nenhum achado corrompe número publicado. O de maior consequência é o M — teste prometido "
+     "em nota de rodapé e nunca executado, pela regra do próprio repositório."], 7)
+
+LARG = {"B": 11, "C": 52, "D": 18, "E": 34, "F": 30, "G": 52, "H": 14}
+ws.cell(h - 1, 2, "Bloco 1 — critérios do crivo").font = Font(
+    name=FT, size=10, bold=True, color=SECAO)
+fim = tabela(ws, h, [("Código", None, "center"), ("Critério", None, "left"),
+    ("Origem", None, "center"), ("Base", None, "left"), ("Veredito", None, "center"),
+    ("Como o artigo se posiciona", None, "left")],
+    [list(c) for c in CRITERIOS], LARG)
+
+hr = fim + 2
+ws.cell(hr - 1, 2, "Bloco 2 — as afirmações, uma a uma").font = Font(
+    name=FT, size=10, bold=True, color=SECAO)
+linhas = []
+for loc, claim, art, _fonte, _form in CLAIMS:
+    ind, crit, ver, ress = METODO[claim]
+    linhas.append([loc, claim, crit, ind, ver, ress, art])
+realce = {i: F_SINTESE for i, l in enumerate(linhas) if l[4] == REV}
+fim2 = tabela(ws, hr, [("Local", None, "center"), ("Afirmação no artigo", None, "left"),
+    ("Critérios", None, "center"), ("Indicador usado", None, "left"),
+    ("Veredito", None, "center"), ("Ressalva ou redação sugerida", None, "left"),
+    ("Valor", MULT, "right")], linhas, {})
+
+hr2 = fim2 + 2
+ws.cell(hr2 - 1, 2, "Bloco 3 — achados (a série A–I está na aba 16)").font = Font(
+    name=FT, size=10, bold=True, color=SECAO)
+tabela(ws, hr2, [("ID", None, "center"), ("Descrição", None, "left"),
+    ("Severidade", None, "center"), ("Categoria", None, "left"),
+    ("Afeta número publicado?", None, "left"), ("Correção sugerida", None, "left"),
+    ("Status", None, "center")], [list(a) for a in ACHADOS], {})
+ws.freeze_panes = ws.cell(h + 1, 2).coordinate
+
+# ========================================================= 17_Proveniencia =====
+ws = wb.create_sheet("17_Proveniencia")
 h = moldura(ws, "Proveniência — mapa script → output → o que computa",
     "Trilha de reprodução do pipeline pesquisa/ (28 scripts). Listam-se os que alimentam as "
     "tabelas e figuras da revisão final e esta auditoria; os scripts leem as matrizes-fonte da "
