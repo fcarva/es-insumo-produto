@@ -41,6 +41,7 @@ es-insumo-produto/
 │   ├── outputs/                     # CSVs e figuras gerados (versionados)
 │   ├── SINTESE_CONSOLIDADA.md       # ÍNDICE-MESTRE do projeto (o que existe, o que falta)
 │   └── *.md                         # deep researches, resultados, auditorias, pareceres
+├── lista/                           # lista de exercícios 2026/1 resolvida (gera Excel formulado)
 ├── overleaf/                        # pacote autocontido p/ Overleaf (ABNT; espelho do artigo principal)
 ├── figuras/                         # artes da v1/slides (as figuras do artigo vivem em pesquisa/outputs/)
 ├── src/io_core.py                   # funções-núcleo (Isard/Miller-Blair, RH/Ghosh)
